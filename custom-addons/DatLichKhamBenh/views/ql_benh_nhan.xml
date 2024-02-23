@@ -1,0 +1,150 @@
+<odoo>
+	<record id="medical_benh_nhan_form_view" model="ir.ui.view">
+		<field name="name">medical.benh_nhan.form</field>
+		<field name="model">medical.benh_nhan</field>
+		<field name="arch" type="xml">
+			<form string="Bệnh nhân">
+				<header>
+					<field name="state" widget="statusbar" />
+				</header>
+				<sheet>
+					<field name="anh_dai_dien" nolabel="1" widget="image" class="oe_avatar"/>
+					<div class="oe_title">
+						<label for="name"/>
+						<h1><field name="name" required="1"/></h1>
+					</div>
+					<group>
+						<group>
+							<field name="tuoi_benh_nhan"  readonly="1"/>
+							<field name="tinh_trang_hon_nhan" />
+							<field name="gioi_tinh" widget="radio"/>
+						</group>
+						<group>
+							<field name="ngay_sinh" required="1"/>
+							<field name="nam_sinh" readonly="1"/>
+							<field name="cccd" required='nam_sinh != False'/>
+							<field name="nhom_mau" />
+							<field name="rh" />
+							<field name="bac_si_gia_dinh" />
+						</group>
+					</group>
+					<separator string="Tài khoản người dùng" colspan="4" />
+					<notebook >
+						<page string="Cá nhân">
+							<group>
+								<group>
+									<label for="dia_chi" string="Địa chỉ"/>
+									<div>
+										<field name="dia_chi" placeholder="Street..." on_change="1" field_id="street_0"/>
+										<field name="dia_chi_2" on_change="1" field_id="street2_0"/>
+										<div class="address_format">
+											<field name="phuong_xa" placeholder="Phường/Xã" style="width: 49%" can_create="True" can_write="True" field_id="wards_id_0"/>
+											<field name="quan_huyen" class="oe_no_button" placeholder="Quận/Huyện" style="width: 49%" field_id="district_id_0"/>
+										</div>
+										<div class="address_format">
+											<field name="thanh_pho" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
+											<field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
+											<field name="zip" placeholder="Mã bưu điện" style="width: 20%" on_change="1" field_id="zip_0"/>
+										</div>
+										<field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
+									</div>
+									<field name="website_link" widget="url" placeholder="e.g. www.odoo.com" on_change="1" field_id="website_0"/>
+								</group>
+								<group>
+									<field name="chuc_vu" string="Chức vụ" placeholder="e.g. developer" on_change="1" field_id="function_0"/>
+									<field name="so_dien_thoai" placeholder="e.g. +84 012345678" on_change="1" field_id="phone_0"/>
+									<field name="email" widget="email" on_change="1" field_id="email_0"/>
+								</group>
+							</group>
+						</page>
+						<page string="Gia đình &amp; bảo hiểm">
+
+						</page>
+						<page string="Thuốc">
+
+						</page>
+						<page string="Đánh giá">
+
+						</page>
+						<page string="Phiếu khám bệnh">
+
+						</page>
+						<page string="Chẩn đoán hình ảnh">
+
+						</page>
+						<page string="Lifestyle">
+
+						</page>
+						<page string="Phiếu xét nghiệm">
+
+						</page>
+						<page string="Nhật kí cuộc gọi">
+
+						</page>
+						<page string="Tiền sử bệnh">
+
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	 <record id="medical_benh_nhan_tree_view" model="ir.ui.view">
+       <field name="name">medical.benh_nhan.tree</field>
+		<field name="model">medical.benh_nhan</field>
+        <field name="arch" type="xml">
+            <tree string="Thông tin bệnh nhân">
+                <field name="name" />
+                <field name="gioi_tinh"/>
+                <field name="tuoi_benh_nhan"/>
+                <field name="nhom_mau" />
+            </tree>
+		</field>
+    </record>
+	<record id="medical_benh_nhan_kanban_view" model="ir.ui.view">
+       <field name="name">medical.benh_nhan.kanban</field>
+		<field name="model">medical.benh_nhan</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name" />
+                <field name="anh_dai_dien" />
+                <field name="gioi_tinh" />
+                <field name="tuoi_benh_nhan" />
+                <field name="nhom_mau" />
+				<templates>
+                    <t t-name="kanban-box">
+						<div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+							<div class="oe_kanban_details">
+								<div class="o_kanban_image_fill_right d-none d-md-block">
+									<a type="open">
+										<img heigh="100" width="100" t-att-src="kanban_image('medical.benh_nhan', 'anh_dai_dien', record.id.raw_value)"/>
+									</a>
+									<span class="" style="text-align: right">
+										<strong class="o_kanban_record_title"><field name="name" /> </strong>
+										<div class="o_kanban_tags_section">
+											<ul>
+												<li>Giới tính: <field name="gioi_tinh"/></li>
+												<li>Tuổi: <field name="tuoi_benh_nhan"/></li>
+												<li>Nhóm máu: <field name="nhom_mau"/></li>
+											</ul>
+										</div>
+									</span>
+								</div>
+
+							</div>
+						</div>
+                    </t>
+                </templates>
+            </kanban>
+		</field>
+    </record>
+
+	<record id="medical_benh_nhan_action" model="ir.actions.act_window">
+		<field name="name">Bệnh nhân</field>
+		<field name="res_model">medical.benh_nhan</field>
+		<field name="view_mode">tree,form,kanban</field>
+	</record>
+
+	<menuitem id="medical_benh_nhan_menu" name="Quản lý bệnh nhân" parent="menu_field" action='medical_benh_nhan_action' sequence="1" />
+<!--	<menuitem id="test_phan_quyen_menu" name="Test phan quyen" parent="menu_field" action='medical_benh_nhan_action' sequence="2" groups="DatLichKhamBenh.group_employee_manager"/>-->
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_employee_user,access_employee_user,DatLichKhamBenh.model_medical_benh_nhan,DatLichKhamBenh.group_employee_user,1,1,1,0
+access_employee_manager,access_employee_manager,DatLichKhamBenh.model_medical_benh_nhan,DatLichKhamBenh.group_employee_manager,1,1,1,1
