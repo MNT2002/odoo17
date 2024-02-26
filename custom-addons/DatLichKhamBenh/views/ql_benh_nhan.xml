@@ -5,13 +5,28 @@
 		<field name="arch" type="xml">
 			<form string="Bệnh nhân">
 				<header>
+					<button name="%(DatLichKhamBenh.confirm_state_benh_nhan_action)d" string="Đã khám" type="action" class="oe_highlight" invisible="state == 'DaKham'"/>
+					<button name="btn_dang_cho" string="Đang chờ" type="object" class="oe_highlight" invisible="state == 'DangCho'"/>
 					<field name="state" widget="statusbar" />
 				</header>
 				<sheet>
+					<div class="oe_button_box" name="button_box">
+<!--						<button type="action" class="oe_stat_button" name="738" context="{'search_default_patient': active_id,'default_patient': active_id}"
+								groups="biz_medical.group_medical_physician,biz_medical.group_medical_manager,biz_medical.group_medical_center_admin">-->
+<!--							<field string="Vaccines" name="vaccine_count" widget="statinfo"/>-->
+<!--						</button>-->
+<!--						<button type="action" class="oe_stat_button" name="573" context="{'search_default_patient_id': active_id,'default_patient_id': active_id}">-->
+<!--							<field string="Invoices" name="invoice_count" widget="statinfo"/>-->
+<!--						</button>-->
+<!--						<button type="action" class="oe_stat_button" name="704" context="{'search_default_patient': active_id,'default_patient': active_id}">-->
+<!--							<field string="Insurances" name="insurance_count" widget="statinfo"/>-->
+<!--						</button>-->
+					</div>
 					<field name="anh_dai_dien" nolabel="1" widget="image" class="oe_avatar"/>
 					<div class="oe_title">
 						<label for="name"/>
 						<h1><field name="name" required="1"/></h1>
+						<field name="identification_code"/>
 					</div>
 					<group>
 						<group>
@@ -43,7 +58,8 @@
 										</div>
 										<div class="address_format">
 											<field name="thanh_pho" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
-											<field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
+											<field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False'
+												   style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
 											<field name="zip" placeholder="Mã bưu điện" style="width: 20%" on_change="1" field_id="zip_0"/>
 										</div>
 										<field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
@@ -89,6 +105,27 @@
 			</form>
 		</field>
 	</record>
+
+	<record id="benh_nhan_search_view" model="ir.ui.view">
+	   <field name="name">Tìm kiếm bệnh nhân</field>
+	   <field name="model">medical.benh_nhan</field>
+	    <field name="arch" type="xml">
+	        <search string="">
+			  	<field name="name"/>
+				<field name="tuoi_benh_nhan"/>
+				<field name="gioi_tinh"/>
+				<field name="nhom_mau"/>
+				<separator/>
+				<filter string="Tên" name="country_filter"/>
+				<group expand="1" string="Nhóm theo">
+					<filter string="Họ và tên" name="group_by_name" context="{'group_by': 'name'}"/>
+					<filter string="Giới tính" name="group_by_gender" context="{'group_by': 'gioi_tinh'}"/>
+					<filter string="Bác sĩ" name="group_by_doctor" context="{'group_by': 'bac_si_gia_dinh'}"/>
+				</group>
+			</search>
+	   </field>
+	</record>
+
 	 <record id="medical_benh_nhan_tree_view" model="ir.ui.view">
        <field name="name">medical.benh_nhan.tree</field>
 		<field name="model">medical.benh_nhan</field>
@@ -101,48 +138,56 @@
             </tree>
 		</field>
     </record>
-	<record id="medical_benh_nhan_kanban_view" model="ir.ui.view">
-       <field name="name">medical.benh_nhan.kanban</field>
-		<field name="model">medical.benh_nhan</field>
-        <field name="arch" type="xml">
-            <kanban>
-                <field name="name" />
-                <field name="anh_dai_dien" />
-                <field name="gioi_tinh" />
-                <field name="tuoi_benh_nhan" />
-                <field name="nhom_mau" />
-				<templates>
-                    <t t-name="kanban-box">
-						<div class="oe_kanban_global_click o_kanban_record_has_image_fill">
-							<div class="oe_kanban_details">
-								<div class="o_kanban_image_fill_right d-none d-md-block">
-									<a type="open">
-										<img heigh="100" width="100" t-att-src="kanban_image('medical.benh_nhan', 'anh_dai_dien', record.id.raw_value)"/>
-									</a>
-									<span class="" style="text-align: right">
-										<strong class="o_kanban_record_title"><field name="name" /> </strong>
-										<div class="o_kanban_tags_section">
-											<ul>
-												<li>Giới tính: <field name="gioi_tinh"/></li>
-												<li>Tuổi: <field name="tuoi_benh_nhan"/></li>
-												<li>Nhóm máu: <field name="nhom_mau"/></li>
-											</ul>
-										</div>
-									</span>
-								</div>
+<!--	<record id="medical_benh_nhan_kanban_view" model="ir.ui.view">-->
+<!--       <field name="name">medical.benh_nhan.kanban</field>-->
+<!--		<field name="model">medical.benh_nhan</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <kanban>-->
+<!--                <field name="name" />-->
+<!--                <field name="anh_dai_dien" />-->
+<!--                <field name="gioi_tinh" />-->
+<!--                <field name="tuoi_benh_nhan" />-->
+<!--                <field name="nhom_mau" />-->
+<!--				<templates>-->
+<!--                    <t t-name="kanban-box">-->
+<!--						<div class="oe_kanban_global_click o_kanban_record_has_image_fill">-->
+<!--							<div class="oe_kanban_details">-->
+<!--								<div class="o_kanban_image_fill_right d-none d-md-block">-->
+<!--									<a type="open">-->
+<!--										<img heigh="100" width="100" t-att-src="kanban_image('medical.benh_nhan', 'anh_dai_dien', record.id.raw_value)"/>-->
+<!--									</a>-->
+<!--									<span class="" style="text-align: right">-->
+<!--										<strong class="o_kanban_record_title"><field name="name" /> </strong>-->
+<!--										<div class="o_kanban_tags_section">-->
+<!--											<ul>-->
+<!--												<li>Giới tính: <field name="gioi_tinh"/></li>-->
+<!--												<li>Tuổi: <field name="tuoi_benh_nhan"/></li>-->
+<!--												<li>Nhóm máu: <field name="nhom_mau"/></li>-->
+<!--											</ul>-->
+<!--										</div>-->
+<!--									</span>-->
+<!--								</div>-->
 
-							</div>
-						</div>
-                    </t>
-                </templates>
-            </kanban>
-		</field>
-    </record>
+<!--							</div>-->
+<!--						</div>-->
+<!--                    </t>-->
+<!--                </templates>-->
+<!--            </kanban>-->
+<!--		</field>-->
+<!--    </record>-->
 
 	<record id="medical_benh_nhan_action" model="ir.actions.act_window">
 		<field name="name">Bệnh nhân</field>
+		<field name="type">ir.actions.act_window</field>
 		<field name="res_model">medical.benh_nhan</field>
 		<field name="view_mode">tree,form,kanban</field>
+	</record>
+	<record id="medical_benh_nhan_action_domain_nhom_mau" model="ir.actions.act_window">
+		<field name="name">Bệnh nhân</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">medical.benh_nhan</field>
+		<field name="view_mode">tree,form,kanban</field>
+		<field name="domain">[('nhom_mau', '!=', '' 3 </field>
 	</record>
 
 	<menuitem id="medical_benh_nhan_menu" name="Quản lý bệnh nhân" parent="menu_field" action='medical_benh_nhan_action' sequence="1" />

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="benh_nhan_sequence" model="ir.sequence">
+            <field name="name">Bệnh Nhân Sequence</field>
+            <field name="code">benh_nhan.seq</field>
+            <field name="prefix">HP</field>
+            <field name="padding">6</field>
+        </record>
+
+    </data>
+</odoo>
