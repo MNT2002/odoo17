@@ -35,11 +35,11 @@ class BenhNhan(models.Model):
     #     default['department_id'] = departments.id
     #     return super(Employee, self).copy(default)
 
-    identification_code = fields.Char('Mã nhận dạng', readonly=True)
+    identification_code = fields.Char('ID của bệnh nhân', readonly=True)
 
     anh_dai_dien = fields.Binary("Ảnh đại diện")
 
-    tuoi_benh_nhan = fields.Integer('Tuổi bệnh nhân', compute='_compute_age', store=True)
+    tuoi_benh_nhan = fields.Char('Tuổi bệnh nhân', compute='_compute_age', store=True)
 
     tinh_trang_hon_nhan = fields.Selection([('DocThan', 'Độc thân'), ('DaCuoi', 'Đã cưới'), ('GoaPhu', 'Góa phụ'), ('LyDi', 'Ly dị'), ('LyThan', 'Ly thân')], "Tình trạng hôn nhân")
 
@@ -56,9 +56,12 @@ class BenhNhan(models.Model):
             rec.tuoi_benh_nhan = 0
             if rec.ngay_sinh and rec.ngay_sinh < ngay_hien_tai:
                 start = rec.ngay_sinh
-                age_calc = (ngay_hien_tai - start).days / 365
-                if age_calc > 0.0:
-                    rec.tuoi_benh_nhan = age_calc
+                years_calc = (ngay_hien_tai - start).days / 365
+                days_calc = (ngay_hien_tai - start).days % 365
+                str_years = str(int(years_calc)) + ' tuổi'
+                str_days = str(days_calc) + ' ngày'
+                if years_calc > 0.0:
+                    rec.tuoi_benh_nhan = " ".join([str_years, str_days])
             elif rec.ngay_sinh and rec.ngay_sinh > ngay_hien_tai:
                 return {'warning': {'title': 'Cảnh báo',
                                     'message': 'Vui lòng nhập ngày sinh phù hợp!'}}
@@ -78,7 +81,7 @@ class BenhNhan(models.Model):
 
     bac_si_gia_dinh = fields.Char("Bác sĩ gia đình")
 
-    state = fields.Selection([('DangCho','Đang Chờ'), ('DaKham', 'Đã Khám')], string='Trạng thái', default='DangCho')
+    state = fields.Selection([('DangCho', 'Đang Chờ'), ('DaKham', 'Đã Khám')], string='Trạng thái', default='DangCho')
 
     def btn_da_kham(self):
         self.state = "DaKham"
@@ -111,4 +114,51 @@ class BenhNhan(models.Model):
 
     email = fields.Char('Email')
 
-    ghi_chu = fields.Char('Ghi chú', readonly=1)
+    ghi_chu = fields.Char('Ghi chú')
+
+    #Lifestyle page
+    tap_the_duc = fields.Boolean('Tập thể dục')
+    so_phut_mot_ngay = fields.Integer('Phút / ngày')
+
+    ngu_vao_ban_ngay = fields.Boolean('Ngủ vào ban ngày')
+    gio_ngu = fields.Integer('Giỡ ngủ')
+
+    bua_an_mot_ngay = fields.Integer('Bữa ăn / ngày')
+    an_mot_minh = fields.Boolean('Ăn một mình')
+    ca_phe = fields.Boolean('Cà phê')
+    so_ly_mot_ngay = fields.Integer('Ly / ngày')
+
+    nuoc_giai_khat = fields.Boolean('Nước giải khát (đường)')
+    muoi = fields.Boolean('Muối')
+    trong_che_do_an_kieng = fields.Boolean('Trong chế độ ăn kiêng')
+    thong_tin_che_do_an = fields.Char('Thông tin về chế độ ăn uống')
+
+    hut_thuoc = fields.Boolean('Hút thuốc')
+    tung_hut_thuoc = fields.Boolean('Từng hút thuốc')
+    tuoi_bat_dau_hut_thuoc = fields.Integer('Tuổi bắt đầu hút thuốc')
+    dieu_thuoc_mot_ngay = fields.Integer('Điếu thuốc một ngày')
+    nguoi_hut_thuoc_thu_dong = fields.Boolean('Người hút thuốc thụ động')
+    tuoi_bo_thuoc = fields.Integer('Tuổi bỏ thuốc')
+
+    uong_ruou_bia = fields.Boolean('Uống rượu / bia')
+    tuoi_bat_dau_uong = fields.Integer('Tuổi bắt đầu uống')
+    bia_tren_ngay = fields.Integer('Bia / ngày')
+    ruou_tren_ngay = fields.Integer('Rượu / ngày')
+    tung_uong_ruou_bia = fields.Boolean('Từng uống rượu / bia')
+    thang_gan_nhat_uong_ruou = fields.Integer('Tháng gần nhất uống rượu / bia')
+    tuoi_bo_ruou = fields.Integer('Tuổi bỏ rượu / bia')
+
+    su_dung_thuoc_kich_thich = fields.Boolean('Sử dụng thuốc kích thích')
+    tuoi_bat_dau_dung_thuoc_kich_thich = fields.Integer('Tuổi bắt đầu sử dụng thuốc')
+    loai_thuoc_hay_dung = fields.Selection([('MaTuy', 'Ma tuý'), ('Heroin', 'Heroin'), ('Nicotin', 'Nicotin')],'Loại thuốc kích thích hay dùng',)
+    tung_nghien_thuoc = fields.Boolean('Từng nghiện thuốc')
+    tuoi_bo_thuoc_kich_thich = fields.Integer('Tuổi bỏ thuốc kích thích')
+
+    chay_xe_may = fields.Boolean('Chạy xe máy')
+    doi_non_bao_hiem = fields.Boolean('Đội nón bảo hiểm')
+    tuan_thu_luat_giao_thong = fields.Boolean('Tuân thủ luật giao thông')
+    sua_xe = fields.Boolean('Sửa xe')
+    chay_xe_oto = fields.Boolean('Chạy xe ô tô')
+    that_day_an_toan = fields.Boolean('Thắt dây an toàn')
+
+

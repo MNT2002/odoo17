@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--===== Cau hinh =====  -->
+    <!-- Trung tâm y tế  -->
+    <!-- Trung tam y te form view-->
+    <record id="morden_action_medical_khoa_ttyt" model="ir.actions.act_window">
+        <field name="name">Danh sách khoa</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.khoa</field>
+        <field name="domain">[('trung_tam_suc_khoe_id', '=', active_id)]</field>
+    </record>
+    <record id="morden_action_medical_phong_ttyt" model="ir.actions.act_window">
+        <field name="name">Danh sách phòng</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.phong</field>
+        <field name="domain">[('trung_tam_suc_khoe_id', '=', active_id)]</field>
+    </record>
+    <record id="medical_trung_tam_y_te_view_form" model="ir.ui.view">
+        <field name="name">medical.trung_tam_y_te.form</field>
+        <field name="model">medical.trung_tam_y_te</field>
+        <field name="arch" type="xml">
+            <form string="Trung tâm y tế">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_khoa_ttyt)d" icon="fa-building-o">
+                            <field string="Khoa" name="khoa_count" widget="statinfo"/>
+                        </button>
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_phong_ttyt)d" icon="fa-building-o">
+                            <field string="Phòng" name="phong_count_t" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <field name="anh_dai_dien" nolabel="1" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" required="1"/></h1>
+                        <div class="o_row">
+                            <field name="parent_id" placeholder="Cha"/>
+                            <label for="is_headquarter"/>
+                            <field name="is_headquarter" readonly="1"/>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <label for="dia_chi" string="Địa chỉ"/>
+                           <div>
+                                <field name="dia_chi" placeholder="Street..." on_change="1" field_id="street_0"/>
+                                <field name="dia_chi_2" on_change="1" field_id="street2_0"/>
+                                <field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
+                                <div class="address_format">
+                                    <field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False'
+                                           style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
+                                    <field name="thanh_pho" placeholder="Thành phố" style="width: 40%" field_id="city_0"/>
+                                    <field name="zip" placeholder="Mã bưu điện" style="width: 20%" field_id="zip_0"/>
+                                </div>
+                           </div>
+                            <field name="website_link" widget="url" placeholder="e.g. www.odoo.com"  field_id="website_0"/>
+                        </group>
+                        <group>
+                            <field name="so_dien_thoai" placeholder="e.g. +84 012345678" on_change="1" field_id="phone_0"/>
+                            <field name="email" widget="email" on_change="1" field_id="email_0"/>
+                        </group>
+                    </group>
+                    <notebook >
+                        <page string="Thông tin bổ sung">
+                             <div class="oe_title">
+                                <h3><field name="thong_tin_bo_sung" /></h3>
+                            </div>
+                        </page>
+                        <page string="Kho hàng">
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Trung tam y te kanban view-->
+    <record id="medical_trung_tam_y_te_kanban_view" model="ir.ui.view">
+       <field name="name">medical.trung_tam_y_te.kanban</field>
+        <field name="model">medical.trung_tam_y_te</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name" />
+                <field name="anh_dai_dien" />
+                <field name="country_id_new" />
+                <field name="thanh_pho" />
+                <field name="email" />
+                <templates>
+                    <t t-name="kanban-box">
+                         <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                            <div class="oe_kanban_details">
+                                <a type="open">
+                                    <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.trung_tam_y_te', 'anh_dai_dien', record.id.raw_value)"/>
+                                </a>
+                            </div>
+                            <div class="oe_kanban_details"  style="text-align: right">
+                                <h4>
+                                    <a type="open"><field name="name"/></a>
+                                </h4>
+                               <ul>
+                                    <li>
+                                        <field name="thanh_pho"/>,
+                                        <field name="country_id_new"/>
+                                    </li>
+                                    <li><field name="email"/></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- Trung tam y te tree view-->
+    <record id="medical_trung_tam_y_te_tree_view" model="ir.ui.view">
+       <field name="name">medical.trung_tam_y_te.tree</field>
+        <field name="model">medical.trung_tam_y_te</field>
+        <field name="arch" type="xml">
+            <tree string="Thông tin bệnh nhân">
+                <field name="name" />
+                <field name="dia_chi" string="Đường" />
+                <field name="thanh_pho" />
+                <field name="state_id_new"/>
+                <field name="country_id_new"/>
+                <field name="website_link"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Trung tam y te action-->
+    <record id="medical_trung_tam_y_te_action" model="ir.actions.act_window">
+        <field name="name">Trung tâm y tế</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.trung_tam_y_te</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    
+    <!-- Khoa form view-->
+    <record id="morden_action_medical_phong" model="ir.actions.act_window">
+        <field name="name">Danh sách Phòng</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.phong</field>
+        <field name="domain">[('khoa_id', '=', active_id)]</field>
+    </record>
+    <record id="medical_khoa_view_form" model="ir.ui.view">
+        <field name="name">medical.khoa.form</field>
+        <field name="model">medical.khoa</field>
+        <field name="arch" type="xml">
+            <form string="Khoa">
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_phong)d" icon="fa-list-ul">
+                            <field string="Phòng" name="phong_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" required="1" colspan="3"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="trung_tam_suc_khoe_id" required="1"/>
+                            <field name="so_tang" default="0"/>
+                            <field name="loai" />
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <separator string="Cơ sở vật chất" colspan="4" />
+                    <group>
+                        <group>
+                            <field name="truy_cap_dien_thoai" />
+                            <field name="phong_tam_rieng"/>
+                            <field name="ti_vi" />
+                            <field name="tu_lanh" />
+                        </group>
+                        <group>
+                            <field name="dieu_hoa_khong_khi" />
+                            <field name="giuong_sofa_cho_khach" />
+                            <field name="truy_cap_internet"/>
+                            <field name="lo_vi_song"/>
+                        </group>
+                    </group>
+                    <separator string="Thông tin bổ sung" colspan="4" />
+                    <field name="thong_tin_bo_sung" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Khoa tree view-->
+    <record id="medical_khoa_tree_view" model="ir.ui.view">
+       <field name="name">medical.khoa.tree</field>
+        <field name="model">medical.khoa</field>
+        <field name="arch" type="xml">
+            <tree string="Khoa">
+                <field name="name" />
+                <field name="trung_tam_suc_khoe_id" />
+                <field name="so_tang" />
+                <field name="loai"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Khoa action-->
+    <record id="medical_khoa_action" model="ir.actions.act_window">
+        <field name="name">Khoa</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.khoa</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Phong form view-->a
+    <record id="medical_phong_view_form" model="ir.ui.view">
+        <field name="name">medical.phong.form</field>
+        <field name="model">medical.phong</field>
+        <field name="arch" type="xml">
+            <form string="phong">
+                <header>
+                    <button name="btn_co_phong" confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Có phòng"?' string="Có phòng" type="object" class="oe_highlight" invisible="state == 'CoPhong'"/>
+					<button name="btn_khong_co_san" string="Không có sẵn" confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Không có sẵn"?' type="object" class="oe_highlight" invisible="state == 'KhongCoSan'"/>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" required="1" colspan="3"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="trung_tam_suc_khoe_id" required="1"/>
+                        </group>
+                        <group>
+                            <field name="khoa_id" required="1"/>
+                        </group>
+                    </group>
+                    <separator string="Thông tin bổ sung" colspan="4" />
+                    <field name="thong_tin_bo_sung" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- phong tree view-->
+    <record id="medical_phong_tree_view" model="ir.ui.view">
+       <field name="name">medical.phong.tree</field>
+        <field name="model">medical.phong</field>
+        <field name="arch" type="xml">
+            <tree string="phong">
+                <field name="name" />
+                <field name="trung_tam_suc_khoe_id" />
+                <field name="khoa_id" />
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <!-- phong action-->
+    <record id="medical_phong_action" model="ir.actions.act_window">
+        <field name="name">Phòng</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.phong</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <!-- Menu item Trung tam y te-->
+    <menuitem id="menu_cau_hinh_1" name="Trung tâm y tế" parent="menu_cau_hinh" />
+
+    <menuitem id="medical_trung_tam_y_te_menu" name="Trung tâm y tế" parent="menu_cau_hinh_1" action='medical_trung_tam_y_te_action' sequence="1" />
+    <menuitem id="medical_khoa_menu" name="Khoa" parent="menu_cau_hinh_1" action='medical_khoa_action' sequence="2" />
+    <menuitem id="medical_phong_menu" name="Phòng" parent="menu_cau_hinh_1" action='medical_phong_action' sequence="3" />
+</odoo>

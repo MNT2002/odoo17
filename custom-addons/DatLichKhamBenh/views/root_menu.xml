@@ -1,3 +1,10 @@
 <odoo>
-	<menuitem id="menu_field" name="Quản lý bệnh nhân" />
+    <!-- MenuItem Of Quan Ly Dat Lich Kham Benh -->
+	<menuitem id="menu_QLDLKB" name="Trung tâm" web_icon="" sequence="1" />
+    <menuitem id="menu_bang_thong_tin" name="Bảng thông tin" parent="menu_QLDLKB" sequence="2" />
+    <menuitem id="menu_bao_cao" name="Báo cáo" parent="menu_QLDLKB" sequence="3" />
+    <menuitem id="menu_benh_nhan" name="Quản lý bệnh nhân" parent="menu_QLDLKB" sequence="4" />
+    <menuitem id="menu_bac_si" name="Bác sĩ" parent="menu_QLDLKB" sequence="5"/>
+    <menuitem id="menu_cau_hinh" name="Cấu hình" parent="menu_QLDLKB" sequence="6" />
+
 </odoo>

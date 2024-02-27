@@ -17,10 +17,15 @@
         'data/data.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
-        'wizard/confirm_state_benh_nhan.xml',
+        'wizard/change_state_benh_nhan.xml',
+        'wizard/change_state_phong.xml',
         'views/root_menu.xml',
+        'views/trung_tam.xml',
         'views/ql_benh_nhan.xml',
-
     ],
+    "assets": {
+        "web.assets_backend": ["/DatLichKhamBenh/static/src/scss/dat_lich_kham_benh_css.scss"]
+    },
     'depends': ['base'],
+    "application": True,
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="change_state_phong_action" model="ir.actions.act_window">
+            <field name="name">Thay đổi trạng thái phòng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">change.state_phong.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field> <!--Tạo pop up hiển thị lên (new - mặc định là current) -->
+        </record>
+
+        <record id="change_state_phong_wizard_form_view" model="ir.ui.view">
+            <field name="name">change_state_phong_wizard_form_view</field>
+            <field name="model">change.state_phong.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <footer>
+                        <button name="action_change"  string="Xác nhận" type="object" class="btn-primary"/>
+                        <button string="Huỷ" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
