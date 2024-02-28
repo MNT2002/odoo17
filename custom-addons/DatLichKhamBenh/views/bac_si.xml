@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--===== Bác sĩ =====  -->
+    <!--Bac
+    si form view-->
+    <record id="medical_bac_si_view_form" model="ir.ui.view">
+        <field name="name">medical.bac_si.form</field>
+        <field name="model">medical.bac_si</field>
+        <field name="arch" type="xml">
+            <form string="Bác sĩ">
+                <sheet>
+                    <field name="anh_dai_dien" nolabel="1" widget="image" class="oe_avatar" />
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" required="1" />
+                        </h1>
+                        <div class="o_row">
+                            <field name="chuyen_mon" placeholder="Chuyên môn" />
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="trinhdo_bangcap" widget="many2many_tags"
+                                placeholder="Bằng cấp ..." />
+                            <field name="duoc_si" />
+                            <field name="y_ta" />
+                            <field name="dieu_duong" />
+                        </group>
+                        <group>
+                            <field name="phi_kham_benh" />
+                            <field name="id_giay_phep" />
+                            <field name="trung_tam_y_te_id" required="True" />
+                            <field name="khoa_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Chung">
+                            <group string="Thông tin liên lạc">
+                                <group>
+                                    <field name="so_dien_thoai" />
+                                    <field name="email" />
+                                </group>
+                                <group>
+                                    <field name="so_dien_thoai_van_phong" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Lịch trống hàng tuần">
+
+                        </page>
+                        <page string="Thông tin thêm">
+                            <div class="o_row">
+                                <field name="thong_tin_them" />
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Bac si kanban view-->
+    <record
+        id="medical_bac_si_kanban_view" model="ir.ui.view">
+        <field name="name">medical.bac_si.kanban</field>
+        <field name="model">medical.bac_si</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name" />
+                <field name="anh_dai_dien" />
+                <field name="trinhdo_bangcap" />
+                <field name="chuyen_mon" />
+                <field name="id_giay_phep" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                            <div class="oe_kanban_details">
+                                <a type="open">
+                                    <img widget="image" heigh="100" width="100"
+                                        t-att-alt="record.id.value"
+                                        t-att-src="kanban_image('medical.bac_si', 'anh_dai_dien', record.id.raw_value)" />
+                                </a>
+                            </div>
+                            <div class="oe_kanban_details" style="text-align: left">
+                                <h4>
+                                    <a type="open">
+                                        <field name="name" />
+                                    </a>
+                                </h4>
+                                <ul>
+                                    <li>
+                                        <field name="trinhdo_bangcap" widget="many2many_tags" />
+                                    </li>
+                                    <li>
+                                        <field name="chuyen_mon" />
+                                    </li>
+                                    <li>
+                                        <field name="id_giay_phep" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- Bac si tree view-->
+    <record
+        id="medical_bac_si_tree_view" model="ir.ui.view">
+        <field name="name">medical.bac_si.tree</field>
+        <field name="model">medical.bac_si</field>
+        <field name="arch" type="xml">
+            <tree string="Thông tin bệnh nhân">
+                <field name="name" />
+                <field name="id_giay_phep" />
+                <field name="chuyen_mon" />
+                <field name="khoa_id" />
+                <field name="trung_tam_y_te_id" />
+            </tree>
+        </field>
+    </record>
+    <!-- Bac si action-->
+    <record
+        id="medical_bac_si_action" model="ir.actions.act_window">
+        <field name="name">Bác sĩ</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.bac_si</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- Menu item Bac si-->
+    <menuitem id="medical_bac_si_menu"
+        name="Bác sĩ" parent="menu_bac_si" action="medical_bac_si_action" sequence="1" />
+</odoo>

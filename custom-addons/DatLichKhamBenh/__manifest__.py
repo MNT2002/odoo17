@@ -21,6 +21,7 @@
         'wizard/change_state_phong.xml',
         'views/root_menu.xml',
         'views/trung_tam.xml',
+        'views/bac_si.xml',
         'views/ql_benh_nhan.xml',
     ],
     "assets": {

@@ -266,7 +266,7 @@
 		<field name="type">ir.actions.act_window</field>
 		<field name="res_model">medical.benh_nhan</field>
 		<field name="view_mode">tree,form,kanban</field>
-		<field name="domain">[('nhom_mau', '!=', '' 3 </field>
+		<field name="domain">[('nhom_mau', '!=', '' 3) </field>
 	</record>
 
 	<menuitem id="medical_benh_nhan_menu" name="Quản lý bệnh nhân" parent="menu_benh_nhan" action='medical_benh_nhan_action' sequence="1" />
