@@ -161,4 +161,10 @@ class BenhNhan(models.Model):
     chay_xe_oto = fields.Boolean('Chạy xe ô tô')
     that_day_an_toan = fields.Boolean('Thắt dây an toàn')
 
+    vaccine_ids = fields.One2many(comodel_name='medical.vaccine', inverse_name='benh_nhan_id')
+    vaccine_count = fields.Integer('Vaccine', compute="get_count_vaccine", store=True)
 
+    @api.depends('vaccine_ids')
+    def get_count_vaccine(self):
+        for rec in self:
+            rec.vaccine_count =  len(rec.vaccine_ids)

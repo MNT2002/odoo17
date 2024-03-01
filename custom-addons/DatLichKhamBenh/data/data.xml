@@ -9,5 +9,12 @@
             <field name="padding">6</field>
         </record>
 
+        <record id="phieu_kham_benh_sequence" model="ir.sequence">
+            <field name="name">Phiếu khám bệnh Sequence</field>
+            <field name="code">phieu_kham_benh.seq</field>
+            <field name="prefix">WI/%(day)s-%(month)s-%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="implementation">no_gap</field>
+        </record> 
     </data>
 </odoo>

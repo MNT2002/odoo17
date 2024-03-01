@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--===== Phiếu khám bệnh =====  -->
+    <!--hiếu khám bệnh form view-->
+    <record id="medical_phieu_kham_benh_view_form" model="ir.ui.view">
+        <field name="name">medical.phieu_kham_benh.form</field>
+        <field name="model">medical.phieu_kham_benh</field>
+        <field name="arch" type="xml">
+            <form string="Phiếu khám bệnh">
+                <header>
+                    <button name="btn_dang_kiem_tra" string="Kiểm tra" type="object" class="oe_highlight"/>
+                    <button name="btn_cho_thanh_toan" string="Tạo hoá đơn &amp; Thanh toán" type="object" confirm='Bạn có muốn tạo hoá đơn khám bệnh?' class="oe_highlight"/>
+                    <button name="btn_hoan_thanh" string="Đánh dấu là đã hoàn thành" type="object" confirm='Bạn có chắc chắn muốn đánh dấu việc thăm khám đã hoàn thành không?' class="oe_highlight"/>
+
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" required="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="benh_nhan_id" />
+                            <field name="ngay" />
+                        </group>
+                        <group>
+                            <field name="bac_si_id" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="ngay_sinh" />
+                            <field name="tinh_trang_hon_nhan" />
+                            <field name="rh" />
+                            <field name="ly_do_kiem_tra" />
+                            <field name="trieu_chung" />
+                            <field name="phong_id" />
+                        </group>
+                        <group>
+                            <field name="gioi_tinh" />
+                            <field name="nhom_mau" />
+                            <field name="trung_tam_y_te_id" />
+                            <field name="khoa_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Điều trị">
+                            <div class="o_row">
+
+                            </div>
+                        </page>
+                        <page string="Chẩn đoán hình ảnh">
+                            <div class="o_row">
+
+                            </div>
+                        </page>
+                        <page string="Vắc xin">
+                            <div class="o_row">
+                                <field name="vaccine_ids"/>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Phieu kham benh search view  -->
+    <record id="phieu_kham_benh_search_view" model="ir.ui.view">
+        <field name="name">Phiếu khám bệnh</field>
+        <field name="model">medical.phieu_kham_benh</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <separator />
+                <filter string="Chờ khám" name="state_cho_kham_filter" domain="[('state', '=', 'ChoKham')]"/>
+                <group expand="1" string="Nhóm theo">
+                    <filter string="Bệnh nhân" name="group_by_name" context="{'group_by': 'benh_nhan_id'}" />
+                    <filter string="Bác sĩ" name="group_by_bac_si" context="{'group_by': 'bac_si_id'}"/>
+                    <filter string="Giới tính" name="group_by_gioi_tinh" context="{'group_by': 'gioi_tinh'}"/>
+                    <filter string="Nhóm máu" name="group_by_nhom_mau" context="{'group_by': 'nhom_mau'}"/>
+                    <filter string="Tình trạng hôn nhân" name="group_by_tinh_trang_hon_nhan" context="{'group_by': 'tinh_trang_hon_nhan'}"/>
+                    <filter string="Giai đoạn" name="group_by_giai_doan" context="{'group_by': 'state'}"/>
+                    <filter string="Ngày khám bệnh" name="group_by_ngay_kham_benh" context="{'group_by': 'ngay'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <!-- Phieu kham benh kanban view-->
+    <record id="medical_phieu_kham_benh_kanban_view" model="ir.ui.view">
+        <field name="name">medical.phieu_kham_benh.kanban</field>
+        <field name="model">medical.phieu_kham_benh</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="anh_dai_dien" />
+                <field name="benh_nhan_id" />
+                <field name="name" />
+                <field name="ngay" />
+                <field name="tuoi" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                            <div class="oe_kanban_details">
+                                <a type="open">
+                                    <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.phieu_kham_benh', 'anh_dai_dien', record.id.raw_value)" />
+                                </a>
+                            </div>
+                            <div class="oe_kanban_details" style="text-align: left">
+                                <h4>
+                                    <a type="open">
+                                        <field name="benh_nhan_id" />
+                                    </a>
+                                </h4>
+                                <ul>
+                                    <li>Đợi #: <field name="name"/>
+                                    </li>
+                                    <li>Giới tính: <field name="gioi_tinh"/>
+                                    </li>
+                                    <li>Ngày: <field name="ngay"/>
+                                    </li>
+                                    <li>Tuổi: <field name="tuoi"/>
+                                    </li>
+                                    <li>Địa chỉ: <field name="dia_chi"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!--   Phieu kham benh tree view-->
+    <record id="medical_phieu_kham_benh_tree_view" model="ir.ui.view">
+        <field name="name">medical.phieu_kham_benh.tree</field>
+        <field name="model">medical.phieu_kham_benh</field>
+        <field name="arch" type="xml">
+            <tree string="Thông tin bệnh nhân">
+                <field name="name" />
+                <field name="benh_nhan_id" />
+                <field name="bac_si_id" />
+                <field name="ngay" />
+                <field name="gioi_tinh" />
+                <field name="ngay_sinh" />
+                <field name="nhom_mau" />
+                <field name="rh" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <!-- Phieu kham benh action-->
+    <record id="medical_phieu_kham_benh_action" model="ir.actions.act_window">
+        <field name="name">Phiếu khám bệnh</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.phieu_kham_benh</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+
+</odoo>

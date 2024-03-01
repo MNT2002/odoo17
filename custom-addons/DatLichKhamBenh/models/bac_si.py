@@ -14,7 +14,7 @@ class BacSi(models.Model):
 
     chuyen_mon = fields.Many2one('medical.chuyen_mon', 'Chuyên môn', store=True)
 
-    trinhdo_bangcap = fields.Many2many(comodel_name='medical.trinhdo_bangcap', relation='bac_si_tt_bc_rel', column1='bac_si_id', column2='trinhdo_bangcap_id', string='Trình độ/Bằng cấp')
+    trinhdo_bangcap = fields.Many2many(comodel_name='medical.trinhdo_bangcap', relation='medical_bac_si_tt_bc_rel', column1='bac_si_id', column2='trinhdo_bangcap_id', string='Trình độ/Bằng cấp')
 
     phi_kham_benh = fields.Integer('Phí khám bệnh',default=0)
 

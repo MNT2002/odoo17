@@ -23,6 +23,7 @@
         'views/trung_tam.xml',
         'views/bac_si.xml',
         'views/ql_benh_nhan.xml',
+        'views/phieu_kham_benh.xml',
     ],
     "assets": {
         "web.assets_backend": ["/DatLichKhamBenh/static/src/scss/dat_lich_kham_benh_css.scss"]

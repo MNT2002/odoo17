@@ -11,10 +11,10 @@
 				</header>
 				<sheet>
 					<div class="oe_button_box" name="button_box">
-<!--						<button type="action" class="oe_stat_button" name="738" context="{'search_default_patient': active_id,'default_patient': active_id}"
-								groups="biz_medical.group_medical_physician,biz_medical.group_medical_manager,biz_medical.group_medical_center_admin">-->
-<!--							<field string="Vaccines" name="vaccine_count" widget="statinfo"/>-->
-<!--						</button>-->
+						<button type="action" class="oe_stat_button" name="DatLichKhamBenh.medical_vaccine_action"
+								groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user">
+							<field string="Vaccines" name="vaccine_count" widget="statinfo"/>
+						</button>
 <!--						<button type="action" class="oe_stat_button" name="573" context="{'search_default_patient_id': active_id,'default_patient_id': active_id}">-->
 <!--							<field string="Invoices" name="invoice_count" widget="statinfo"/>-->
 <!--						</button>-->
@@ -195,7 +195,6 @@
 				<field name="gioi_tinh"/>
 				<field name="nhom_mau"/>
 				<separator/>
-				<filter string="Tên" name="country_filter"/>
 				<group expand="1" string="Nhóm theo">
 					<filter string="Họ và tên" name="group_by_name" context="{'group_by': 'name'}"/>
 					<filter string="Giới tính" name="group_by_gender" context="{'group_by': 'gioi_tinh'}"/>

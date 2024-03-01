@@ -8,30 +8,24 @@
         <field name="res_model">medical.khoa</field>
         <field name="domain">[('trung_tam_suc_khoe_id', '=', active_id)]</field>
     </record>
-    <record
-        id="morden_action_medical_phong_ttyt" model="ir.actions.act_window">
+    <record id="morden_action_medical_phong_ttyt" model="ir.actions.act_window">
         <field name="name">Danh sách phòng</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.phong</field>
         <field name="domain">[('trung_tam_suc_khoe_id', '=', active_id)]</field>
     </record>
     <!-- Trung tam y te form view-->
-    <record
-        id="medical_trung_tam_y_te_view_form" model="ir.ui.view">
+    <record id="medical_trung_tam_y_te_view_form" model="ir.ui.view">
         <field name="name">medical.trung_tam_y_te.form</field>
         <field name="model">medical.trung_tam_y_te</field>
         <field name="arch" type="xml">
             <form string="Trung tâm y tế">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action" class="oe_stat_button"
-                            name="%(DatLichKhamBenh.morden_action_medical_khoa_ttyt)d"
-                            icon="fa-building-o">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_khoa_ttyt)d" icon="fa-building-o">
                             <field string="Khoa" name="khoa_count" widget="statinfo" />
                         </button>
-                        <button type="action" class="oe_stat_button"
-                            name="%(DatLichKhamBenh.morden_action_medical_phong_ttyt)d"
-                            icon="fa-building-o">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_phong_ttyt)d" icon="fa-building-o">
                             <field string="Phòng" name="phong_count_t" widget="statinfo" />
                         </button>
                     </div>
@@ -51,42 +45,26 @@
                         <group>
                             <label for="dia_chi" string="Địa chỉ" />
                             <div>
-                                <field name="dia_chi" placeholder="Street..." on_change="1"
-                                    field_id="street_0" />
+                                <field name="dia_chi" placeholder="Street..." on_change="1" field_id="street_0" />
                                 <field name="dia_chi_2" on_change="1" field_id="street2_0" />
-                                <field name="country_id_new" placeholder="Quốc gia"
-                                    class="oe_no_button"
-                                    options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"
-                                    on_change="1" can_create="True" can_write="True"
-                                    field_id="country_id_0" />
+                                <field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0" />
                                 <div class="address_format">
-                                    <field name="state_id_new" class="oe_no_button"
-                                        placeholder="Tỉnh/Thành phố "
-                                        required='country_id_new != False'
-                                        style="width: 37%" options="{&quot;no_open&quot;: True}"
-                                        on_change="onchange_state(state_id)" can_create="True"
-                                        can_write="True" field_id="state_id_0" />
-                                    <field name="thanh_pho" placeholder="Thành phố"
-                                        style="width: 40%" field_id="city_0" />
-                                    <field name="zip" placeholder="Mã bưu điện" style="width: 20%"
-                                        field_id="zip_0" />
+                                    <field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0" />
+                                    <field name="thanh_pho" placeholder="Thành phố" style="width: 40%" field_id="city_0" />
+                                    <field name="zip" placeholder="Mã bưu điện" style="width: 20%" field_id="zip_0" />
                                 </div>
                             </div>
-                            <field name="website_link" widget="url" placeholder="e.g. www.odoo.com"
-                                field_id="website_0" />
+                            <field name="website_link" widget="url" placeholder="e.g. www.odoo.com" field_id="website_0" />
                         </group>
                         <group>
-                            <field name="so_dien_thoai" placeholder="e.g. +84 012345678"
-                                on_change="1" field_id="phone_0" />
+                            <field name="so_dien_thoai" placeholder="e.g. +84 012345678" on_change="1" field_id="phone_0" />
                             <field name="email" widget="email" on_change="1" field_id="email_0" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Thông tin bổ sung">
-                            <div class="oe_title">
-                                <h3>
-                                    <field name="thong_tin_bo_sung" />
-                                </h3>
+                            <div class="o_row">
+                                <field name="thong_tin_bo_sung" />
                             </div>
                         </page>
                         <page string="Kho hàng">
@@ -98,8 +76,7 @@
         </field>
     </record>
     <!-- Search trung tam y te -->
-    <record
-        id="trung_tam_y_te_search_view" model="ir.ui.view">
+    <record id="trung_tam_y_te_search_view" model="ir.ui.view">
         <field name="name">Tìm kiếm trung tâm y tế</field>
         <field name="model">medical.trung_tam_y_te</field>
         <field name="arch" type="xml">
@@ -113,8 +90,7 @@
         </field>
     </record>
     <!-- Trung tam y te kanban view-->
-    <record
-        id="medical_trung_tam_y_te_kanban_view" model="ir.ui.view">
+    <record id="medical_trung_tam_y_te_kanban_view" model="ir.ui.view">
         <field name="name">medical.trung_tam_y_te.kanban</field>
         <field name="model">medical.trung_tam_y_te</field>
         <field name="arch" type="xml">
@@ -129,9 +105,7 @@
                         <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
                             <div class="oe_kanban_details">
                                 <a type="open">
-                                    <img widget="image" heigh="100" width="100"
-                                        t-att-alt="record.id.value"
-                                        t-att-src="kanban_image('medical.trung_tam_y_te', 'anh_dai_dien', record.id.raw_value)" />
+                                    <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.trung_tam_y_te', 'anh_dai_dien', record.id.raw_value)" />
                                 </a>
                             </div>
                             <div class="oe_kanban_details" style="text-align: right">
@@ -143,7 +117,7 @@
                                 <ul>
                                     <li>
                                         <field name="thanh_pho" />
-                                        <field name="country_id_new" />
+ ,                                        <field name="country_id_new" />
                                     </li>
                                     <li>
                                         <field name="email" />
@@ -157,8 +131,7 @@
         </field>
     </record>
     <!-- Trung tam y te tree view-->
-    <record
-        id="medical_trung_tam_y_te_tree_view" model="ir.ui.view">
+    <record id="medical_trung_tam_y_te_tree_view" model="ir.ui.view">
         <field name="name">medical.trung_tam_y_te.tree</field>
         <field name="model">medical.trung_tam_y_te</field>
         <field name="arch" type="xml">
@@ -173,8 +146,7 @@
         </field>
     </record>
     <!-- Trung tam y te action-->
-    <record
-        id="medical_trung_tam_y_te_action" model="ir.actions.act_window">
+    <record id="medical_trung_tam_y_te_action" model="ir.actions.act_window">
         <field name="name">Trung tâm y tế</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.trung_tam_y_te</field>
@@ -183,15 +155,13 @@
 
 
     <!-- Khoa form view-->
-    <record
-        id="morden_action_medical_phong" model="ir.actions.act_window">
+    <record id="morden_action_medical_phong" model="ir.actions.act_window">
         <field name="name">Danh sách Phòng</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.phong</field>
         <field name="domain">[('khoa_id', '=', active_id)]</field>
     </record>
-    <record
-        id="medical_khoa_view_form" model="ir.ui.view">
+    <record id="medical_khoa_view_form" model="ir.ui.view">
         <field name="name">medical.khoa.form</field>
         <field name="model">medical.khoa</field>
         <field name="arch" type="xml">
@@ -201,8 +171,7 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action" class="oe_stat_button"
-                            name="%(DatLichKhamBenh.morden_action_medical_phong)d" icon="fa-list-ul">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_phong)d" icon="fa-list-ul">
                             <field string="Phòng" name="phong_count" widget="statinfo" />
                         </button>
                     </div>
@@ -214,7 +183,7 @@
                     </div>
                     <group>
                         <group>
-                            <field name="trung_tam_suc_khoe_id" required="1" />
+                            <field name="trung_tam_suc_khoe_id" options="{'no_create': True}" required="1" />
                             <field name="so_tang" default="0" />
                             <field name="loai" />
                         </group>
@@ -237,14 +206,15 @@
                         </group>
                     </group>
                     <separator string="Thông tin bổ sung" colspan="4" />
-                    <field name="thong_tin_bo_sung" />
+                    <div class="o_row">
+                        <field name="thong_tin_bo_sung" />
+                    </div>
                 </sheet>
             </form>
         </field>
     </record>
     <!-- Search Khoa -->
-    <record
-        id="khoa_search_view" model="ir.ui.view">
+    <record id="khoa_search_view" model="ir.ui.view">
         <field name="name">Tìm kiếm khoa</field>
         <field name="model">medical.khoa</field>
         <field name="arch" type="xml">
@@ -253,19 +223,15 @@
                 <filter string="Tên" name="country_filter" />
                 <group expand="1" string="Nhóm theo">
                     <filter string="Tên" name="group_by_name" context="{'group_by': 'name'}" />
-                    <filter string="Trung tâm y tế" name="group_by_trung_tam_y_te"
-                        context="{'group_by': 'trung_tam_suc_khoe_id'}" />
-                    <filter string="Số tầng" name="group_by_so_tang"
-                        context="{'group_by': 'so_tang'}" />
-                    <filter string="Trạng thái" name="group_by_trang_thai"
-                        context="{'group_by': 'state'}" />
+                    <filter string="Trung tâm y tế" name="group_by_trung_tam_y_te" context="{'group_by': 'trung_tam_suc_khoe_id'}" />
+                    <filter string="Số tầng" name="group_by_so_tang" context="{'group_by': 'so_tang'}" />
+                    <filter string="Trạng thái" name="group_by_trang_thai" context="{'group_by': 'state'}" />
                 </group>
             </search>
         </field>
     </record>
     <!-- Khoa tree view-->
-    <record
-        id="medical_khoa_tree_view" model="ir.ui.view">
+    <record id="medical_khoa_tree_view" model="ir.ui.view">
         <field name="name">medical.khoa.tree</field>
         <field name="model">medical.khoa</field>
         <field name="arch" type="xml">
@@ -278,8 +244,7 @@
         </field>
     </record>
     <!-- Khoa action-->
-    <record
-        id="medical_khoa_action" model="ir.actions.act_window">
+    <record id="medical_khoa_action" model="ir.actions.act_window">
         <field name="name">Khoa</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.khoa</field>
@@ -294,13 +259,8 @@
         <field name="arch" type="xml">
             <form string="phong">
                 <header>
-                    <button name="btn_trong"
-                        confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Trống"?'
-                        string="Trống" type="object" class="oe_highlight"
-                        invisible="state == 'Trong'" />
-                    <button name="btn_khong_co_san" string="Không có sẵn"
-                        confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Không có sẵn"?'
-                        type="object" class="oe_highlight" invisible="state == 'KhongCoSan'" />
+                    <button name="btn_trong" confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Trống"?' string="Trống" type="object" class="oe_highlight" invisible="state == 'Trong'" />
+                    <button name="btn_khong_co_san" string="Không có sẵn" confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Không có sẵn"?' type="object" class="oe_highlight" invisible="state == 'KhongCoSan'" />
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
@@ -319,14 +279,15 @@
                         </group>
                     </group>
                     <separator string="Thông tin bổ sung" colspan="4" />
-                    <field name="thong_tin_bo_sung" />
+                    <div class="o_row">
+                        <field name="thong_tin_bo_sung" />
+                    </div>
                 </sheet>
             </form>
         </field>
     </record>
     <!-- Search Phòng -->
-    <record
-        id="phong_search_view" model="ir.ui.view">
+    <record id="phong_search_view" model="ir.ui.view">
         <field name="name">Tìm kiếm phòng</field>
         <field name="model">medical.phong</field>
         <field name="arch" type="xml">
@@ -334,14 +295,12 @@
                 <separator />
                 <group expand="1" string="Nhóm theo">
                     <filter string="Tên" name="group_by_name" context="{'group_by': 'name'}" />
-                    <filter string="Trạng thái" name="group_by_trang_thai"
-                        context="{'group_by': 'state'}" />
+                    <filter string="Trạng thái" name="group_by_trang_thai" context="{'group_by': 'state'}" />
                 </group>
             </search>
         </field>
     </record>
-    <record
-        id="medical_phong_tree_view" model="ir.ui.view">
+    <record id="medical_phong_tree_view" model="ir.ui.view">
         <field name="name">medical.phong.tree</field>
         <field name="model">medical.phong</field>
         <field name="arch" type="xml">
@@ -354,12 +313,138 @@
         </field>
     </record>
     <!-- phong action-->
-    <record
-        id="medical_phong_action" model="ir.actions.act_window">
+    <record id="medical_phong_action" model="ir.actions.act_window">
         <field name="name">Phòng</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.phong</field>
         <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Hieu thuoc form view-->
+    <record id="medical_hieu_thuoc_view_form" model="ir.ui.view">
+        <field name="name">medical.hieu_thuoc.form</field>
+        <field name="model">medical.hieu_thuoc</field>
+        <field name="arch" type="xml">
+            <form string="Hiệu thuốc">
+                <sheet>
+                    <div class="oe_left" style="width: 500px;">
+                        <field name="anh_dai_dien" nolabel="1" widget="image" class="oe_avatar" />
+                        <div class="oe_title">
+                            <label for="name" />
+                            <h1>
+                                <field name="name" required="1" />
+                            </h1>
+                            <field name="trung_tam_suc_khoe_id" placeholder="Trung tâm y tế" />
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <label for="dia_chi" string="Địa chỉ" />
+                            <div>
+                                <field name="dia_chi" placeholder="Street..." on_change="1" field_id="street_0" />
+                                <field name="dia_chi_2" on_change="1" field_id="street2_0" />
+                                <field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0" />
+                                <div class="address_format">
+                                    <field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0" />
+                                    <field name="thanh_pho" placeholder="Thành phố" style="width: 40%" field_id="city_0" />
+                                    <field name="zip" placeholder="Mã bưu điện" style="width: 20%" field_id="zip_0" />
+                                </div>
+                            </div>
+                            <field name="website_link" widget="url" placeholder="e.g. www.odoo.com" field_id="website_0" />
+                        </group>
+                        <group>
+                            <field name="so_dien_thoai" placeholder="e.g. +84 012345678" on_change="1" field_id="phone_0" />
+                            <field name="email" widget="email" on_change="1" field_id="email_0" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Thông tin bổ sung">
+                            <div class="o_row">
+                                <field name="thong_tin_bo_sung" />
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Search Hieu thuoc -->
+    <record id="hieu_thuoc_search_view" model="ir.ui.view">
+        <field name="name">Tìm kiếm hiệu thuốc</field>
+        <field name="model">medical.hieu_thuoc</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <separator />
+                <group expand="1" string="Nhóm theo">
+                    <filter string="Tên hiệu thuốc" name="group_by_name" context="{'group_by': 'name'}" />
+                    <filter string="Trung tâm y tế" name="group_by_ttyt" context="{'group_by': 'trung_tam_suc_khoe_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <!-- Hieu thuoc kanban view-->
+    <record id="medical_hieu_thuoc_kanban_view" model="ir.ui.view">
+        <field name="name">medical.hieu_thuoc.kanban</field>
+        <field name="model">medical.hieu_thuoc</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name" />
+                <field name="trung_tam_suc_khoe_id" />
+                <field name="country_id_new" />
+                <field name="thanh_pho" />
+                <field name="email" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                            <div class="oe_kanban_details">
+                                <a type="open">
+                                    <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.hieu_thuoc', 'anh_dai_dien', record.id.raw_value)" />
+                                </a>
+                            </div>
+                            <div class="oe_kanban_details" style="text-align: right">
+                                <h4>
+                                    <a type="open">
+                                        <field name="name" />
+                                    </a>
+                                </h4>
+                                <ul>
+                                    <li>
+                                        <field name="thanh_pho" />
+ ,                                        <field name="country_id_new" />
+                                    </li>
+                                    <li>
+                                        <field name="email" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- Hieu thuoc tree view -->
+    <record id="medical_hieu_thuoc_tree_view" model="ir.ui.view">
+        <field name="name">medical.hieu_thuoc.tree</field>
+        <field name="model">medical.hieu_thuoc</field>
+        <field name="arch" type="xml">
+            <tree string="hieu_thuoc">
+                <field name="name" />
+                <field name="trung_tam_suc_khoe_id" />
+                <field name="dia_chi" />
+                <field name="thanh_pho" />
+                <field name="state_id_new" />
+                <field name="country_id_new" />
+                <field name="website_link" />
+            </tree>
+        </field>
+    </record>
+    <!-- hieu_thuoc action-->
+    <record id="medical_hieu_thuoc_action" model="ir.actions.act_window">
+        <field name="name">Hiệu thuốc</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.hieu_thuoc</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <!-- medical.chuyen_mon tree view -->
@@ -373,8 +458,7 @@
             </tree>
         </field>
     </record>
-    <record
-        id="medical_chuyen_mon_action" model="ir.actions.act_window">
+    <record id="medical_chuyen_mon_action" model="ir.actions.act_window">
         <field name="name">Chuyên môn</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.chuyen_mon</field>
@@ -391,15 +475,14 @@
             </tree>
         </field>
     </record>
-    <record
-        id="medical_trinhdo_bangcap_action" model="ir.actions.act_window">
+    <record id="medical_trinhdo_bangcap_action" model="ir.actions.act_window">
         <field name="name">Trình độ/Bằng cấp</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.trinhdo_bangcap</field>
         <field name="view_mode">tree</field>
     </record>
 
-    <!-- Phong form view-->
+    <!-- Thuoc, Vaccin form view-->
     <record id="medical_thuoc_vaccin_view_form" model="ir.ui.view">
         <field name="name">medical.thuoc_vaccin.form</field>
         <field name="model">medical.thuoc_vaccin</field>
@@ -408,60 +491,60 @@
                 <sheet>
                     <div class="oe_left" style="width: 500px;">
                         <div class="oe_title" style="width: 390px;">
-                            <label class="oe_edit_only" for="name" string="Tên thuốc"/>
-                            <h1><field name="name" class="oe_inline"/></h1>
+                            <label class="oe_edit_only" for="name" string="Tên thuốc" />
+                            <h1>
+                                <field name="name" class="oe_inline" />
+                            </h1>
                         </div>
                     </div>
                     <group>
                         <group>
-                            <field name="loai_thuoc" required="1"/>
-                            <field name="hieu_qua_dieu_tri" invisible="loai_thuoc  == 'Thuoc'"/>
-                            <field name="so_luong_hien_co" invisible="loai_thuoc  == 'Thuoc'"/>
+                            <field name="loai_thuoc" required="1" />
+                            <field name="hieu_qua_dieu_tri" invisible="loai_thuoc  == 'Thuoc'" />
+                            <field name="so_luong_hien_co" invisible="loai_thuoc  == 'Thuoc'" />
                         </group>
                         <group>
-                            <field name="gia_ban"/>
-                            <field name="canh_bao_mang_thai" invisible="loai_thuoc  == 'Thuoc'"/>
+                            <field name="gia_ban" />
+                            <field name="canh_bao_mang_thai" invisible="loai_thuoc  == 'Thuoc'" />
                         </group>
                     </group>
                     <group invisible="loai_thuoc  == 'Vaccine'">
                         <group>
-                            <field name="mang_thai_va_cho_con_bu"/>
-                            <field name="thanh_phan"/>
-                            <field name="huong_dan_lieu_luong"/>
-                            <field name="phan_ung_bat_loi"/>
+                            <field name="mang_thai_va_cho_con_bu" />
+                            <field name="thanh_phan" />
+                            <field name="huong_dan_lieu_luong" />
+                            <field name="phan_ung_bat_loi" />
                         </group>
                         <group>
 
-                            <field name="chi_dinh"/>
-                            <field name="qua_lieu"/>
-                            <field name="dieu_kien_bao_quan"/>
-                            <field name="thong_tin_them"/>
+                            <field name="chi_dinh" />
+                            <field name="qua_lieu" />
+                            <field name="dieu_kien_bao_quan" />
+                            <field name="thong_tin_them" />
                         </group>
                     </group>
                     <group invisible="loai_thuoc == 'Thuoc'">
-                        <field name="thong_tin_them"/>
+                        <field name="thong_tin_them" />
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-     <!-- Thuoc_Vaccin search view -->
-    <record
-    id="thuoc_vaccin_search_view" model="ir.ui.view">
-    <field name="name">Tìm kiếm thuốc, vắc xin</field>
-    <field name="model">medical.thuoc_vaccin</field>
-    <field name="arch" type="xml">
-        <search string="">
-            <separator />
-            <group expand="1" string="Nhóm theo">
-                <filter string="Loại thuốc" name="group_by_loai_thuoc" context="{'group_by': 'loai_thuoc'}" />
-            </group>
-        </search>
-    </field>
-</record>
+    <!-- Thuoc_Vaccin search view -->
+    <record id="thuoc_vaccin_search_view" model="ir.ui.view">
+        <field name="name">Tìm kiếm thuốc, vắc xin</field>
+        <field name="model">medical.thuoc_vaccin</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <separator />
+                <group expand="1" string="Nhóm theo">
+                    <filter string="Loại thuốc" name="group_by_loai_thuoc" context="{'group_by': 'loai_thuoc'}" />
+                </group>
+            </search>
+        </field>
+    </record>
     <!-- Thuoc_Vaccin tree view -->
-    <record
-        id="medical_thuoc_vaccin_tree_view" model="ir.ui.view">
+    <record id="medical_thuoc_vaccin_tree_view" model="ir.ui.view">
         <field name="name">medical.thuoc_vaccin.tree</field>
         <field name="model">medical.thuoc_vaccin</field>
         <field name="arch" type="xml">
@@ -474,8 +557,7 @@
         </field>
     </record>
     <!-- Thuoc_Vaccin action-->
-    <record
-        id="medical_thuoc_vaccin_action" model="ir.actions.act_window">
+    <record id="medical_thuoc_vaccin_action" model="ir.actions.act_window">
         <field name="name">Thuốc, Vắc xin</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.thuoc_vaccin</field>
@@ -493,8 +575,7 @@
             </tree>
         </field>
     </record>
-    <record
-        id="medical_donvi_lieuthuoc_action" model="ir.actions.act_window">
+    <record id="medical_donvi_lieuthuoc_action" model="ir.actions.act_window">
         <field name="name">Đơn vị liều thuốc</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.donvi_lieuthuoc</field>
@@ -512,40 +593,92 @@
             </tree>
         </field>
     </record>
-    <record
-        id="medical_lieu_thuoc_action" model="ir.actions.act_window">
+    <record id="medical_lieu_thuoc_action" model="ir.actions.act_window">
         <field name="name">Liều thuốc</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.lieu_thuoc</field>
         <field name="view_mode">tree</field>
     </record>
 
+    <!-- Vaccine form view -->
+    <record id="medical_vaccine_view_form" model="ir.ui.view">
+        <field name="name">medical.vaccine.form</field>
+        <field name="model">medical.vaccine</field>
+        <field name="arch" type="xml">
+            <form string="Vaccin">
+                <sheet>
+                    <div class="oe_left" style="width: 500px;">
+                        <div class="oe_title">
+                            <label for="name" string="Vaccine" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                            <label for="benh_nhan_id" class="oe_edit_only"/>
+                            <field name="benh_nhan_id" on_change="" required="1"/>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="lieu"/>
+                            <field name="ngay"/>
+                        </group>
+                        <group>
+                            <field name="bac_si_id" options="{'no_create': True}"/>
+                            <field name="trung_tam_y_te_id" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Quan săt/Theo dõi">
+                            <div class="o_row">
+                                <field name="quan_sat_theo_doi" nolabel="1"/>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- medical.vaccine tree view -->
+    <record id="medical_vaccine_view_tree" model="ir.ui.view">
+        <field name="name">medical.vaccine.view.tree</field>
+        <field name="model">medical.vaccine</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="name"></field>
+                <field name="benh_nhan_id"></field>
+                <field name="lieu"></field>
+                <field name="bac_si_id"></field>
+                <field name="ngay"></field>
+                <field name="trung_tam_y_te_id"></field>
+            </tree>
+        </field>
+    </record>
+    <!-- medical.vaccine action -->
+    <record id="medical_vaccine_action" model="ir.actions.act_window">
+        <field name="name">Vắc xin</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.vaccine</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('benh_nhan_id', '!=', '')]</field>
+    </record>
 
 
-    <!-- ===================================================================================================================== -->
+    <!--
+    ===================================================================================================================== -->
     <!-- Menu item Trung tam y te-->
-    <menuitem id="menu_cau_hinh_1"
-        name="Trung tâm y tế" parent="menu_cau_hinh" />
-    <menuitem id="menu_cau_hinh_2"
-        name="Bác sĩ" parent="menu_cau_hinh" />
-    <menuitem id="menu_cau_hinh_3"
-        name="Dược phẩm" parent="menu_cau_hinh" />
+    <menuitem id="menu_cau_hinh_1" name="Trung tâm y tế" parent="menu_cau_hinh" />
+    <menuitem id="menu_cau_hinh_2" name="Bác sĩ" parent="menu_cau_hinh" />
+    <menuitem id="menu_cau_hinh_3" name="Dược phẩm" parent="menu_cau_hinh" />
 
-    <menuitem id="medical_trung_tam_y_te_menu"
-        name="Trung tâm y tế" parent="menu_cau_hinh_1" action='medical_trung_tam_y_te_action'
-        sequence="1" />
-    <menuitem id="medical_khoa_menu" name="Khoa" parent="menu_cau_hinh_1"
-        action='medical_khoa_action' sequence="2" />
-    <menuitem id="medical_phong_menu" name="Phòng"
-        parent="menu_cau_hinh_1" action='medical_phong_action' sequence="3" />
-    <menuitem id="medical_chuyen_mon_menu" name="Chuyên môn"
-        parent="menu_cau_hinh_2" action='medical_chuyen_mon_action' sequence="2" />
-    <menuitem id="medical_trình_do_bang_cap_menu" name="Trình độ/Bằng cấp"
-        parent="menu_cau_hinh_2" action='medical_trinhdo_bangcap_action' sequence="3" />
-    <menuitem id="medical_thuoc_vaccin_menu" name="Thuốc, Vắc xin"
-        parent="menu_cau_hinh_3" action='medical_thuoc_vaccin_action' sequence="2" />
-    <menuitem id="medical_donvi_lieuthuoc_menu" name="Đơn vị liều thuốc"
-        parent="menu_cau_hinh_3" action='medical_donvi_lieuthuoc_action' sequence="4" />
-    <menuitem id="medical_lieu_thuoc_menu" name="Liều thuốc"
-        parent="menu_cau_hinh_3" action='medical_lieu_thuoc_action' sequence="5" />
+    <menuitem id="medical_trung_tam_y_te_menu" name="Trung tâm y tế" parent="menu_cau_hinh_1" action='medical_trung_tam_y_te_action' sequence="2" />
+    <menuitem id="medical_khoa_menu" name="Khoa" parent="menu_cau_hinh_1" action='medical_khoa_action' sequence="3" />
+    <menuitem id="medical_phong_menu" name="Phòng" parent="menu_cau_hinh_1" action='medical_phong_action' sequence="4" />
+    <menuitem id="medical_hieu_thuoc_menu" name="Hiệu thuốc" parent="menu_cau_hinh_1" action='medical_hieu_thuoc_action' sequence="5" />
+
+    <menuitem id="medical_chuyen_mon_menu" name="Chuyên môn" parent="menu_cau_hinh_2" action='medical_chuyen_mon_action' sequence="2" />
+    <menuitem id="medical_trình_do_bang_cap_menu" name="Trình độ/Bằng cấp" parent="menu_cau_hinh_2" action='medical_trinhdo_bangcap_action' sequence="3" />
+
+    <menuitem id="medical_thuoc_vaccin_menu" name="Thuốc, Vắc xin" parent="menu_cau_hinh_3" action='medical_thuoc_vaccin_action' sequence="2" />
+    <menuitem id="medical_donvi_lieuthuoc_menu" name="Đơn vị liều thuốc" parent="menu_cau_hinh_3" action='medical_donvi_lieuthuoc_action' sequence="4" />
+    <menuitem id="medical_lieu_thuoc_menu" name="Liều thuốc" parent="menu_cau_hinh_3" action='medical_lieu_thuoc_action' sequence="5" />
 </odoo>
