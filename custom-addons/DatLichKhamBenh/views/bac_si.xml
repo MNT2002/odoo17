@@ -8,6 +8,11 @@
         <field name="model">medical.bac_si</field>
         <field name="arch" type="xml">
             <form string="Bác sĩ">
+                <div class="oe_button_box" name="button_box">
+                    <button type="action" class="oe_stat_button" name="DatLichKhamBenh.morden_action_medical_phieu_kham_benh" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user" icon="fa-list">
+                        <field string="Phiếu khám bệnh" name="phieu_kham_benh_count" widget="statinfo"/>
+                    </button>
+                </div>
                 <sheet>
                     <field name="anh_dai_dien" nolabel="1" widget="image" class="oe_avatar" />
                     <div class="oe_title">
@@ -21,8 +26,7 @@
                     </div>
                     <group>
                         <group>
-                            <field name="trinhdo_bangcap" widget="many2many_tags"
-                                placeholder="Bằng cấp ..." />
+                            <field name="trinhdo_bangcap" widget="many2many_tags" placeholder="Bằng cấp ..." />
                             <field name="duoc_si" />
                             <field name="y_ta" />
                             <field name="dieu_duong" />
@@ -61,8 +65,7 @@
     </record>
 
     <!-- Bac si kanban view-->
-    <record
-        id="medical_bac_si_kanban_view" model="ir.ui.view">
+    <record id="medical_bac_si_kanban_view" model="ir.ui.view">
         <field name="name">medical.bac_si.kanban</field>
         <field name="model">medical.bac_si</field>
         <field name="arch" type="xml">
@@ -77,9 +80,7 @@
                         <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
                             <div class="oe_kanban_details">
                                 <a type="open">
-                                    <img widget="image" heigh="100" width="100"
-                                        t-att-alt="record.id.value"
-                                        t-att-src="kanban_image('medical.bac_si', 'anh_dai_dien', record.id.raw_value)" />
+                                    <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.bac_si', 'anh_dai_dien', record.id.raw_value)" />
                                 </a>
                             </div>
                             <div class="oe_kanban_details" style="text-align: left">
@@ -107,8 +108,7 @@
         </field>
     </record>
     <!-- Bac si tree view-->
-    <record
-        id="medical_bac_si_tree_view" model="ir.ui.view">
+    <record id="medical_bac_si_tree_view" model="ir.ui.view">
         <field name="name">medical.bac_si.tree</field>
         <field name="model">medical.bac_si</field>
         <field name="arch" type="xml">
@@ -122,8 +122,7 @@
         </field>
     </record>
     <!-- Bac si action-->
-    <record
-        id="medical_bac_si_action" model="ir.actions.act_window">
+    <record id="medical_bac_si_action" model="ir.actions.act_window">
         <field name="name">Bác sĩ</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.bac_si</field>
@@ -131,6 +130,5 @@
     </record>
 
     <!-- Menu item Bac si-->
-    <menuitem id="medical_bac_si_menu"
-        name="Bác sĩ" parent="menu_bac_si" action="medical_bac_si_action" sequence="1" />
+    <menuitem id="medical_bac_si_menu" name="Bác sĩ" parent="menu_bac_si" action="medical_bac_si_action" sequence="1" />
 </odoo>

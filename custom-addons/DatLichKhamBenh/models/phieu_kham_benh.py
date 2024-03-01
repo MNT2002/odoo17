@@ -10,6 +10,9 @@ class PhieuKhamBenh(models.Model):
     @api.model
     def create(self, vals):
         vals['name'] = self.env['ir.sequence'].next_by_code('phieu_kham_benh.seq')
+
+        vals['bac_si_id'] = self.env.context.get('active_id', [])
+
         record =  super(PhieuKhamBenh, self).create(vals)
         return record
 
@@ -56,13 +59,15 @@ class PhieuKhamBenh(models.Model):
 
     trieu_chung = fields.Char('Triệu chứng')
 
-    trung_tam_y_te_id = fields.Many2one('medical.trung_tam_y_te', 'Trung tâm y tế', store=True)
+    trung_tam_y_te_id = fields.Many2one('medical.trung_tam_y_te', 'Trung tâm y tế', store=True, required=True)
 
-    khoa_id = fields.Many2one('medical.khoa', 'Khoa', domain="[('trung_tam_suc_khoe_id', '=', trung_tam_y_te_id)]", store=True)
+    khoa_id = fields.Many2one('medical.khoa', 'Khoa', domain="[('trung_tam_suc_khoe_id', '=', trung_tam_y_te_id)]", store=True, required=True)
 
     phong_id = fields.Many2one('medical.phong', 'Phòng', domain="[('khoa_id', '=', khoa_id), ('trung_tam_suc_khoe_id', '=', trung_tam_y_te_id)]", store=True)
 
-    vaccine_ids = fields.Many2many(comodel_name='medical.thuoc_vaccin', relation='medical_phieukhambenh_vaccine', column1='phieu_kham_benh_id', column2='vaccine_id', string='Vắc xin')
+    vaccine_ids = fields.Many2many(comodel_name='medical.vaccine', relation='medical_phieukhambenh_vaccine', column1='phieu_kham_benh_id', column2='vaccine_id', string='Vắc xin')
+
+    don_thuoc_ids = fields.One2many('medical.don_thuoc', inverse_name='phieu_kham_benh_id')
     
 
     @api.depends('benh_nhan_id')
@@ -72,3 +77,61 @@ class PhieuKhamBenh(models.Model):
                 rec.ngay_sinh = rec.benh_nhan_id.ngay_sinh
             else: 
                 rec.ngay_sinh = ""
+
+class DonThuoc(models.Model):
+    _name = 'medical.don_thuoc'
+    _description = 'medical.don_thuoc'
+
+    name = fields.Char('Đơn thuốc #', default='/', readonly=True)
+
+    @api.model
+    def create(self, vals):
+        vals['name'] = self.env['ir.sequence'].next_by_code('don_thuoc.seq')
+
+        vals['phieu_kham_benh_id'] = self.env.context.get('active_id', [])
+
+        record =  super(DonThuoc, self).create(vals)
+        return record
+
+    state = fields.Selection([('DuThao', 'Dự thảo'), ('DaGui', 'Đã gửi')], string='Trạng thái', default='DuThao')        
+
+    def btn_gui(self):
+        self.state = 'DaGui'
+    
+    phieu_kham_benh_id = fields.Many2one('medical.phieu_kham_benh', 'Số thứ tự #', required=True, store=True, readonly=True)
+
+    benh_nhan_id = fields.Many2one('medical.benh_nhan', 'Bệnh nhân', store=True, required=True, readonly=True, related='phieu_kham_benh_id.benh_nhan_id')
+
+    trung_tam_y_te_id = fields.Many2one('medical.trung_tam_y_te', related='phieu_kham_benh_id.trung_tam_y_te_id', readonly=True)
+
+    nha_thuoc_id = fields.Many2one('medical.hieu_thuoc', 'Nhà thuốc', domain="[('trung_tam_suc_khoe_id', '=', trung_tam_y_te_id)]", store=True, required=True)
+
+    khoa_id = fields.Many2one('medical.khoa', related='phieu_kham_benh_id.khoa_id', store=True, readonly=True)
+
+    bac_si_id = fields.Many2one('medical.bac_si', 'Bác sĩ', store=True, required=True)
+
+    ngay_ke_don = fields.Datetime('Ngày kê đơn', readonly=False, select=True
+                                , default=lambda self: fields.datetime.now())
+
+    so_thu_tu = fields.Char('Số thứ tự #', readonly=True, related='phieu_kham_benh_id.name')
+
+    chi_tiet_toa_thuoc_ids = fields.One2many(comodel_name='medical.chi_tiet_toa_thuoc', inverse_name='don_thuoc_id')
+
+    def action_confirm_and_print(self):
+        raise ValidationError('Tính năng đang bảo trì!')
+
+class ChiTietToaThuoc(models.Model):
+    _name = 'medical.chi_tiet_toa_thuoc'
+    _description = 'medical.chi_tiet_toa_thuoc'
+
+    name = fields.Many2one('medical.thuoc_vaccin', 'Thuốc', domain="[('loai_thuoc', '=', 'Thuoc')]", required=True)
+
+    don_thuoc_id = fields.Many2one('medical.don_thuoc', 'Đơn thuốc', store=True, required=True)
+
+    chi_dinh = fields.Char('Chỉ định', related='name.chi_dinh', store=True, required=True)
+
+    lieu = fields.Many2one('medical.lieu_thuoc', 'Liều', store=True, required=True)
+
+    donvi_lieuluong = fields.Many2one('medical.donvi_lieuluong','Đơn vị liều lường', store=True)
+
+    binh_luan = fields.Char('Bình luận')

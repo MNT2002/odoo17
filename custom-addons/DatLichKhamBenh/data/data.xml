@@ -9,6 +9,13 @@
             <field name="padding">6</field>
         </record>
 
+        <record id="don_thuoc_sequence" model="ir.sequence">
+            <field name="name">Bệnh Nhân Sequence</field>
+            <field name="code">don_thuoc.seq</field>
+            <field name="prefix">PR</field>
+            <field name="padding">6</field>
+        </record>
+
         <record id="phieu_kham_benh_sequence" model="ir.sequence">
             <field name="name">Phiếu khám bệnh Sequence</field>
             <field name="code">phieu_kham_benh.seq</field>

@@ -102,27 +102,29 @@
                 <field name="email" />
                 <templates>
                     <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
-                            <div class="oe_kanban_details">
-                                <a type="open">
-                                    <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.trung_tam_y_te', 'anh_dai_dien', record.id.raw_value)" />
-                                </a>
-                            </div>
-                            <div class="oe_kanban_details" style="text-align: right">
-                                <h4>
+                        <div class="oe_kanban_global_click oe_kanban_card">
+                            <div class="oeh_medical_vignette oe_semantic_html_override">
+                                <div class="o_kanban_image" style="margin-top:15px;">
                                     <a type="open">
-                                        <field name="name" />
+                                        <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.trung_tam_y_te', 'anh_dai_dien', record.id.raw_value)" />
                                     </a>
-                                </h4>
-                                <ul>
-                                    <li>
-                                        <field name="thanh_pho" />
- ,                                        <field name="country_id_new" />
-                                    </li>
-                                    <li>
-                                        <field name="email" />
-                                    </li>
-                                </ul>
+                                </div>
+                                <div class="oe_kanban_details" >
+                                    <h4>
+                                        <a type="open">
+                                            <field name="name" />
+                                        </a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            <field name="thanh_pho" />
+ ,                                            <field name="country_id_new" />
+                                        </li>
+                                        <li>
+                                            <field name="email" />
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </t>
@@ -395,27 +397,29 @@
                 <field name="email" />
                 <templates>
                     <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
-                            <div class="oe_kanban_details">
-                                <a type="open">
-                                    <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.hieu_thuoc', 'anh_dai_dien', record.id.raw_value)" />
-                                </a>
-                            </div>
-                            <div class="oe_kanban_details" style="text-align: right">
-                                <h4>
+                        <div class="oe_kanban_global_click oe_kanban_card">
+                            <div class="oeh_medical_vignette oe_semantic_html_override">
+                                <div class="o_kanban_image" style="margin-top:15px;">
                                     <a type="open">
-                                        <field name="name" />
+                                        <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.hieu_thuoc', 'anh_dai_dien', record.id.raw_value)" />
                                     </a>
-                                </h4>
-                                <ul>
-                                    <li>
-                                        <field name="thanh_pho" />
- ,                                        <field name="country_id_new" />
-                                    </li>
-                                    <li>
-                                        <field name="email" />
-                                    </li>
-                                </ul>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open">
+                                            <field name="name" />
+                                        </a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            <field name="thanh_pho" />
+ ,                                            <field name="country_id_new" />
+                                        </li>
+                                        <li>
+                                            <field name="email" />
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </t>

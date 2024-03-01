@@ -38,6 +38,14 @@ class BacSi(models.Model):
 
     thong_tin_them = fields.Char('Thông tin thêm')
 
+    phieu_kham_benh_ids = fields.One2many(comodel_name='medical.phieu_kham_benh', inverse_name='bac_si_id')
+    phieu_kham_benh_count = fields.Integer('Phiếu khám bệnh', compute="get_count_phieu_kham_benh", store=True)
+
+    @api.depends('phieu_kham_benh_ids')
+    def get_count_phieu_kham_benh(self):
+        for rec in self:
+            rec.phieu_kham_benh_count =  len(rec.phieu_kham_benh_ids)
+
 
 
     

@@ -246,14 +246,3 @@ class Vaccine(models.Model):
 
     quan_sat_theo_doi = fields.Char('Quan sát/Theo dõi')
     
-class DonThuoc(models.Model):
-    _name = 'medical.don_thuoc'
-    _description = 'medical.don_thuoc'
-
-    name = fields.Char('Số thứ tự #', default='/', readonly=True)
-
-    @api.model
-    def create(self, vals):
-        vals['name'] = self.env['ir.sequence'].next_by_code('phieu_kham_benh.seq')
-        record =  super(PhieuKhamBenh, self).create(vals)
-        return record

@@ -8,7 +8,7 @@
             <field name="categ_id" position="after">
                 <field string="POS Product Category" name="pos_categ_ids" filter_domain="[('pos_categ_ids', 'child_of', raw_value)]"/>
             </field>
-            <filter name="filter_to_sell" position="before">
+            <filter name="  filter_to_sell" position="before">
                <filter name="filter_to_availabe_pos" string="Available in POS" domain="[('available_in_pos', '=', True)]"/>
             </filter>
             <filter name="categ_id" position="after">
