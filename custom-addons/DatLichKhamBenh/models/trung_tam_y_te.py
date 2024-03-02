@@ -152,7 +152,7 @@ class HieuTHuoc(models.Model):
 
     country_id_new = fields.Many2one('res.country', string="Quốc gia", required=True)
 
-    state_id_new = fields.Many2one('res.country.state', string="Tỉnh/Thành phố", store=True, require=True, domain="[('country_id', '=', country_id_new)]")
+    state_id_new = fields.Many2one('res.country.state', string="Tỉnh/Thành phố", store=True, required=True, domain="[('country_id', '=', country_id_new)]")
 
     website_link = fields.Char('Website Link')
 

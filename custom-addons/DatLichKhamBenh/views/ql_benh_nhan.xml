@@ -276,7 +276,4 @@
 		<field name="view_mode">tree,form,kanban</field>
 		<field name="domain">[('nhom_mau', '!=', '' 3) </field>
 	</record>
-
-	<menuitem id="medical_benh_nhan_menu" name="Quản lý bệnh nhân" parent="menu_benh_nhan" action='medical_benh_nhan_action' sequence="1" />
-	<!--	<menuitem id="test_phan_quyen_menu" name="Test phan quyen" parent="menu_field" action='medical_benh_nhan_action' sequence="2" groups="DatLichKhamBenh.group_employee_manager"/>-->
 </odoo>

@@ -23,11 +23,11 @@
                     </div>
                     <group>
                         <group>
-                            <field name="benh_nhan_id" />
+                            <field name="benh_nhan_id"  readonly="id != False"/>
                             <field name="ngay" />
                         </group>
                         <group>
-                            <field name="bac_si_id" />
+                            <field name="bac_si_id" options="{'no_create': True}"/>
                         </group>
                     </group>
                     <group>
@@ -49,7 +49,7 @@
                     <notebook>
                         <page string="Điều trị">
                             <div class="o_row">
-                                <field name="don_thuoc_ids" />
+                                <field name="don_thuoc_ids"  context="{'default_so_thu_tu': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id}"/>
                             </div>
                         </page>
                         <page string="Chẩn đoán hình ảnh">
@@ -169,7 +169,7 @@
         <field name="res_model">medical.phieu_kham_benh</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="domain">[('bac_si_id', '=', active_id)]</field>
-        <field name="context">{'search_default_group_by_bac_si': 1, 'search_default_group_by_trang_thai': 2}</field>
+        <field name="context">{'search_default_group_by_trang_thai': 1}</field>
     </record>
     <!--===== Đơn thuốc =====  -->
     <!-- Don thuoc form view-->
@@ -213,7 +213,7 @@
             </form>
         </field>
     </record>
-    <!--   Phieu kham benh tree view-->
+    <!--   Don thuoc tree view-->
     <record id="medical_don_thuoc_tree_view" model="ir.ui.view">
         <field name="name">medical.don_thuoc.tree</field>
         <field name="model">medical.don_thuoc</field>

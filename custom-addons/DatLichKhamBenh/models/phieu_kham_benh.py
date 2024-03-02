@@ -11,7 +11,7 @@ class PhieuKhamBenh(models.Model):
     def create(self, vals):
         vals['name'] = self.env['ir.sequence'].next_by_code('phieu_kham_benh.seq')
 
-        vals['bac_si_id'] = self.env.context.get('active_id', [])
+        # vals['bac_si_id'] = self.env.context.get('active_id', [])
 
         record =  super(PhieuKhamBenh, self).create(vals)
         return record
@@ -36,7 +36,7 @@ class PhieuKhamBenh(models.Model):
 
     benh_nhan_id = fields.Many2one('medical.benh_nhan', 'Bệnh nhân', store=True, required=True)
 
-    bac_si_id = fields.Char('Bác sĩ phụ trách', readonly=True)
+    bac_si_id = fields.Many2one('medical.bac_si', 'Bác sĩ phụ trách', store=True, required=True, readonly=True)
     
     ngay = fields.Datetime('Ngày', readonly=False, select=True
                                 , default=lambda self: fields.datetime.now())
@@ -59,15 +59,15 @@ class PhieuKhamBenh(models.Model):
 
     trieu_chung = fields.Char('Triệu chứng')
 
-    trung_tam_y_te_id = fields.Many2one('medical.trung_tam_y_te', 'Trung tâm y tế', store=True, required=True)
+    trung_tam_y_te_id = fields.Many2one('medical.trung_tam_y_te', 'Trung tâm y tế', store=True, required=True, readonly=True)
 
-    khoa_id = fields.Many2one('medical.khoa', 'Khoa', domain="[('trung_tam_suc_khoe_id', '=', trung_tam_y_te_id)]", store=True, required=True)
+    khoa_id = fields.Many2one('medical.khoa', 'Khoa', domain="[('trung_tam_suc_khoe_id', '=', trung_tam_y_te_id)]", store=True, required=True, readonly=True)
 
     phong_id = fields.Many2one('medical.phong', 'Phòng', domain="[('khoa_id', '=', khoa_id), ('trung_tam_suc_khoe_id', '=', trung_tam_y_te_id)]", store=True)
 
     vaccine_ids = fields.Many2many(comodel_name='medical.vaccine', relation='medical_phieukhambenh_vaccine', column1='phieu_kham_benh_id', column2='vaccine_id', string='Vắc xin')
 
-    don_thuoc_ids = fields.One2many('medical.don_thuoc', inverse_name='phieu_kham_benh_id')
+    don_thuoc_ids = fields.One2many('medical.don_thuoc', inverse_name='so_thu_tu')
     
 
     @api.depends('benh_nhan_id')
@@ -87,9 +87,7 @@ class DonThuoc(models.Model):
     @api.model
     def create(self, vals):
         vals['name'] = self.env['ir.sequence'].next_by_code('don_thuoc.seq')
-
-        vals['phieu_kham_benh_id'] = self.env.context.get('active_id', [])
-
+        
         record =  super(DonThuoc, self).create(vals)
         return record
 
@@ -98,22 +96,21 @@ class DonThuoc(models.Model):
     def btn_gui(self):
         self.state = 'DaGui'
     
-    phieu_kham_benh_id = fields.Many2one('medical.phieu_kham_benh', 'Số thứ tự #', required=True, store=True, readonly=True)
 
-    benh_nhan_id = fields.Many2one('medical.benh_nhan', 'Bệnh nhân', store=True, required=True, readonly=True, related='phieu_kham_benh_id.benh_nhan_id')
+    benh_nhan_id = fields.Many2one('medical.benh_nhan', 'Bệnh nhân', store=True, required=True, related='so_thu_tu.benh_nhan_id')
 
-    trung_tam_y_te_id = fields.Many2one('medical.trung_tam_y_te', related='phieu_kham_benh_id.trung_tam_y_te_id', readonly=True)
+    trung_tam_y_te_id = fields.Many2one('medical.trung_tam_y_te', readonly=True)
+
+    khoa_id = fields.Many2one('medical.khoa', related='so_thu_tu.khoa_id', readonly=True)
 
     nha_thuoc_id = fields.Many2one('medical.hieu_thuoc', 'Nhà thuốc', domain="[('trung_tam_suc_khoe_id', '=', trung_tam_y_te_id)]", store=True, required=True)
 
-    khoa_id = fields.Many2one('medical.khoa', related='phieu_kham_benh_id.khoa_id', store=True, readonly=True)
-
-    bac_si_id = fields.Many2one('medical.bac_si', 'Bác sĩ', store=True, required=True)
+    bac_si_id = fields.Many2one('medical.bac_si', 'Bác sĩ', store=True, related='so_thu_tu.bac_si_id' )
 
     ngay_ke_don = fields.Datetime('Ngày kê đơn', readonly=False, select=True
                                 , default=lambda self: fields.datetime.now())
 
-    so_thu_tu = fields.Char('Số thứ tự #', readonly=True, related='phieu_kham_benh_id.name')
+    so_thu_tu = fields.Many2one('medical.phieu_kham_benh', 'Số thứ tự #', readonly=True, store=True)
 
     chi_tiet_toa_thuoc_ids = fields.One2many(comodel_name='medical.chi_tiet_toa_thuoc', inverse_name='don_thuoc_id')
 
