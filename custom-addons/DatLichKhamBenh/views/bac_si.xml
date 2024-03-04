@@ -124,6 +124,21 @@
             </kanban>
         </field>
     </record>
+    <!--  Bac si search view  -->
+    <record id="bac_si_search_view" model="ir.ui.view">
+        <field name="name">Bác sĩ</field>
+        <field name="model">medical.bac_si</field>
+        <field name="arch" type="xml">
+            <search string="Bác sĩ">
+                <separator />
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Tên" name="group_by_name" context="{'group_by': 'name'}"/>
+                    <filter string="ID giáy phép" name="group_by_id_giay_phep" context="{'group_by': 'id_giay_phep'}"/>
+                    <filter string="Chuyên khoa" name="group_by_chuyen_mon" context="{'group_by': 'chuyen_mon'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
     <!-- Bac si tree view-->
     <record id="medical_bac_si_tree_view" model="ir.ui.view">
         <field name="name">medical.bac_si.tree</field>
@@ -219,7 +234,21 @@
             </form>
         </field>
     </record>
-
+    <!--  Duoc si search view  -->
+    <record id="duoc_si_search_view" model="ir.ui.view">
+        <field name="name">Dược sĩ</field>
+        <field name="model">medical.duoc_si</field>
+        <field name="arch" type="xml">
+            <search string="Dược sĩ">
+                <separator />
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Tên" name="group_by_name" context="{'group_by': 'name'}"/>
+                    <filter string="ID giáy phép" name="group_by_id_giay_phep" context="{'group_by': 'id_giay_phep'}"/>
+                    <filter string="Chuyên khoa" name="group_by_chuyen_mon" context="{'group_by': 'chuyen_mon'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
     <!-- Dược sĩ kanban view-->
     <record id="medical_duoc_si_kanban_view" model="ir.ui.view">
         <field name="name">medical.duoc_si.kanban</field>

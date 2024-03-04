@@ -52,6 +52,8 @@
                 <group expand="0" string="Nhóm theo">
                     <filter string="Bác sĩ" name="group_by_bac_si" context="{'group_by': 'bac_si_id'}"/>
                     <filter string="Dược sĩ" name="group_by_duoc_si_id" context="{'group_by': 'duoc_si_id'}"/>
+                    <filter string="Nhà thuốc" name="group_by_nha_thuoc_id" context="{'group_by': 'nha_thuoc_id'}"/>
+                    <filter string="Trạng thái" name="group_by_state" context="{'group_by': 'state'}"/>
                 </group>
             </search>
         </field>
