@@ -2,14 +2,20 @@
     <!-- MenuItem Of Quan Ly Dat Lich Kham Benh -->
 	<menuitem id="menu_QLDLKB" name="Trung tâm" web_icon="" sequence="1" />
     <menuitem id="menu_phieu_kham_benh_parent" name="Phiếu khám bệnh" sequence="2"/>
+    <menuitem id="menu_hieu_thuoc" name="Hiệu thuốc" sequence="3"/>
 
     <menuitem id="menu_bang_thong_tin" name="Bảng thông tin" parent="menu_QLDLKB" sequence="1" />
     <menuitem id="menu_bao_cao" name="Báo cáo" parent="menu_QLDLKB" sequence="2" />
     <menuitem id="menu_benh_nhan" name="Quản lý bệnh nhân" parent="menu_QLDLKB" sequence="3" action="medical_benh_nhan_action" />
-    <menuitem id="menu_bac_si" name="Bác sĩ" parent="menu_QLDLKB" sequence="4" action="medical_bac_si_action"/>
-    <menuitem id="menu_cau_hinh" name="Cấu hình" parent="menu_QLDLKB" sequence="4" />
+    <menuitem id="menu_duoc_si" name="Dược sĩ" parent="menu_QLDLKB" sequence="4" action="medical_duoc_si_action"/>
+    <menuitem id="menu_bac_si" name="Bác sĩ" parent="menu_QLDLKB" sequence="5" action="medical_bac_si_action"/>
+    <menuitem id="menu_cau_hinh" name="Cấu hình" parent="menu_QLDLKB" sequence="6" />
     
     <!-- Menu item Phieu kham benh-->
     <menuitem id="menu_phieu_kham_benh" name="Phiếu khám bệnh" parent="menu_phieu_kham_benh_parent" action="medical_phieu_kham_benh_action" sequence="1" />
-    <menuitem id="menu_vac_xin" name="Vắc xin" parent="menu_phieu_kham_benh_parent" action="medical_vaccine_action" sequence="2" />
+    <menuitem id="menu_don_thuoc" name="Đơn thuốc" parent="menu_phieu_kham_benh_parent" action="medical_don_thuoc_all_action" sequence="2" />
+    <menuitem id="menu_vac_xin" name="Vắc xin" parent="menu_phieu_kham_benh_parent" action="medical_vaccine_action" sequence="3" />
+
+    <!-- Menu item Hieu thuoc-->
+    <menuitem id="menu_don_thuoc_duoc_dat" name="Đơn thuốc được đặt" parent="menu_hieu_thuoc" sequence="1" action="medical_don_thuoc_duoc_dat_action" />
 </odoo>

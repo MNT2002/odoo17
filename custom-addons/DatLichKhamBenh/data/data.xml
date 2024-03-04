@@ -10,9 +10,15 @@
         </record>
 
         <record id="don_thuoc_sequence" model="ir.sequence">
-            <field name="name">Bệnh Nhân Sequence</field>
+            <field name="name">Đơn thuốc Sequence</field>
             <field name="code">don_thuoc.seq</field>
             <field name="prefix">PR</field>
+            <field name="padding">6</field>
+        </record>
+        <record id="don_thuoc_duoc_dat_sequence" model="ir.sequence">
+            <field name="name">Đơn thuốc được đặt Sequence</field>
+            <field name="code">don_thuoc_duoc_dat.seq</field>
+            <field name="prefix">PSO</field>
             <field name="padding">6</field>
         </record>
 

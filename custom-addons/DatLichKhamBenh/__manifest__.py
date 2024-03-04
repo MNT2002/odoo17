@@ -22,6 +22,7 @@
         'views/root_menu.xml',
         'views/trung_tam.xml',
         'views/bac_si.xml',
+        'views/hieu_thuoc.xml',
         'views/ql_benh_nhan.xml',
         'views/phieu_kham_benh.xml',
     ],

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Don thuoc duoc dat form view-->
+    <record id="medical_don_thuoc_duoc_dat_view_form" model="ir.ui.view">
+        <field name="name">medical.don_thuoc_duoc_dat.form</field>
+        <field name="model">medical.don_thuoc_duoc_dat</field>
+        <field name="arch" type="xml">
+            <form string="Đơn thuốc được đặt">
+                <header>
+                    <!-- <button name="btn_gui" confirm="Bạn có chắc chắn muốn gửi đơn thuốc đến hiệu thuốc đã chọn không?" string="Gửi đến nhà thuốc" type="object" class="oe_highlight"/> -->
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" required="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="benh_nhan_id" />
+                            <field name="nha_thuoc_id" readonly='id != False'/>
+                            <field name="khoa_id" />
+                            <field name="trung_tam_y_te_id" />
+                        </group>
+                        <group>
+                            <field name="bac_si_id" />
+                            <field name="ngay_ke_don" readonly='id != False'/>
+                            <field name="don_thuoc_id" />
+                            <field name="duoc_si_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Chi tiết toa thuốc">
+                            <div class="o_row">
+                                <!-- <field name="chi_tiet_toa_thuoc_ids" context="{'default_don_thuoc_id': active_id}"></field> -->
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Don thuoc duoc dat search view  -->
+    <record id="don_thuoc_duoc_dat_search_view" model="ir.ui.view">
+        <field name="name">Đơn thuốc được đặt</field>
+        <field name="model">medical.don_thuoc_duoc_dat</field>
+        <field name="arch" type="xml">
+            <search string="Đơn thuốc được đặt">
+                <separator />
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Bác sĩ" name="group_by_bac_si" context="{'group_by': 'bac_si_id'}"/>
+                    <filter string="Dược sĩ" name="group_by_duoc_si_id" context="{'group_by': 'duoc_si_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <!--   Don thuoc duoc dat tree view-->
+    <record id="medical_don_thuoc_duoc_dat_tree_view" model="ir.ui.view">
+        <field name="name">medical.don_thuoc_duoc_dat.tree</field>
+        <field name="model">medical.don_thuoc_duoc_dat</field>
+        <field name="arch" type="xml">
+            <tree string="Thông tin đơn thuốc được đặt">
+                <field name="name" />
+                <field name="benh_nhan_id" />
+                <field name="ngay_ke_don" />
+                <field name="bac_si_id" />
+                <field name="nha_thuoc_id" />
+                <field name="don_thuoc_id" />
+                <field name="duoc_si_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <!-- Don thuoc duoc dat action-->
+    <record id="medical_don_thuoc_duoc_dat_action" model="ir.actions.act_window">
+        <field name="name">Danh sách đơn thuốc được đặt</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.don_thuoc_duoc_dat</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

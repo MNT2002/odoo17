@@ -77,13 +77,27 @@
 
 						</page>
 						<page string="Thuốc">
-
+							<field name="thuoc_ids" nolabel="1" readonly="1">
+								<tree string="Đơn thuốc">
+									<field name="ngay_ke_don"/>
+									<field name="name"/>
+									<field name="bac_si_id"/>
+									<field name="state"/>
+								</tree>
+							</field>
 						</page>
-						<page string="Đánh giá">
+						<!-- <page string="Đánh giá">
 
-						</page>
+						</page> -->
 						<page string="Phiếu khám bệnh">
-
+							<field name="phieu_kham_benh_ids" nolabel="1" readonly="1">
+								<tree string="Phiếu khám bệnh" >
+									<field name="ngay"/>
+									<field name="name"/>
+									<field name="chan_doan"/>
+									<field name="ngay_tai_kham"/>
+								</tree>
+							</field>
 						</page>
 						<page string="Chẩn đoán hình ảnh">
 
@@ -170,15 +184,15 @@
 								</page>
 							</notebook>
 						</page>
-						<page string="Phiếu xét nghiệm">
+						<!-- <page string="Phiếu xét nghiệm">
 
-						</page>
-						<page string="Nhật kí cuộc gọi">
+						</page> -->
+						<!-- <page string="Nhật kí cuộc gọi">
 
 						</page>
 						<page string="Tiền sử bệnh">
 
-						</page>
+						</page> -->
 					</notebook>
 				</sheet>
 			</form>

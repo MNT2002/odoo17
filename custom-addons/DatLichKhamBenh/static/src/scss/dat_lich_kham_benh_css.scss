@@ -1,7 +1,10 @@
 :root {
-    --nav-color: #1daaf3;
-    --second-color: #b5e0f5;
-    --hover-color: #8ed1f2
+    // --nav-color: #1daaf3;
+    // --second-color: #b5e0f5;
+    // --hover-color: #8ed1f2
+    --nav-color: #f3801d;
+    --second-color: #f2bd8e;
+    --hover-color: #f2bd8e;
 }
 a {
     color: var(--nav-color)!important;
@@ -9,7 +12,7 @@ a {
 
 .o_main_navbar {
     background: var(--nav-color) !important;
-    border-bottom: 1px solid #1690ce !important;
+    border-bottom: 1px solid var(--nav-color) !important;
     // padding-top: 10px;
     // padding-bottom: 10px;
 

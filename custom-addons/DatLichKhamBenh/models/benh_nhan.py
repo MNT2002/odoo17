@@ -170,3 +170,4 @@ class BenhNhan(models.Model):
             rec.vaccine_count =  len(rec.vaccine_ids)
 
     phieu_kham_benh_ids = fields.One2many(comodel_name='medical.phieu_kham_benh', inverse_name='benh_nhan_id')
+    thuoc_ids = fields.One2many('medical.don_thuoc', 'benh_nhan_id')

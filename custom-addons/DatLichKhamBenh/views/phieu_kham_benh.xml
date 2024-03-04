@@ -23,7 +23,7 @@
                     </div>
                     <group>
                         <group>
-                            <field name="benh_nhan_id"  readonly="id != False"/>
+                            <field name="benh_nhan_id" readonly="id != False"/>
                             <field name="ngay" />
                         </group>
                         <group>
@@ -47,10 +47,17 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Điều trị">
-                            <div class="o_row">
-                                <field name="don_thuoc_ids"  context="{'default_so_thu_tu': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id}"/>
-                            </div>
+                        <page string="Điều trị" invisible="state in ['DaLenLich','ChoKham']">
+                            <group>
+                                <group>
+                                    <field name="binh_luan"/>
+                                </group>
+                                <group>
+                                    <field name="chan_doan" readonly="state == 'HoanThanh'"/>
+                                    <field name="ngay_tai_kham" readonly="state == 'HoanThanh'"/>
+                                </group>
+                            </group>
+                            <field name="don_thuoc_ids" context="{'default_so_thu_tu': active_id}"/>
                         </page>
                         <page string="Chẩn đoán hình ảnh">
                             <div class="o_row">
@@ -105,7 +112,7 @@
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click oe_kanban_card">
                             <div class="oeh_medical_vignette oe_semantic_html_override">
-                                <div class="o_kanban_image"  style="margin-top:15px;">
+                                <div class="o_kanban_image" style="margin-top:15px;">
                                     <a type="open">
                                         <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.phieu_kham_benh', 'anh_dai_dien', record.id.raw_value)" />
                                     </a>
@@ -192,25 +199,38 @@
                     <group>
                         <group>
                             <field name="benh_nhan_id" />
-                            <field name="nha_thuoc_id" />
+                            <field name="nha_thuoc_id" readonly='id != False'/>
                             <field name="khoa_id" />
                             <field name="trung_tam_y_te_id" />
                         </group>
                         <group>
                             <field name="bac_si_id" />
-                            <field name="ngay_ke_don" />
+                            <field name="ngay_ke_don" readonly='id != False'/>
                             <field name="so_thu_tu" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Chi tiết toa thuốc">
                             <div class="o_row">
-
+                                <field name="chi_tiet_toa_thuoc_ids" context="{'default_don_thuoc_id': active_id}"></field>
                             </div>
                         </page>
                     </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+    <!-- Don thuoc search view  -->
+    <record id="don_thuoc_search_view" model="ir.ui.view">
+        <field name="name">Đơn thuốc</field>
+        <field name="model">medical.don_thuoc</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <separator />
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Bác sĩ" name="group_by_bac_si" context="{'group_by': 'bac_si_id'}"/>
+                </group>
+            </search>
         </field>
     </record>
     <!--   Don thuoc tree view-->
@@ -230,13 +250,69 @@
             </tree>
         </field>
     </record>
-    <!-- Phieu kham benh action-->
+    <!-- Don thuoc action-->
     <record id="medical_don_thuoc_action" model="ir.actions.act_window">
         <field name="name">Đơn thuốc</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.don_thuoc</field>
         <field name="view_mode">tree,form</field>
+        <field name="domain">[('bac_si_id', '=', active_id)]</field>
+        <!-- <field name="context">{'search_default_group_by_bac_si': 1}</field> -->
+    </record>
+    <record id="medical_don_thuoc_all_action" model="ir.actions.act_window">
+        <field name="name">Danh sách đơn thuốc</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.don_thuoc</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
-
+    <!--===== Chi tiết toa thuốc =====  -->
+    <!-- Chi tiet toa thuoc form view-->
+    <record id="medical_chi_tiet_toa_thuoc_view_form" model="ir.ui.view">
+        <field name="name">medical.chi_tiet_toa_thuoc.form</field>
+        <field name="model">medical.chi_tiet_toa_thuoc</field>
+        <field name="arch" type="xml">
+            <form string="Chi tiết toa thuốc">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" required="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="don_thuoc_id" />
+                            <field name="chi_dinh" />
+                            <field name="binh_luan"/>
+                        </group>
+                        <group>
+                            <field name="lieu" />
+                            <field name="donvi_lieuluong"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--   Chi tiet toa thuoc tree view-->
+    <record id="medical_chi_tiet_toa_thuoc_tree_view" model="ir.ui.view">
+        <field name="name">medical.chi_tiet_toa_thuoc.tree</field>
+        <field name="model">medical.chi_tiet_toa_thuoc</field>
+        <field name="arch" type="xml">
+            <tree string="Chi tiết toa thuốc">
+                <field name="name" />
+                <field name="chi_dinh" />
+                <field name="lieu" />
+                <field name="donvi_lieuluong" />
+                <field name="binh_luan" />
+            </tree>
+        </field>
+    </record>
+    <!-- <record id="medical_chi_tiet_toa_thuoc_action" model="ir.actions.act_window">
+        <field name="name">Chi tiết toa thuốc</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.chi_tiet_toa_thuoc</field>
+        <field name="view_mode">tree,form</field>
+    </record> -->
 </odoo>
