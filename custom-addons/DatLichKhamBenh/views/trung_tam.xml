@@ -667,12 +667,255 @@
     </record>
 
 
+    <!-- medical.don_vi_xet_nghiem tree view -->
+    <record id="medical_don_vi_xet_nghiem_view_tree" model="ir.ui.view">
+        <field name="name">medical.don_vi_xet_nghiem.view.tree</field>
+        <field name="model">medical.don_vi_xet_nghiem</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name"></field>
+                <field name="ma"></field>
+            </tree>
+        </field>
+    </record>
+    <record id="medical_don_vi_xet_nghiem_action" model="ir.actions.act_window">
+        <field name="name">Đơn vị xét nghiệm</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.don_vi_xet_nghiem</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- medical.loai_xet_nghiem form view -->
+    <record id="medical_loai_xet_nghiem_view_form" model="ir.ui.view">
+        <field name="name">medical.loai_xet_nghiem.form</field>
+        <field name="model">medical.loai_xet_nghiem</field>
+        <field name="arch" type="xml">
+            <form string="Loại xét nghiệm">
+                <sheet>
+                    <div class="oe_left" style="width: 500px;">
+                        <div class="oe_title" style="width: 390px;">
+                            <label class="oe_edit_only" for="name"/>
+                            <h1><field name="name" class="oe_inline"/></h1>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="ma" required="1"/>
+                        </group>
+                        <group>
+                            <field name="phi_xet_nghiem" required="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Trường hợp xét nghiệm">
+                            <div>
+                                <field name="truong_hop_xet_nghiem_ids" nolabel="1" context="{'default_loai_xet_nghiem_id': active_id}">
+                                    <tree string="Trường hợp xét nghiệm" editable="bottom">
+                                        <field name="ma_thu_tu" required="1"/>
+                                        <field name="name"/>
+                                        <field name="pham_vi_binh_thuong"/>
+                                        <field name="don_vi"/>
+                                    </tree>
+                                </field>
+                            </div>
+                        </page>
+                        <page string="Thông tin thêm">
+                            <group>
+                                <field name="thong_tin_them" nolabel="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- medical.loai_xet_nghiem tree view -->
+    <record id="medical_loai_xet_nghiem_view_tree" model="ir.ui.view">
+        <field name="name">medical.loai_xet_nghiem.view.tree</field>
+        <field name="model">medical.loai_xet_nghiem</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"></field>
+                <field name="ma"></field>
+                <field name="phi_xet_nghiem"></field>
+            </tree>
+        </field>
+    </record>
+    <record id="medical_loai_xet_nghiem_action" model="ir.actions.act_window">
+        <field name="name">Loại xét nghiệm</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.loai_xet_nghiem</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- medical.loai_chan_doan_hinh_anh tree view -->
+    <record id="medical_loai_chan_doan_hinh_anh_view_tree" model="ir.ui.view">
+        <field name="name">medical.loai_chan_doan_hinh_anh.view.tree</field>
+        <field name="model">medical.loai_chan_doan_hinh_anh</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"></field>
+                <field name="ma"></field>
+                <field name="phi_xet_nghiem"></field>
+            </tree>
+        </field>
+    </record>
+    <record id="medical_loai_chan_doan_hinh_anh_action" model="ir.actions.act_window">
+        <field name="name">Loại chẩn đoán hình ảnh</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.loai_chan_doan_hinh_anh</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <!-- medical.chan_doan_hinh_anh form view -->
+    <record id="medical_chan_doan_hinh_anh_view_form" model="ir.ui.view">
+        <field name="name">medical.chan_doan_hinh_anh.form</field>
+        <field name="model">medical.chan_doan_hinh_anh</field>
+        <field name="arch" type="xml">
+            <form string="Chẩn đoán hình ảnh">
+                <header>
+                    <button confirm="Bạn có muốn tạo hóa đơn?" name="btn_tao_hoa_don_chan_doan" string="Tạo hoá đơn" type="object" class="oe_highlight" />
+                    <button confirm="Bạn có muốn bắt đầu chẩn đoán?" name="btn_bat_dau_chan_doan" string="Bắt đầu" type="object" class="oe_highlight" />
+                    <button confirm="Bạn có muốn hoàn thành chẩn đoán?" name="btn_hoan_thanh_chan_doan" string="Hoàn thành" type="object" class="oe_highlight" />
+                    <button name="in_chan_doan_hinh_anh" string="In" type="object" class="oe_highlight" />
+                    <field name="state" widget="statusbar" statusbar_visible="DuThao,DaXuatHoaDon,DangThucHien,HoanThanh"/>
+                </header>
+                <sheet>
+                    <div class="oe_left" style="width: 500px;">
+                        <div class="oe_title" style="width: 390px;">
+                            <label class="oe_edit_only" for="name"/>
+                            <h1><field name="name" class="oe_inline"/></h1>
+                        </div>
+                        <div class="oe_left" style="width: 500px;">
+                            <label for="loai_chan_doan"/>
+                            <field name="loai_chan_doan" readonly="0" help="Loại chẩn đoán hình ảnh"/>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="identification_code"/>
+                            <field name="benh_nhan_id" required="1" options="{'no_create': True}"/>
+                            <field name="ngay_yeu_cau"/>
+                            <field name="ngay_sinh"/>
+                            <field name="gioi_tinh" />
+                        </group>
+                        <group>
+                            <field name="bac_si_id" options="{'no_create': True}"/>
+                            <field name="khoa_id" required="1"/>
+                            <field name="ngay_phan_tich"/>
+                            <field name="phieu_kham_benh_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Vật tư tiêu hao">
+                            <field name="vat_tu_tieu_hao_ids" nolabel="1" readonly="state == 'HoanThanh'" context="{'default_chan_doan_hinh_anh_id': active_id}">
+                                <tree string="Vật tư tiêu hao" editable="bottom">
+                                    <field name="ma_thu_tu"/>
+                                    <field name="san_pham"/>
+                                    <field name="so_luong"/>
+                                    <field name="don_vi"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Images">
+                            <group>
+                                <group>
+                                    <field name="anh_1" widget="image" readonly="state == 'HoanThanh'"/>
+                                    <field name="anh_2" widget="image" readonly="state == 'HoanThanh'"/>
+                                    <field name="anh_3" widget="image" readonly="state == 'HoanThanh'"/>
+                                </group>
+                                <group>
+                                    <field name="anh_4" widget="image" readonly="state == 'HoanThanh'"/>
+                                    <field name="anh_5" widget="image" readonly="state == 'HoanThanh'"/>
+                                    <field name="anh_6" widget="image" readonly="state == 'HoanThanh'"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Thông tin">
+                            <group>
+                                <field name="phan_tich" readonly="state != 'DangThucHien'"/>
+                            </group>
+                            <group>
+                                <field name="ket_luan" readonly="state != 'DangThucHien'"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+     <!-- Search chan doan hinh anh -->
+     <record id="chan_doan_hinh_anh_search_view" model="ir.ui.view">
+        <field name="name">Tìm kiếm chẩn đoán hình ảnh</field>
+        <field name="model">medical.chan_doan_hinh_anh</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <separator />
+                <filter string="Trạng thái đã xuất hoá đơn" name="trang_thai_filter" domain="[('state','=','DaXuatHoaDon')]"/>
+                <group expand="1" string="Nhóm theo">
+                    <filter string="Bệnh nhân" name="group_by_benh_nhan_id" context="{'group_by': 'benh_nhan_id'}" />
+                    <filter string="Bác sĩ" name="group_by_bac_si_id" context="{'group_by': 'bac_si_id'}" />
+                    <filter string="Loại chẩn đoán" name="group_by_loai_chan_doan" context="{'group_by': 'loai_chan_doan'}" />
+                    <filter string="Trạng thái" name="group_by_state" context="{'group_by': 'state'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <!-- medical.chan_doan_hinh_anh tree view -->
+    <record id="medical_chan_doan_hinh_anh_view_tree" model="ir.ui.view">
+        <field name="name">medical.chan_doan_hinh_anh.view.tree</field>
+        <field name="model">medical.chan_doan_hinh_anh</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách chẩn đoán hình ảnh">
+                <field name="name"></field>
+                <field name="loai_chan_doan"></field>
+                <field name="benh_nhan_id"></field>
+                <field name="bac_si_id"></field>
+                <field name="ngay_yeu_cau"></field>
+                <field name="ngay_phan_tich"></field>
+                <field name="phieu_kham_benh_id"></field>
+                <field name="state"></field>
+            </tree>
+        </field>
+    </record>
+    <record id="medical_chan_doan_hinh_anh_action" model="ir.actions.act_window">
+        <field name="name">Chẩn đoán hình ảnh</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.chan_doan_hinh_anh</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_trang_thai_filter': 1}</field>
+    </record>
+    
+    <!-- medical.vat_tu_tieu_hao tree view -->
+    <record id="medical_vat_tu_tieu_hao_view_tree" model="ir.ui.view">
+        <field name="name">medical.vat_tu_tieu_hao.view.tree</field>
+        <field name="model">medical.vat_tu_tieu_hao</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ma_thu_tu"></field>
+                <field name="san_pham"></field>
+                <field name="so_luong"></field>
+                <field name="don_vi"></field>
+            </tree>
+        </field>
+    </record>
+    <record id="medical_vat_tu_tieu_hao_action" model="ir.actions.act_window">
+        <field name="name">Vặt tư tiêu hao</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.vat_tu_tieu_hao</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
     <!--
     ===================================================================================================================== -->
     <!-- Menu item Trung tam y te-->
     <menuitem id="menu_cau_hinh_1" name="Trung tâm y tế" parent="menu_cau_hinh" />
     <menuitem id="menu_cau_hinh_2" name="Bác sĩ" parent="menu_cau_hinh" />
     <menuitem id="menu_cau_hinh_3" name="Dược phẩm" parent="menu_cau_hinh" />
+    <menuitem id="menu_cau_hinh_4" name="Phòng xét nghiệm" parent="menu_cau_hinh" />
+    <menuitem id="menu_cau_hinh_5" name="Hình ảnh" parent="menu_cau_hinh" />
 
     <menuitem id="medical_trung_tam_y_te_menu" name="Trung tâm y tế" parent="menu_cau_hinh_1" action='medical_trung_tam_y_te_action' sequence="2" />
     <menuitem id="medical_khoa_menu" name="Khoa" parent="menu_cau_hinh_1" action='medical_khoa_action' sequence="3" />
@@ -685,4 +928,9 @@
     <menuitem id="medical_thuoc_vaccin_menu" name="Thuốc, Vắc xin" parent="menu_cau_hinh_3" action='medical_thuoc_vaccin_action' sequence="2" />
     <menuitem id="medical_donvi_lieuthuoc_menu" name="Đơn vị liều thuốc" parent="menu_cau_hinh_3" action='medical_donvi_lieuthuoc_action' sequence="4" />
     <menuitem id="medical_lieu_thuoc_menu" name="Liều thuốc" parent="menu_cau_hinh_3" action='medical_lieu_thuoc_action' sequence="5" />
+
+    <menuitem id="medical_loai_xet_nghiem_menu" name="Loại xét nghiệm" parent="menu_cau_hinh_4" action='medical_loai_xet_nghiem_action' sequence="1" />
+    <menuitem id="medical_don_vi_xet_nghiem_menu" name="Đơn vị xét nghiệm" parent="menu_cau_hinh_4" action='medical_don_vi_xet_nghiem_action' sequence="2" />
+
+    <menuitem id="medical_loai_chuan_doan_hinh_anh_menu" name="Loại chuẩn đoán hình ảnh" parent="menu_cau_hinh_5" action='medical_loai_chan_doan_hinh_anh_action' sequence="1" />
 </odoo>

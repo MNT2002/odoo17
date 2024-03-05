@@ -1,6 +1,6 @@
 from odoo import fields, models, api
 
-
+from odoo.exceptions import ValidationError
 
 class TrungTamYTe(models.Model):
     _name = 'medical.trung_tam_y_te'
@@ -245,4 +245,127 @@ class Vaccine(models.Model):
     trung_tam_y_te_id = fields.Many2one('medical.trung_tam_y_te', 'Nơi thực hiện', store=True)
 
     quan_sat_theo_doi = fields.Char('Quan sát/Theo dõi')
+
+class DonViXetNghiem(models.Model):
+    _name = 'medical.don_vi_xet_nghiem'
+    _description = 'medical.don_vi_xet_nghiem'
+
+    name = fields.Char('Tên đơn vị')
+
+    ma = fields.Char('Mã')
+
+class LoaiXetNghiem(models.Model):
+    _name = 'medical.loai_xet_nghiem'
+    _description = 'medical.loai_xet_nghiem'
+
+    name = fields.Char('Tên xét nghiệm', required=True)
+
+    ma = fields.Char('Mã')
+
+    phi_xet_nghiem = fields.Integer('Phí xét nghiệm')
+
+    truong_hop_xet_nghiem_ids = fields.One2many('medical.truong_hop_xet_nghiem', 'loai_xet_nghiem_id')
+
+    thong_tin_them = fields.Char('Thông tin thêm')
+
+class TruongHopXetNghiem(models.Model):
+    _name = 'medical.truong_hop_xet_nghiem'
+    _description = 'medical.truong_hop_xet_nghiem'
     
+    name = fields.Char('Xét nghiệm', required=True)
+
+    ma_thu_tu = fields.Integer('Mã thứ tự')
+
+    pham_vi_binh_thuong = fields.Text('Phạm vi bình thường')
+
+    don_vi = fields.Many2one('medical.don_vi_xet_nghiem', 'Đơn vị')
+
+    loai_xet_nghiem_id = fields.Many2one('medical.loai_xet_nghiem', 'Loại xét nghiệm')
+
+class LoaiChuanDoanHinhAnh(models.Model):
+    _name = 'medical.loai_chan_doan_hinh_anh'
+    _description = 'medical.loai_chan_doan_hinh_anh'
+    
+    name = fields.Char('Tên', required=True)
+
+    ma = fields.Char('Mã')
+
+    phi_xet_nghiem = fields.Integer('Phí xét nghiệm')
+
+    thong_tin_them = fields.Char('Thông tin thêm')
+
+class ChanDoanHinhAnh(models.Model):
+    _name = 'medical.chan_doan_hinh_anh'
+    _description = 'Chẩn đoán hình ảnh'
+    
+    name = fields.Char('Số xét nghiệm #', required=True, default='/', readonly=True)
+
+    @api.model
+    def create(self, vals):
+        vals['name'] = self.env['ir.sequence'].next_by_code('chan_doan_hinh_anh.seq')
+
+        record =  super(ChanDoanHinhAnh, self).create(vals)
+        return record
+
+
+    state = fields.Selection([('DuThao', 'Dự thảo'),('DaXuatHoaDon', 'Đã xuất hoá đơn'), ('DangThucHien', 'Đang thực hiện'), ('HoanThanh', 'Hoàn thành')], 'Trạng thái', default='DuThao')
+
+    loai_chan_doan = fields.Many2one('medical.loai_chan_doan_hinh_anh', 'Loại chẩn đoán', store=True)
+
+    identification_code = fields.Char('Mã bệnh nhân',related='benh_nhan_id.identification_code', readonly=True)
+
+    benh_nhan_id = fields.Many2one('medical.benh_nhan', 'Bệnh nhân', store=True, related='phieu_kham_benh_id.benh_nhan_id')
+
+    ngay_yeu_cau = fields.Datetime('Ngày', readonly=False, select=True
+                                , default=lambda self: fields.datetime.now())
+
+    ngay_sinh = fields.Date('Ngày sinh', related='benh_nhan_id.ngay_sinh',)
+
+    gioi_tinh = fields.Selection([('Nam', 'Nam'), ('Nu', 'Nữ'), ('Khac', 'Khác')], "Giới tính", related='benh_nhan_id.gioi_tinh')
+
+    bac_si_id = fields.Many2one('medical.bac_si','Bác sĩ', store=True, related='phieu_kham_benh_id.bac_si_id')
+
+    phieu_kham_benh_id = fields.Many2one('medical.phieu_kham_benh', 'Phiếu khám bệnh', required=True, readonly=True)
+
+    khoa_id = fields.Many2one('medical.khoa' , 'Khoa',store=True, related='phieu_kham_benh_id.khoa_id')
+
+    ngay_phan_tich = fields.Datetime('Ngày phân tích', select=True)
+
+    anh_1 = fields.Binary('Ảnh 1')
+    anh_2 = fields.Binary('Ảnh 2')
+    anh_3 = fields.Binary('Ảnh 3')
+    anh_4 = fields.Binary('Ảnh 4')
+    anh_5 = fields.Binary('Ảnh 5')
+    anh_6 = fields.Binary('Ảnh 6')
+
+    phan_tich = fields.Char('Phân tích')
+
+    ket_luan = fields.Char('Kết luận')
+
+    vat_tu_tieu_hao_ids = fields.One2many('medical.vat_tu_tieu_hao', 'chan_doan_hinh_anh_id')
+
+    def btn_tao_hoa_don_chan_doan(self):
+        self.state = 'DaXuatHoaDon'
+    def btn_bat_dau_chan_doan(self):
+        self.state = 'DangThucHien'
+        current_dt = fields.datetime.now()
+        self.ngay_phan_tich = current_dt
+    def btn_hoan_thanh_chan_doan(self):
+        self.state = 'HoanThanh'
+    def in_chan_doan_hinh_anh(self):
+        raise ValidationError('Tính năng đang bảo trì!')
+
+class VatTuTieuHao(models.Model):
+    _name = 'medical.vat_tu_tieu_hao'
+    _description = 'medical.vat_tu_tieu_hao'
+    
+    ma_thu_tu = fields.Integer('Mã thứ tự', default=lambda self: self.env['ir.sequence'].next_by_code('vat_tu_tieu_hao.seq'))
+
+    san_pham = fields.Char('Sản phẩm', required=True)
+
+    so_luong = fields.Integer('Số lượng', default='1')
+
+    don_vi = fields.Char('Đơn vị')
+
+    chan_doan_hinh_anh_id = fields.Many2one('medical.chan_doan_hinh_anh', 'Chẩn đoán hình ảnh', store=True)
+

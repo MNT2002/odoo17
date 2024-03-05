@@ -100,7 +100,14 @@
 							</field>
 						</page>
 						<page string="Chẩn đoán hình ảnh">
-
+							<field name="chan_doan_hinh_anh_ids" nolabel="1" readonly="1">
+								<tree string="Phiếu khám bệnh" >
+									<field name="ngay_phan_tich"/>
+									<field name="phieu_kham_benh_id"/>
+									<field name="phan_tich"/>
+									<field name="ket_luan"/>
+								</tree>
+							</field>
 						</page>
 						<page string="Lifestyle">
 							<group>

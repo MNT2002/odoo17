@@ -6,10 +6,15 @@
     --second-color: #f2bd8e;
     --hover-color: #f2bd8e;
 }
-a {
+.oe_kanban_action.oe_kanban_action_a {
     color: var(--nav-color)!important;
 }
-
+.list-group-item.active {
+    background: var(--second-color)!important;
+}
+.o_list_renderer .o_list_table tbody > tr > td.o_list_button:not(.o_list_record_selector) > button {
+    color: var(--nav-color)!important;
+}
 .o_main_navbar {
     background: var(--nav-color) !important;
     border-bottom: 1px solid var(--nav-color) !important;
@@ -29,6 +34,9 @@ a {
 }
 .dropdown-item {
     color: #495057 !important;
+}
+.o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled), .o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled) label {
+    color: var(--nav-color)!important;
 }
 .btn-primary {
     background-color: var(--nav-color)!important;
