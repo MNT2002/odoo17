@@ -8,6 +8,7 @@
     --nd-nav-color: #017e84;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
  .oe_kanban_details .oe_kanban_action.oe_kanban_action_a {
     color: var(--nav-color)!important;
 }
@@ -23,6 +24,12 @@
 :not(.dropstart) > .dropdown-item.active:not(.dropdown-item_active_noarrow):before, :not(.dropstart) > .dropdown-item.selected:not(.dropdown-item_active_noarrow):before {
     color: var(--nd-nav-color) !important;
 }
+=======
+a {
+    color: var(--nav-color)!important;
+}
+
+>>>>>>> parent of c9a86181 (xay dung model Chan doan hinh anh va cac model lien quan)
 =======
 a {
     color: var(--nav-color)!important;
@@ -63,9 +70,12 @@ a {
     color: #495057 !important;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled), .o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled) label {
     // color: var(--nav-color)!important;
 }
+=======
+>>>>>>> parent of c9a86181 (xay dung model Chan doan hinh anh va cac model lien quan)
 =======
 >>>>>>> parent of c9a86181 (xay dung model Chan doan hinh anh va cac model lien quan)
 .btn-primary {
