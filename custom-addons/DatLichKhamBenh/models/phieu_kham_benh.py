@@ -84,8 +84,6 @@ class PhieuKhamBenh(models.Model):
     binh_luan = fields.Char('Bình luận')
 
     ngay_tai_kham = fields.Date('Ngày tái khám')
-    
-    chan_doan_hinh_anh_ids = fields.One2many('medical.chan_doan_hinh_anh', 'phieu_kham_benh_id')
 
 class DonThuoc(models.Model):
     _name = 'medical.don_thuoc'

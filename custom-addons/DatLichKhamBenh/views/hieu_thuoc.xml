@@ -7,8 +7,7 @@
         <field name="arch" type="xml">
             <form string="Đơn thuốc được đặt">
                 <header>
-                    <button name="btn_xac_nhan" type="object" class="oe_highlight" string='Xác nhận'/>
-                    <button name="btn_xuat_hoa_don" confirm="Bạn có muốn xuất hoá đơn đơn thuốc?" string="Hoá đơn thanh toán" type="object" class="oe_highlight"/>
+                    <!-- <button name="btn_gui" confirm="Bạn có chắc chắn muốn gửi đơn thuốc đến hiệu thuốc đã chọn không?" string="Gửi đến nhà thuốc" type="object" class="oe_highlight"/> -->
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
@@ -35,7 +34,7 @@
                     <notebook>
                         <page string="Chi tiết toa thuốc">
                             <div class="o_row">
-                                <field name="chi_tiet_toa_thuoc_ids" ></field>
+                                <!-- <field name="chi_tiet_toa_thuoc_ids" context="{'default_don_thuoc_id': active_id}"></field> -->
                             </div>
                         </page>
                     </notebook>

@@ -1,5 +1,5 @@
 {
-    'name': "Dat Lich Kham Benh",
+    'name': "module-dat-lich-kham-benh",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as

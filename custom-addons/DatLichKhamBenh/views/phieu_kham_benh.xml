@@ -61,7 +61,7 @@
                         </page>
                         <page string="Chẩn đoán hình ảnh">
                             <div class="o_row">
-                                <field name="chan_doan_hinh_anh_ids" context="{'default_phieu_kham_benh_id': active_id}"/>
+
                             </div>
                         </page>
                         <page string="Vắc xin">
@@ -161,22 +161,12 @@
             </tree>
         </field>
     </record>
-    <record id="view_task_calendar" model="ir.ui.view">
-        <field name="name">medical.phieu_kham_benh.calendar</field>
-        <field name="model">medical.phieu_kham_benh</field>
-        <field eval="2" name="priority"/>
-        <field name="arch" type="xml">
-            <calendar string="Phiếu khám bệnh" date_start="ngay" color="state" mode="week">
-                <field name="benh_nhan_id"/>
-            </calendar>
-        </field>
-     </record>
     <!-- Phieu kham benh action-->
     <record id="medical_phieu_kham_benh_action" model="ir.actions.act_window">
         <field name="name">Phiếu khám bệnh</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.phieu_kham_benh</field>
-        <field name="view_mode">kanban,tree,calendar,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="context">{'search_default_group_by_bac_si': 1, 'search_default_group_by_trang_thai': 2}</field>
     </record>
 
@@ -184,7 +174,7 @@
         <field name="name">Danh sách phiếu khám bệnh</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.phieu_kham_benh</field>
-        <field name="view_mode">kanban,tree,calendar,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="domain">[('bac_si_id', '=', active_id)]</field>
         <field name="context">{'search_default_group_by_trang_thai': 1, 'search_default_bac_si_id': active_id}</field>
     </record>

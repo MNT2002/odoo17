@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="chan_doan_hinh_anh_sequence" model="ir.sequence">
-            <field name="name">Chẩn đoán hình ảnh Sequence</field>
-            <field name="code">chan_doan_hinh_anh.seq</field>
-            <field name="prefix">IM</field>
-            <field name="padding">6</field>
-        </record>
-        
-        <record id="vat_tu_tieu_hao_sequence" model="ir.sequence">
-            <field name="name">Vật tư tiêu hao Sequence</field>
-            <field name="code">vat_tu_tieu_hao.seq</field>
-            <field name="prefix"></field>
-            <field name="padding">1</field>
-        </record>
 
         <record id="benh_nhan_sequence" model="ir.sequence">
             <field name="name">Bệnh Nhân Sequence</field>

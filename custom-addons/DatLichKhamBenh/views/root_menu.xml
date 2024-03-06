@@ -1,9 +1,8 @@
 <odoo>
     <!-- MenuItem Of Quan Ly Dat Lich Kham Benh -->
-	<menuitem id="menu_QLDLKB" name="Trung tâm" web_icon="DatLichKhamBenh/static/description/medical.png" sequence="1" />
+	<menuitem id="menu_QLDLKB" name="Trung tâm" web_icon="" sequence="1" />
     <menuitem id="menu_phieu_kham_benh_parent" name="Phiếu khám bệnh" sequence="2"/>
     <menuitem id="menu_hieu_thuoc" name="Hiệu thuốc" sequence="3"/>
-    <menuitem id="menu_chan_doan_hinh_anh" name="Chẩn đoán hình ảnh" sequence="4"/>
 
     <menuitem id="menu_bang_thong_tin" name="Bảng thông tin" parent="menu_QLDLKB" sequence="1" />
     <menuitem id="menu_bao_cao" name="Báo cáo" parent="menu_QLDLKB" sequence="2" />
@@ -19,7 +18,4 @@
 
     <!-- Menu item Hieu thuoc-->
     <menuitem id="menu_don_thuoc_duoc_dat" name="Đơn thuốc được đặt" parent="menu_hieu_thuoc" sequence="1" action="medical_don_thuoc_duoc_dat_action" />
-
-    <!-- Menu item Chan doan hinh anh-->
-    <menuitem id="menu_chan_doan_hinh_anh_child" name="Chẩn đoán hình ảnh" parent="menu_chan_doan_hinh_anh" action="medical_chan_doan_hinh_anh_action"  sequence="1"/>
 </odoo>
