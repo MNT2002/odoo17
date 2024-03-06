@@ -12,6 +12,12 @@
             <field name="name">Employee user</field>
             <field name="category_id" ref="DatLichKhamBenh.patient_category"/>
         </record>
+        <!--Khai  bao nhom quyen-->
+        <record id="group_employee_doctor" model="res.groups">
+            <field name="name">Doctor</field>
+            <field name="category_id" ref="DatLichKhamBenh.patient_category"/>
+            <!-- <field name="implied_ids" eval="[(4, ref('DatLichKhamBenh.group_employee_user'))]"/> -->
+        </record>
 
         <!--Khai  bao nhom quyen-->
         <record id="group_employee_manager" model="res.groups">
@@ -21,8 +27,21 @@
             <field name="implied_ids" eval="[(4, ref('DatLichKhamBenh.group_employee_user'))]"/>
         </record>
 
-        <record id="owner_employee_rule" model="ir.rule">
-            <field name="name">Owner Employee Rule</field>
+
+        <record id="owner_bac_si_rule" model="ir.rule">
+            <field name="name">Owner Doctor Rule</field>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_bac_si"/>
+            <field name="domain_force">[('id', '=', user.id )]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+        <record id="owner_benh_nhan_rule" model="ir.rule">
+            <field name="name">Owner Doctor Rule</field>
             <field name="model_id" ref="DatLichKhamBenh.model_medical_benh_nhan"/>
             <field name="domain_force">[('create_uid', '=', user.id )]</field>
             <field name="perm_write" eval="1"/>
@@ -30,9 +49,83 @@
             <field name="perm_read" eval="1"/>
             <field name="perm_unlink" eval="1"/>
             <!-- You can attach this rule to a specific group, Or make it Global -->
-            <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_user'))]"/>
+            <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
             <!--<field name="global" eval="1"/> -->
         </record>
+        <record id="owner_phieu_kham_benh_rule" model="ir.rule">
+            <field name="name">Owner Doctor Rule</field>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_phieu_kham_benh"/>
+            <field name="domain_force">[('create_uid', '=', user.id )]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+        <record id="owner_don_thuoc_rule" model="ir.rule">
+            <field name="name">Owner Doctor Rule</field>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_don_thuoc"/>
+            <field name="domain_force">[('create_uid', '=', user.id )]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+        <record id="owner_vaccine_rule" model="ir.rule">
+            <field name="name">Owner Doctor Rule</field>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_vaccine"/>
+            <field name="domain_force">[('create_uid', '=', user.id )]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+        <record id="owner_chi_tiet_toa_thuoc_rule" model="ir.rule">
+            <field name="name">Owner Doctor Rule</field>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_chi_tiet_toa_thuoc"/>
+            <field name="domain_force">[('create_uid', '=', user.id )]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+        <record id="owner_chan_doan_hinh_anh_rule" model="ir.rule">
+            <field name="name">Owner Doctor Rule</field>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_chan_doan_hinh_anh"/>
+            <field name="domain_force">[('create_uid', '=', user.id )]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+        <record id="owner_vat_tu_tieu_hao_rule" model="ir.rule">
+            <field name="name">Owner Doctor Rule</field>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_vat_tu_tieu_hao"/>
+            <field name="domain_force">[('create_uid', '=', user.id )]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+
+
         <record id="all_employee_rule" model="ir.rule">
             <field name="name">All Employee Rule</field>
             <field ref="DatLichKhamBenh.model_medical_benh_nhan" name="model_id"/>
@@ -45,6 +138,7 @@
             <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_manager'))]"/>
             <!--<field name="global" eval="1"/> -->
         </record>
+        
 
     </data>
 </odoo>

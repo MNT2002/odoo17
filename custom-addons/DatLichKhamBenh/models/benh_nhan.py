@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 class BenhNhan(models.Model):
     _name = 'medical.benh_nhan'
     _description = 'Bệnh nhân'
-
+    _order = "create_date desc, id desc"
     name = fields.Char('Họ và tên', required=True)
 
     # Chạy hàm bên dưới khi tạo một bản ghi

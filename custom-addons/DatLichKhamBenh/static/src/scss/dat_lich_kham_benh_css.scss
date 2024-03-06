@@ -5,8 +5,9 @@
     --nav-color: #f3801d;
     --second-color: #f2bd8e;
     --hover-color: #f2bd8e;
+    --nd-nav-color: #017e84;
 }
-.oe_kanban_action.oe_kanban_action_a {
+ .oe_kanban_details .oe_kanban_action.oe_kanban_action_a {
     color: var(--nav-color)!important;
 }
 .list-group-item.active {
@@ -14,6 +15,12 @@
 }
 .o_list_renderer .o_list_table tbody > tr > td.o_list_button:not(.o_list_record_selector) > button {
     color: var(--nav-color)!important;
+}
+.text-action {
+    --color: RGBA(1, 126, 132, var(--text-opacity, 1)) !important;
+}
+:not(.dropstart) > .dropdown-item.active:not(.dropdown-item_active_noarrow):before, :not(.dropstart) > .dropdown-item.selected:not(.dropdown-item_active_noarrow):before {
+    color: var(--nd-nav-color) !important;
 }
 .o_main_navbar {
     background: var(--nav-color) !important;
@@ -32,11 +39,24 @@
         color: var(--NavBar-brand-color, rgba(255, 255, 255, 0.9)) !important;
     }
 }
+.bg-action, .text-bg-action {
+    --background-color: RGBA(1, 126, 132, var(--bg-opacity, 1));
+    background-color: var(--background-color) !important;
+}
+.text-primary {
+    color: var(--nav-color) !important;
+}
+.text-truncate.fw-bold {
+    color: var(--nav-color) !important;
+}
+.o_doc_link {
+    color: var(--nav-color) !important;
+}
 .dropdown-item {
     color: #495057 !important;
 }
 .o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled), .o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled) label {
-    color: var(--nav-color)!important;
+    // color: var(--nav-color)!important;
 }
 .btn-primary {
     background-color: var(--nav-color)!important;
@@ -101,4 +121,11 @@
 }
 .o_form_view .o_form_uri > span:first-child {
     color: var(--nav-color) !important;
+}
+.btn-link {
+    color: var(--nav-color) !important;
+}
+
+.o_loading_indicator.o-fade.o-fade-enter-active {
+    background-color: var(--nav-color) !important;
 }

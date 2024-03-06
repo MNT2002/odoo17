@@ -4,6 +4,7 @@ from odoo.exceptions import ValidationError
 class PhieuKhamBenh(models.Model):
     _name = 'medical.phieu_kham_benh'
     _description = 'medical.phieu_kham_benh'
+    _order = "create_date desc, id desc"
 
     name = fields.Char('Số thứ tự #', default='/', readonly=True)
 
@@ -89,6 +90,7 @@ class PhieuKhamBenh(models.Model):
 class DonThuoc(models.Model):
     _name = 'medical.don_thuoc'
     _description = 'medical.don_thuoc'
+    _order = "create_date desc, id desc"
 
     name = fields.Char('Đơn thuốc #', default='/', readonly=True)
 
@@ -143,6 +145,7 @@ class DonThuoc(models.Model):
 class ChiTietToaThuoc(models.Model):
     _name = 'medical.chi_tiet_toa_thuoc'
     _description = 'medical.chi_tiet_toa_thuoc'
+    _order = "create_date desc, id desc"
 
     name = fields.Many2one('medical.thuoc_vaccin', 'Thuốc', domain="[('loai_thuoc', '=', 'Thuoc')]", required=True, store=True)
 

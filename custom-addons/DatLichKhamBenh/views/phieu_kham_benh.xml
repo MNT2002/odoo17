@@ -82,8 +82,8 @@
             <search string="">
                 <separator />
                 <field name="name" select="1"/>
-                <field name="benh_nhan_id" string="Patient" select="1"/>
-                <field name="bac_si_id" string="Physician" select="1"/>
+                <field name="benh_nhan_id" string="Bệnh nhân" select="1"/>
+                <field name="bac_si_id" string="Bác sĩ" select="1"/>
                 <filter string="Chờ khám" name="state_cho_kham_filter" domain="[('state', '=', 'ChoKham')]"/>
                 <group expand="0" string="Nhóm theo">
                     <filter string="Bệnh nhân" name="group_by_name" context="{'group_by': 'benh_nhan_id'}" />
@@ -186,7 +186,7 @@
         <field name="res_model">medical.phieu_kham_benh</field>
         <field name="view_mode">kanban,tree,calendar,form</field>
         <field name="domain">[('bac_si_id', '=', active_id)]</field>
-        <field name="context">{'search_default_group_by_trang_thai': 1}</field>
+        <field name="context">{'search_default_group_by_trang_thai': 1, 'search_default_bac_si_id': active_id}</field>
     </record>
     <!--===== Đơn thuốc =====  -->
     <!-- Don thuoc form view-->
