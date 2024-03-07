@@ -175,6 +175,7 @@
         <!-- <field name="domain"></field> -->
     </record>
 
+    
     <!--===== Dược sĩ =====  -->
     <!-- Dược sĩ form view-->
     <record id="medical_duoc_si_view_form" model="ir.ui.view">
