@@ -48,7 +48,6 @@ access_lieu_thuoc_user,access_lieu_thuoc_user,DatLichKhamBenh.model_medical_lieu
 access_lieu_thuoc_doctor,access_lieu_thuoc_doctor,DatLichKhamBenh.model_medical_lieu_thuoc,DatLichKhamBenh.group_employee_doctor,1,0,0,0
 access_lieu_thuoc_manager,access_lieu_thuoc_manager,DatLichKhamBenh.model_medical_lieu_thuoc,DatLichKhamBenh.group_employee_manager,1,1,1,1
 
-<<<<<<< HEAD
 access_loai_xet_nghiem_user,access_loai_xet_nghiem_user,DatLichKhamBenh.model_medical_loai_xet_nghiem,DatLichKhamBenh.group_employee_user,1,0,0,0
 access_loai_xet_nghiem_doctor,access_loai_xet_nghiem_doctor,DatLichKhamBenh.model_medical_loai_xet_nghiem,DatLichKhamBenh.group_employee_doctor,1,0,0,0
 access_loai_xet_nghiem_manager,access_loai_xet_nghiem_manager,DatLichKhamBenh.model_medical_loai_xet_nghiem,DatLichKhamBenh.group_employee_manager,1,1,1,1
@@ -73,8 +72,6 @@ access_vat_tu_tieu_hao_user,access_vat_tu_tieu_hao_user,DatLichKhamBenh.model_me
 access_vat_tu_tieu_hao_doctor,access_vat_tu_tieu_hao_doctor,DatLichKhamBenh.model_medical_vat_tu_tieu_hao,DatLichKhamBenh.group_employee_doctor,1,1,1,1
 access_vat_tu_tieu_hao_manager,access_vat_tu_tieu_hao_manager,DatLichKhamBenh.model_medical_vat_tu_tieu_hao,DatLichKhamBenh.group_employee_manager,1,1,1,1
 
-=======
->>>>>>> parent of c9a86181 (xay dung model Chan doan hinh anh va cac model lien quan)
 access_bac_si_user,access_bac_si_user,DatLichKhamBenh.model_medical_bac_si,DatLichKhamBenh.group_employee_user,1,0,0,0
 access_bac_si_doctor,access_bac_si_doctor,DatLichKhamBenh.model_medical_bac_si,DatLichKhamBenh.group_employee_doctor,1,1,0,0
 access_bac_si_manager,access_bac_si_manager,DatLichKhamBenh.model_medical_bac_si,DatLichKhamBenh.group_employee_manager,1,1,1,1

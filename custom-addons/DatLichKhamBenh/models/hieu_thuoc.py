@@ -15,7 +15,7 @@ class DonThuocDuocDat(models.Model):
         record =  super(DonThuocDuocDat, self).create(vals)
         return record
     
-    state = fields.Selection([('DuThao', 'Dự thảo'), ('XacNhan', 'Xác nhận'), ('ChoThanhToan', 'Chờ thanh toán'), ('XuatHoaDon', 'Xuất hoá đơn')], string='Trạng thái', default='DuThao')
+    state = fields.Selection([('DuThao', 'Dự thảo'), ('XacNhan', 'Xác nhận'), ('ChoThanhToan', 'Chờ thanh toán'), ('DaXuatHoaDon', 'Đã xuất hoá đơn')], string='Trạng thái', default='DuThao')
 
     benh_nhan_id = fields.Many2one('medical.benh_nhan', 'Bệnh nhân', store=True, required=True, readonly=True)
 
@@ -30,14 +30,13 @@ class DonThuocDuocDat(models.Model):
 
     nha_thuoc_id = fields.Many2one('medical.hieu_thuoc', 'Nhà thuốc', domain="[('trung_tam_suc_khoe_id', '=', trung_tam_y_te_id)]", store=True, required=True)
 
-    duoc_si_id = fields.Many2one('medical.duoc_si', 'Dược sĩ', store=True)
+    duoc_si_id = fields.Many2one('medical.duoc_si', 'Dược sĩ', store=True, required='id = True')
 
     don_thuoc_id = fields.Many2one('medical.don_thuoc', 'Đơn thuốc #', store=True, readonly=True)
 
-    # chi_tiet_toa_thuoc_ids = fields.One2many(comodel_name='medical.chi_tiet_toa_thuoc', inverse_name='don_thuoc_id')
+    chi_tiet_toa_thuoc_ids = fields.One2many(comodel_name='medical.chi_tiet_toa_thuoc', inverse_name='don_thuoc_id', related='don_thuoc_id.chi_tiet_toa_thuoc_ids')
 
-    # @api.depends('don_thuoc_id')
-    # def _compute_chi_tiet_toa_thuoc_ids_field(self):
-    #     ### get recordset of related object, for example with search (or whatever you like):
-    #     related_recordset = self.env["medical.don_thuoc"].search(["id", "=", self.don_thuoc_id])
-    #     self.chi_tiet_toa_thuoc_ids = related_recordset.chi_tiet_toa_thuoc_ids
+    def btn_xac_nhan(self):
+        self.state = 'XacNhan'
+    def btn_xuat_hoa_don(self):
+        self.state = 'DaXuatHoaDon'

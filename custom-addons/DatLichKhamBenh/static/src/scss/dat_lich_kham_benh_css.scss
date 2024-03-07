@@ -2,146 +2,189 @@
     // --nav-color: #1daaf3;
     // --second-color: #b5e0f5;
     // --hover-color: #8ed1f2
-    --nav-color: #f3801d;
+    --nav-color   : #f3801d;
     --second-color: #f2bd8e;
-    --hover-color: #f2bd8e;
+    --hover-color : #f2bd8e;
     --nd-nav-color: #017e84;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
- .oe_kanban_details .oe_kanban_action.oe_kanban_action_a {
-    color: var(--nav-color)!important;
+
+.oe_kanban_details .oe_kanban_action.oe_kanban_action_a {
+    color: var(--nav-color) !important;
 }
+
 .list-group-item.active {
-    background: var(--second-color)!important;
+    background: var(--second-color) !important;
 }
-.o_list_renderer .o_list_table tbody > tr > td.o_list_button:not(.o_list_record_selector) > button {
-    color: var(--nav-color)!important;
+
+.o_list_renderer .o_list_table tbody>tr>td.o_list_button:not(.o_list_record_selector)>button {
+    color: var(--nav-color) !important;
 }
+
 .text-action {
     --color: RGBA(1, 126, 132, var(--text-opacity, 1)) !important;
 }
-:not(.dropstart) > .dropdown-item.active:not(.dropdown-item_active_noarrow):before, :not(.dropstart) > .dropdown-item.selected:not(.dropdown-item_active_noarrow):before {
+
+:not(.dropstart)>.dropdown-item.active:not(.dropdown-item_active_noarrow):before,
+:not(.dropstart)>.dropdown-item.selected:not(.dropdown-item_active_noarrow):before {
     color: var(--nd-nav-color) !important;
 }
-=======
+
 a {
-    color: var(--nav-color)!important;
+    color: var(--nav-color) !important;
 }
 
->>>>>>> parent of c9a86181 (xay dung model Chan doan hinh anh va cac model lien quan)
-=======
 a {
-    color: var(--nav-color)!important;
+    color: var(--nav-color) !important;
 }
 
->>>>>>> parent of c9a86181 (xay dung model Chan doan hinh anh va cac model lien quan)
+
 .o_main_navbar {
-    background: var(--nav-color) !important;
-    border-bottom: 1px solid var(--nav-color) !important;
+    background       : var(--nav-color) !important;
+    border-bottom    : 1px solid var(--nav-color) !important;
     // padding-top: 10px;
     // padding-bottom: 10px;
 
     .o_menu_sections .dropdown-toggle {
-        background: var(--nav-color)!important;
+        background: var(--nav-color) !important;
 
         &:hover {
             background: var(--NavBar-entry-backgroundColor--hover, rgba(0, 0, 0, 0.08)) !important;
         }
     }
+
     .o_menu_brand {
         color: var(--NavBar-brand-color, rgba(255, 255, 255, 0.9)) !important;
     }
 }
-.bg-action, .text-bg-action {
+
+.bg-action,
+.text-bg-action {
     --background-color: RGBA(1, 126, 132, var(--bg-opacity, 1));
-    background-color: var(--background-color) !important;
+    background-color  : var(--background-color) !important;
 }
+
 .text-primary {
     color: var(--nav-color) !important;
 }
+
 .text-truncate.fw-bold {
     color: var(--nav-color) !important;
 }
+
 .o_doc_link {
     color: var(--nav-color) !important;
 }
+
 .dropdown-item {
     color: #495057 !important;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-.o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled), .o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled) label {
+
+.o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled),
+.o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled) label {
     // color: var(--nav-color)!important;
 }
-=======
->>>>>>> parent of c9a86181 (xay dung model Chan doan hinh anh va cac model lien quan)
-=======
->>>>>>> parent of c9a86181 (xay dung model Chan doan hinh anh va cac model lien quan)
+
+.o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled),
+.o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled) label {
+    // color: var(--nav-color)!important;
+}
+
 .btn-primary {
-    background-color: var(--nav-color)!important;
-    border-color: var(--nav-color)!important;
+    background-color: var(--nav-color) !important;
+    border-color    : var(--nav-color) !important;
+
     &:hover {
         background-color: var(--hover-color) !important;
     }
 }
+
 .btn-outline-primary {
-    color: var(--nav-color)!important;;
-    border-color: var(--nav-color)!important;;
+    color: var(--nav-color) !important;
+    ;
+    border-color: var(--nav-color) !important;
+    ;
+
     &:hover {
         background-color: var(--hover-color) !important;
-        color: var(--NavBar-brand-color, rgba(255, 255, 255, 0.9)) !important;
+        color           : var(--NavBar-brand-color, rgba(255, 255, 255, 0.9)) !important;
     }
 }
-.btn-check:checked + .btn-secondary, .btn-check:active + .btn-secondary, .btn-secondary:active, .btn-secondary.active, .show > .btn-secondary.dropdown-toggle {
-    border-color: var(--nav-color) !important;
+
+.btn-check:checked+.btn-secondary,
+.btn-check:active+.btn-secondary,
+.btn-secondary:active,
+.btn-secondary.active,
+.show>.btn-secondary.dropdown-toggle {
+    border-color    : var(--nav-color) !important;
     background-color: var(--second-color) !important;
 }
-.o_field_statusbar > .o_statusbar_status > .o_arrow_button.o_arrow_button_current:not(.d-none):disabled, .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):active:not(.o_first) {
-    border-color: var(--nav-color) !important;
+
+.o_field_statusbar>.o_statusbar_status>.o_arrow_button.o_arrow_button_current:not(.d-none):disabled,
+.o_field_statusbar>.o_statusbar_status>.o_arrow_button:not(.d-none):active:not(.o_first) {
+    border-color    : var(--nav-color) !important;
     background-color: var(--second-color) !important;
 }
-.o_field_statusbar > .o_statusbar_status > .o_arrow_button.o_arrow_button_current:not(.d-none):disabled, .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):active:not(.o_first) {
-    border-color: var(--nav-color) !important;
+
+.o_field_statusbar>.o_statusbar_status>.o_arrow_button.o_arrow_button_current:not(.d-none):disabled,
+.o_field_statusbar>.o_statusbar_status>.o_arrow_button:not(.d-none):active:not(.o_first) {
+    border-color    : var(--nav-color) !important;
     background-color: var(--second-color) !important;
 }
-.o_field_statusbar > .o_statusbar_status > .o_arrow_button.o_arrow_button_current:not(.d-none):disabled:before, .o_field_statusbar > .o_statusbar_status > .o_arrow_button.o_arrow_button_current:not(.d-none):disabled + .btn:before, .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):active:not(.o_first):before, .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):active:not(.o_first) + .btn:before {
+
+.o_field_statusbar>.o_statusbar_status>.o_arrow_button.o_arrow_button_current:not(.d-none):disabled:before,
+.o_field_statusbar>.o_statusbar_status>.o_arrow_button.o_arrow_button_current:not(.d-none):disabled+.btn:before,
+.o_field_statusbar>.o_statusbar_status>.o_arrow_button:not(.d-none):active:not(.o_first):before,
+.o_field_statusbar>.o_statusbar_status>.o_arrow_button:not(.d-none):active:not(.o_first)+.btn:before {
     border-left-color: var(--nav-color) !important;
 }
-.o_field_statusbar > .o_statusbar_status > .o_arrow_button.o_arrow_button_current:not(.d-none):disabled:after, .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):active:not(.o_first):after {
+
+.o_field_statusbar>.o_statusbar_status>.o_arrow_button.o_arrow_button_current:not(.d-none):disabled:after,
+.o_field_statusbar>.o_statusbar_status>.o_arrow_button:not(.d-none):active:not(.o_first):after {
     border-left-color: var(--second-color) !important;
 }
 
-.o_main_navbar .o_menu_sections .o_nav_entry, .o_main_navbar .o_menu_sections .dropdown-toggle {
-    background-color: var(--nav-color)!important;
-    color: var(--NavBar-brand-color, rgba(255, 255, 255, 0.9)) !important;
-    
+.o_main_navbar .o_menu_sections .o_nav_entry,
+.o_main_navbar .o_menu_sections .dropdown-toggle {
+    background-color: var(--nav-color) !important;
+    color           : var(--NavBar-brand-color, rgba(255, 255, 255, 0.9)) !important;
+
     &:hover {
         background: var(--NavBar-entry-backgroundColor--hover, rgba(0, 0, 0, 0.08)) !important;
     }
 }
-.o-form-buttonbox .o_pie_value, .o-form-buttonbox .oe_stat_button .o_stat_info .o_stat_value, .o-form-buttonbox .oe_stat_button > span .o_stat_value, .o-form-buttonbox .oe_stat_button .o_field_statinfo .o_stat_value {
+
+.o-form-buttonbox .o_pie_value,
+.o-form-buttonbox .oe_stat_button .o_stat_info .o_stat_value,
+.o-form-buttonbox .oe_stat_button>span .o_stat_value,
+.o-form-buttonbox .oe_stat_button .o_field_statinfo .o_stat_value {
     color: var(--nav-color) !important;
 }
+
 .o-form-buttonbox .oe_stat_button .o_button_icon {
     color: var(--nav-color) !important;
 }
+
 .form-check-input:checked {
-    background-color:  var(--nav-color) !important;
-    border-color:  var(--nav-color) !important;
+    background-color: var(--nav-color) !important;
+    border-color    : var(--nav-color) !important;
 }
+
 // .o_tag.o_tag_color_0, .o_tag.o_tag_color_0::after {
 //     background-color:  var(--second-color) !important;
 // }
-.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color:  var(--nav-color) !important;
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+    color: var(--nav-color) !important;
 }
+
 .nav-link {
     color: #495057 !important;
 }
-.o_form_view .o_form_uri > span:first-child {
+
+.o_form_view .o_form_uri>span:first-child {
     color: var(--nav-color) !important;
 }
+
 .btn-link {
     color: var(--nav-color) !important;
 }
