@@ -4,18 +4,45 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 
+class BacSiResUser(models.Model):
+    _inherit = 'res.users'
+
+    @api.onchange('groups_id')
+    def _get_res_user_field(self):
+        users_search = self.env['res.users'].search([])
+        users = []
+        for user in users_search:
+            if user.has_group('DatLichKhamBenh.group_employee_doctor'):
+                users.append(user.id)
+        if self.id in users:
+            self._is_invisible = False
+        else: 
+            self._is_invisible = True
+            
+    _is_invisible = fields.Boolean(compute="_get_res_user_field")
+    bac_si_ids = fields.One2many('medical.bac_si', 'res_users_id', 'Bác sĩ liên kết', domain="[('res_users_id', '=', None)]")
+
 class BacSi(models.Model):
     _name = 'medical.bac_si'
     _description = 'medical.bac_si'
 
     name = fields.Char('Tên bác sĩ', required=True)
 
+    def _get_res_user_field(self):
+        users_search = self.env['res.users'].search([])
+        users = []
+        for user in users_search:
+            if user.has_group('DatLichKhamBenh.group_employee_doctor'):
+                users.append(user.id)
+        return [('id', 'in', users)]
+    res_users_id = fields.Many2one('res.users', 'Tài khoản bác sĩ', store=True, domain=_get_res_user_field)
+
     anh_dai_dien = fields.Binary("Ảnh đại diện")
 
     chuyen_mon = fields.Many2one('medical.chuyen_mon', 'Chuyên môn', store=True)
 
     trinhdo_bangcap = fields.Many2many(comodel_name='medical.trinhdo_bangcap', relation='medical_bac_si_tt_bc_rel', column1='bac_si_id', column2='trinhdo_bangcap_id', string='Trình độ/Bằng cấp')
-
+    
     phi_kham_benh = fields.Integer('Phí khám bệnh',default=0)
 
     id_giay_phep = fields.Char('ID giấy phép')
@@ -119,5 +146,3 @@ class DuocSi(models.Model):
     # def get_count_don_thuoc_duoc_dat(self):
     #     for rec in self:
     #         rec.don_thuoc_duoc_dat_count =  len(rec.don_thuoc_duoc_dat_ids)
-
-    

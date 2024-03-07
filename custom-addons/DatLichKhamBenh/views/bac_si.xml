@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="view_res_users_inherit" model="ir.ui.view">
+        <field name="name">Res Users Inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="// field[@name='action_id']" position="after">
+                <field name="_is_invisible" invisible="True"/>
+                <field name="bac_si_ids" widget="many2many_tags" invisible="_is_invisible == True"/>
+            </xpath>
+        </field>
+    </record>
+
     <!--===== Bác sĩ =====  -->
     <!-- Bac si form view-->
     <record id="medical_bac_si_view_form" model="ir.ui.view">
@@ -9,10 +21,10 @@
             <form string="Bác sĩ">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action" class="oe_stat_button" name="DatLichKhamBenh.morden_action_medical_phieu_kham_benh" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
+                        <button type="action" class="oe_stat_button" name="DatLichKhamBenh.morden_action_medical_phieu_kham_benh" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
                             <field string="Phiếu khám bệnh" name="phieu_kham_benh_count" widget="statinfo"/>
                         </button>
-                        <button type="action" class="oe_stat_button" name="DatLichKhamBenh.medical_don_thuoc_action" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
+                        <button type="action" class="oe_stat_button" name="DatLichKhamBenh.medical_don_thuoc_action" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
                             <field string="Đơn thuốc" name="don_thuoc_count" widget="statinfo"/>
                         </button>
                     </div>
@@ -45,20 +57,20 @@
                             <group string="Thông tin liên lạc">
                                 <group>
                                     <label for="dia_chi" string="Địa chỉ"/>
-									<div>
-										<field name="dia_chi" placeholder="Street..." on_change="1" field_id="street_0"/>
-										<field name="dia_chi_2" on_change="1" field_id="street2_0"/>
-										<field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
-										<div class="address_format">
-											<field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
-											<field name="thanh_pho" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
-											<field name="zip" placeholder="Mã bưu điện" style="width: 20%" on_change="1" field_id="zip_0"/>
-										</div>
-										<div class="address_format">
-											<field name="phuong_xa" placeholder="Phường/Xã" style="width: 49%" can_create="True" can_write="True" field_id="wards_id_0"/>
-											<field name="quan_huyen" class="oe_no_button" placeholder="Quận/Huyện" style="width: 49%" field_id="district_id_0"/>
-										</div>
-									</div>
+                                    <div>
+                                        <field name="dia_chi" placeholder="Street..." on_change="1" field_id="street_0"/>
+                                        <field name="dia_chi_2" on_change="1" field_id="street2_0"/>
+                                        <field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
+                                        <div class="address_format">
+                                            <field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
+                                            <field name="thanh_pho" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
+                                            <field name="zip" placeholder="Mã bưu điện" style="width: 20%" on_change="1" field_id="zip_0"/>
+                                        </div>
+                                        <div class="address_format">
+                                            <field name="phuong_xa" placeholder="Phường/Xã" style="width: 49%" can_create="True" can_write="True" field_id="wards_id_0"/>
+                                            <field name="quan_huyen" class="oe_no_button" placeholder="Quận/Huyện" style="width: 49%" field_id="district_id_0"/>
+                                        </div>
+                                    </div>
                                 </group>
                                 <group>
                                     <field name="so_dien_thoai" />
@@ -159,6 +171,8 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.bac_si</field>
         <field name="view_mode">kanban,tree,form</field>
+        <!-- <field name="domain">[('res_users_id', '!=', None)]</field> -->
+        <!-- <field name="domain"></field> -->
     </record>
 
     <!--===== Dược sĩ =====  -->
@@ -199,20 +213,20 @@
                             <group string="Thông tin liên lạc">
                                 <group>
                                     <label for="dia_chi" string="Địa chỉ"/>
-									<div>
-										<field name="dia_chi" placeholder="Street..." on_change="1" field_id="street_0"/>
-										<field name="dia_chi_2" on_change="1" field_id="street2_0"/>
-										<field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
-										<div class="address_format">
-											<field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
-											<field name="thanh_pho" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
-											<field name="zip" placeholder="Mã bưu điện" style="width: 20%" on_change="1" field_id="zip_0"/>
-										</div>
-										<div class="address_format">
-											<field name="phuong_xa" placeholder="Phường/Xã" style="width: 49%" can_create="True" can_write="True" field_id="wards_id_0"/>
-											<field name="quan_huyen" class="oe_no_button" placeholder="Quận/Huyện" style="width: 49%" field_id="district_id_0"/>
-										</div>
-									</div>
+                                    <div>
+                                        <field name="dia_chi" placeholder="Street..." on_change="1" field_id="street_0"/>
+                                        <field name="dia_chi_2" on_change="1" field_id="street2_0"/>
+                                        <field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
+                                        <div class="address_format">
+                                            <field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
+                                            <field name="thanh_pho" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
+                                            <field name="zip" placeholder="Mã bưu điện" style="width: 20%" on_change="1" field_id="zip_0"/>
+                                        </div>
+                                        <div class="address_format">
+                                            <field name="phuong_xa" placeholder="Phường/Xã" style="width: 49%" can_create="True" can_write="True" field_id="wards_id_0"/>
+                                            <field name="quan_huyen" class="oe_no_button" placeholder="Quận/Huyện" style="width: 49%" field_id="district_id_0"/>
+                                        </div>
+                                    </div>
                                 </group>
                                 <group>
                                     <field name="so_dien_thoai" />
