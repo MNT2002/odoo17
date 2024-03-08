@@ -27,7 +27,7 @@
                             <field name="ngay" />
                         </group>
                         <group>
-                            <field name="bac_si_id" options="{'no_create': True}"/>
+                            <field name="bac_si_id" options="{'no_create': True}" required="[('khoa_id','!=',False), ('trung_tam_y_te_id', '!=', False)]" help="Vui lòng chọn Trung tâm ý tế và khoa trước khi chọn bác sĩ"/>
                         </group>
                     </group>
                     <group>
@@ -37,13 +37,13 @@
                             <field name="rh" />
                             <field name="ly_do_kiem_tra" />
                             <field name="trieu_chung" />
-                            <field name="phong_id" />
                         </group>
                         <group>
                             <field name="gioi_tinh" />
                             <field name="nhom_mau" />
-                            <field name="trung_tam_y_te_id" />
-                            <field name="khoa_id" />
+                            <field name="trung_tam_y_te_id"  options="{'no_create': True}"/>
+                            <field name="khoa_id" required="[('trung_tam_y_te_id', '!=', False)]" options="{'no_create': True}"/>
+                            <field name="phong_id" />
                         </group>
                     </group>
                     <notebook>
@@ -86,6 +86,7 @@
                 <field name="bac_si_id" string="Bác sĩ" select="1"/>
                 <filter string="Chờ khám" name="state_cho_kham_filter" domain="[('state', '=', 'ChoKham')]"/>
                 <group expand="0" string="Nhóm theo">
+                    <filter string="Khoa" name="group_by_khoa" context="{'group_by':'khoa_id'}" />
                     <filter string="Bệnh nhân" name="group_by_name" context="{'group_by': 'benh_nhan_id'}" />
                     <filter string="Bác sĩ" name="group_by_bac_si" context="{'group_by': 'bac_si_id'}"/>
                     <filter string="Giới tính" name="group_by_gioi_tinh" context="{'group_by': 'gioi_tinh'}"/>

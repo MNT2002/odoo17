@@ -37,7 +37,7 @@ class PhieuKhamBenh(models.Model):
 
     benh_nhan_id = fields.Many2one('medical.benh_nhan', 'Bệnh nhân', store=True, required=True)
 
-    bac_si_id = fields.Many2one('medical.bac_si', 'Bác sĩ phụ trách', store=True, required=True, readonly=True)
+    bac_si_id = fields.Many2one('medical.bac_si', 'Bác sĩ phụ trách', store=True, required=True, domain="[('khoa_id', '=', khoa_id)]")
     
     ngay = fields.Datetime('Ngày', readonly=False, select=True
                                 , default=lambda self: fields.datetime.now())
@@ -60,9 +60,9 @@ class PhieuKhamBenh(models.Model):
 
     trieu_chung = fields.Char('Triệu chứng')
 
-    trung_tam_y_te_id = fields.Many2one('medical.trung_tam_y_te', 'Trung tâm y tế', store=True, required=True, readonly=True)
+    trung_tam_y_te_id = fields.Many2one('medical.trung_tam_y_te', 'Trung tâm y tế', store=True)
 
-    khoa_id = fields.Many2one('medical.khoa', 'Khoa', domain="[('trung_tam_suc_khoe_id', '=', trung_tam_y_te_id)]", store=True, required=True, readonly=True)
+    khoa_id = fields.Many2one('medical.khoa', 'Khoa', domain="[('trung_tam_suc_khoe_id', '=', trung_tam_y_te_id)]", store=True)
 
     phong_id = fields.Many2one('medical.phong', 'Phòng', domain="[('khoa_id', '=', khoa_id), ('trung_tam_suc_khoe_id', '=', trung_tam_y_te_id)]", store=True)
 

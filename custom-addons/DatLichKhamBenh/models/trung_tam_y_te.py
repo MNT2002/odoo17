@@ -93,6 +93,32 @@ class Khoa(models.Model):
 
     phong_ids = fields.One2many(comodel_name='medical.phong', inverse_name='khoa_id')
     phong_count = fields.Integer('Phòng', compute="get_count_phong", store=True)
+
+    bac_si_ids = fields.One2many('medical.bac_si', 'khoa_id')
+
+    don_thuoc_ids = fields.One2many('medical.don_thuoc', 'khoa_id')
+    don_thuoc_count = fields.Integer('Đơn thuốc', compute="get_count_don_thuoc")
+
+    @api.depends('don_thuoc_ids')
+    def get_count_don_thuoc(self):
+        for rec in self:
+            rec.don_thuoc_count =  len(rec.don_thuoc_ids)
+
+    phieu_kham_benh_ids = fields.One2many('medical.phieu_kham_benh', 'khoa_id')
+    phieu_kham_benh_count = fields.Integer('Phiếu khám bệnh', compute="get_count_phieu_kham_benh")
+
+    @api.depends('phieu_kham_benh_ids')
+    def get_count_phieu_kham_benh(self):
+        for rec in self:
+            rec.phieu_kham_benh_count =  len(rec.phieu_kham_benh_ids)
+
+    chan_doan_hinh_anh_ids = fields.One2many('medical.chan_doan_hinh_anh', 'khoa_id')
+    chan_doan_hinh_anh_count = fields.Integer('Chẩn đoán hình ảnh', compute="get_count_chan_doan_hinh_anh")
+
+    @api.depends('chan_doan_hinh_anh_ids')
+    def get_count_chan_doan_hinh_anh(self):
+        for rec in self:
+            rec.chan_doan_hinh_anh_count =  len(rec.chan_doan_hinh_anh_ids)
     
     def btn_trong(self):
         self.state = "CoPhong"
@@ -112,6 +138,76 @@ class Khoa(models.Model):
             else:
                 rec.state = "KhongCoSan"
 
+    def action_tao_phieu_kham_benh_moi(self):
+        # action['domain'] = {'bac_si_id': [('id', 'in', self.bac_si_ids)]}
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Phiếu khám bệnh',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'medical.phieu_kham_benh',
+            'target': 'current',
+            'context': {
+                'default_trung_tam_y_te_id': self.trung_tam_suc_khoe_id.id,
+                'default_khoa_id': self.id
+            }
+        }
+    def action_tao_chan_doan_hinh_anh_moi(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Chẩn đoán hình ảnh',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'medical.chan_doan_hinh_anh',
+            'target': 'current',
+            'context': {
+                'default_khoa_id': self.id
+            }
+        }
+    def btn_so_luong_phieu_kham_benh(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Phiếu khám bệnh',
+            'view_type': 'form,kanban,tree,calendar',    
+            'view_mode': 'kanban,tree,calendar,form',
+            'res_model': 'medical.phieu_kham_benh',
+            'context': {
+                'default_trung_tam_y_te_id': self.trung_tam_suc_khoe_id.id,
+                'default_khoa_id': self.id
+            },
+            'domain': [('khoa_id', '=', self.id)]
+        }
+    def btn_so_luong_chan_doan_hinh_anh(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Chẩn đoán hình ảnh',
+            'view_type': 'form,tree',
+            'view_mode': 'tree,form',
+            'res_model': 'medical.chan_doan_hinh_anh',
+            'context': {
+                'default_trung_tam_y_te_id': self.trung_tam_suc_khoe_id.id,
+                'default_khoa_id': self.id
+            },
+            'domain': [('khoa_id', '=', self.id)]
+        }
+    def btn_so_luong_don_thuoc(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Đơn thuốc',
+            'view_type': 'form,tree',
+            'view_mode': 'tree,form',
+            'res_model': 'medical.don_thuoc',
+            'context': {
+                'default_trung_tam_y_te_id': self.trung_tam_suc_khoe_id.id,
+                'default_khoa_id': self.id
+            },
+            'domain': [('khoa_id', '=', self.id)]
+        }
 
 class Phong(models.Model):
     _name = 'medical.phong'
@@ -310,7 +406,7 @@ class ChanDoanHinhAnh(models.Model):
 
     state = fields.Selection([('DuThao', 'Dự thảo'),('DaXuatHoaDon', 'Đã xuất hoá đơn'), ('DangThucHien', 'Đang thực hiện'), ('HoanThanh', 'Hoàn thành')], 'Trạng thái', default='DuThao')
 
-    loai_chan_doan = fields.Many2one('medical.loai_chan_doan_hinh_anh', 'Loại chẩn đoán', store=True)
+    loai_chan_doan = fields.Many2one('medical.loai_chan_doan_hinh_anh', 'Loại chẩn đoán', store=True, required=True)
 
     identification_code = fields.Char('Mã bệnh nhân',related='benh_nhan_id.identification_code', readonly=True)
 
@@ -325,7 +421,7 @@ class ChanDoanHinhAnh(models.Model):
 
     bac_si_id = fields.Many2one('medical.bac_si','Bác sĩ', store=True, related='phieu_kham_benh_id.bac_si_id')
 
-    phieu_kham_benh_id = fields.Many2one('medical.phieu_kham_benh', 'Phiếu khám bệnh', required=True, readonly=True)
+    phieu_kham_benh_id = fields.Many2one('medical.phieu_kham_benh', 'Phiếu khám bệnh', required=True, domain="[('khoa_id', '=', khoa_id)]")
 
     khoa_id = fields.Many2one('medical.khoa' , 'Khoa',store=True, related='phieu_kham_benh_id.khoa_id')
 

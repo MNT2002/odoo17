@@ -5,7 +5,7 @@
     <menuitem id="menu_hieu_thuoc" name="Hiệu thuốc" sequence="3"/>
     <menuitem id="menu_chan_doan_hinh_anh" name="Chẩn đoán hình ảnh" sequence="4"/>
 
-    <menuitem id="menu_bang_thong_tin" name="Bảng thông tin" parent="menu_QLDLKB" sequence="1" />
+    <menuitem id="menu_bang_thong_tin" name="Bảng thông tin" parent="menu_QLDLKB" sequence="1" action="medical_bang_thong_tin_khoa_action"/>
     <menuitem id="menu_bao_cao" name="Báo cáo" parent="menu_QLDLKB" sequence="2" />
     <menuitem id="menu_benh_nhan" name="Quản lý bệnh nhân" parent="menu_QLDLKB" sequence="3" action="medical_benh_nhan_action" />
     <menuitem id="menu_duoc_si" name="Dược sĩ" parent="menu_QLDLKB" sequence="4" action="medical_duoc_si_action"/>

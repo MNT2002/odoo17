@@ -1,7 +1,4 @@
 :root {
-    // --nav-color: #1daaf3;
-    // --second-color: #b5e0f5;
-    // --hover-color: #8ed1f2
     --nav-color   : #f3801d;
     --second-color: #f2bd8e;
     --hover-color : #f2bd8e;
@@ -59,8 +56,7 @@ a {
 
 .bg-action,
 .text-bg-action {
-    --background-color: RGBA(1, 126, 132, var(--bg-opacity, 1));
-    background-color  : var(--background-color) !important;
+    background-color: var(--nav-color) !important;
 }
 
 .text-primary {
@@ -191,4 +187,40 @@ a {
 
 .o_loading_indicator.o-fade.o-fade-enter-active {
     background-color: var(--nav-color) !important;
+}
+
+.btn-new-action {
+    padding: 8px !important;
+    margin: 0 6px !important;
+
+    &:nth-child(1) {
+        margin-left: 0 !important;
+    }
+    &:nth-child(2) {
+        margin-right: 0 !important;
+    }
+}
+.so_luong_text_wrap {
+    margin-top: 18px !important;
+
+    .so_luong_text {
+        display    : flex !important;
+        align-items: center !important;
+        justify-content: space-between;
+    }
+    .so_luong_icon {
+        margin-left: 4px;
+        border-radius   : 50%;
+        background-color: var(--nav-color) !important;
+        color           : #fff;
+        width           : 30px;
+        height          : 30px;
+        display         : inline-flex;
+        justify-content : center;
+        align-items: center;
+
+        span {
+            font-size: 18px;
+        }
+    }
 }

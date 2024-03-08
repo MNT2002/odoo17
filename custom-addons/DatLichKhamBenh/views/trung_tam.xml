@@ -109,7 +109,7 @@
                                         <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.trung_tam_y_te', 'anh_dai_dien', record.id.raw_value)" />
                                     </a>
                                 </div>
-                                <div class="oe_kanban_details" >
+                                <div class="oe_kanban_details">
                                     <h4>
                                         <a type="open">
                                             <field name="name" />
@@ -695,7 +695,9 @@
                     <div class="oe_left" style="width: 500px;">
                         <div class="oe_title" style="width: 390px;">
                             <label class="oe_edit_only" for="name"/>
-                            <h1><field name="name" class="oe_inline"/></h1>
+                            <h1>
+                                <field name="name" class="oe_inline"/>
+                            </h1>
                         </div>
                     </div>
                     <group>
@@ -747,7 +749,7 @@
         <field name="res_model">medical.loai_xet_nghiem</field>
         <field name="view_mode">tree,form</field>
     </record>
-    
+
     <!-- medical.loai_chan_doan_hinh_anh tree view -->
     <record id="medical_loai_chan_doan_hinh_anh_view_tree" model="ir.ui.view">
         <field name="name">medical.loai_chan_doan_hinh_anh.view.tree</field>
@@ -767,7 +769,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    
+
     <!-- medical.chan_doan_hinh_anh form view -->
     <record id="medical_chan_doan_hinh_anh_view_form" model="ir.ui.view">
         <field name="name">medical.chan_doan_hinh_anh.form</field>
@@ -785,7 +787,9 @@
                     <div class="oe_left" style="width: 500px;">
                         <div class="oe_title" style="width: 390px;">
                             <label class="oe_edit_only" for="name"/>
-                            <h1><field name="name" class="oe_inline"/></h1>
+                            <h1>
+                                <field name="name" class="oe_inline"/>
+                            </h1>
                         </div>
                         <div class="oe_left" style="width: 500px;">
                             <label for="loai_chan_doan"/>
@@ -845,8 +849,8 @@
             </form>
         </field>
     </record>
-     <!-- Search chan doan hinh anh -->
-     <record id="chan_doan_hinh_anh_search_view" model="ir.ui.view">
+    <!-- Search chan doan hinh anh -->
+    <record id="chan_doan_hinh_anh_search_view" model="ir.ui.view">
         <field name="name">Tìm kiếm chẩn đoán hình ảnh</field>
         <field name="model">medical.chan_doan_hinh_anh</field>
         <field name="arch" type="xml">
@@ -886,7 +890,7 @@
         <field name="view_mode">tree,form</field>
         <field name="context">{'search_default_trang_thai_filter': 1}</field>
     </record>
-    
+
     <!-- medical.vat_tu_tieu_hao tree view -->
     <record id="medical_vat_tu_tieu_hao_view_tree" model="ir.ui.view">
         <field name="name">medical.vat_tu_tieu_hao.view.tree</field>
@@ -905,6 +909,95 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.vat_tu_tieu_hao</field>
         <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Bang thong tin kanban view -->
+    <record id="medical_bang_thong_tin_khoa_kanban_view" model="ir.ui.view">
+        <field name="name">medical.khoa.kanban</field>
+        <field name="model">medical.khoa</field>
+        <field name="arch" type="xml">
+            <kanban create="false" class="oe_background_grey o_kanban_dashboard o_account_kanban">
+                <field name="id" invisible="True"/>
+                <field name="name"/>
+                <field name="trung_tam_suc_khoe_id"/>
+                <!-- <field name="type"/>
+                <field name="show_on_dashboard"/>
+                <field name="kanban_dashboard"/> -->
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="#{kanban_color(0)}">
+                            <!-- <t t-value="JSON.parse(record.kanban_dashboard.raw_value)" t-set="dashboard"/> -->
+                            <t t-call="OehTop"/>
+                            <div class="o_kanban_card_content o_invisible" style="width:100%">
+                                <div class="row">
+                                    <t t-call="OehBodyDepartment"/>
+                                </div>
+                            </div>
+                            <!-- <div class="o_kanban_card_manage_pane o_invisible" style="width:70%">
+                                <t t-call="OehManage"/>
+                            </div> -->
+                            <!-- <t t-call="OehBodyGraph"/> -->
+                        </div>
+                    </t>
+                    <t t-name="OehTop">
+                        <div class="o_kanban_card_header">
+                            <div class="o_kanban_card_header_title">
+                                <div class="o_primary">
+                                    <a >
+                                        <field name="name"/>
+                                    </a>
+                                </div>
+                                <div class="o_secondary">
+                                    <field name="trung_tam_suc_khoe_id"/>
+                                </div>
+                            </div>
+                            <!-- <div class="o_kanban_manage_button_section">
+                                <a class="o_kanban_manage_toggle_button" href="#">More <i class="fa fa-caret-down"/></a>
+                            </div> -->
+                        </div>
+                    </t>
+                    <t t-name="OehBodyDepartment">
+                        <div class="o_kanban_primary_left" style="display: flex; justify-content: space-between; margin-top: 12px">
+                            <button type="object" name="action_tao_phieu_kham_benh_moi" class="btn btn-primary btn-sm o_invoice_new btn-new-action" style="padding: 8px;">
+                                <span>Phiếu khám bệnh mới</span>
+                            </button>
+                            <button type="object" name="action_tao_chan_doan_hinh_anh_moi" class="btn btn-primary btn-sm o_invoice_new btn-new-action" style="padding: 8px;">
+                                <span>Chẩn đoán hình ảnh mới</span>
+                            </button>
+                        </div>
+                        <div class="so_luong_text_wrap">
+                            <a type="object" name="btn_so_luong_phieu_kham_benh" context="{}">
+                                <div class="so_luong_text">
+                                    Phiếu khám bệnh <span class="so_luong_icon"><span><field name="phieu_kham_benh_count"/></span></span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="so_luong_text_wrap">
+                            <a type="object" name="btn_so_luong_chan_doan_hinh_anh" context="{}">
+                                <div class="so_luong_text">
+                                   Chẩn đoán hình ảnh <span class="so_luong_icon"><span><field name="chan_doan_hinh_anh_count"/></span></span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="so_luong_text_wrap">
+                            <a type="object" name="btn_so_luong_don_thuoc" context="{}">
+                                <div class="so_luong_text">
+                                   Đơn thuốc <span class="so_luong_icon"><span><field name="don_thuoc_count"/></span></span>
+                                </div>
+                            </a>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- Bang thong tin khoa action -->
+    <record id="medical_bang_thong_tin_khoa_action" model="ir.actions.act_window">
+        <field name="name">Bảng thông tin</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.khoa</field>
+        <field name="view_mode">kanban</field>
     </record>
 
 
