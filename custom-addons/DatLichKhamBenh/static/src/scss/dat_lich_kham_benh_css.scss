@@ -26,15 +26,6 @@
     color: var(--nd-nav-color) !important;
 }
 
-a {
-    color: var(--nav-color) !important;
-}
-
-a {
-    color: var(--nav-color) !important;
-}
-
-
 .o_main_navbar {
     background       : var(--nav-color) !important;
     border-bottom    : 1px solid var(--nav-color) !important;
@@ -71,8 +62,15 @@ a {
     color: var(--nav-color) !important;
 }
 
-.dropdown-item {
-    color: #495057 !important;
+.oe_kanban_action.oe_kanban_action_a {
+    color: var(--nav-color) !important;
+}
+
+.o_kanban_renderer .oe_kanban_card .o_dropdown_kanban .dropdown-menu, .o_kanban_renderer .o_kanban_record .o_dropdown_kanban .dropdown-menu {
+    
+    .dropdown-item {
+        color: #495057 !important;
+    }
 }
 
 .o-dropdown--menu .dropdown-item:not(.disabled):not(:disabled),
@@ -223,4 +221,7 @@ a {
             font-size: 18px;
         }
     }
+}
+.o_kanban_dashboard.o_account_kanban .o_kanban_renderer.o_kanban_ungrouped .o_kanban_record {
+    width: 450px;
 }

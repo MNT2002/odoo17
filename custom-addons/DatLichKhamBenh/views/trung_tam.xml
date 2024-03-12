@@ -223,6 +223,7 @@
             <search string="">
                 <separator />
                 <filter string="Tên" name="country_filter" />
+                <filter string="Yêu thích" name="favorite_filter" domain="[('yeu_thich','=',True)]"/>
                 <group expand="1" string="Nhóm theo">
                     <filter string="Tên" name="group_by_name" context="{'group_by': 'name'}" />
                     <filter string="Trung tâm y tế" name="group_by_trung_tam_y_te" context="{'group_by': 'trung_tam_suc_khoe_id'}" />
@@ -613,28 +614,28 @@
                 <sheet>
                     <div class="oe_left" style="width: 500px;">
                         <div class="oe_title">
-                            <label for="name" string="Vaccine" class="oe_edit_only"/>
+                            <label for="name" string="Vaccine" class="oe_edit_only" />
                             <h1>
-                                <field name="name"/>
+                                <field name="name" />
                             </h1>
-                            <label for="benh_nhan_id" class="oe_edit_only"/>
-                            <field name="benh_nhan_id" on_change="" required="1"/>
+                            <label for="benh_nhan_id" class="oe_edit_only" />
+                            <field name="benh_nhan_id" on_change="" required="1" />
                         </div>
                     </div>
                     <group>
                         <group>
-                            <field name="lieu"/>
-                            <field name="ngay"/>
+                            <field name="lieu" />
+                            <field name="ngay" />
                         </group>
                         <group>
-                            <field name="bac_si_id" options="{'no_create': True}"/>
-                            <field name="trung_tam_y_te_id" options="{'no_create': True}"/>
+                            <field name="bac_si_id" options="{'no_create': True}" />
+                            <field name="trung_tam_y_te_id" options="{'no_create': True}" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Quan săt/Theo dõi">
                             <div class="o_row">
-                                <field name="quan_sat_theo_doi" nolabel="1"/>
+                                <field name="quan_sat_theo_doi" nolabel="1" />
                             </div>
                         </page>
                     </notebook>
@@ -647,7 +648,7 @@
         <field name="name">medical.vaccine.view.tree</field>
         <field name="model">medical.vaccine</field>
         <field name="arch" type="xml">
-            <tree >
+            <tree>
                 <field name="name"></field>
                 <field name="benh_nhan_id"></field>
                 <field name="lieu"></field>
@@ -694,18 +695,18 @@
                 <sheet>
                     <div class="oe_left" style="width: 500px;">
                         <div class="oe_title" style="width: 390px;">
-                            <label class="oe_edit_only" for="name"/>
+                            <label class="oe_edit_only" for="name" />
                             <h1>
-                                <field name="name" class="oe_inline"/>
+                                <field name="name" class="oe_inline" />
                             </h1>
                         </div>
                     </div>
                     <group>
                         <group>
-                            <field name="ma" required="1"/>
+                            <field name="ma" required="1" />
                         </group>
                         <group>
-                            <field name="phi_xet_nghiem" required="1"/>
+                            <field name="phi_xet_nghiem" required="1" />
                         </group>
                     </group>
                     <notebook>
@@ -713,17 +714,17 @@
                             <div>
                                 <field name="truong_hop_xet_nghiem_ids" nolabel="1" context="{'default_loai_xet_nghiem_id': active_id}">
                                     <tree string="Trường hợp xét nghiệm" editable="bottom">
-                                        <field name="ma_thu_tu" required="1"/>
-                                        <field name="name"/>
-                                        <field name="pham_vi_binh_thuong"/>
-                                        <field name="don_vi"/>
+                                        <field name="ma_thu_tu" required="1" />
+                                        <field name="name" />
+                                        <field name="pham_vi_binh_thuong" />
+                                        <field name="don_vi" />
                                     </tree>
                                 </field>
                             </div>
                         </page>
                         <page string="Thông tin thêm">
                             <group>
-                                <field name="thong_tin_them" nolabel="1"/>
+                                <field name="thong_tin_them" nolabel="1" />
                             </group>
                         </page>
                     </notebook>
@@ -781,67 +782,67 @@
                     <button confirm="Bạn có muốn bắt đầu chẩn đoán?" name="btn_bat_dau_chan_doan" string="Bắt đầu" type="object" class="oe_highlight" />
                     <button confirm="Bạn có muốn hoàn thành chẩn đoán?" name="btn_hoan_thanh_chan_doan" string="Hoàn thành" type="object" class="oe_highlight" />
                     <button name="in_chan_doan_hinh_anh" string="In" type="object" class="oe_highlight" />
-                    <field name="state" widget="statusbar" statusbar_visible="DuThao,DaXuatHoaDon,DangThucHien,HoanThanh"/>
+                    <field name="state" widget="statusbar" statusbar_visible="DuThao,DaXuatHoaDon,DangThucHien,HoanThanh" />
                 </header>
                 <sheet>
                     <div class="oe_left" style="width: 500px;">
                         <div class="oe_title" style="width: 390px;">
-                            <label class="oe_edit_only" for="name"/>
+                            <label class="oe_edit_only" for="name" />
                             <h1>
-                                <field name="name" class="oe_inline"/>
+                                <field name="name" class="oe_inline" />
                             </h1>
                         </div>
                         <div class="oe_left" style="width: 500px;">
-                            <label for="loai_chan_doan"/>
-                            <field name="loai_chan_doan" readonly="0" help="Loại chẩn đoán hình ảnh"/>
+                            <label for="loai_chan_doan" />
+                            <field name="loai_chan_doan" readonly="0" help="Loại chẩn đoán hình ảnh" />
                         </div>
                     </div>
                     <group>
                         <group>
-                            <field name="identification_code"/>
-                            <field name="benh_nhan_id" required="1" options="{'no_create': True}"/>
-                            <field name="ngay_yeu_cau"/>
-                            <field name="ngay_sinh"/>
+                            <field name="identification_code" />
+                            <field name="benh_nhan_id" required="1" options="{'no_create': True}" />
+                            <field name="ngay_yeu_cau" />
+                            <field name="ngay_sinh" />
                             <field name="gioi_tinh" />
                         </group>
                         <group>
-                            <field name="bac_si_id" options="{'no_create': True}"/>
-                            <field name="khoa_id" required="1"/>
-                            <field name="ngay_phan_tich"/>
-                            <field name="phieu_kham_benh_id"/>
+                            <field name="bac_si_id" options="{'no_create': True}" />
+                            <field name="khoa_id" required="1" />
+                            <field name="ngay_phan_tich" />
+                            <field name="phieu_kham_benh_id" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Vật tư tiêu hao">
                             <field name="vat_tu_tieu_hao_ids" nolabel="1" readonly="state == 'HoanThanh'" context="{'default_chan_doan_hinh_anh_id': active_id}">
                                 <tree string="Vật tư tiêu hao" editable="bottom">
-                                    <field name="ma_thu_tu"/>
-                                    <field name="san_pham"/>
-                                    <field name="so_luong"/>
-                                    <field name="don_vi"/>
+                                    <field name="ma_thu_tu" />
+                                    <field name="san_pham" />
+                                    <field name="so_luong" />
+                                    <field name="don_vi" />
                                 </tree>
                             </field>
                         </page>
                         <page string="Images">
                             <group>
                                 <group>
-                                    <field name="anh_1" widget="image" readonly="state == 'HoanThanh'"/>
-                                    <field name="anh_2" widget="image" readonly="state == 'HoanThanh'"/>
-                                    <field name="anh_3" widget="image" readonly="state == 'HoanThanh'"/>
+                                    <field name="anh_1" widget="image" readonly="state == 'HoanThanh'" />
+                                    <field name="anh_2" widget="image" readonly="state == 'HoanThanh'" />
+                                    <field name="anh_3" widget="image" readonly="state == 'HoanThanh'" />
                                 </group>
                                 <group>
-                                    <field name="anh_4" widget="image" readonly="state == 'HoanThanh'"/>
-                                    <field name="anh_5" widget="image" readonly="state == 'HoanThanh'"/>
-                                    <field name="anh_6" widget="image" readonly="state == 'HoanThanh'"/>
+                                    <field name="anh_4" widget="image" readonly="state == 'HoanThanh'" />
+                                    <field name="anh_5" widget="image" readonly="state == 'HoanThanh'" />
+                                    <field name="anh_6" widget="image" readonly="state == 'HoanThanh'" />
                                 </group>
                             </group>
                         </page>
                         <page string="Thông tin">
                             <group>
-                                <field name="phan_tich" readonly="state != 'DangThucHien'"/>
+                                <field name="phan_tich" readonly="state != 'DangThucHien'" />
                             </group>
                             <group>
-                                <field name="ket_luan" readonly="state != 'DangThucHien'"/>
+                                <field name="ket_luan" readonly="state != 'DangThucHien'" />
                             </group>
                         </page>
                     </notebook>
@@ -856,7 +857,7 @@
         <field name="arch" type="xml">
             <search string="">
                 <separator />
-                <filter string="Trạng thái đã xuất hoá đơn" name="trang_thai_filter" domain="[('state','=','DaXuatHoaDon')]"/>
+                <filter string="Trạng thái đã xuất hoá đơn" name="trang_thai_filter" domain="[('state','=','DaXuatHoaDon')]" />
                 <group expand="1" string="Nhóm theo">
                     <filter string="Bệnh nhân" name="group_by_benh_nhan_id" context="{'group_by': 'benh_nhan_id'}" />
                     <filter string="Bác sĩ" name="group_by_bac_si_id" context="{'group_by': 'bac_si_id'}" />
@@ -911,6 +912,45 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+    <!-- medical.examination_time tree view -->
+    <record id="medical_examination_time_view_tree" model="ir.ui.view">
+        <field name="name">medical.examination_time.view.tree</field>
+        <field name="model">medical.examination_time</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name" widget="float_time"></field>
+                <field name="time"></field>
+                <field name="description"></field>
+                <field name="state"></field>
+            </tree>
+        </field>
+    </record>
+    <record id="medical_examination_time_action" model="ir.actions.act_window">
+        <field name="name">Thời gian khám bệnh</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.examination_time</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- medical.shift tree view -->
+    <record id="medical_shift_view_tree" model="ir.ui.view">
+        <field name="name">medical.shift.view.tree</field>
+        <field name="model">medical.shift</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name"></field>
+                <field name="description"></field>
+                <field name="time" widget="many2many_tags"></field>
+            </tree>
+        </field>
+    </record>
+    <record id="medical_shift_action" model="ir.actions.act_window">
+        <field name="name">Ca làm việc</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.shift</field>
+        <field name="view_mode">tree</field>
+    </record>
+
 
     <!-- Bang thong tin kanban view -->
     <record id="medical_bang_thong_tin_khoa_kanban_view" model="ir.ui.view">
@@ -918,25 +958,26 @@
         <field name="model">medical.khoa</field>
         <field name="arch" type="xml">
             <kanban create="false" class="oe_background_grey o_kanban_dashboard o_account_kanban">
-                <field name="id" invisible="True"/>
-                <field name="name"/>
-                <field name="trung_tam_suc_khoe_id"/>
+                <field name="id" invisible="True" />
+                <field name="name" />
+                <field name="trung_tam_suc_khoe_id" />
+                <field name="yeu_thich" />
                 <!-- <field name="type"/>
                 <field name="show_on_dashboard"/>
                 <field name="kanban_dashboard"/> -->
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="kanban-box" style="min-width: 512px !important">
                         <div t-attf-class="#{kanban_color(0)}">
                             <!-- <t t-value="JSON.parse(record.kanban_dashboard.raw_value)" t-set="dashboard"/> -->
-                            <t t-call="OehTop"/>
+                            <t t-call="OehTop" />
                             <div class="o_kanban_card_content o_invisible" style="width:100%">
                                 <div class="row">
-                                    <t t-call="OehBodyDepartment"/>
+                                    <t t-call="OehBodyDepartment" />
                                 </div>
                             </div>
-                            <!-- <div class="o_kanban_card_manage_pane o_invisible" style="width:70%">
-                                <t t-call="OehManage"/>
-                            </div> -->
+                            <div class="o_kanban_card_manage_pane o_invisible" style="width:100%">
+                                <t t-call="OehManage" />
+                            </div>
                             <!-- <t t-call="OehBodyGraph"/> -->
                         </div>
                     </t>
@@ -944,12 +985,12 @@
                         <div class="o_kanban_card_header">
                             <div class="o_kanban_card_header_title">
                                 <div class="o_primary">
-                                    <a >
-                                        <field name="name"/>
+                                    <a>
+                                        <field name="name" />
                                     </a>
                                 </div>
                                 <div class="o_secondary">
-                                    <field name="trung_tam_suc_khoe_id"/>
+                                    <field name="trung_tam_suc_khoe_id" />
                                 </div>
                             </div>
                             <!-- <div class="o_kanban_manage_button_section">
@@ -958,7 +999,7 @@
                         </div>
                     </t>
                     <t t-name="OehBodyDepartment">
-                        <div class="o_kanban_primary_left" style="display: flex; justify-content: space-between; margin-top: 12px">
+                        <div class="o_kanban_primary_left" style="display: flex; justify-content: space-between; margin-top: 12px;">
                             <button type="object" name="action_tao_phieu_kham_benh_moi" class="btn btn-primary btn-sm o_invoice_new btn-new-action" style="padding: 8px;">
                                 <span>Phiếu khám bệnh mới</span>
                             </button>
@@ -967,63 +1008,99 @@
                             </button>
                         </div>
                         <div class="so_luong_text_wrap">
+                            <a type="object" name="btn_so_luong_bac_si" context="{}">
+                                <div class="so_luong_text"> Bác sĩ <span class="so_luong_icon">
+                                    <span>
+                                        <field name="bac_si_count" />
+                                    </span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                        <div class="so_luong_text_wrap">
                             <a type="object" name="btn_so_luong_phieu_kham_benh" context="{}">
-                                <div class="so_luong_text">
-                                    Phiếu khám bệnh <span class="so_luong_icon"><span><field name="phieu_kham_benh_count"/></span></span>
-                                </div>
-                            </a>
+                                <div class="so_luong_text"> Phiếu khám bệnh <span class="so_luong_icon">
+                                    <span>
+                                        <field name="phieu_kham_benh_count" />
+                                    </span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="so_luong_text_wrap">
+                        <a type="object" name="btn_so_luong_chan_doan_hinh_anh" context="{}">
+                            <div class="so_luong_text"> Chẩn đoán hình ảnh <span class="so_luong_icon">
+                                <span>
+                                    <field name="chan_doan_hinh_anh_count" />
+                                </span>
+                            </span>
                         </div>
-                        <div class="so_luong_text_wrap">
-                            <a type="object" name="btn_so_luong_chan_doan_hinh_anh" context="{}">
-                                <div class="so_luong_text">
-                                   Chẩn đoán hình ảnh <span class="so_luong_icon"><span><field name="chan_doan_hinh_anh_count"/></span></span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="so_luong_text_wrap">
-                            <a type="object" name="btn_so_luong_don_thuoc" context="{}">
-                                <div class="so_luong_text">
-                                   Đơn thuốc <span class="so_luong_icon"><span><field name="don_thuoc_count"/></span></span>
-                                </div>
-                            </a>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-    <!-- Bang thong tin khoa action -->
-    <record id="medical_bang_thong_tin_khoa_action" model="ir.actions.act_window">
-        <field name="name">Bảng thông tin</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">medical.khoa</field>
-        <field name="view_mode">kanban</field>
-    </record>
+                    </a>
+                </div>
+                <div class="so_luong_text_wrap">
+                    <a type="object" name="btn_so_luong_don_thuoc" context="{}">
+                        <div class="so_luong_text"> Đơn thuốc <span class="so_luong_icon">
+                            <span>
+                                <field name="don_thuoc_count" />
+                            </span>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </t>
+        <t t-name="OehManage">
+            <div class="row o_kanban_card_settings" style="margin-left: -16px; margin-right: -16px">
+                <div class="col-6" style="text-align: center">
+                    <a type="object" name="toggle_favorite">
+                        <i t-attf-class="fa o_dashboard_star #{record.yeu_thich.raw_value ? 'fa-star' : 'fa-star-o'}" title="Nhấn để thêm/xoá yêu thích" />
+ Yêu thích</a>
+                </div>
+                <div class="col-6" style="text-align: center">
+                    <a t-if="widget.editable" type="edit"><i t-attf-class="fa o_dashboard_star fa-gear" title="Nhấn để thêm/xoá yêu thích" /> Thiết lập</a>
+                </div>
+            </div>
+        </t>
+    </templates>
+</kanban>
+</field>
+</record>
+<!-- Bang thong tin khoa action -->
+<record id="medical_bang_thong_tin_khoa_action" model="ir.actions.act_window">
+<field name="name">Bảng thông tin</field>
+<field name="type">ir.actions.act_window</field>
+<field name="res_model">medical.khoa</field>
+<field name="view_mode">kanban,form</field>
+<field name="context">{'search_default_favorite_filter': 1}</field>
+</record>
 
 
-    <!--
+<!--
     ===================================================================================================================== -->
-    <!-- Menu item Trung tam y te-->
-    <menuitem id="menu_cau_hinh_1" name="Trung tâm y tế" parent="menu_cau_hinh" />
-    <menuitem id="menu_cau_hinh_2" name="Bác sĩ" parent="menu_cau_hinh" />
-    <menuitem id="menu_cau_hinh_3" name="Dược phẩm" parent="menu_cau_hinh" />
-    <menuitem id="menu_cau_hinh_4" name="Phòng xét nghiệm" parent="menu_cau_hinh" />
-    <menuitem id="menu_cau_hinh_5" name="Hình ảnh" parent="menu_cau_hinh" />
+<!-- Menu item Trung tam y te-->
+<menuitem id="menu_cau_hinh_1" name="Trung tâm y tế" parent="menu_cau_hinh" />
+<menuitem id="menu_cau_hinh_2" name="Bác sĩ" parent="menu_cau_hinh" />
+<menuitem id="menu_cau_hinh_3" name="Dược phẩm" parent="menu_cau_hinh" />
+<menuitem id="menu_cau_hinh_4" name="Phòng xét nghiệm" parent="menu_cau_hinh" />
+<menuitem id="menu_cau_hinh_5" name="Hình ảnh" parent="menu_cau_hinh" />
+<menuitem id="menu_cau_hinh_6" name="Thời gian khám bệnh" parent="menu_cau_hinh" />
 
-    <menuitem id="medical_trung_tam_y_te_menu" name="Trung tâm y tế" parent="menu_cau_hinh_1" action='medical_trung_tam_y_te_action' sequence="2" />
-    <menuitem id="medical_khoa_menu" name="Khoa" parent="menu_cau_hinh_1" action='medical_khoa_action' sequence="3" />
-    <menuitem id="medical_phong_menu" name="Phòng" parent="menu_cau_hinh_1" action='medical_phong_action' sequence="4" />
-    <menuitem id="medical_hieu_thuoc_menu" name="Hiệu thuốc" parent="menu_cau_hinh_1" action='medical_hieu_thuoc_action' sequence="5" />
+<menuitem id="medical_trung_tam_y_te_menu" name="Trung tâm y tế" parent="menu_cau_hinh_1" action='medical_trung_tam_y_te_action' sequence="2" />
+<menuitem id="medical_khoa_menu" name="Khoa" parent="menu_cau_hinh_1" action='medical_khoa_action' sequence="3" />
+<menuitem id="medical_phong_menu" name="Phòng" parent="menu_cau_hinh_1" action='medical_phong_action' sequence="4" />
+<menuitem id="medical_hieu_thuoc_menu" name="Hiệu thuốc" parent="menu_cau_hinh_1" action='medical_hieu_thuoc_action' sequence="5" />
 
-    <menuitem id="medical_chuyen_mon_menu" name="Chuyên môn" parent="menu_cau_hinh_2" action='medical_chuyen_mon_action' sequence="2" />
-    <menuitem id="medical_trình_do_bang_cap_menu" name="Trình độ/Bằng cấp" parent="menu_cau_hinh_2" action='medical_trinhdo_bangcap_action' sequence="3" />
+<menuitem id="medical_chuyen_mon_menu" name="Chuyên môn" parent="menu_cau_hinh_2" action='medical_chuyen_mon_action' sequence="2" />
+<menuitem id="medical_trình_do_bang_cap_menu" name="Trình độ/Bằng cấp" parent="menu_cau_hinh_2" action='medical_trinhdo_bangcap_action' sequence="3" />
 
-    <menuitem id="medical_thuoc_vaccin_menu" name="Thuốc, Vắc xin" parent="menu_cau_hinh_3" action='medical_thuoc_vaccin_action' sequence="2" />
-    <menuitem id="medical_donvi_lieuthuoc_menu" name="Đơn vị liều thuốc" parent="menu_cau_hinh_3" action='medical_donvi_lieuthuoc_action' sequence="4" />
-    <menuitem id="medical_lieu_thuoc_menu" name="Liều thuốc" parent="menu_cau_hinh_3" action='medical_lieu_thuoc_action' sequence="5" />
+<menuitem id="medical_thuoc_vaccin_menu" name="Thuốc, Vắc xin" parent="menu_cau_hinh_3" action='medical_thuoc_vaccin_action' sequence="2" />
+<menuitem id="medical_donvi_lieuthuoc_menu" name="Đơn vị liều thuốc" parent="menu_cau_hinh_3" action='medical_donvi_lieuthuoc_action' sequence="4" />
+<menuitem id="medical_lieu_thuoc_menu" name="Liều thuốc" parent="menu_cau_hinh_3" action='medical_lieu_thuoc_action' sequence="5" />
 
-    <menuitem id="medical_loai_xet_nghiem_menu" name="Loại xét nghiệm" parent="menu_cau_hinh_4" action='medical_loai_xet_nghiem_action' sequence="1" />
-    <menuitem id="medical_don_vi_xet_nghiem_menu" name="Đơn vị xét nghiệm" parent="menu_cau_hinh_4" action='medical_don_vi_xet_nghiem_action' sequence="2" />
+<menuitem id="medical_loai_xet_nghiem_menu" name="Loại xét nghiệm" parent="menu_cau_hinh_4" action='medical_loai_xet_nghiem_action' sequence="1" />
+<menuitem id="medical_don_vi_xet_nghiem_menu" name="Đơn vị xét nghiệm" parent="menu_cau_hinh_4" action='medical_don_vi_xet_nghiem_action' sequence="2" />
 
-    <menuitem id="medical_loai_chuan_doan_hinh_anh_menu" name="Loại chuẩn đoán hình ảnh" parent="menu_cau_hinh_5" action='medical_loai_chan_doan_hinh_anh_action' sequence="1" />
+<menuitem id="medical_loai_chuan_doan_hinh_anh_menu" name="Loại chuẩn đoán hình ảnh" parent="menu_cau_hinh_5" action='medical_loai_chan_doan_hinh_anh_action' sequence="1" />
+
+<menuitem id="medical_examination_time_menu" name="Thời gian khám bệnh" parent="menu_cau_hinh_6" action='medical_examination_time_action' sequence="1" />
+<menuitem id="medical_shift_menu" name="Ca làm việc" parent="menu_cau_hinh_6" action='medical_shift_action' sequence="2" />
 </odoo>

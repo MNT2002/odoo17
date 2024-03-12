@@ -48,7 +48,7 @@
                         <group>
                             <field name="phi_kham_benh" />
                             <field name="id_giay_phep" />
-                            <field name="trung_tam_y_te_id" required="True" />
+                            <field name="trung_tam_y_te_id" required="True" widget="many2one_tags"/>
                             <field name="khoa_id" />
                         </group>
                     </group>
@@ -80,7 +80,7 @@
                             </group>
                         </page>
                         <page string="Lịch trống hàng tuần">
-
+                            <field name="examination_schedule_ids" context="{'default_doctor_id': active_id}" />
                         </page>
                         <page string="Thông tin thêm">
                             <div class="o_row">
@@ -326,6 +326,27 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.duoc_si</field>
         <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- Examination Schedule tree view-->
+    <record id="medical_examination_schedule_tree_view" model="ir.ui.view">
+        <field name="name">medical.examination_schedule.tree</field>
+        <field name="model">medical.examination_schedule</field>
+        <field name="arch" type="xml">
+            <tree string="Thông tin bệnh nhân" editable="bottom">
+                <field name="schedule_selection" />
+                <field name="shift" widget="selection_badge" />
+                <field name="schedule_time_ids" widget="many2many_tags" />
+                <field name="schedule"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Examination Schedule action-->
+    <record id="medical_examination_schedule_action" model="ir.actions.act_window">
+        <field name="name">Lịch khám</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.examination_schedule</field>
+        <field name="view_mode">tree</field>
     </record>
 
 

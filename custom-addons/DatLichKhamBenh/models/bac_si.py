@@ -1,4 +1,4 @@
-
+from datetime import datetime, timedelta
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
@@ -81,6 +81,8 @@ class BacSi(models.Model):
 
     thong_tin_them = fields.Char('Thông tin thêm')
 
+    examination_schedule_ids = fields.One2many("medical.examination_schedule", "doctor_id")
+
     phieu_kham_benh_ids = fields.One2many(comodel_name='medical.phieu_kham_benh', inverse_name='bac_si_id')
     phieu_kham_benh_count = fields.Integer('Phiếu khám bệnh', compute="get_count_phieu_kham_benh", store=True)
 
@@ -146,3 +148,47 @@ class DuocSi(models.Model):
     # def get_count_don_thuoc_duoc_dat(self):
     #     for rec in self:
     #         rec.don_thuoc_duoc_dat_count =  len(rec.don_thuoc_duoc_dat_ids)
+
+class ExaminationSchedule(models.Model):
+    _name = 'medical.examination_schedule'
+    _description = 'medical.examination_schedule'
+
+    doctor_id = fields.Many2one('medical.bac_si','Bác sĩ')
+
+    schedule_selection = fields.Selection(selection='_get_next_6_days', required=True)
+
+    schedule = fields.Date(compute='_get_date_schedule', string='Ngày trống', store=True)
+
+    @api.model
+    def _get_next_6_days(self):
+        # chosen_date = datetime.strptime(chosen_date, "%Y-%m-%d")  # Convert input string to datetime object
+        next_days = []
+        today = fields.Date.today()
+        next_days.append(
+            (
+                str(today),
+                ("Today "+ today.strftime("%Y-%m-%d"))
+            )
+        ) 
+        for i in range(1, 7):  # Get the next 6 days
+            next_day = today + timedelta(days=i)
+            next_days.append(
+                    (
+                        str(next_day),
+                        (next_day.strftime("%a") + " "+ next_day.strftime("%Y-%m-%d"))
+                    )
+                )  # Append formatted date string to the list
+        return next_days
+    
+    @api.depends('schedule_selection')
+    def _get_date_schedule(self):
+        for rec in self:
+            if rec.schedule_selection:
+                rec.schedule = datetime.strptime(rec.schedule_selection, '%Y-%m-%d').date()
+    
+    shift = fields.Many2one('medical.shift','Ca làm việc', required=True, store=True)
+
+    schedule_time_ids = fields.Many2many(related='shift.time')
+
+
+

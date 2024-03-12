@@ -95,6 +95,12 @@ class Khoa(models.Model):
     phong_count = fields.Integer('Phòng', compute="get_count_phong", store=True)
 
     bac_si_ids = fields.One2many('medical.bac_si', 'khoa_id')
+    bac_si_count = fields.Integer('Đơn thuốc', compute="get_count_bac_si")
+
+    @api.depends('bac_si_ids')
+    def get_count_bac_si(self):
+        for rec in self:
+            rec.bac_si_count =  len(rec.bac_si_ids)
 
     don_thuoc_ids = fields.One2many('medical.don_thuoc', 'khoa_id')
     don_thuoc_count = fields.Integer('Đơn thuốc', compute="get_count_don_thuoc")
@@ -208,6 +214,25 @@ class Khoa(models.Model):
             },
             'domain': [('khoa_id', '=', self.id)]
         }
+    def btn_so_luong_bac_si(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Bác sĩ',
+            'view_type': 'kanban,form,tree',
+            'view_mode': 'kanban,tree,form',
+            'res_model': 'medical.bac_si',
+            'context': {
+                'default_trung_tam_y_te_id': self.trung_tam_suc_khoe_id.id,
+                'default_khoa_id': self.id
+            },
+            'domain': [('khoa_id', '=', self.id)]
+        }
+    
+    yeu_thich = fields.Boolean(default=False)
+    
+    def toggle_favorite(self):
+        self.yeu_thich = self.yeu_thich == False
 
 class Phong(models.Model):
     _name = 'medical.phong'
@@ -465,3 +490,37 @@ class VatTuTieuHao(models.Model):
 
     chan_doan_hinh_anh_id = fields.Many2one('medical.chan_doan_hinh_anh', 'Chẩn đoán hình ảnh', store=True)
 
+
+class ThoiGianKhamBenh(models.Model):
+    _name = 'medical.thoi_gian_kham_benh'
+    _description = 'medical.thoi_gian_kham_benh'
+
+    name = fields.Float('Thời gian khám (Định dạng 24 giờ)')
+
+    description = fields.Char('Mô tả')
+
+    state = fields.Selection([('empty', 'Trống'), ('booked', 'Đã đặt')], default="empty")
+
+    time =  fields.Float('Thời lượng', default='1')
+
+class ExaminationTime(models.Model):
+    _name = 'medical.examination_time'
+    _description = 'medical.examination_time'
+
+    name = fields.Float('Thời gian khám (Định dạng 24 giờ)')
+
+    description = fields.Char('Mô tả')
+
+    state = fields.Selection([('empty', 'Trống'), ('booked', 'Đã đặt')], default="empty")
+
+    time =  fields.Float('Thời lượng (1 giờ)', default='1')
+
+class Shift(models.Model):
+    _name = 'medical.shift'
+    _description = 'medical.shift'
+
+    name = fields.Selection([('Sáng', 'Sáng'), ('Tối', 'Tối')], 'Ca làm việc')
+
+    description = fields.Char('Mô tả')
+
+    time = fields.Many2many('medical.examination_time', 'shift_time_rel', 'shift', 'examination', 'Thời gian khám bệnh')
