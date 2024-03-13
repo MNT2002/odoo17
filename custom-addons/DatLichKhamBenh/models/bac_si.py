@@ -81,7 +81,7 @@ class BacSi(models.Model):
 
     thong_tin_them = fields.Char('Thông tin thêm')
 
-    examination_schedule_ids = fields.One2many("medical.examination_schedule", "doctor_id")
+    examination_schedule_ids = fields.One2many("medical.examination_schedule", "doctor_id", domain=[('is_pass_date','=',True)])
 
     phieu_kham_benh_ids = fields.One2many(comodel_name='medical.phieu_kham_benh', inverse_name='bac_si_id')
     phieu_kham_benh_count = fields.Integer('Phiếu khám bệnh', compute="get_count_phieu_kham_benh", store=True)
@@ -155,7 +155,7 @@ class ExaminationSchedule(models.Model):
 
     doctor_id = fields.Many2one('medical.bac_si','Bác sĩ')
 
-    schedule_selection = fields.Selection(selection='_get_next_6_days', required=True)
+    name = fields.Selection(selection='_get_next_6_days', required=True)
 
     schedule = fields.Date(compute='_get_date_schedule', string='Ngày trống', store=True)
 
@@ -173,22 +173,37 @@ class ExaminationSchedule(models.Model):
         for i in range(1, 7):  # Get the next 6 days
             next_day = today + timedelta(days=i)
             next_days.append(
-                    (
-                        str(next_day),
-                        (next_day.strftime("%a") + " "+ next_day.strftime("%Y-%m-%d"))
-                    )
-                )  # Append formatted date string to the list
+                (
+                    str(next_day),
+                    (next_day.strftime("%a") + " "+ next_day.strftime("%Y-%m-%d"))
+                )
+            )  # Append formatted date string to the list
         return next_days
     
-    @api.depends('schedule_selection')
+    @api.depends('name')
     def _get_date_schedule(self):
         for rec in self:
-            if rec.schedule_selection:
-                rec.schedule = datetime.strptime(rec.schedule_selection, '%Y-%m-%d').date()
+            if rec.name:
+                rec.schedule = datetime.strptime(rec.name, '%Y-%m-%d').date()
     
     shift = fields.Many2one('medical.shift','Ca làm việc', required=True, store=True)
 
     schedule_time_ids = fields.Many2many(related='shift.time')
 
+    today = fields.Date(default=lambda self: fields.Date.today(), store=False)
+    @api.model
+    def _set_today(self):
+        for rec in self:
+            rec.today = fields.Date.today()
+
+    @api.depends('today','schedule')
+    def _check_pass_date(self):
+        for rec in self:
+            if rec.schedule and rec.schedule < rec.today:
+                rec.is_pass_date = False
+            else:
+                rec.is_pass_date = True
+
+    is_pass_date = fields.Boolean(compute="_check_pass_date", store=True)
 
 

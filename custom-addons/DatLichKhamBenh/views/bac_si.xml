@@ -334,10 +334,12 @@
         <field name="model">medical.examination_schedule</field>
         <field name="arch" type="xml">
             <tree string="Thông tin bệnh nhân" editable="bottom">
-                <field name="schedule_selection" />
+                <field name="name" />
                 <field name="shift" widget="selection_badge" />
                 <field name="schedule_time_ids" widget="many2many_tags" />
                 <field name="schedule"/>
+                <field name="today" invisible="1" nolabel="1"/>
+                <field name="is_pass_date" invisible="1" nolabel="1"/>
             </tree>
         </field>
     </record>
@@ -347,9 +349,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.examination_schedule</field>
         <field name="view_mode">tree</field>
+        <!-- <field name="domain">[('is_pass_date', '=', True)]</field> -->
     </record>
 
-
-    <!-- <menuitem id="menu_bac_si_child" name="Bác sĩ" parent="menu_bac_si" sequence="1" action="medical_bac_si_action"/>
-    <menuitem id="menu_duoc_si" name="Dược sĩ" parent="menu_bac_si" sequence="2" action="medical_duoc_si_action"/> -->
 </odoo>

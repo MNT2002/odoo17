@@ -42,6 +42,26 @@ class PhieuKhamBenh(models.Model):
     ngay = fields.Datetime('Ngày', readonly=False, select=True
                                 , default=lambda self: fields.datetime.now())
 
+    today = fields.Datetime('Ngày hôm nay', store=False
+                                , default=lambda self: fields.Date.now())
+
+    schedule_selection = fields.Many2one('medical.examination_schedule', domain="[('doctor_id','=',bac_si_id),('schedule','>=',today)]", store=True)
+
+    @api.onchange('schedule_selection')
+    def _get_available_time(self):
+        scheduleTimes = []
+        arrScheduleTime = self.env['medical.examination_schedule'].search([('doctor_id','=',self.bac_si_id.id),('schedule','=',self.schedule_selection.schedule)]).shift.time
+        for rec in arrScheduleTime:
+            print((rec.name))
+            title = 'rec'+str(rec.id)
+            value =  str(rec.name)
+            scheduleTimes.append(
+                (title,value)
+            )
+        return scheduleTimes
+
+    schedule_time_id = fields.Selection(selection='_get_available_time', string='Thời gian')
+
     ngay_sinh = fields.Date('Ngày sinh', compute="_compute_birthday")
 
     anh_dai_dien = fields.Binary('Ảnh đại diện', related='benh_nhan_id.anh_dai_dien',)
