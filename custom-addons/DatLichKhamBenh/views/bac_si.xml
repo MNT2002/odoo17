@@ -335,10 +335,9 @@
         <field name="arch" type="xml">
             <tree string="Thông tin bệnh nhân" editable="bottom">
                 <field name="name" />
-                <field name="shift" widget="selection_badge" />
+                <field name="shift_id" widget="selection_badge" />
                 <field name="schedule_time_ids" widget="many2many_tags" />
                 <field name="schedule"/>
-                <field name="today" invisible="1" nolabel="1"/>
                 <field name="is_pass_date" invisible="1" nolabel="1"/>
             </tree>
         </field>
@@ -351,5 +350,11 @@
         <field name="view_mode">tree</field>
         <!-- <field name="domain">[('is_pass_date', '=', True)]</field> -->
     </record>
+    <!-- <record id="medical_examination_schedule_action" model="ir.actions.server">
+        <field name="name">Lịch khám</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="model_id">medical_examination_schedule</field>
+        <field name="code">model._check_pass_date()</field>
+    </record> -->
 
 </odoo>

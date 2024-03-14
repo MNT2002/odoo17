@@ -98,7 +98,6 @@ class BacSi(models.Model):
     def get_count_don_thuoc(self):
         for rec in self:
             rec.don_thuoc_count =  len(rec.don_thuoc_ids)
-
     
 class DuocSi(models.Model):
     _name = 'medical.duoc_si'
@@ -186,24 +185,18 @@ class ExaminationSchedule(models.Model):
             if rec.name:
                 rec.schedule = datetime.strptime(rec.name, '%Y-%m-%d').date()
     
-    shift = fields.Many2one('medical.shift','Ca làm việc', required=True, store=True)
+    shift_id = fields.Many2one('medical.shift','Ca làm việc', required=True, store=True)
 
-    schedule_time_ids = fields.Many2many(related='shift.time')
-
-    today = fields.Date(default=lambda self: fields.Date.today(), store=False)
-    @api.model
-    def _set_today(self):
-        for rec in self:
-            rec.today = fields.Date.today()
-
-    @api.depends('today','schedule')
+    schedule_time_ids = fields.One2many(related='shift_id.time_ids')
+    
     def _check_pass_date(self):
-        for rec in self:
-            if rec.schedule and rec.schedule < rec.today:
-                rec.is_pass_date = False
-            else:
-                rec.is_pass_date = True
+        today = fields.Date.today()
+        if self.schedule and self.schedule < today:
+            self.is_pass_date = False
+        else:
+            self.is_pass_date = True
+        print("today: ",today)
 
-    is_pass_date = fields.Boolean(compute="_check_pass_date", store=True)
+    is_pass_date = fields.Boolean(store=True, default=True)
 
 

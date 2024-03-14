@@ -515,6 +515,8 @@ class ExaminationTime(models.Model):
 
     time =  fields.Float('Thời lượng (1 giờ)', default='1')
 
+    shift_id = fields.Many2one('medical.shift', 'Ca', store=True)
+
 class Shift(models.Model):
     _name = 'medical.shift'
     _description = 'medical.shift'
@@ -523,4 +525,4 @@ class Shift(models.Model):
 
     description = fields.Char('Mô tả')
 
-    time = fields.Many2many('medical.examination_time', 'shift_time_rel', 'shift', 'examination', 'Thời gian khám bệnh')
+    time_ids = fields.One2many('medical.examination_time', 'shift_id', 'Thời gian khám bệnh')

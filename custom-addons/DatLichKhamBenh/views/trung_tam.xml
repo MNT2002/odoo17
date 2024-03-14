@@ -938,9 +938,9 @@
         <field name="model">medical.shift</field>
         <field name="arch" type="xml">
             <tree editable="top">
-                <field name="name"></field>
+                <field name="name" widget="selection_badge"></field>
                 <field name="description"></field>
-                <field name="time" widget="many2many_tags"></field>
+                <field name="time_ids" widget="many2many_tags"></field>
             </tree>
         </field>
     </record>

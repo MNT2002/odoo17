@@ -45,22 +45,33 @@ class PhieuKhamBenh(models.Model):
     today = fields.Datetime('Ngày hôm nay', store=False
                                 , default=lambda self: fields.Date.now())
 
-    schedule_selection = fields.Many2one('medical.examination_schedule', domain="[('doctor_id','=',bac_si_id),('schedule','>=',today)]", store=True)
 
-    @api.onchange('schedule_selection')
-    def _get_available_time(self):
-        scheduleTimes = []
-        arrScheduleTime = self.env['medical.examination_schedule'].search([('doctor_id','=',self.bac_si_id.id),('schedule','=',self.schedule_selection.schedule)]).shift.time
-        for rec in arrScheduleTime:
-            print((rec.name))
-            title = 'rec'+str(rec.id)
-            value =  str(rec.name)
-            scheduleTimes.append(
-                (title,value)
-            )
-        return scheduleTimes
+    # @api.onchange('schedule_selection')
+    # def _get_schedule_time(self):
+    #     scheduleTimes = []
+    #     arrScheduleTime = self.env['medical.examination_schedule'].search([('doctor_id','=',self.bac_si_id.id),('schedule','=',self.schedule_selection.schedule)])
+    #     print(arrScheduleTime)
+    #     for rec in arrScheduleTime.schedule_time_ids:
+    #         # print((rec.name))
+    #         title = 'rec'+str(rec.id)
+    #         value =  str(rec.name)
+    #         # print('title: ',title)
+    #         # print('value:',value)
+    #         scheduleTimes.append(
+    #             (title,value)
+    #         )
+    #         print(scheduleTimes)
+    #     return scheduleTimes
+    schedule_selection_id = fields.Many2one('medical.examination_schedule', domain="[('doctor_id','=',bac_si_id),('schedule','>=',today)]", 
+    store=True, required=True, string='Ngày khám bệnh')
 
-    schedule_time_id = fields.Selection(selection='_get_available_time', string='Thời gian')
+    @api.onchange('schedule_selection_id')
+    def onchange_sschedule_selection(self):
+        self.schedule_time_id = False
+
+    shift_id = fields.Many2one('medical.shift', related='schedule_selection_id.shift_id')
+
+    schedule_time_id = fields.Many2one('medical.examination_time', 'Thời gian khám bệnh (24 giờ)', domain="[('shift_id', '=', shift_id)]", required=True)
 
     ngay_sinh = fields.Date('Ngày sinh', compute="_compute_birthday")
 
