@@ -30,6 +30,7 @@
                             <field name="bac_si_id" options="{'no_create': True}" required="[('khoa_id','!=',False), ('trung_tam_y_te_id', '!=', False)]" help="Vui lòng chọn Trung tâm ý tế và khoa trước khi chọn bác sĩ"/>
                             <field name="shift_id" invisible="1"/>
                             <field name="schedule_time_id" widget="selection_badge" readonly="schedule_selection_id == False or state != 'DaLenLich'" />
+                            <field name="schedule_date" string="Ngày giờ khám bệnh" readonly="True" />
                         </group>
                     </group>
                     <group>
@@ -169,7 +170,7 @@
         <field name="model">medical.phieu_kham_benh</field>
         <field eval="2" name="priority"/>
         <field name="arch" type="xml">
-            <calendar string="Phiếu khám bệnh" date_start="schedule_selection_id" color="state" mode="week">
+            <calendar string="Phiếu khám bệnh" date_start="schedule_date" color="state" mode="week">
                 <field name="benh_nhan_id"/>
             </calendar>
         </field>

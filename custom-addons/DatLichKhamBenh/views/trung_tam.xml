@@ -1074,33 +1074,5 @@
 </record>
 
 
-<!--
-    ===================================================================================================================== -->
-<!-- Menu item Trung tam y te-->
-<menuitem id="menu_cau_hinh_1" name="Trung tâm y tế" parent="menu_cau_hinh" />
-<menuitem id="menu_cau_hinh_2" name="Bác sĩ" parent="menu_cau_hinh" />
-<menuitem id="menu_cau_hinh_3" name="Dược phẩm" parent="menu_cau_hinh" />
-<menuitem id="menu_cau_hinh_4" name="Phòng xét nghiệm" parent="menu_cau_hinh" />
-<menuitem id="menu_cau_hinh_5" name="Hình ảnh" parent="menu_cau_hinh" />
-<menuitem id="menu_cau_hinh_6" name="Thời gian khám bệnh" parent="menu_cau_hinh" />
 
-<menuitem id="medical_trung_tam_y_te_menu" name="Trung tâm y tế" parent="menu_cau_hinh_1" action='medical_trung_tam_y_te_action' sequence="2" />
-<menuitem id="medical_khoa_menu" name="Khoa" parent="menu_cau_hinh_1" action='medical_khoa_action' sequence="3" />
-<menuitem id="medical_phong_menu" name="Phòng" parent="menu_cau_hinh_1" action='medical_phong_action' sequence="4" />
-<menuitem id="medical_hieu_thuoc_menu" name="Hiệu thuốc" parent="menu_cau_hinh_1" action='medical_hieu_thuoc_action' sequence="5" />
-
-<menuitem id="medical_chuyen_mon_menu" name="Chuyên môn" parent="menu_cau_hinh_2" action='medical_chuyen_mon_action' sequence="2" />
-<menuitem id="medical_trình_do_bang_cap_menu" name="Trình độ/Bằng cấp" parent="menu_cau_hinh_2" action='medical_trinhdo_bangcap_action' sequence="3" />
-
-<menuitem id="medical_thuoc_vaccin_menu" name="Thuốc, Vắc xin" parent="menu_cau_hinh_3" action='medical_thuoc_vaccin_action' sequence="2" />
-<menuitem id="medical_donvi_lieuthuoc_menu" name="Đơn vị liều thuốc" parent="menu_cau_hinh_3" action='medical_donvi_lieuthuoc_action' sequence="4" />
-<menuitem id="medical_lieu_thuoc_menu" name="Liều thuốc" parent="menu_cau_hinh_3" action='medical_lieu_thuoc_action' sequence="5" />
-
-<menuitem id="medical_loai_xet_nghiem_menu" name="Loại xét nghiệm" parent="menu_cau_hinh_4" action='medical_loai_xet_nghiem_action' sequence="1" />
-<menuitem id="medical_don_vi_xet_nghiem_menu" name="Đơn vị xét nghiệm" parent="menu_cau_hinh_4" action='medical_don_vi_xet_nghiem_action' sequence="2" />
-
-<menuitem id="medical_loai_chuan_doan_hinh_anh_menu" name="Loại chuẩn đoán hình ảnh" parent="menu_cau_hinh_5" action='medical_loai_chan_doan_hinh_anh_action' sequence="1" />
-
-<menuitem id="medical_examination_time_menu" name="Thời gian khám bệnh" parent="menu_cau_hinh_6" action='medical_examination_time_action' sequence="1" />
-<menuitem id="medical_shift_menu" name="Ca làm việc" parent="menu_cau_hinh_6" action='medical_shift_action' sequence="2" />
 </odoo>

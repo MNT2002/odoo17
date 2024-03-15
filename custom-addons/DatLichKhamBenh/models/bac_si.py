@@ -98,7 +98,6 @@ class BacSi(models.Model):
     def get_count_don_thuoc(self):
         for rec in self:
             rec.don_thuoc_count =  len(rec.don_thuoc_ids)
-    
 class DuocSi(models.Model):
     _name = 'medical.duoc_si'
     _description = 'medical.duoc_si'
@@ -188,7 +187,27 @@ class ExaminationSchedule(models.Model):
     shift_id = fields.Many2one('medical.shift','Ca làm việc', required=True, store=True)
 
     schedule_time_ids = fields.One2many(related='shift_id.time_ids')
+        
+    def _get_to_day(self):
+        today = fields.Date.today()
+        return today
     
+    @api.model
+    def read(self,fields=None, load='_classic_read'):
+        today = self._get_to_day()
+        arrExaminationSchedule = self.env['medical.examination_schedule'].search([])
+        for rec in arrExaminationSchedule:
+            if rec.schedule < today:
+                rec.is_pass_date = False
+            else:
+                rec.is_pass_date = True
+        # print("============================================")   
+        # print("arrExaminationSchedule: ",arrExaminationSchedule)  
+        # print("============================================")   
+
+        res = super(ExaminationSchedule, self).read(fields=fields, load=load)
+        return res
+
     def _check_pass_date(self):
         today = fields.Date.today()
         if self.schedule and self.schedule < today:

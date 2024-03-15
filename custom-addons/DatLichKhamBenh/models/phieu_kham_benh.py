@@ -1,6 +1,5 @@
 from odoo import fields, models, api
 from odoo.exceptions import ValidationError
-
 class PhieuKhamBenh(models.Model):
     _name = 'medical.phieu_kham_benh'
     _description = 'medical.phieu_kham_benh'
@@ -13,7 +12,6 @@ class PhieuKhamBenh(models.Model):
         vals['name'] = self.env['ir.sequence'].next_by_code('phieu_kham_benh.seq')
 
         # vals['bac_si_id'] = self.env.context.get('active_id', [])
-
         record =  super(PhieuKhamBenh, self).create(vals)
         return record
 
@@ -43,35 +41,38 @@ class PhieuKhamBenh(models.Model):
                                 , default=lambda self: fields.datetime.now())
 
     today = fields.Datetime('Ngày hôm nay', store=False
-                                , default=lambda self: fields.Date.now())
+                                , default=lambda self: fields.Date.today())
 
-
-    # @api.onchange('schedule_selection')
-    # def _get_schedule_time(self):
-    #     scheduleTimes = []
-    #     arrScheduleTime = self.env['medical.examination_schedule'].search([('doctor_id','=',self.bac_si_id.id),('schedule','=',self.schedule_selection.schedule)])
-    #     print(arrScheduleTime)
-    #     for rec in arrScheduleTime.schedule_time_ids:
-    #         # print((rec.name))
-    #         title = 'rec'+str(rec.id)
-    #         value =  str(rec.name)
-    #         # print('title: ',title)
-    #         # print('value:',value)
-    #         scheduleTimes.append(
-    #             (title,value)
-    #         )
-    #         print(scheduleTimes)
-    #     return scheduleTimes
     schedule_selection_id = fields.Many2one('medical.examination_schedule', domain="[('doctor_id','=',bac_si_id),('schedule','>=',today)]", 
     store=True, required=True, string='Ngày khám bệnh')
 
+    schedule_date = fields.Datetime('Ngày khám bênh', store=True, compute="_convert_schedule_date")
+
+    @api.depends('schedule_time_id')
+    def _convert_schedule_date(self):
+        # schedule_selection_id = self.env['medical.examination_schedule'].browse(self.schedule_selection_id)
+        # self.schedule_date = self.schedule_selection_id.schedule
+        # schedule_time_selected = self.env['medical.examination_time'].search([('id','=',self.schedule_time_id.id)])
+       
+        date_value = self.schedule_selection_id.schedule
+        float_value = self.schedule_time_id.name
+        
+        hours = int(float_value)
+        minutes = int((float_value - hours) * 60)
+        if date_value:
+            combined_datetime = fields.datetime.strptime(str(date_value), '%Y-%m-%d').replace(hour=hours, minute=minutes)
+            # combined_datetime = fields.Datetime.context_timestamp(self, combined_datetime)
+        
+            self.schedule_date = combined_datetime
+            print('=========================', combined_datetime)
+
     @api.onchange('schedule_selection_id')
-    def onchange_sschedule_selection(self):
+    def onchange_schedule_selection(self):
         self.schedule_time_id = False
 
     shift_id = fields.Many2one('medical.shift', related='schedule_selection_id.shift_id')
 
-    schedule_time_id = fields.Many2one('medical.examination_time', 'Thời gian khám bệnh (24 giờ)', domain="[('shift_id', '=', shift_id)]", required=True)
+    schedule_time_id = fields.Many2one('medical.examination_time', 'Thời gian khám bệnh (24 giờ)', domain="[('shift_id', '=', shift_id)]", required=True, store=True)
 
     ngay_sinh = fields.Date('Ngày sinh', compute="_compute_birthday")
 

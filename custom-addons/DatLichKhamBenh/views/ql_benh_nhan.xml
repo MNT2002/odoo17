@@ -11,15 +11,7 @@
 				</header>
 				<sheet>
 					<div class="oe_button_box" name="button_box">
-						<button type="action" class="oe_stat_button" name="DatLichKhamBenh.medical_vaccine_action" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user">
-							<field string="Vaccines" name="vaccine_count" widget="statinfo"/>
-						</button>
-						<!--						<button type="action" class="oe_stat_button" name="573" context="{'search_default_patient_id': active_id,'default_patient_id': active_id}">-->
-						<!--							<field string="Invoices" name="invoice_count" widget="statinfo"/>-->
-						<!--						</button>-->
-						<!--						<button type="action" class="oe_stat_button" name="704" context="{'search_default_patient': active_id,'default_patient': active_id}">-->
-						<!--							<field string="Insurances" name="insurance_count" widget="statinfo"/>-->
-						<!--						</button>-->
+						
 					</div>
 					<field name="anh_dai_dien" nolabel="1" widget="image" class="oe_avatar"/>
 					<div class="oe_title">
@@ -91,7 +83,7 @@
 						</page> -->
 						<page string="Phiếu khám bệnh">
 							<field name="phieu_kham_benh_ids" nolabel="1" readonly="1">
-								<tree string="Phiếu khám bệnh" >
+								<tree string="Phiếu khám bệnh">
 									<field name="ngay"/>
 									<field name="name"/>
 									<field name="chan_doan"/>
@@ -101,7 +93,7 @@
 						</page>
 						<page string="Chẩn đoán hình ảnh">
 							<field name="chan_doan_hinh_anh_ids" nolabel="1" readonly="1">
-								<tree string="Phiếu khám bệnh" >
+								<tree string="Phiếu khám bệnh">
 									<field name="ngay_phan_tich"/>
 									<field name="phieu_kham_benh_id"/>
 									<field name="phan_tich"/>
@@ -299,4 +291,5 @@
 		<field name="view_mode">tree,form,kanban</field>
 		<field name="domain">[('nhom_mau', '!=', '' 3) </field>
 	</record>
+
 </odoo>

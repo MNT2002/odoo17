@@ -21,10 +21,10 @@
             <form string="Bác sĩ">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action" class="oe_stat_button" name="DatLichKhamBenh.morden_action_medical_phieu_kham_benh" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_phieu_kham_benh)d" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
                             <field string="Phiếu khám bệnh" name="phieu_kham_benh_count" widget="statinfo"/>
                         </button>
-                        <button type="action" class="oe_stat_button" name="DatLichKhamBenh.medical_don_thuoc_action" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.medical_don_thuoc_action)d" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
                             <field string="Đơn thuốc" name="don_thuoc_count" widget="statinfo"/>
                         </button>
                     </div>
@@ -348,13 +348,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.examination_schedule</field>
         <field name="view_mode">tree</field>
-        <!-- <field name="domain">[('is_pass_date', '=', True)]</field> -->
+        <field name="domain">[('is_pass_date', '=', True)]</field>
     </record>
-    <!-- <record id="medical_examination_schedule_action" model="ir.actions.server">
-        <field name="name">Lịch khám</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="model_id">medical_examination_schedule</field>
-        <field name="code">model._check_pass_date()</field>
-    </record> -->
 
 </odoo>

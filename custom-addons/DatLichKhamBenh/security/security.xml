@@ -11,6 +11,7 @@
         <record id="group_employee_user" model="res.groups">
             <field name="name">Employee user</field>
             <field name="category_id" ref="DatLichKhamBenh.medical_category"/>
+            <!-- <field name="implied_ids" eval="[(4, ref('base.user_root'))]"/> -->
         </record>
         <!--Khai bao nhom quyen-->
         <record id="group_employee_doctor" model="res.groups">
