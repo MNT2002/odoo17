@@ -12,19 +12,19 @@
         </field>
     </record>
 
-    <!--===== Bác sĩ =====  -->
-    <!-- Bac si form view-->
-    <record id="medical_bac_si_view_form" model="ir.ui.view">
-        <field name="name">medical.bac_si.form</field>
+    <!--===== Doctor =====  -->
+    <!-- Doctor form view-->
+    <record id="medical_doctor_view_form" model="ir.ui.view">
+        <field name="name">medical.doctor.form</field>
         <field name="model">medical.bac_si</field>
         <field name="arch" type="xml">
             <form string="Bác sĩ">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_phieu_kham_benh)d" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_walkins)d" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
                             <field string="Phiếu khám bệnh" name="phieu_kham_benh_count" widget="statinfo"/>
                         </button>
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.medical_don_thuoc_action)d" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.medical_prescription_action)d" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
                             <field string="Đơn thuốc" name="don_thuoc_count" widget="statinfo"/>
                         </button>
                     </div>
@@ -93,9 +93,9 @@
         </field>
     </record>
 
-    <!-- Bac si kanban view-->
-    <record id="medical_bac_si_kanban_view" model="ir.ui.view">
-        <field name="name">medical.bac_si.kanban</field>
+    <!-- Doctor kanban view-->
+    <record id="medical_doctor_kanban_view" model="ir.ui.view">
+        <field name="name">medical.doctor.kanban</field>
         <field name="model">medical.bac_si</field>
         <field name="arch" type="xml">
             <kanban>
@@ -136,8 +136,8 @@
             </kanban>
         </field>
     </record>
-    <!--  Bac si search view  -->
-    <record id="bac_si_search_view" model="ir.ui.view">
+    <!--  Doctor search view  -->
+    <record id="doctor_search_view" model="ir.ui.view">
         <field name="name">Bác sĩ</field>
         <field name="model">medical.bac_si</field>
         <field name="arch" type="xml">
@@ -151,9 +151,9 @@
             </search>
         </field>
     </record>
-    <!-- Bac si tree view-->
-    <record id="medical_bac_si_tree_view" model="ir.ui.view">
-        <field name="name">medical.bac_si.tree</field>
+    <!-- Doctor tree view-->
+    <record id="medical_doctor_tree_view" model="ir.ui.view">
+        <field name="name">medical.doctor.tree</field>
         <field name="model">medical.bac_si</field>
         <field name="arch" type="xml">
             <tree string="Thông tin bệnh nhân">
@@ -165,8 +165,8 @@
             </tree>
         </field>
     </record>
-    <!-- Bac si action-->
-    <record id="medical_bac_si_action" model="ir.actions.act_window">
+    <!-- Doctor action-->
+    <record id="medical_doctor_action" model="ir.actions.act_window">
         <field name="name">Bác sĩ</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.bac_si</field>
@@ -176,10 +176,10 @@
     </record>
 
     
-    <!--===== Dược sĩ =====  -->
-    <!-- Dược sĩ form view-->
+    <!--===== Pharmacist =====  -->
+    <!-- Pharmacist form view-->
     <record id="medical_duoc_si_view_form" model="ir.ui.view">
-        <field name="name">medical.duoc_si.form</field>
+        <field name="name">medical.pharmacist.form</field>
         <field name="model">medical.duoc_si</field>
         <field name="arch" type="xml">
             <form string="Dược sĩ">
@@ -249,8 +249,8 @@
             </form>
         </field>
     </record>
-    <!--  Duoc si search view  -->
-    <record id="duoc_si_search_view" model="ir.ui.view">
+    <!--  Pharmacist search view  -->
+    <record id="pharmacist_search_view" model="ir.ui.view">
         <field name="name">Dược sĩ</field>
         <field name="model">medical.duoc_si</field>
         <field name="arch" type="xml">
@@ -264,9 +264,9 @@
             </search>
         </field>
     </record>
-    <!-- Dược sĩ kanban view-->
-    <record id="medical_duoc_si_kanban_view" model="ir.ui.view">
-        <field name="name">medical.duoc_si.kanban</field>
+    <!-- Pharmacist kanban view-->
+    <record id="medical_pharmacist_kanban_view" model="ir.ui.view">
+        <field name="name">medical.pharmacist.kanban</field>
         <field name="model">medical.duoc_si</field>
         <field name="arch" type="xml">
             <kanban>
@@ -307,9 +307,9 @@
             </kanban>
         </field>
     </record>
-    <!-- Dược sĩ tree view-->
-    <record id="medical_duoc_si_tree_view" model="ir.ui.view">
-        <field name="name">medical.duoc_si.tree</field>
+    <!--Ppharmacist tree view-->
+    <record id="medical_pharmacist_tree_view" model="ir.ui.view">
+        <field name="name">medical.pharmacist.tree</field>
         <field name="model">medical.duoc_si</field>
         <field name="arch" type="xml">
             <tree string="Thông tin bệnh nhân">
@@ -320,9 +320,9 @@
             </tree>
         </field>
     </record>
-    <!-- Dược sĩ action-->
-    <record id="medical_duoc_si_action" model="ir.actions.act_window">
-        <field name="name">Dược sĩ</field>
+    <!-- Pharmacist action-->
+    <record id="medical_pharmacist_action" model="ir.actions.act_window">
+        <field name="name">Pharmacist</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.duoc_si</field>
         <field name="view_mode">kanban,tree,form</field>

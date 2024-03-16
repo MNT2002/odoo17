@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Don thuoc duoc dat form view-->
-    <record id="medical_don_thuoc_duoc_dat_view_form" model="ir.ui.view">
-        <field name="name">medical.don_thuoc_duoc_dat.form</field>
+    <!-- Prescription Orders form view-->
+    <record id="medical_prescription_orders_view_form" model="ir.ui.view">
+        <field name="name">medical.prescription_orders.form</field>
         <field name="model">medical.don_thuoc_duoc_dat</field>
         <field name="arch" type="xml">
             <form string="Đơn thuốc được đặt">
@@ -43,8 +43,8 @@
             </form>
         </field>
     </record>
-    <!-- Don thuoc duoc dat search view  -->
-    <record id="don_thuoc_duoc_dat_search_view" model="ir.ui.view">
+    <!-- Prescriptionorders search view  -->
+    <record id="prescription_orders_search_view" model="ir.ui.view">
         <field name="name">Đơn thuốc được đặt</field>
         <field name="model">medical.don_thuoc_duoc_dat</field>
         <field name="arch" type="xml">
@@ -59,9 +59,9 @@
             </search>
         </field>
     </record>
-    <!--   Don thuoc duoc dat tree view-->
-    <record id="medical_don_thuoc_duoc_dat_tree_view" model="ir.ui.view">
-        <field name="name">medical.don_thuoc_duoc_dat.tree</field>
+    <!--   Prescription orders tree view-->
+    <record id="medical_prescription_orders_tree_view" model="ir.ui.view">
+        <field name="name">medical.prescription_orders.tree</field>
         <field name="model">medical.don_thuoc_duoc_dat</field>
         <field name="arch" type="xml">
             <tree string="Thông tin đơn thuốc được đặt">
@@ -76,8 +76,8 @@
             </tree>
         </field>
     </record>
-    <!-- Don thuoc duoc dat action-->
-    <record id="medical_don_thuoc_duoc_dat_action" model="ir.actions.act_window">
+    <!-- Prescription orders action-->
+    <record id="medical_prescription_orders_action" model="ir.actions.act_window">
         <field name="name">Danh sách đơn thuốc được đặt</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.don_thuoc_duoc_dat</field>

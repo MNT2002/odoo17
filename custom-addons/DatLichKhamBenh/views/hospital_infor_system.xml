@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!--===== Cau hinh =====  -->
-    <!-- Trung tâm y tế  -->
-    <record id="morden_action_medical_khoa_ttyt" model="ir.actions.act_window">
+    <!--===== Configuration =====  -->
+    <!-- Hospital -->
+    <record id="morden_action_medical_specialty_hospital" model="ir.actions.act_window">
         <field name="name">Danh sách khoa</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.khoa</field>
         <field name="domain">[('trung_tam_suc_khoe_id', '=', active_id)]</field>
     </record>
-    <record id="morden_action_medical_phong_ttyt" model="ir.actions.act_window">
+    <record id="morden_action_medical_clinic_hospital" model="ir.actions.act_window">
         <field name="name">Danh sách phòng</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.phong</field>
         <field name="domain">[('trung_tam_suc_khoe_id', '=', active_id)]</field>
     </record>
-    <!-- Trung tam y te form view-->
-    <record id="medical_trung_tam_y_te_view_form" model="ir.ui.view">
-        <field name="name">medical.trung_tam_y_te.form</field>
+    <!-- Hospital form view-->
+    <record id="medical_hospital_view_form" model="ir.ui.view">
+        <field name="name">medical.hospital.form</field>
         <field name="model">medical.trung_tam_y_te</field>
         <field name="arch" type="xml">
             <form string="Trung tâm y tế">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_khoa_ttyt)d" icon="fa-building-o">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_specialty_hospital)d" icon="fa-building-o">
                             <field string="Khoa" name="khoa_count" widget="statinfo" />
                         </button>
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_phong_ttyt)d" icon="fa-building-o">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_clinic_hospital)d" icon="fa-building-o">
                             <field string="Phòng" name="phong_count_t" widget="statinfo" />
                         </button>
                     </div>
@@ -75,8 +75,8 @@
             </form>
         </field>
     </record>
-    <!-- Search trung tam y te -->
-    <record id="trung_tam_y_te_search_view" model="ir.ui.view">
+    <!-- Search Hospital -->
+    <record id="hospital_search_view" model="ir.ui.view">
         <field name="name">Tìm kiếm trung tâm y tế</field>
         <field name="model">medical.trung_tam_y_te</field>
         <field name="arch" type="xml">
@@ -89,9 +89,9 @@
             </search>
         </field>
     </record>
-    <!-- Trung tam y te kanban view-->
-    <record id="medical_trung_tam_y_te_kanban_view" model="ir.ui.view">
-        <field name="name">medical.trung_tam_y_te.kanban</field>
+    <!-- Hospital kanban view-->
+    <record id="medical_hospital_kanban_view" model="ir.ui.view">
+        <field name="name">medical.hospital.kanban</field>
         <field name="model">medical.trung_tam_y_te</field>
         <field name="arch" type="xml">
             <kanban>
@@ -132,9 +132,9 @@
             </kanban>
         </field>
     </record>
-    <!-- Trung tam y te tree view-->
-    <record id="medical_trung_tam_y_te_tree_view" model="ir.ui.view">
-        <field name="name">medical.trung_tam_y_te.tree</field>
+    <!-- Hospital tree view-->
+    <record id="medical_hospital_tree_view" model="ir.ui.view">
+        <field name="name">medical.hospital.tree</field>
         <field name="model">medical.trung_tam_y_te</field>
         <field name="arch" type="xml">
             <tree string="Thông tin bệnh nhân">
@@ -147,8 +147,8 @@
             </tree>
         </field>
     </record>
-    <!-- Trung tam y te action-->
-    <record id="medical_trung_tam_y_te_action" model="ir.actions.act_window">
+    <!-- Hospital action-->
+    <record id="medical_hospital_action" model="ir.actions.act_window">
         <field name="name">Trung tâm y tế</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.trung_tam_y_te</field>
@@ -156,15 +156,15 @@
     </record>
 
 
-    <!-- Khoa form view-->
-    <record id="morden_action_medical_phong" model="ir.actions.act_window">
+    <record id="morden_action_medical_clinic" model="ir.actions.act_window">
         <field name="name">Danh sách Phòng</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.phong</field>
         <field name="domain">[('khoa_id', '=', active_id)]</field>
     </record>
-    <record id="medical_khoa_view_form" model="ir.ui.view">
-        <field name="name">medical.khoa.form</field>
+    <!-- Medical Specialty form view-->
+    <record id="medical_specialty_view_form" model="ir.ui.view">
+        <field name="name">medical.specialty.form</field>
         <field name="model">medical.khoa</field>
         <field name="arch" type="xml">
             <form string="Khoa">
@@ -173,7 +173,7 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_phong)d" icon="fa-list-ul">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_clinic)d" icon="fa-list-ul">
                             <field string="Phòng" name="phong_count" widget="statinfo" />
                         </button>
                     </div>
@@ -215,8 +215,8 @@
             </form>
         </field>
     </record>
-    <!-- Search Khoa -->
-    <record id="khoa_search_view" model="ir.ui.view">
+    <!-- Medical Specialty search view -->
+    <record id="specialty_search_view" model="ir.ui.view">
         <field name="name">Tìm kiếm khoa</field>
         <field name="model">medical.khoa</field>
         <field name="arch" type="xml">
@@ -233,9 +233,9 @@
             </search>
         </field>
     </record>
-    <!-- Khoa tree view-->
-    <record id="medical_khoa_tree_view" model="ir.ui.view">
-        <field name="name">medical.khoa.tree</field>
+    <!-- Medical Specialty tree view-->
+    <record id="medical_specialty_tree_view" model="ir.ui.view">
+        <field name="name">medical.specialty.tree</field>
         <field name="model">medical.khoa</field>
         <field name="arch" type="xml">
             <tree string="Khoa">
@@ -246,8 +246,8 @@
             </tree>
         </field>
     </record>
-    <!-- Khoa action-->
-    <record id="medical_khoa_action" model="ir.actions.act_window">
+    <!-- Medical specialty action-->
+    <record id="medical_specialty_action" model="ir.actions.act_window">
         <field name="name">Khoa</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.khoa</field>
@@ -255,12 +255,12 @@
     </record>
 
 
-    <!-- Phong form view-->
-    <record id="medical_phong_view_form" model="ir.ui.view">
-        <field name="name">medical.phong.form</field>
+    <!-- Clinic form view-->
+    <record id="medical_clinic_view_form" model="ir.ui.view">
+        <field name="name">medical.clinic.form</field>
         <field name="model">medical.phong</field>
         <field name="arch" type="xml">
-            <form string="phong">
+            <form string="Phòng">
                 <header>
                     <button name="btn_trong" confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Trống"?' string="Trống" type="object" class="oe_highlight" invisible="state == 'Trong'" />
                     <button name="btn_khong_co_san" string="Không có sẵn" confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Không có sẵn"?' type="object" class="oe_highlight" invisible="state == 'KhongCoSan'" />
@@ -289,8 +289,8 @@
             </form>
         </field>
     </record>
-    <!-- Search Phòng -->
-    <record id="phong_search_view" model="ir.ui.view">
+    <!-- Clinic Search view -->
+    <record id="clinic_search_view" model="ir.ui.view">
         <field name="name">Tìm kiếm phòng</field>
         <field name="model">medical.phong</field>
         <field name="arch" type="xml">
@@ -303,11 +303,11 @@
             </search>
         </field>
     </record>
-    <record id="medical_phong_tree_view" model="ir.ui.view">
-        <field name="name">medical.phong.tree</field>
+    <record id="medical_clinic_tree_view" model="ir.ui.view">
+        <field name="name">medical.clinic.tree</field>
         <field name="model">medical.phong</field>
         <field name="arch" type="xml">
-            <tree string="phong">
+            <tree string="Phòng">
                 <field name="name" />
                 <field name="trung_tam_suc_khoe_id" />
                 <field name="khoa_id" />
@@ -315,17 +315,17 @@
             </tree>
         </field>
     </record>
-    <!-- phong action-->
-    <record id="medical_phong_action" model="ir.actions.act_window">
+    <!-- Clinic action-->
+    <record id="medical_clinic_action" model="ir.actions.act_window">
         <field name="name">Phòng</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.phong</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Hieu thuoc form view-->
-    <record id="medical_hieu_thuoc_view_form" model="ir.ui.view">
-        <field name="name">medical.hieu_thuoc.form</field>
+    <!-- Pharmacies form view-->
+    <record id="medical_pharmacies_view_form" model="ir.ui.view">
+        <field name="name">medical.pharmacies.form</field>
         <field name="model">medical.hieu_thuoc</field>
         <field name="arch" type="xml">
             <form string="Hiệu thuốc">
@@ -371,8 +371,8 @@
             </form>
         </field>
     </record>
-    <!-- Search Hieu thuoc -->
-    <record id="hieu_thuoc_search_view" model="ir.ui.view">
+    <!-- Pharmacies Search view -->
+    <record id="pharmacies_search_view" model="ir.ui.view">
         <field name="name">Tìm kiếm hiệu thuốc</field>
         <field name="model">medical.hieu_thuoc</field>
         <field name="arch" type="xml">
@@ -385,9 +385,9 @@
             </search>
         </field>
     </record>
-    <!-- Hieu thuoc kanban view-->
-    <record id="medical_hieu_thuoc_kanban_view" model="ir.ui.view">
-        <field name="name">medical.hieu_thuoc.kanban</field>
+    <!-- Pharmacies kanban view-->
+    <record id="medical_pharmacies_kanban_view" model="ir.ui.view">
+        <field name="name">medical.pharmacies.kanban</field>
         <field name="model">medical.hieu_thuoc</field>
         <field name="arch" type="xml">
             <kanban>
@@ -428,12 +428,12 @@
             </kanban>
         </field>
     </record>
-    <!-- Hieu thuoc tree view -->
-    <record id="medical_hieu_thuoc_tree_view" model="ir.ui.view">
-        <field name="name">medical.hieu_thuoc.tree</field>
+    <!-- Pharmacies tree view -->
+    <record id="medical_pharmacies_tree_view" model="ir.ui.view">
+        <field name="name">medical.pharmacies.tree</field>
         <field name="model">medical.hieu_thuoc</field>
         <field name="arch" type="xml">
-            <tree string="hieu_thuoc">
+            <tree string="Hiệu thuốc">
                 <field name="name" />
                 <field name="trung_tam_suc_khoe_id" />
                 <field name="dia_chi" />
@@ -444,17 +444,17 @@
             </tree>
         </field>
     </record>
-    <!-- hieu_thuoc action-->
-    <record id="medical_hieu_thuoc_action" model="ir.actions.act_window">
+    <!--Ppharmacies action-->
+    <record id="medical_pharmacies_action" model="ir.actions.act_window">
         <field name="name">Hiệu thuốc</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.hieu_thuoc</field>
         <field name="view_mode">kanban,tree,form</field>
     </record>
 
-    <!-- medical.chuyen_mon tree view -->
-    <record id="medical_chuyen_mon_view_tree" model="ir.ui.view">
-        <field name="name">medical.chuyen_mon.view.tree</field>
+    <!-- Speciality tree view -->
+    <record id="medical_speciality_view_tree" model="ir.ui.view">
+        <field name="name">medical.speciality.view.tree</field>
         <field name="model">medical.chuyen_mon</field>
         <field name="arch" type="xml">
             <tree editable="top">
@@ -463,33 +463,34 @@
             </tree>
         </field>
     </record>
-    <record id="medical_chuyen_mon_action" model="ir.actions.act_window">
+    <record id="medical_speciality_action" model="ir.actions.act_window">
         <field name="name">Chuyên môn</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.chuyen_mon</field>
         <field name="view_mode">tree</field>
     </record>
-    <!-- medical.trinhdo_bangcap tree view -->
-    <record id="medical_trinhdo_bangcap_view_tree" model="ir.ui.view">
-        <field name="name">medical.trinhdo_bangcap.view.tree</field>
+
+    <!-- Degree tree view -->
+    <record id="medical_degree_view_tree" model="ir.ui.view">
+        <field name="name">medical.degree.view.tree</field>
         <field name="model">medical.trinhdo_bangcap</field>
         <field name="arch" type="xml">
-            <tree editable="top">
+            <tree string="Degrees" editable="top">
                 <field name="name"></field>
                 <field name="ho_va_ten"></field>
             </tree>
         </field>
     </record>
-    <record id="medical_trinhdo_bangcap_action" model="ir.actions.act_window">
+    <record id="medical_degree_action" model="ir.actions.act_window">
         <field name="name">Trình độ/Bằng cấp</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.trinhdo_bangcap</field>
         <field name="view_mode">tree</field>
     </record>
 
-    <!-- Thuoc, Vaccin form view-->
-    <record id="medical_thuoc_vaccin_view_form" model="ir.ui.view">
-        <field name="name">medical.thuoc_vaccin.form</field>
+    <!-- Medicine, Vaccine form view-->
+    <record id="medical_medicine_vaccin_view_form" model="ir.ui.view">
+        <field name="name">medical.medicine_vaccin.form</field>
         <field name="model">medical.thuoc_vaccin</field>
         <field name="arch" type="xml">
             <form string="Medicines">
@@ -535,8 +536,8 @@
             </form>
         </field>
     </record>
-    <!-- Thuoc_Vaccin search view -->
-    <record id="thuoc_vaccin_search_view" model="ir.ui.view">
+    <!-- Medicine, Vaccine search view -->
+    <record id="thuoc_vaccinw_search_view" model="ir.ui.view">
         <field name="name">Tìm kiếm thuốc, vắc xin</field>
         <field name="model">medical.thuoc_vaccin</field>
         <field name="arch" type="xml">
@@ -548,9 +549,9 @@
             </search>
         </field>
     </record>
-    <!-- Thuoc_Vaccin tree view -->
-    <record id="medical_thuoc_vaccin_tree_view" model="ir.ui.view">
-        <field name="name">medical.thuoc_vaccin.tree</field>
+    <!-- Medicine, Vaccine tree view -->
+    <record id="medical_medicine_vaccin_tree_view" model="ir.ui.view">
+        <field name="name">medical.medicine_vaccine.tree</field>
         <field name="model">medical.thuoc_vaccin</field>
         <field name="arch" type="xml">
             <tree string="Thuốc, Vắc xin">
@@ -561,17 +562,17 @@
             </tree>
         </field>
     </record>
-    <!-- Thuoc_Vaccin action-->
-    <record id="medical_thuoc_vaccin_action" model="ir.actions.act_window">
+    <!-- Medicine, Vaccine action-->
+    <record id="medical_medicine_vaccine_action" model="ir.actions.act_window">
         <field name="name">Thuốc, Vắc xin</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.thuoc_vaccin</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- medical.donvi_lieuthuoc tree view -->
-    <record id="medical_donvi_lieuthuoc_view_tree" model="ir.ui.view">
-        <field name="name">medical.donvi_lieuthuoc.view.tree</field>
+    <!-- Dose units tree view -->
+    <record id="medical_dose_units_view_tree" model="ir.ui.view">
+        <field name="name">medical.dose_units.view.tree</field>
         <field name="model">medical.donvi_lieuthuoc</field>
         <field name="arch" type="xml">
             <tree editable="top">
@@ -580,15 +581,15 @@
             </tree>
         </field>
     </record>
-    <record id="medical_donvi_lieuthuoc_action" model="ir.actions.act_window">
+    <record id="medical_dose_units_action" model="ir.actions.act_window">
         <field name="name">Đơn vị liều thuốc</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.donvi_lieuthuoc</field>
         <field name="view_mode">tree</field>
     </record>
-    <!-- medical.lieu_thuoc tree view -->
-    <record id="medical_lieu_thuoc_view_tree" model="ir.ui.view">
-        <field name="name">medical.lieu_thuoc.view.tree</field>
+    <!-- Medicines dosage tree view -->
+    <record id="medical_medicines_dosage_view_tree" model="ir.ui.view">
+        <field name="name">medical.medicines_dosage.view.tree</field>
         <field name="model">medical.lieu_thuoc</field>
         <field name="arch" type="xml">
             <tree editable="top">
@@ -598,7 +599,7 @@
             </tree>
         </field>
     </record>
-    <record id="medical_lieu_thuoc_action" model="ir.actions.act_window">
+    <record id="medical_medicines_dosage_action" model="ir.actions.act_window">
         <field name="name">Liều thuốc</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.lieu_thuoc</field>
@@ -668,9 +669,9 @@
     </record>
 
 
-    <!-- medical.don_vi_xet_nghiem tree view -->
-    <record id="medical_don_vi_xet_nghiem_view_tree" model="ir.ui.view">
-        <field name="name">medical.don_vi_xet_nghiem.view.tree</field>
+    <!-- Lab units tree view -->
+    <record id="medical_lab_units_view_tree" model="ir.ui.view">
+        <field name="name">medical.lab_units.view.tree</field>
         <field name="model">medical.don_vi_xet_nghiem</field>
         <field name="arch" type="xml">
             <tree editable="top">
@@ -679,16 +680,16 @@
             </tree>
         </field>
     </record>
-    <record id="medical_don_vi_xet_nghiem_action" model="ir.actions.act_window">
+    <record id="medical_lab_units_action" model="ir.actions.act_window">
         <field name="name">Đơn vị xét nghiệm</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.don_vi_xet_nghiem</field>
         <field name="view_mode">tree</field>
     </record>
 
-    <!-- medical.loai_xet_nghiem form view -->
-    <record id="medical_loai_xet_nghiem_view_form" model="ir.ui.view">
-        <field name="name">medical.loai_xet_nghiem.form</field>
+    <!-- Lab test types form view -->
+    <record id="medical_lab_test_types_view_form" model="ir.ui.view">
+        <field name="name">medical.lab_test_types.form</field>
         <field name="model">medical.loai_xet_nghiem</field>
         <field name="arch" type="xml">
             <form string="Loại xét nghiệm">
@@ -732,9 +733,9 @@
             </form>
         </field>
     </record>
-    <!-- medical.loai_xet_nghiem tree view -->
-    <record id="medical_loai_xet_nghiem_view_tree" model="ir.ui.view">
-        <field name="name">medical.loai_xet_nghiem.view.tree</field>
+    <!-- Lab test types tree view -->
+    <record id="medical_lab_test_types_view_tree" model="ir.ui.view">
+        <field name="name">medical.lab_test_types.view.tree</field>
         <field name="model">medical.loai_xet_nghiem</field>
         <field name="arch" type="xml">
             <tree>
@@ -744,16 +745,16 @@
             </tree>
         </field>
     </record>
-    <record id="medical_loai_xet_nghiem_action" model="ir.actions.act_window">
+    <record id="medical_lab_test_types_action" model="ir.actions.act_window">
         <field name="name">Loại xét nghiệm</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.loai_xet_nghiem</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- medical.loai_chan_doan_hinh_anh tree view -->
-    <record id="medical_loai_chan_doan_hinh_anh_view_tree" model="ir.ui.view">
-        <field name="name">medical.loai_chan_doan_hinh_anh.view.tree</field>
+    <!-- Imaging test types tree view -->
+    <record id="medical_diagnostic_imaging_types_view_tree" model="ir.ui.view">
+        <field name="name">medical.diagnostic_imaging_types.view.tree</field>
         <field name="model">medical.loai_chan_doan_hinh_anh</field>
         <field name="arch" type="xml">
             <tree>
@@ -763,7 +764,7 @@
             </tree>
         </field>
     </record>
-    <record id="medical_loai_chan_doan_hinh_anh_action" model="ir.actions.act_window">
+    <record id="medical_diagnostic_imaging_types_action" model="ir.actions.act_window">
         <field name="name">Loại chẩn đoán hình ảnh</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.loai_chan_doan_hinh_anh</field>
@@ -771,9 +772,9 @@
     </record>
 
 
-    <!-- medical.chan_doan_hinh_anh form view -->
-    <record id="medical_chan_doan_hinh_anh_view_form" model="ir.ui.view">
-        <field name="name">medical.chan_doan_hinh_anh.form</field>
+    <!-- diagnostic imaging form view -->
+    <record id="medical_diagnostic_imaging_view_form" model="ir.ui.view">
+        <field name="name">medical.diagnostic_imaging.form</field>
         <field name="model">medical.chan_doan_hinh_anh</field>
         <field name="arch" type="xml">
             <form string="Chẩn đoán hình ảnh">
@@ -850,8 +851,8 @@
             </form>
         </field>
     </record>
-    <!-- Search chan doan hinh anh -->
-    <record id="chan_doan_hinh_anh_search_view" model="ir.ui.view">
+    <!-- Diagnostic imaging search view -->
+    <record id="diagnostic_imaging_search_view" model="ir.ui.view">
         <field name="name">Tìm kiếm chẩn đoán hình ảnh</field>
         <field name="model">medical.chan_doan_hinh_anh</field>
         <field name="arch" type="xml">
@@ -867,9 +868,9 @@
             </search>
         </field>
     </record>
-    <!-- medical.chan_doan_hinh_anh tree view -->
-    <record id="medical_chan_doan_hinh_anh_view_tree" model="ir.ui.view">
-        <field name="name">medical.chan_doan_hinh_anh.view.tree</field>
+    <!-- diagnostic_imaging tree view -->
+    <record id="medical_diagnostic_imaging_view_tree" model="ir.ui.view">
+        <field name="name">medical.diagnostic_imaging.view.tree</field>
         <field name="model">medical.chan_doan_hinh_anh</field>
         <field name="arch" type="xml">
             <tree string="Danh sách chẩn đoán hình ảnh">
@@ -884,7 +885,7 @@
             </tree>
         </field>
     </record>
-    <record id="medical_chan_doan_hinh_anh_action" model="ir.actions.act_window">
+    <record id="medical_diagnostic_imaging_action" model="ir.actions.act_window">
         <field name="name">Chẩn đoán hình ảnh</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.chan_doan_hinh_anh</field>
@@ -892,9 +893,9 @@
         <field name="context">{'search_default_trang_thai_filter': 1}</field>
     </record>
 
-    <!-- medical.vat_tu_tieu_hao tree view -->
-    <record id="medical_vat_tu_tieu_hao_view_tree" model="ir.ui.view">
-        <field name="name">medical.vat_tu_tieu_hao.view.tree</field>
+    <!-- material_consumption tree view -->
+    <record id="medical_material_consumption_view_tree" model="ir.ui.view">
+        <field name="name">medical.material_consumption.view.tree</field>
         <field name="model">medical.vat_tu_tieu_hao</field>
         <field name="arch" type="xml">
             <tree>
@@ -905,7 +906,7 @@
             </tree>
         </field>
     </record>
-    <record id="medical_vat_tu_tieu_hao_action" model="ir.actions.act_window">
+    <record id="medical_material_consumption_action" model="ir.actions.act_window">
         <field name="name">Vặt tư tiêu hao</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.vat_tu_tieu_hao</field>
@@ -952,9 +953,9 @@
     </record>
 
 
-    <!-- Bang thong tin kanban view -->
-    <record id="medical_bang_thong_tin_khoa_kanban_view" model="ir.ui.view">
-        <field name="name">medical.khoa.kanban</field>
+    <!-- Dashboard kanban view -->
+    <record id="medical_specialty_dashboard_kanban_view" model="ir.ui.view">
+        <field name="name">medical.specialty_dashboard.kanban</field>
         <field name="model">medical.khoa</field>
         <field name="arch" type="xml">
             <kanban create="false" class="oe_background_grey o_kanban_dashboard o_account_kanban">
@@ -1017,55 +1018,57 @@
                             </div>
                         </a>
                     </div>
-                        <div class="so_luong_text_wrap">
-                            <a type="object" name="btn_so_luong_phieu_kham_benh" context="{}">
-                                <div class="so_luong_text"> Phiếu khám bệnh <span class="so_luong_icon">
-                                    <span>
-                                        <field name="phieu_kham_benh_count" />
-                                    </span>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
                     <div class="so_luong_text_wrap">
-                        <a type="object" name="btn_so_luong_chan_doan_hinh_anh" context="{}">
-                            <div class="so_luong_text"> Chẩn đoán hình ảnh <span class="so_luong_icon">
+                        <a type="object" name="btn_so_luong_phieu_kham_benh" context="{}">
+                            <div class="so_luong_text"> Phiếu khám bệnh <span class="so_luong_icon">
                                 <span>
-                                    <field name="chan_doan_hinh_anh_count" />
+                                    <field name="phieu_kham_benh_count" />
                                 </span>
                             </span>
                         </div>
                     </a>
                 </div>
                 <div class="so_luong_text_wrap">
-                    <a type="object" name="btn_so_luong_don_thuoc" context="{}">
-                        <div class="so_luong_text"> Đơn thuốc <span class="so_luong_icon">
+                    <a type="object" name="btn_so_luong_chan_doan_hinh_anh" context="{}">
+                        <div class="so_luong_text"> Chẩn đoán hình ảnh <span class="so_luong_icon">
                             <span>
-                                <field name="don_thuoc_count" />
+                                <field name="chan_doan_hinh_anh_count" />
                             </span>
                         </span>
                     </div>
                 </a>
             </div>
-        </t>
-        <t t-name="OehManage">
-            <div class="row o_kanban_card_settings" style="margin-left: -16px; margin-right: -16px">
-                <div class="col-6" style="text-align: center">
-                    <a type="object" name="toggle_favorite">
-                        <i t-attf-class="fa o_dashboard_star #{record.yeu_thich.raw_value ? 'fa-star' : 'fa-star-o'}" title="Nhấn để thêm/xoá yêu thích" />
+            <div class="so_luong_text_wrap">
+                <a type="object" name="btn_so_luong_don_thuoc" context="{}">
+                    <div class="so_luong_text"> Đơn thuốc <span class="so_luong_icon">
+                        <span>
+                            <field name="don_thuoc_count" />
+                        </span>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </t>
+    <t t-name="OehManage">
+        <div class="row o_kanban_card_settings" style="margin-left: -16px; margin-right: -16px">
+            <div class="col-6" style="text-align: center">
+                <a type="object" name="toggle_favorite">
+                    <i t-attf-class="fa o_dashboard_star #{record.yeu_thich.raw_value ? 'fa-star' : 'fa-star-o'}" title="Nhấn để thêm/xoá yêu thích" />
  Yêu thích</a>
-                </div>
-                <div class="col-6" style="text-align: center">
-                    <a t-if="widget.editable" type="edit"><i t-attf-class="fa o_dashboard_star fa-gear" title="Nhấn để thêm/xoá yêu thích" /> Thiết lập</a>
-                </div>
             </div>
-        </t>
-    </templates>
+            <div class="col-6" style="text-align: center">
+                <a t-if="widget.editable" type="edit">
+                    <i t-attf-class="fa o_dashboard_star fa-gear" title="Nhấn để thêm/xoá yêu thích" />
+ Thiết lập</a>
+            </div>
+        </div>
+    </t>
+</templates>
 </kanban>
 </field>
 </record>
-<!-- Bang thong tin khoa action -->
-<record id="medical_bang_thong_tin_khoa_action" model="ir.actions.act_window">
+<!-- Medical specialty dashboard action -->
+<record id="medical_specialty_dashboard_action" model="ir.actions.act_window">
 <field name="name">Bảng thông tin</field>
 <field name="type">ir.actions.act_window</field>
 <field name="res_model">medical.khoa</field>

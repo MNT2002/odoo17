@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!--===== Phiếu khám bệnh =====  -->
-    <!--hiếu khám bệnh form view-->
-    <record id="medical_phieu_kham_benh_view_form" model="ir.ui.view">
-        <field name="name">medical.phieu_kham_benh.form</field>
+    <!--Walkins form view-->
+    <record id="medical_walkins_view_form" model="ir.ui.view">
+        <field name="name">medical.walkins.form</field>
         <field name="model">medical.phieu_kham_benh</field>
         <field name="arch" type="xml">
             <form string="Phiếu khám bệnh">
@@ -77,8 +77,8 @@
             </form>
         </field>
     </record>
-    <!-- Phieu kham benh search view  -->
-    <record id="phieu_kham_benh_search_view" model="ir.ui.view">
+    <!-- Walkins search view  -->
+    <record id="walkins_search_view" model="ir.ui.view">
         <field name="name">Phiếu khám bệnh</field>
         <field name="model">medical.phieu_kham_benh</field>
         <field name="arch" type="xml">
@@ -101,9 +101,9 @@
             </search>
         </field>
     </record>
-    <!-- Phieu kham benh kanban view-->
-    <record id="medical_phieu_kham_benh_kanban_view" model="ir.ui.view">
-        <field name="name">medical.phieu_kham_benh.kanban</field>
+    <!-- Walkins kanban view-->
+    <record id="medical_walkins_kanban_view" model="ir.ui.view">
+        <field name="name">medical.walkins.kanban</field>
         <field name="model">medical.phieu_kham_benh</field>
         <field name="arch" type="xml">
             <kanban>
@@ -147,9 +147,9 @@
             </kanban>
         </field>
     </record>
-    <!--   Phieu kham benh tree view-->
-    <record id="medical_phieu_kham_benh_tree_view" model="ir.ui.view">
-        <field name="name">medical.phieu_kham_benh.tree</field>
+    <!--   Walkins tree view-->
+    <record id="medical_walkins_tree_view" model="ir.ui.view">
+        <field name="name">medical.walkins.tree</field>
         <field name="model">medical.phieu_kham_benh</field>
         <field name="arch" type="xml">
             <tree string="Thông tin phiếu khám bệnh">
@@ -165,8 +165,8 @@
             </tree>
         </field>
     </record>
-    <record id="view_task_calendar" model="ir.ui.view">
-        <field name="name">medical.phieu_kham_benh.calendar</field>
+    <record id="view_walkins_calendar" model="ir.ui.view">
+        <field name="name">medical.walkins.calendar</field>
         <field name="model">medical.phieu_kham_benh</field>
         <field eval="2" name="priority"/>
         <field name="arch" type="xml">
@@ -177,8 +177,8 @@
             </calendar>
         </field>
      </record>
-    <!-- Phieu kham benh action-->
-    <record id="medical_phieu_kham_benh_action" model="ir.actions.act_window">
+    <!-- Walkins action-->
+    <record id="medical_walkins_action" model="ir.actions.act_window">
         <field name="name">Phiếu khám bệnh</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.phieu_kham_benh</field>
@@ -186,7 +186,7 @@
         <field name="context">{'search_default_group_by_bac_si': 1, 'search_default_group_by_trang_thai': 2}</field>
     </record>
 
-    <record id="morden_action_medical_phieu_kham_benh" model="ir.actions.act_window">
+    <record id="morden_action_medical_walkins" model="ir.actions.act_window">
         <field name="name">Danh sách phiếu khám bệnh</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.phieu_kham_benh</field>
@@ -194,10 +194,10 @@
         <field name="domain">[('bac_si_id', '=', active_id)]</field>
         <field name="context">{'search_default_group_by_trang_thai': 1, 'search_default_bac_si_id': active_id}</field>
     </record>
-    <!--===== Đơn thuốc =====  -->
-    <!-- Don thuoc form view-->
-    <record id="medical_don_thuoc_view_form" model="ir.ui.view">
-        <field name="name">medical.don_thuoc.form</field>
+    <!--===== Prescription =====  -->
+    <!-- Prescription form view-->
+    <record id="medical_prescription_view_form" model="ir.ui.view">
+        <field name="name">medical.prescription.form</field>
         <field name="model">medical.don_thuoc</field>
         <field name="arch" type="xml">
             <form string="Đơn thuốc">
@@ -236,8 +236,8 @@
             </form>
         </field>
     </record>
-    <!-- Don thuoc search view  -->
-    <record id="don_thuoc_search_view" model="ir.ui.view">
+    <!-- Prescription search view  -->
+    <record id="prescription_search_view" model="ir.ui.view">
         <field name="name">Đơn thuốc</field>
         <field name="model">medical.don_thuoc</field>
         <field name="arch" type="xml">
@@ -249,9 +249,9 @@
             </search>
         </field>
     </record>
-    <!--   Don thuoc tree view-->
-    <record id="medical_don_thuoc_tree_view" model="ir.ui.view">
-        <field name="name">medical.don_thuoc.tree</field>
+    <!--   Prescription tree view-->
+    <record id="medical_prescription_tree_view" model="ir.ui.view">
+        <field name="name">medical.prescription.tree</field>
         <field name="model">medical.don_thuoc</field>
         <field name="arch" type="xml">
             <tree string="Thông tin đơn thuốc">
@@ -266,8 +266,8 @@
             </tree>
         </field>
     </record>
-    <!-- Don thuoc action-->
-    <record id="medical_don_thuoc_action" model="ir.actions.act_window">
+    <!-- Prescription action-->
+    <record id="medical_prescription_action" model="ir.actions.act_window">
         <field name="name">Đơn thuốc</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.don_thuoc</field>
@@ -275,17 +275,17 @@
         <field name="domain">[('bac_si_id', '=', active_id)]</field>
         <!-- <field name="context">{'search_default_group_by_bac_si': 1}</field> -->
     </record>
-    <record id="medical_don_thuoc_all_action" model="ir.actions.act_window">
+    <record id="medical_prescription_list_action" model="ir.actions.act_window">
         <field name="name">Danh sách đơn thuốc</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.don_thuoc</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!--===== Chi tiết toa thuốc =====  -->
-    <!-- Chi tiet toa thuoc form view-->
-    <record id="medical_chi_tiet_toa_thuoc_view_form" model="ir.ui.view">
-        <field name="name">medical.chi_tiet_toa_thuoc.form</field>
+    <!--===== Prescription details =====  -->
+    <!-- Prescription details form view-->
+    <record id="medical_prescription_details_view_form" model="ir.ui.view">
+        <field name="name">medical.prescription_details.form</field>
         <field name="model">medical.chi_tiet_toa_thuoc</field>
         <field name="arch" type="xml">
             <form string="Chi tiết toa thuốc">
@@ -311,9 +311,9 @@
             </form>
         </field>
     </record>
-    <!--   Chi tiet toa thuoc tree view-->
-    <record id="medical_chi_tiet_toa_thuoc_tree_view" model="ir.ui.view">
-        <field name="name">medical.chi_tiet_toa_thuoc.tree</field>
+    <!--   Prescription details tree view-->
+    <record id="medical_prescription_details_tree_view" model="ir.ui.view">
+        <field name="name">medical.prescription_details.tree</field>
         <field name="model">medical.chi_tiet_toa_thuoc</field>
         <field name="arch" type="xml">
             <tree string="Chi tiết toa thuốc">

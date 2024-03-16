@@ -1,6 +1,6 @@
 <odoo>
-	<record id="medical_benh_nhan_form_view" model="ir.ui.view">
-		<field name="name">medical.benh_nhan.form</field>
+	<record id="medical_patient_form_view" model="ir.ui.view">
+		<field name="name">medical.patient.form</field>
 		<field name="model">medical.benh_nhan</field>
 		<field name="arch" type="xml">
 			<form string="Bệnh nhân">
@@ -8,7 +8,7 @@
 					<button name="%(DatLichKhamBenh.change_state_benh_nhan_action)d" string="Đã khám" type="action" class="oe_highlight" invisible="state == 'DaKham'"/>
 					<button name="btn_dang_cho" string="Đang chờ" type="object" confirm='Bạn có muốn thay đổi trạng thái của bệnh nhân thành "Đang chờ"?' class="oe_highlight" invisible="state == 'DangCho'"/>
 					<field name="state" widget="statusbar" />
-				</header>
+				</header> 
 				<sheet>
 					<div class="oe_button_box" name="button_box">
 						
@@ -198,7 +198,7 @@
 		</field>
 	</record>
 
-	<record id="benh_nhan_search_view" model="ir.ui.view">
+	<record id="patient_search_view" model="ir.ui.view">
 		<field name="name">Tìm kiếm bệnh nhân</field>
 		<field name="model">medical.benh_nhan</field>
 		<field name="arch" type="xml">
@@ -218,8 +218,8 @@
 		</field>
 	</record>
 
-	<record id="medical_benh_nhan_tree_view" model="ir.ui.view">
-		<field name="name">medical.benh_nhan.tree</field>
+	<record id="medical_patient_tree_view" model="ir.ui.view">
+		<field name="name">medical.patient.tree</field>
 		<field name="model">medical.benh_nhan</field>
 		<field name="arch" type="xml">
 			<tree string="Thông tin bệnh nhân">
@@ -232,8 +232,8 @@
 			</tree>
 		</field>
 	</record>
-	<record id="medical_benh_nhan_kanban_view" model="ir.ui.view">
-		<field name="name">medical.benh_nhan.kanban</field>
+	<record id="medical_patient_kanban_view" model="ir.ui.view">
+		<field name="name">medical.patient.kanban</field>
 		<field name="model">medical.benh_nhan</field>
 		<field name="arch" type="xml">
 			<kanban>
@@ -277,14 +277,14 @@
 		</field>
 	</record>
 
-	<record id="medical_benh_nhan_action" model="ir.actions.act_window">
+	<record id="medical_patient_action" model="ir.actions.act_window">
 		<field name="name">Bệnh nhân</field>
 		<field name="type">ir.actions.act_window</field>
 		<field name="res_model">medical.benh_nhan</field>
 		<field name="view_mode">kanban,tree,form</field>
 		<field name="context">{'search_default_group_by_create_date': 1}</field>
 	</record>
-	<record id="medical_benh_nhan_action_domain_nhom_mau" model="ir.actions.act_window">
+	<record id="medical_patient_action_domain_nhom_mau" model="ir.actions.act_window">
 		<field name="name">Bệnh nhân</field>
 		<field name="type">ir.actions.act_window</field>
 		<field name="res_model">medical.benh_nhan</field>
