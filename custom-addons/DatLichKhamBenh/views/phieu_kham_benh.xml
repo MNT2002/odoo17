@@ -172,6 +172,8 @@
         <field name="arch" type="xml">
             <calendar string="Phiếu khám bệnh" date_start="schedule_date" color="state" mode="week">
                 <field name="benh_nhan_id"/>
+                <field name="ly_do_kiem_tra"/>
+                <field name="state"/>
             </calendar>
         </field>
      </record>

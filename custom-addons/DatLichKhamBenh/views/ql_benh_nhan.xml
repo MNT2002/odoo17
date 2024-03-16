@@ -30,7 +30,7 @@
 						<group>
 							<field name="ngay_sinh" required="1"/>
 							<field name="nam_sinh" readonly="1"/>
-							<field name="cccd" required='nam_sinh != False'/>
+							<field name="cccd"/>
 							<field name="nhom_mau" />
 							<field name="rh" />
 							<field name="bac_si_gia_dinh" />

@@ -4,7 +4,7 @@
         <!--Khai bao danh muc phan quyen-->
         <record model="ir.module.category" id="medical_category">
             <field name="name">Medical</field>
-            <field name="sequence">1</field>
+            <field name="sequence">10</field>
         </record>
 
         <!--Khai bao nhom quyen-->
@@ -31,22 +31,12 @@
         <record id="owner_bac_si_rule" model="ir.rule">
             <field name="name">Owner Doctor Rule</field>
             <field name="model_id" ref="DatLichKhamBenh.model_medical_bac_si"/>
-            <field name="domain_force">[('res_users_id', '=', user.id)]</field>
+            <field name="domain_force">[('res_users_id', '=', user.id )]</field>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
             <field name="perm_read" eval="1"/>
             <field name="perm_unlink" eval="1"/>
             <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
-        </record>
-         <record id="owner_bac_si_manager_rule" model="ir.rule">
-            <field name="name">Owner Doctor Rule</field>
-            <field name="model_id" ref="DatLichKhamBenh.model_medical_bac_si"/>
-            <field name="domain_force">[(1, '=', 1 )]</field>
-            <field name="perm_write" eval="1"/>
-            <field name="perm_create" eval="1"/>
-            <field name="perm_read" eval="1"/>
-            <field name="perm_unlink" eval="1"/>
-            <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_manager'))]"/>
         </record>
 
         <record id="owner_benh_nhan_rule" model="ir.rule">
@@ -61,6 +51,7 @@
             <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
             <!--<field name="global" eval="1"/> -->
         </record>
+
         <record id="owner_phieu_kham_benh_rule" model="ir.rule">
             <field name="name">Owner Doctor Rule</field>
             <field name="model_id" ref="DatLichKhamBenh.model_medical_phieu_kham_benh"/>
@@ -131,19 +122,6 @@
             <field name="perm_unlink" eval="1"/>
             <!-- You can attach this rule to a specific group, Or make it Global -->
             <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
-            <!--<field name="global" eval="1"/> -->
-        </record>
-
-        <record id="all_employee_rule" model="ir.rule">
-            <field name="name">All Employee Rule</field>
-            <field ref="DatLichKhamBenh.model_medical_benh_nhan" name="model_id"/>
-            <field name="domain_force">[(1, '=', 1 )]</field>
-            <field name="perm_write" eval="1"/>
-            <field name="perm_create" eval="1"/>
-            <field name="perm_read" eval="1"/>
-            <field name="perm_unlink" eval="1"/>
-            <!-- You can attach this rule to a specific group, Or make it Global -->
-            <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_manager'))]"/>
             <!--<field name="global" eval="1"/> -->
         </record>
 

@@ -57,14 +57,17 @@ class PhieuKhamBenh(models.Model):
         date_value = self.schedule_selection_id.schedule
         float_value = self.schedule_time_id.name
         
-        hours = int(float_value)
-        minutes = int((float_value - hours) * 60)
-        if date_value:
-            combined_datetime = fields.datetime.strptime(str(date_value), '%Y-%m-%d').replace(hour=hours, minute=minutes)
+        if date_value and float_value:
+            hours = int(float_value)
+            minutes = int((float_value - hours) * 60)
+            print(hours, minutes)
+            combined_datetime = fields.datetime.strptime(str(date_value), '%Y-%m-%d').replace(hour=(hours - 7), minute=minutes) #(hourse-7 => thời gian khám đang hiển thị là giờ VN)
             # combined_datetime = fields.Datetime.context_timestamp(self, combined_datetime)
         
             self.schedule_date = combined_datetime
             print('=========================', combined_datetime)
+        else:
+            self.schedule_date = False
 
     @api.onchange('schedule_selection_id')
     def onchange_schedule_selection(self):

@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="// field[@name='action_id']" position="after">
                 <field name="_is_invisible" invisible="True"/>
-                <field name="bac_si_ids" widget="many2many_tags" invisible="_is_invisible == True"/>
+                <field name="bac_si_ids" widget="many2many_tags" invisible="_is_invisible == True" groups="DatLichKhamBenh.group_employee_manager"/>
             </xpath>
         </field>
     </record>
