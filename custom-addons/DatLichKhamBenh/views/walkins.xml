@@ -4,7 +4,7 @@
     <!--Walkins form view-->
     <record id="medical_walkins_view_form" model="ir.ui.view">
         <field name="name">medical.walkins.form</field>
-        <field name="model">medical.phieu_kham_benh</field>
+        <field name="model">medical.walkins</field>
         <field name="arch" type="xml">
             <form string="Phiếu khám bệnh">
                 <header>
@@ -23,11 +23,11 @@
                     </div>
                     <group>
                         <group>
-                            <field name="benh_nhan_id" readonly="id != False"/>
-                            <field name="schedule_selection_id" required="[('bac_si_id','!=',False)]" readonly="state != 'DaLenLich'"/>
+                            <field name="patient_id" readonly="id != False"/>
+                            <field name="schedule_selection_id" required="[('doctor_id','!=',False)]" readonly="state != 'DaLenLich'"/>
                         </group>
                         <group>
-                            <field name="bac_si_id" options="{'no_create': True}" required="[('khoa_id','!=',False), ('trung_tam_y_te_id', '!=', False)]" help="Vui lòng chọn Trung tâm ý tế và khoa trước khi chọn bác sĩ"/>
+                            <field name="doctor_id" options="{'no_create': True}" required="[('department_id','!=',False), ('health_center_id', '!=', False)]" help="Vui lòng chọn Trung tâm ý tế và department trước khi chọn bác sĩ"/>
                             <field name="shift_id" invisible="1"/>
                             <field name="schedule_time_id" widget="selection_badge" readonly="schedule_selection_id == False or state != 'DaLenLich'" />
                             <field name="schedule_date" string="Ngày giờ khám bệnh" readonly="True" />
@@ -35,36 +35,36 @@
                     </group>
                     <group>
                         <group>
-                            <field name="ngay_sinh" />
-                            <field name="tinh_trang_hon_nhan" />
+                            <field name="dob" />
+                            <field name="marital_status" />
                             <field name="rh" />
-                            <field name="ly_do_kiem_tra" />
-                            <field name="trieu_chung" />
+                            <field name="reason_check" />
+                            <field name="symptom" />
                         </group>
                         <group>
-                            <field name="gioi_tinh" />
-                            <field name="nhom_mau" />
-                            <field name="trung_tam_y_te_id"  options="{'no_create': True}"/>
-                            <field name="khoa_id" required="[('trung_tam_y_te_id', '!=', False)]" options="{'no_create': True}"/>
-                            <field name="phong_id" />
+                            <field name="sex" />
+                            <field name="blood_type" />
+                            <field name="health_center_id"  options="{'no_create': True}"/>
+                            <field name="department_id" required="[('health_center_id', '!=', False)]" options="{'no_create': True}"/>
+                            <field name="clinic_id" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Điều trị" invisible="state in ['DaLenLich','ChoKham']">
                             <group>
                                 <group>
-                                    <field name="binh_luan"/>
+                                    <field name="comments"/>
                                 </group>
                                 <group>
-                                    <field name="chan_doan" readonly="state == 'HoanThanh'"/>
-                                    <field name="ngay_tai_kham" readonly="state == 'HoanThanh'"/>
+                                    <field name="diagnosis" readonly="state == 'HoanThanh'"/>
+                                    <field name="date_re_exam" readonly="state == 'HoanThanh'"/>
                                 </group>
                             </group>
-                            <field name="don_thuoc_ids" context="{'default_so_thu_tu': active_id}"/>
+                            <field name="prescription_ids" context="{'default_walkins_id': active_id}"/>
                         </page>
                         <page string="Chẩn đoán hình ảnh">
                             <div class="o_row">
-                                <field name="chan_doan_hinh_anh_ids" context="{'default_phieu_kham_benh_id': active_id}"/>
+                                <field name="diagnostic_imaging_ids" context="{'default_walkins_id': active_id}"/>
                             </div>
                         </page>
                         <page string="Vắc xin">
@@ -80,23 +80,23 @@
     <!-- Walkins search view  -->
     <record id="walkins_search_view" model="ir.ui.view">
         <field name="name">Phiếu khám bệnh</field>
-        <field name="model">medical.phieu_kham_benh</field>
+        <field name="model">medical.walkins</field>
         <field name="arch" type="xml">
             <search string="">
                 <separator />
                 <field name="name" select="1"/>
-                <field name="benh_nhan_id" string="Bệnh nhân" select="1"/>
-                <field name="bac_si_id" string="Bác sĩ" select="1"/>
+                <field name="patient_id" string="Bệnh nhân" select="1"/>
+                <field name="doctor_id" string="Bác sĩ" select="1"/>
                 <filter string="Chờ khám" name="state_cho_kham_filter" domain="[('state', '=', 'ChoKham')]"/>
                 <group expand="0" string="Nhóm theo">
-                    <filter string="Khoa" name="group_by_khoa" context="{'group_by':'khoa_id'}" />
-                    <filter string="Bệnh nhân" name="group_by_name" context="{'group_by': 'benh_nhan_id'}" />
-                    <filter string="Bác sĩ" name="group_by_bac_si" context="{'group_by': 'bac_si_id'}"/>
-                    <filter string="Giới tính" name="group_by_gioi_tinh" context="{'group_by': 'gioi_tinh'}"/>
-                    <filter string="Nhóm máu" name="group_by_nhom_mau" context="{'group_by': 'nhom_mau'}"/>
-                    <filter string="Tình trạng hôn nhân" name="group_by_tinh_trang_hon_nhan" context="{'group_by': 'tinh_trang_hon_nhan'}"/>
-                    <filter string="Trạng thái" name="group_by_trang_thai" context="{'group_by': 'state'}"/>
-                    <filter string="Ngày khám bệnh" name="group_by_ngay_kham_benh" context="{'group_by': 'schedule_selection_id'}"/>
+                    <filter string="Khoa" name="group_by_department" context="{'group_by':'department_id'}" />
+                    <filter string="Bệnh nhân" name="group_by_name" context="{'group_by': 'patient_id'}" />
+                    <filter string="Bác sĩ" name="group_by_doctor" context="{'group_by': 'doctor_id'}"/>
+                    <filter string="Giới tính" name="group_by_sex" context="{'group_by': 'sex'}"/>
+                    <filter string="Nhóm máu" name="group_by_blood_type" context="{'group_by': 'blood_type'}"/>
+                    <filter string="Tình trạng hôn nhân" name="group_by_marital_status" context="{'group_by': 'marital_status'}"/>
+                    <filter string="Trạng thái" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Ngày khám bệnh" name="group_by_schdule_date" context="{'group_by': 'schedule_selection_id'}"/>
                 </group>
             </search>
         </field>
@@ -104,39 +104,39 @@
     <!-- Walkins kanban view-->
     <record id="medical_walkins_kanban_view" model="ir.ui.view">
         <field name="name">medical.walkins.kanban</field>
-        <field name="model">medical.phieu_kham_benh</field>
+        <field name="model">medical.walkins</field>
         <field name="arch" type="xml">
             <kanban>
-                <field name="anh_dai_dien" />
-                <field name="benh_nhan_id" />
+                <field name="image" />
+                <field name="patient_id" />
                 <field name="name" />
                 <field name="schedule_selection_id" />
-                <field name="tuoi" />
+                <field name="age" />
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click oe_kanban_card">
                             <div class="oeh_medical_vignette oe_semantic_html_override">
                                 <div class="o_kanban_image" style="margin-top:15px;">
                                     <a type="open">
-                                        <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.phieu_kham_benh', 'anh_dai_dien', record.id.raw_value)" />
+                                        <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.walkins', 'image', record.id.raw_value)" />
                                     </a>
                                 </div>
                                 <div class="oe_kanban_details" style="text-align: left">
                                     <h4>
                                         <a type="open">
-                                            <field name="benh_nhan_id" />
+                                            <field name="patient_id" />
                                         </a>
                                     </h4>
                                     <ul>
                                         <li>Đợi #: <field name="name"/>
                                         </li>
-                                        <li>Giới tính: <field name="gioi_tinh"/>
+                                        <li>Giới tính: <field name="sex"/>
                                         </li>
                                         <li>Ngày: <field name="schedule_selection_id"/>
                                         </li>
-                                        <li>Tuổi: <field name="tuoi"/>
+                                        <li>Tuổi: <field name="age"/>
                                         </li>
-                                        <li>Địa chỉ: <field name="dia_chi"/>
+                                        <li>Địa chỉ: <field name="street"/>
                                         </li>
                                     </ul>
                                 </div>
@@ -150,16 +150,16 @@
     <!--   Walkins tree view-->
     <record id="medical_walkins_tree_view" model="ir.ui.view">
         <field name="name">medical.walkins.tree</field>
-        <field name="model">medical.phieu_kham_benh</field>
+        <field name="model">medical.walkins</field>
         <field name="arch" type="xml">
             <tree string="Thông tin phiếu khám bệnh">
                 <field name="name" />
-                <field name="benh_nhan_id" />
-                <field name="bac_si_id" />
+                <field name="patient_id" />
+                <field name="doctor_id" />
                 <field name="schedule_selection_id" />
-                <field name="gioi_tinh" />
-                <field name="ngay_sinh" />
-                <field name="nhom_mau" />
+                <field name="sex" />
+                <field name="dob" />
+                <field name="blood_type" />
                 <field name="rh" />
                 <field name="state" />
             </tree>
@@ -167,12 +167,12 @@
     </record>
     <record id="view_walkins_calendar" model="ir.ui.view">
         <field name="name">medical.walkins.calendar</field>
-        <field name="model">medical.phieu_kham_benh</field>
+        <field name="model">medical.walkins</field>
         <field eval="2" name="priority"/>
         <field name="arch" type="xml">
             <calendar string="Phiếu khám bệnh" date_start="schedule_date" color="state" mode="week">
-                <field name="benh_nhan_id"/>
-                <field name="ly_do_kiem_tra"/>
+                <field name="patient_id"/>
+                <field name="reason_check"/>
                 <field name="state"/>
             </calendar>
         </field>
@@ -181,24 +181,24 @@
     <record id="medical_walkins_action" model="ir.actions.act_window">
         <field name="name">Phiếu khám bệnh</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">medical.phieu_kham_benh</field>
+        <field name="res_model">medical.walkins</field>
         <field name="view_mode">kanban,tree,calendar,form</field>
-        <field name="context">{'search_default_group_by_bac_si': 1, 'search_default_group_by_trang_thai': 2}</field>
+        <field name="context">{'search_default_group_by_doctor': 1, 'search_default_group_by_state': 2}</field>
     </record>
 
     <record id="morden_action_medical_walkins" model="ir.actions.act_window">
         <field name="name">Danh sách phiếu khám bệnh</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">medical.phieu_kham_benh</field>
+        <field name="res_model">medical.walkins</field>
         <field name="view_mode">kanban,tree,calendar,form</field>
-        <field name="domain">[('bac_si_id', '=', active_id)]</field>
-        <field name="context">{'search_default_group_by_trang_thai': 1, 'search_default_bac_si_id': active_id}</field>
+        <field name="domain">[('doctor_id', '=', active_id)]</field>
+        <field name="context">{'search_default_group_by_state': 1, 'search_default_doctor_id': active_id}</field>
     </record>
     <!--===== Prescription =====  -->
     <!-- Prescription form view-->
     <record id="medical_prescription_view_form" model="ir.ui.view">
         <field name="name">medical.prescription.form</field>
-        <field name="model">medical.don_thuoc</field>
+        <field name="model">medical.prescription</field>
         <field name="arch" type="xml">
             <form string="Đơn thuốc">
                 <header>
@@ -214,21 +214,21 @@
                     </div>
                     <group>
                         <group>
-                            <field name="benh_nhan_id" />
-                            <field name="nha_thuoc_id" readonly='id != False'/>
-                            <field name="khoa_id" />
-                            <field name="trung_tam_y_te_id" />
+                            <field name="patient_id" />
+                            <field name="pharmacies_id" readonly='id != False'/>
+                            <field name="department_id" />
+                            <field name="health_center_id" />
                         </group>
                         <group>
-                            <field name="bac_si_id" />
-                            <field name="ngay_ke_don" readonly='id != False'/>
-                            <field name="so_thu_tu" />
+                            <field name="doctor_id" />
+                            <field name="prescription_date" readonly='id != False'/>
+                            <field name="walkins_id" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Chi tiết toa thuốc">
                             <div class="o_row">
-                                <field name="chi_tiet_toa_thuoc_ids" context="{'default_don_thuoc_id': active_id}"></field>
+                                <field name="prescription_details_ids" context="{'default_prescription_id': active_id}"></field>
                             </div>
                         </page>
                     </notebook>
@@ -239,12 +239,12 @@
     <!-- Prescription search view  -->
     <record id="prescription_search_view" model="ir.ui.view">
         <field name="name">Đơn thuốc</field>
-        <field name="model">medical.don_thuoc</field>
+        <field name="model">medical.prescription</field>
         <field name="arch" type="xml">
             <search string="">
                 <separator />
                 <group expand="0" string="Nhóm theo">
-                    <filter string="Bác sĩ" name="group_by_bac_si" context="{'group_by': 'bac_si_id'}"/>
+                    <filter string="Bác sĩ" name="group_by_doctor" context="{'group_by': 'doctor_id'}"/>
                 </group>
             </search>
         </field>
@@ -252,15 +252,15 @@
     <!--   Prescription tree view-->
     <record id="medical_prescription_tree_view" model="ir.ui.view">
         <field name="name">medical.prescription.tree</field>
-        <field name="model">medical.don_thuoc</field>
+        <field name="model">medical.prescription</field>
         <field name="arch" type="xml">
             <tree string="Thông tin đơn thuốc">
                 <field name="name" />
-                <field name="benh_nhan_id" />
-                <field name="ngay_ke_don" />
-                <field name="bac_si_id" />
-                <field name="nha_thuoc_id" />
-                <field name="so_thu_tu" />
+                <field name="patient_id" />
+                <field name="prescription_date" />
+                <field name="doctor_id" />
+                <field name="pharmacies_id" />
+                <field name="walkins_id" />
                 <field name="state" />
                 <button name="action_confirm_and_print" string="In" type="object"/>
             </tree>
@@ -270,15 +270,15 @@
     <record id="medical_prescription_action" model="ir.actions.act_window">
         <field name="name">Đơn thuốc</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">medical.don_thuoc</field>
+        <field name="res_model">medical.prescription</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('bac_si_id', '=', active_id)]</field>
-        <!-- <field name="context">{'search_default_group_by_bac_si': 1}</field> -->
+        <field name="domain">[('doctor_id', '=', active_id)]</field>
+        <!-- <field name="context">{'search_default_group_by_doctor': 1}</field> -->
     </record>
     <record id="medical_prescription_list_action" model="ir.actions.act_window">
         <field name="name">Danh sách đơn thuốc</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">medical.don_thuoc</field>
+        <field name="res_model">medical.prescription</field>
         <field name="view_mode">tree,form</field>
     </record>
 
@@ -286,7 +286,7 @@
     <!-- Prescription details form view-->
     <record id="medical_prescription_details_view_form" model="ir.ui.view">
         <field name="name">medical.prescription_details.form</field>
-        <field name="model">medical.chi_tiet_toa_thuoc</field>
+        <field name="model">medical.prescription_details</field>
         <field name="arch" type="xml">
             <form string="Chi tiết toa thuốc">
                 <sheet>
@@ -298,13 +298,13 @@
                     </div>
                     <group>
                         <group>
-                            <field name="don_thuoc_id" />
-                            <field name="chi_dinh" />
-                            <field name="binh_luan"/>
+                            <field name="prescription_id" />
+                            <field name="indication" />
+                            <field name="comment"/>
                         </group>
                         <group>
-                            <field name="lieu" />
-                            <field name="donvi_lieuluong"/>
+                            <field name="dose" />
+                            <field name="dose_units"/>
                         </group>
                     </group>
                 </sheet>
@@ -314,21 +314,21 @@
     <!--   Prescription details tree view-->
     <record id="medical_prescription_details_tree_view" model="ir.ui.view">
         <field name="name">medical.prescription_details.tree</field>
-        <field name="model">medical.chi_tiet_toa_thuoc</field>
+        <field name="model">medical.prescription_details</field>
         <field name="arch" type="xml">
             <tree string="Chi tiết toa thuốc">
                 <field name="name" />
-                <field name="chi_dinh" />
-                <field name="lieu" />
-                <field name="donvi_lieuluong" />
-                <field name="binh_luan" />
+                <field name="indication" />
+                <field name="dose" />
+                <field name="dose_units" />
+                <field name="comment" />
             </tree>
         </field>
     </record>
-    <!-- <record id="medical_chi_tiet_toa_thuoc_action" model="ir.actions.act_window">
+    <!-- <record id="medical_prescription_details_action" model="ir.actions.act_window">
         <field name="name">Chi tiết toa thuốc</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">medical.chi_tiet_toa_thuoc</field>
+        <field name="res_model">medical.prescription_details</field>
         <field name="view_mode">tree,form</field>
     </record> -->
 </odoo>

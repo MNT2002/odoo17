@@ -28,9 +28,9 @@
             <field name="implied_ids" eval="[(4, ref('DatLichKhamBenh.group_employee_user'))]"/>
         </record>
 
-        <record id="owner_bac_si_rule" model="ir.rule">
+        <record id="owner_doctor_rule" model="ir.rule">
             <field name="name">Owner Doctor Rule</field>
-            <field name="model_id" ref="DatLichKhamBenh.model_medical_bac_si"/>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_doctor"/>
             <field name="domain_force">[('res_users_id', '=', user.id )]</field>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
@@ -39,9 +39,9 @@
             <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
         </record>
 
-        <record id="owner_benh_nhan_rule" model="ir.rule">
+        <record id="owner_patient_rule" model="ir.rule">
             <field name="name">Owner Doctor Rule</field>
-            <field name="model_id" ref="DatLichKhamBenh.model_medical_benh_nhan"/>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_patient"/>
             <field name="domain_force">[('create_uid', '=', user.id )]</field>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
@@ -52,9 +52,9 @@
             <!--<field name="global" eval="1"/> -->
         </record>
 
-        <record id="owner_phieu_kham_benh_rule" model="ir.rule">
+        <record id="owner_walkins_rule" model="ir.rule">
             <field name="name">Owner Doctor Rule</field>
-            <field name="model_id" ref="DatLichKhamBenh.model_medical_phieu_kham_benh"/>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_walkins"/>
             <field name="domain_force">[('create_uid', '=', user.id )]</field>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
@@ -64,9 +64,9 @@
             <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
             <!--<field name="global" eval="1"/> -->
         </record>
-        <record id="owner_don_thuoc_rule" model="ir.rule">
+        <record id="owner_prescription_rule" model="ir.rule">
             <field name="name">Owner Doctor Rule</field>
-            <field name="model_id" ref="DatLichKhamBenh.model_medical_don_thuoc"/>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_prescription"/>
             <field name="domain_force">[('create_uid', '=', user.id )]</field>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
@@ -88,9 +88,9 @@
             <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
             <!--<field name="global" eval="1"/> -->
         </record>
-        <record id="owner_chi_tiet_toa_thuoc_rule" model="ir.rule">
+        <record id="owner_prescription_details_rule" model="ir.rule">
             <field name="name">Owner Doctor Rule</field>
-            <field name="model_id" ref="DatLichKhamBenh.model_medical_chi_tiet_toa_thuoc"/>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_prescription_details"/>
             <field name="domain_force">[('create_uid', '=', user.id )]</field>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
@@ -100,9 +100,9 @@
             <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
             <!--<field name="global" eval="1"/> -->
         </record>
-        <record id="owner_chan_doan_hinh_anh_rule" model="ir.rule">
+        <record id="owner_diagnostic_imaging_rule" model="ir.rule">
             <field name="name">Owner Doctor Rule</field>
-            <field name="model_id" ref="DatLichKhamBenh.model_medical_chan_doan_hinh_anh"/>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_diagnostic_imaging"/>
             <field name="domain_force">[('create_uid', '=', user.id )]</field>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
@@ -112,9 +112,9 @@
             <field name="groups" eval="[(4, ref('DatLichKhamBenh.group_employee_doctor'))]"/>
             <!--<field name="global" eval="1"/> -->
         </record>
-        <record id="owner_vat_tu_tieu_hao_rule" model="ir.rule">
+        <record id="owner_material_consumption_rule" model="ir.rule">
             <field name="name">Owner Doctor Rule</field>
-            <field name="model_id" ref="DatLichKhamBenh.model_medical_vat_tu_tieu_hao"/>
+            <field name="model_id" ref="DatLichKhamBenh.model_medical_material_consumption"/>
             <field name="domain_force">[('create_uid', '=', user.id )]</field>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>

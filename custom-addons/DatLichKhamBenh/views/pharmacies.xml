@@ -3,7 +3,7 @@
     <!-- Prescription Orders form view-->
     <record id="medical_prescription_orders_view_form" model="ir.ui.view">
         <field name="name">medical.prescription_orders.form</field>
-        <field name="model">medical.don_thuoc_duoc_dat</field>
+        <field name="model">medical.prescription_orders</field>
         <field name="arch" type="xml">
             <form string="Đơn thuốc được đặt">
                 <header>
@@ -20,22 +20,22 @@
                     </div>
                     <group>
                         <group>
-                            <field name="benh_nhan_id" />
-                            <field name="nha_thuoc_id" readonly='id != False'/>
-                            <field name="khoa_id" />
-                            <field name="trung_tam_y_te_id" />
+                            <field name="patient_id" />
+                            <field name="pharmacies_id" readonly='id != False'/>
+                            <field name="department_id" />
+                            <field name="health_center_id" />
                         </group>
                         <group>
-                            <field name="bac_si_id" />
-                            <field name="ngay_ke_don" readonly='id != False'/>
-                            <field name="don_thuoc_id" />
-                            <field name="duoc_si_id" />
+                            <field name="doctor_id" />
+                            <field name="prescription_date" readonly='id != False'/>
+                            <field name="prescription_id" />
+                            <field name="pharmacist_id" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Chi tiết toa thuốc">
                             <div class="o_row">
-                                <field name="chi_tiet_toa_thuoc_ids" ></field>
+                                <field name="prescription_details_ids" ></field>
                             </div>
                         </page>
                     </notebook>
@@ -46,14 +46,14 @@
     <!-- Prescriptionorders search view  -->
     <record id="prescription_orders_search_view" model="ir.ui.view">
         <field name="name">Đơn thuốc được đặt</field>
-        <field name="model">medical.don_thuoc_duoc_dat</field>
+        <field name="model">medical.prescription_orders</field>
         <field name="arch" type="xml">
             <search string="Đơn thuốc được đặt">
                 <separator />
                 <group expand="0" string="Nhóm theo">
-                    <filter string="Bác sĩ" name="group_by_bac_si" context="{'group_by': 'bac_si_id'}"/>
-                    <filter string="Dược sĩ" name="group_by_duoc_si_id" context="{'group_by': 'duoc_si_id'}"/>
-                    <filter string="Nhà thuốc" name="group_by_nha_thuoc_id" context="{'group_by': 'nha_thuoc_id'}"/>
+                    <filter string="Bác sĩ" name="group_by_doctor" context="{'group_by': 'doctor_id'}"/>
+                    <filter string="Dược sĩ" name="group_by_pharmacist_id" context="{'group_by': 'pharmacist_id'}"/>
+                    <filter string="Nhà thuốc" name="group_by_pharmacies_id" context="{'group_by': 'pharmacies_id'}"/>
                     <filter string="Trạng thái" name="group_by_state" context="{'group_by': 'state'}"/>
                 </group>
             </search>
@@ -62,16 +62,16 @@
     <!--   Prescription orders tree view-->
     <record id="medical_prescription_orders_tree_view" model="ir.ui.view">
         <field name="name">medical.prescription_orders.tree</field>
-        <field name="model">medical.don_thuoc_duoc_dat</field>
+        <field name="model">medical.prescription_orders</field>
         <field name="arch" type="xml">
             <tree string="Thông tin đơn thuốc được đặt">
                 <field name="name" />
-                <field name="benh_nhan_id" />
-                <field name="ngay_ke_don" />
-                <field name="bac_si_id" />
-                <field name="nha_thuoc_id" />
-                <field name="don_thuoc_id" />
-                <field name="duoc_si_id" />
+                <field name="patient_id" />
+                <field name="prescription_date" />
+                <field name="doctor_id" />
+                <field name="pharmacies_id" />
+                <field name="prescription_id" />
+                <field name="pharmacist_id" />
                 <field name="state" />
             </tree>
         </field>
@@ -80,7 +80,7 @@
     <record id="medical_prescription_orders_action" model="ir.actions.act_window">
         <field name="name">Danh sách đơn thuốc được đặt</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">medical.don_thuoc_duoc_dat</field>
+        <field name="res_model">medical.prescription_orders</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

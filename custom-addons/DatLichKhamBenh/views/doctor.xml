@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="// field[@name='action_id']" position="after">
                 <field name="_is_invisible" invisible="True"/>
-                <field name="bac_si_ids" widget="many2many_tags" invisible="_is_invisible == True" groups="DatLichKhamBenh.group_employee_manager"/>
+                <field name="doctor_ids" widget="many2many_tags" invisible="_is_invisible == True" groups="DatLichKhamBenh.group_employee_manager"/>
             </xpath>
         </field>
     </record>
@@ -16,66 +16,66 @@
     <!-- Doctor form view-->
     <record id="medical_doctor_view_form" model="ir.ui.view">
         <field name="name">medical.doctor.form</field>
-        <field name="model">medical.bac_si</field>
+        <field name="model">medical.doctor</field>
         <field name="arch" type="xml">
             <form string="Bác sĩ">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_walkins)d" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
-                            <field string="Phiếu khám bệnh" name="phieu_kham_benh_count" widget="statinfo"/>
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_walkins)d" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_doctor_id': active_id, 'default_health_center_id': health_center_id, 'default_department_id': department_id}">
+                            <field string="Phiếu khám bệnh" name="walkins_count" widget="statinfo"/>
                         </button>
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.medical_prescription_action)d" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_bac_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
-                            <field string="Đơn thuốc" name="don_thuoc_count" widget="statinfo"/>
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.medical_prescription_action)d" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_doctor_id': active_id, 'default_health_center_id': health_center_id, 'default_department_id': department_id}">
+                            <field string="Đơn thuốc" name="prescription_count" widget="statinfo"/>
                         </button>
                     </div>
-                    <field name="anh_dai_dien" nolabel="1" widget="image" class="oe_avatar" />
+                    <field name="image" nolabel="1" widget="image" class="oe_avatar" />
                     <div class="oe_title">
                         <label for="name" />
                         <h1>
                             <field name="name" required="1" />
                         </h1>
                         <div class="o_row">
-                            <field name="chuyen_mon" placeholder="Chuyên môn" />
+                            <field name="speciality_id" placeholder="Chuyên môn" />
                         </div>
                     </div>
                     <group>
                         <group>
-                            <field name="trinhdo_bangcap" widget="many2many_tags" placeholder="Bằng cấp ..." />
-                            <field name="duoc_si" />
-                            <field name="y_ta" />
-                            <field name="dieu_duong" />
+                            <field name="degree_id" widget="many2many_tags" placeholder="Bằng cấp ..." />
+                            <field name="is_pharmacist" />
+                            <field name="is_nurse" />
+                            <field name="is_receptionist" />
                         </group>
                         <group>
-                            <field name="phi_kham_benh" />
-                            <field name="id_giay_phep" />
-                            <field name="trung_tam_y_te_id" required="True" widget="many2one_tags"/>
-                            <field name="khoa_id" />
+                            <field name="consultancy_price" />
+                            <field name="lience_id" />
+                            <field name="health_center_id" required="True" widget="many2one_tags"/>
+                            <field name="department_id" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Chung">
                             <group string="Thông tin liên lạc">
                                 <group>
-                                    <label for="dia_chi" string="Địa chỉ"/>
+                                    <label for="street" string="Địa chỉ"/>
                                     <div>
-                                        <field name="dia_chi" placeholder="Street..." on_change="1" field_id="street_0"/>
-                                        <field name="dia_chi_2" on_change="1" field_id="street2_0"/>
-                                        <field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
+                                        <field name="street" placeholder="Street..." on_change="1" field_id="street_0"/>
+                                        <field name="street2" on_change="1" field_id="street2_0"/>
+                                        <field name="country_id" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
                                         <div class="address_format">
-                                            <field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
-                                            <field name="thanh_pho" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
+                                            <field name="state_id" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
+                                            <field name="city" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
                                             <field name="zip" placeholder="Mã bưu điện" style="width: 20%" on_change="1" field_id="zip_0"/>
                                         </div>
                                         <div class="address_format">
-                                            <field name="phuong_xa" placeholder="Phường/Xã" style="width: 49%" can_create="True" can_write="True" field_id="wards_id_0"/>
-                                            <field name="quan_huyen" class="oe_no_button" placeholder="Quận/Huyện" style="width: 49%" field_id="district_id_0"/>
+                                            <field name="ward" placeholder="Phường/Xã" style="width: 49%" can_create="True" can_write="True" field_id="wards_id_0"/>
+                                            <field name="district" class="oe_no_button" placeholder="Quận/Huyện" style="width: 49%" field_id="district_id_0"/>
                                         </div>
                                     </div>
                                 </group>
                                 <group>
-                                    <field name="so_dien_thoai" />
+                                    <field name="phone_number" />
                                     <field name="email" />
-                                    <field name="so_dien_thoai_van_phong" />
+                                    <field name="work_phone" />
                                 </group>
                             </group>
                         </page>
@@ -84,7 +84,7 @@
                         </page>
                         <page string="Thông tin thêm">
                             <div class="o_row">
-                                <field name="thong_tin_them" />
+                                <field name="extra_infor" />
                             </div>
                         </page>
                     </notebook>
@@ -96,20 +96,20 @@
     <!-- Doctor kanban view-->
     <record id="medical_doctor_kanban_view" model="ir.ui.view">
         <field name="name">medical.doctor.kanban</field>
-        <field name="model">medical.bac_si</field>
+        <field name="model">medical.doctor</field>
         <field name="arch" type="xml">
             <kanban>
                 <field name="name" />
-                <field name="anh_dai_dien" />
-                <field name="trinhdo_bangcap" />
-                <field name="chuyen_mon" />
-                <field name="id_giay_phep" />
+                <field name="image" />
+                <field name="degree_id" />
+                <field name="speciality_id" />
+                <field name="lience_id" />
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
                             <div class="oe_kanban_details">
                                 <a type="open">
-                                    <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.bac_si', 'anh_dai_dien', record.id.raw_value)" />
+                                    <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.doctor', 'image', record.id.raw_value)" />
                                 </a>
                             </div>
                             <div class="oe_kanban_details" style="text-align: left">
@@ -120,13 +120,13 @@
                                 </h4>
                                 <ul>
                                     <li>
-                                        <field name="trinhdo_bangcap" widget="many2many_tags" />
+                                        <field name="degree_id" widget="many2many_tags" />
                                     </li>
                                     <li>
-                                        <field name="chuyen_mon" />
+                                        <field name="speciality_id" />
                                     </li>
                                     <li>
-                                        <field name="id_giay_phep" />
+                                        <field name="lience_id" />
                                     </li>
                                 </ul>
                             </div>
@@ -139,14 +139,14 @@
     <!--  Doctor search view  -->
     <record id="doctor_search_view" model="ir.ui.view">
         <field name="name">Bác sĩ</field>
-        <field name="model">medical.bac_si</field>
+        <field name="model">medical.doctor</field>
         <field name="arch" type="xml">
             <search string="Bác sĩ">
                 <separator />
                 <group expand="0" string="Nhóm theo">
                     <filter string="Tên" name="group_by_name" context="{'group_by': 'name'}"/>
-                    <filter string="ID giáy phép" name="group_by_id_giay_phep" context="{'group_by': 'id_giay_phep'}"/>
-                    <filter string="Chuyên khoa" name="group_by_chuyen_mon" context="{'group_by': 'chuyen_mon'}"/>
+                    <filter string="ID giáy phép" name="group_by_lience_id" context="{'group_by': 'lience_id'}"/>
+                    <filter string="Chuyên khoa" name="group_by_speciality_id" context="{'group_by': 'speciality_id'}"/>
                 </group>
             </search>
         </field>
@@ -154,14 +154,14 @@
     <!-- Doctor tree view-->
     <record id="medical_doctor_tree_view" model="ir.ui.view">
         <field name="name">medical.doctor.tree</field>
-        <field name="model">medical.bac_si</field>
+        <field name="model">medical.doctor</field>
         <field name="arch" type="xml">
             <tree string="Thông tin bệnh nhân">
                 <field name="name" />
-                <field name="id_giay_phep" />
-                <field name="chuyen_mon" />
-                <field name="khoa_id" />
-                <field name="trung_tam_y_te_id" />
+                <field name="lience_id" />
+                <field name="speciality_id" />
+                <field name="department_id" />
+                <field name="health_center_id" />
             </tree>
         </field>
     </record>
@@ -169,7 +169,7 @@
     <record id="medical_doctor_action" model="ir.actions.act_window">
         <field name="name">Bác sĩ</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">medical.bac_si</field>
+        <field name="res_model">medical.doctor</field>
         <field name="view_mode">kanban,tree,form</field>
         <!-- <field name="domain">[('res_users_id', '!=', None)]</field> -->
         <!-- <field name="domain"></field> -->
@@ -178,61 +178,61 @@
     
     <!--===== Pharmacist =====  -->
     <!-- Pharmacist form view-->
-    <record id="medical_duoc_si_view_form" model="ir.ui.view">
+    <record id="medical_pharmacist_view_form" model="ir.ui.view">
         <field name="name">medical.pharmacist.form</field>
-        <field name="model">medical.duoc_si</field>
+        <field name="model">medical.pharmacist</field>
         <field name="arch" type="xml">
             <form string="Dược sĩ">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <!-- <button type="action" class="oe_stat_button" name="DatLichKhamBenh.morden_action_medical_phieu_kham_benh" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user" icon="fa-list" context="{'default_duoc_si_id': active_id, 'default_trung_tam_y_te_id': trung_tam_y_te_id, 'default_khoa_id': khoa_id}">
-                            <field string="Phiếu khám bệnh" name="phieu_kham_benh_count" widget="statinfo"/>
+                        <!-- <button type="action" class="oe_stat_button" name="DatLichKhamBenh.morden_action_medical_walkins" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user" icon="fa-list" context="{'default_pharmacist_id': active_id, 'default_health_center_id': health_center_id, 'default_khoa_id': khoa_id}">
+                            <field string="Phiếu khám bệnh" name="walkins_count" widget="statinfo"/>
                         </button> -->
                     </div>
-                    <field name="anh_dai_dien" nolabel="1" widget="image" class="oe_avatar" />
+                    <field name="image" nolabel="1" widget="image" class="oe_avatar" />
                     <div class="oe_title">
                         <label for="name" />
                         <h1>
                             <field name="name" required="1" />
                         </h1>
                         <div class="o_row">
-                            <field name="chuyen_mon" placeholder="Chuyên môn" />
+                            <field name="speciality" placeholder="Chuyên môn" />
                         </div>
                     </div>
                     <group>
                         <group>
-                            <field name="trinhdo_bangcap" widget="many2many_tags" placeholder="Bằng cấp ..." />
-                            <field name="hieu_thuoc_id" />
+                            <field name="degree_id" widget="many2many_tags" placeholder="Bằng cấp ..." />
+                            <field name="pharmacies_id" />
                         </group>
                         <group>
-                            <field name="phi_kham_benh" />
-                            <field name="id_giay_phep" />
+                            <field name="consultancy_price" />
+                            <field name="lience_id" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Chung">
                             <group string="Thông tin liên lạc">
                                 <group>
-                                    <label for="dia_chi" string="Địa chỉ"/>
+                                    <label for="street" string="Địa chỉ"/>
                                     <div>
-                                        <field name="dia_chi" placeholder="Street..." on_change="1" field_id="street_0"/>
-                                        <field name="dia_chi_2" on_change="1" field_id="street2_0"/>
-                                        <field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
+                                        <field name="street" placeholder="Street..." on_change="1" field_id="street_0"/>
+                                        <field name="street2" on_change="1" field_id="street2_0"/>
+                                        <field name="country_id" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
                                         <div class="address_format">
-                                            <field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
-                                            <field name="thanh_pho" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
+                                            <field name="state_id" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
+                                            <field name="city" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
                                             <field name="zip" placeholder="Mã bưu điện" style="width: 20%" on_change="1" field_id="zip_0"/>
                                         </div>
                                         <div class="address_format">
-                                            <field name="phuong_xa" placeholder="Phường/Xã" style="width: 49%" can_create="True" can_write="True" field_id="wards_id_0"/>
-                                            <field name="quan_huyen" class="oe_no_button" placeholder="Quận/Huyện" style="width: 49%" field_id="district_id_0"/>
+                                            <field name="ward" placeholder="Phường/Xã" style="width: 49%" can_create="True" can_write="True" field_id="wards_id_0"/>
+                                            <field name="district" class="oe_no_button" placeholder="Quận/Huyện" style="width: 49%" field_id="district_id_0"/>
                                         </div>
                                     </div>
                                 </group>
                                 <group>
-                                    <field name="so_dien_thoai" />
+                                    <field name="phone_number" />
                                     <field name="email" />
-                                    <field name="so_dien_thoai_van_phong" />
+                                    <field name="work_phone" />
                                 </group>
                             </group>
                         </page>
@@ -241,7 +241,7 @@
                         </page>
                         <page string="Thông tin thêm">
                             <div class="o_row">
-                                <field name="thong_tin_them" />
+                                <field name="extra_infor" />
                             </div>
                         </page>
                     </notebook>
@@ -252,14 +252,14 @@
     <!--  Pharmacist search view  -->
     <record id="pharmacist_search_view" model="ir.ui.view">
         <field name="name">Dược sĩ</field>
-        <field name="model">medical.duoc_si</field>
+        <field name="model">medical.pharmacist</field>
         <field name="arch" type="xml">
             <search string="Dược sĩ">
                 <separator />
                 <group expand="0" string="Nhóm theo">
                     <filter string="Tên" name="group_by_name" context="{'group_by': 'name'}"/>
-                    <filter string="ID giáy phép" name="group_by_id_giay_phep" context="{'group_by': 'id_giay_phep'}"/>
-                    <filter string="Chuyên khoa" name="group_by_chuyen_mon" context="{'group_by': 'chuyen_mon'}"/>
+                    <filter string="ID giáy phép" name="group_by_lience_id" context="{'group_by': 'lience_id'}"/>
+                    <filter string="Chuyên khoa" name="group_by_speciality" context="{'group_by': 'speciality'}"/>
                 </group>
             </search>
         </field>
@@ -267,20 +267,20 @@
     <!-- Pharmacist kanban view-->
     <record id="medical_pharmacist_kanban_view" model="ir.ui.view">
         <field name="name">medical.pharmacist.kanban</field>
-        <field name="model">medical.duoc_si</field>
+        <field name="model">medical.pharmacist</field>
         <field name="arch" type="xml">
             <kanban>
                 <field name="name" />
-                <field name="anh_dai_dien" />
-                <field name="trinhdo_bangcap" />
-                <field name="chuyen_mon" />
-                <field name="id_giay_phep" />
+                <field name="image" />
+                <field name="degree_id" />
+                <field name="speciality" />
+                <field name="lience_id" />
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
                             <div class="oe_kanban_details">
                                 <a type="open">
-                                    <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.duoc_si', 'anh_dai_dien', record.id.raw_value)" />
+                                    <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.pharmacist', 'image', record.id.raw_value)" />
                                 </a>
                             </div>
                             <div class="oe_kanban_details" style="text-align: left">
@@ -291,13 +291,13 @@
                                 </h4>
                                 <ul>
                                     <li>
-                                        <field name="trinhdo_bangcap" widget="many2many_tags" />
+                                        <field name="degree_id" widget="many2many_tags" />
                                     </li>
                                     <li>
-                                        <field name="chuyen_mon" />
+                                        <field name="speciality" />
                                     </li>
                                     <li>
-                                        <field name="id_giay_phep" />
+                                        <field name="lience_id" />
                                     </li>
                                 </ul>
                             </div>
@@ -310,13 +310,13 @@
     <!--Ppharmacist tree view-->
     <record id="medical_pharmacist_tree_view" model="ir.ui.view">
         <field name="name">medical.pharmacist.tree</field>
-        <field name="model">medical.duoc_si</field>
+        <field name="model">medical.pharmacist</field>
         <field name="arch" type="xml">
-            <tree string="Thông tin bệnh nhân">
+            <tree string="Thông tin hiệu thuốc">
                 <field name="name" />
-                <field name="id_giay_phep" />
-                <field name="chuyen_mon" />
-                <field name="hieu_thuoc_id" />
+                <field name="lience_id" />
+                <field name="speciality" />
+                <field name="pharmacies_id" />
             </tree>
         </field>
     </record>
@@ -324,7 +324,7 @@
     <record id="medical_pharmacist_action" model="ir.actions.act_window">
         <field name="name">Pharmacist</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">medical.duoc_si</field>
+        <field name="res_model">medical.pharmacist</field>
         <field name="view_mode">kanban,tree,form</field>
     </record>
 

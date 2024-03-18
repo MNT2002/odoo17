@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="change_state_benh_nhan_action" model="ir.actions.act_window">
+        <record id="change_state_patient_action" model="ir.actions.act_window">
             <field name="name">Thay đổi trạng thái bệnh nhân</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">change.state_benh_nhan.wizard</field>
+            <field name="res_model">change.state_patient.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">new</field> <!--Tạo pop up hiển thị lên (new - mặc định là current) -->
         </record>
 
-        <record id="change_state_benh_nhan_wizard_form_view" model="ir.ui.view">
-            <field name="name">change_state_benh_nhan_wizard_form_view</field>
-            <field name="model">change.state_benh_nhan.wizard</field>
+        <record id="change_state_patient_wizard_form_view" model="ir.ui.view">
+            <field name="name">change_state_patient_wizard_form_view</field>
+            <field name="model">change.state_patient.wizard</field>
             <field name="arch" type="xml">
                 <form>
                     <group class="oe_title">
-                        <field name="ghi_chu" />
+                        <field name="note" />
                     </group>
                     <footer>
                         <button name="action_change" string="Xác nhận" type="object" class="btn-primary"/>

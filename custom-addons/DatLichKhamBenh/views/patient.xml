@@ -1,11 +1,11 @@
 <odoo>
 	<record id="medical_patient_form_view" model="ir.ui.view">
 		<field name="name">medical.patient.form</field>
-		<field name="model">medical.benh_nhan</field>
+		<field name="model">medical.patient</field>
 		<field name="arch" type="xml">
 			<form string="Bệnh nhân">
 				<header>
-					<button name="%(DatLichKhamBenh.change_state_benh_nhan_action)d" string="Đã khám" type="action" class="oe_highlight" invisible="state == 'DaKham'"/>
+					<button name="%(DatLichKhamBenh.change_state_patient_action)d" string="Đã khám" type="action" class="oe_highlight" invisible="state == 'DaKham'"/>
 					<button name="btn_dang_cho" string="Đang chờ" type="object" confirm='Bạn có muốn thay đổi trạng thái của bệnh nhân thành "Đang chờ"?' class="oe_highlight" invisible="state == 'DangCho'"/>
 					<field name="state" widget="statusbar" />
 				</header> 
@@ -13,7 +13,7 @@
 					<div class="oe_button_box" name="button_box">
 						
 					</div>
-					<field name="anh_dai_dien" nolabel="1" widget="image" class="oe_avatar"/>
+					<field name="image" nolabel="1" widget="image" class="oe_avatar"/>
 					<div class="oe_title">
 						<label for="name"/>
 						<h1>
@@ -23,17 +23,17 @@
 					</div>
 					<group>
 						<group>
-							<field name="tuoi_benh_nhan" readonly="1"/>
-							<field name="tinh_trang_hon_nhan" />
-							<field name="gioi_tinh" widget="radio"/>
+							<field name="age" readonly="1"/>
+							<field name="marital_status" />
+							<field name="sex" widget="radio"/>
 						</group>
 						<group>
-							<field name="ngay_sinh" required="1"/>
-							<field name="nam_sinh" readonly="1"/>
-							<field name="cccd"/>
-							<field name="nhom_mau" />
+							<field name="dob" required="1"/>
+							<field name="yob" readonly="1"/>
+							<field name="id_card"/>
+							<field name="blood_type" />
 							<field name="rh" />
-							<field name="bac_si_gia_dinh" />
+							<field name="doctor" />
 						</group>
 					</group>
 					<separator string="Tài khoản người dùng" colspan="4" />
@@ -41,26 +41,26 @@
 						<page string="Cá nhân">
 							<group>
 								<group>
-									<label for="dia_chi" string="Địa chỉ"/>
+									<label for="street" string="Địa chỉ"/>
 									<div>
-										<field name="dia_chi" placeholder="Street..." on_change="1" field_id="street_0"/>
-										<field name="dia_chi_2" on_change="1" field_id="street2_0"/>
-										<field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
+										<field name="street" placeholder="Street..." on_change="1" field_id="street_0"/>
+										<field name="street2" on_change="1" field_id="street2_0"/>
+										<field name="country_id" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
 										<div class="address_format">
-											<field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
-											<field name="thanh_pho" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
+											<field name="state_id" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id!= False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
+											<field name="city" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
 											<field name="zip" placeholder="Mã bưu điện" style="width: 20%" on_change="1" field_id="zip_0"/>
 										</div>
 										<div class="address_format">
-											<field name="phuong_xa" placeholder="Phường/Xã" style="width: 49%" can_create="True" can_write="True" field_id="wards_id_0"/>
-											<field name="quan_huyen" class="oe_no_button" placeholder="Quận/Huyện" style="width: 49%" field_id="district_id_0"/>
+											<field name="ward" placeholder="Phường/Xã" style="width: 49%" can_create="True" can_write="True" field_id="wards_id_0"/>
+											<field name="district" class="oe_no_button" placeholder="Quận/Huyện" style="width: 49%" field_id="district_id_0"/>
 										</div>
 									</div>
 									<field name="website_link" widget="url" placeholder="e.g. www.odoo.com" on_change="1" field_id="website_0"/>
 								</group>
 								<group>
-									<field name="chuc_vu" string="Chức vụ" placeholder="e.g. developer" on_change="1" field_id="function_0"/>
-									<field name="so_dien_thoai" placeholder="e.g. +84 012345678" on_change="1" field_id="phone_0"/>
+									<field name="function" string="Chức vụ" placeholder="e.g. developer" on_change="1" field_id="function_0"/>
+									<field name="phone" placeholder="e.g. +84 012345678" on_change="1" field_id="phone_0"/>
 									<field name="email" widget="email" on_change="1" field_id="email_0"/>
 								</group>
 							</group>
@@ -69,11 +69,11 @@
 
 						</page> -->
 						<page string="Thuốc">
-							<field name="thuoc_ids" nolabel="1" readonly="1">
+							<field name="prescription_ids" nolabel="1" readonly="1">
 								<tree string="Đơn thuốc">
-									<field name="ngay_ke_don"/>
+									<field name="prescription_date"/>
 									<field name="name"/>
-									<field name="bac_si_id"/>
+									<field name="doctor_id"/>
 									<field name="state"/>
 								</tree>
 							</field>
@@ -82,48 +82,48 @@
 
 						</page> -->
 						<page string="Phiếu khám bệnh">
-							<field name="phieu_kham_benh_ids" nolabel="1" readonly="1">
+							<field name="walkins_ids" nolabel="1" readonly="1">
 								<tree string="Phiếu khám bệnh">
-									<field name="ngay"/>
+									<field name="date"/>
 									<field name="name"/>
-									<field name="chan_doan"/>
-									<field name="ngay_tai_kham"/>
+									<field name="diagnosis"/>
+									<field name="date_re_exam"/>
 								</tree>
 							</field>
 						</page>
 						<page string="Chẩn đoán hình ảnh">
-							<field name="chan_doan_hinh_anh_ids" nolabel="1" readonly="1">
-								<tree string="Phiếu khám bệnh">
-									<field name="ngay_phan_tich"/>
-									<field name="phieu_kham_benh_id"/>
-									<field name="phan_tich"/>
-									<field name="ket_luan"/>
+							<field name="diagnostic_imaging_ids" nolabel="1" readonly="1">
+								<tree string="Chẩn đoán hình ảnh">
+									<field name="date_of_the_anlysis"/>
+									<field name="walkins_id"/>
+									<field name="analysis"/>
+									<field name="conclusion"/>
 								</tree>
 							</field>
 						</page>
 						<page string="Lifestyle">
 							<group>
 								<group string="Tập thể dục">
-									<field name="tap_the_duc"/>
-									<field name="so_phut_mot_ngay" default="0" help="Số phút bệnh nhân tập thể dục mỗi ngày"/>
+									<field name="exercise"/>
+									<field name="exercise_minutes_day" default="0" help="Số phút bệnh nhân tập thể dục mỗi ngày"/>
 								</group>
 								<group string="Ngủ">
-									<field name="ngu_vao_ban_ngay" help="Chọn nếu giờ ngủ là ban ngày chứ không phải ban đêm"/>
-									<field name="gio_ngu" default="0" help="Số giờ ngủ trung bình mỗi ngày"/>
+									<field name="sleep_during_daytime" help="Chọn nếu giờ ngủ là ban ngày chứ không phải ban đêm"/>
+									<field name="sleep_hours" default="0" help="Số giờ ngủ trung bình mỗi ngày"/>
 								</group>
 							</group>
 							<group string="Thông tin về chế độ ăn uống">
 								<group>
-									<field name="bua_an_mot_ngay" default="0"/>
-									<field name="an_mot_minh"/>
-									<field name="ca_phe"/>
-									<field name="so_ly_mot_ngay" default="0" help="Số ly cà phê bệnh nhân uống một ngày"/>
+									<field name="number_of_meals" default="0"/>
+									<field name="eats_alone"/>
+									<field name="coffee"/>
+									<field name="coffee_cups" default="0" help="Số ly cà phê bệnh nhân uống một ngày"/>
 								</group>
 								<group >
-									<field name="nuoc_giai_khat" help="Chọn nếu bệnh nhân có uống nước có đường"/>
-									<field name="muoi" help="Chọn nếu bệnh nhân có tiêu thụ muối trong chế độ ăn"/>
-									<field name="trong_che_do_an_kieng" />
-									<field name="thong_tin_che_do_an" help="Mô tả ngắn gọn về chế độ ăn uống"/>
+									<field name="soft_drinks" help="Chọn nếu bệnh nhân có uống nước có đường"/>
+									<field name="salt" help="Chọn nếu bệnh nhân có tiêu thụ muối trong chế độ ăn"/>
+									<field name="diet" />
+									<field name="diet_info" help="Mô tả ngắn gọn về chế độ ăn uống"/>
 								</group>
 							</group>
 							<group string="Thông tin về phong cách sống">
@@ -132,52 +132,52 @@
 								<page string="Nghiện" name="nghien">
 									<group string="Hút thuốc">
 										<group>
-											<field name="hut_thuoc"/>
-											<field name="tuoi_bat_dau_hut_thuoc" default="0"/>
-											<field name="dieu_thuoc_mot_ngay" default="0"/>
+											<field name="smoking"/>
+											<field name="age_start_smoking" default="0"/>
+											<field name="smoking_number" default="0"/>
 										</group>
 										<group>
-											<field name="nguoi_hut_thuoc_thu_dong" />
-											<field name="tung_hut_thuoc" />
-											<field name="tuoi_bo_thuoc" default="0"/>
+											<field name="second_hand_smoker" />
+											<field name="ex_smoker" />
+											<field name="age_quit_smoking" default="0"/>
 										</group>
 									</group>
 									<group string="Rượu/bia">
 										<group>
-											<field name="uong_ruou_bia"/>
-											<field name="tuoi_bat_dau_uong" default="0"/>
-											<field name="bia_tren_ngay" default="0"/>
-											<field name="ruou_tren_ngay" default="0"/>
+											<field name="alcohol"/>
+											<field name="age_start_drinking" default="0"/>
+											<field name="alcohol_beer_number" default="0"/>
+											<field name="alcohol_liquor_number" default="0"/>
 										</group>
 										<group>
-											<field name="tung_uong_ruou_bia"/>
-											<field name="thang_gan_nhat_uong_ruou" default="0"/>
-											<field name="tuoi_bo_ruou" default="0"/>
+											<field name="ex_alcoholic"/>
+											<field name="last_month_drink_beer" default="0"/>
+											<field name="age_quit_drinking" default="0"/>
 										</group>
 									</group>
 									<group string="Thuốc kích thích">
 										<group>
-											<field name="su_dung_thuoc_kich_thich"/>
-											<field name="tuoi_bat_dau_dung_thuoc_kich_thich" default="0"/>
-											<field name="loai_thuoc_hay_dung" help="Tên loại thuốc kích thích mà bệnh nhân hay sử dụng (nếu có)"/>
+											<field name="drug_usage"/>
+											<field name="age_start_drugs" default="0"/>
+											<field name="drug_iv" help="Tên loại thuốc kích thích mà bệnh nhân hay sử dụng (nếu có)"/>
 										</group>
 										<group>
-											<field name="tung_nghien_thuoc" />
-											<field name="tuoi_bo_thuoc_kich_thich" default="0"/>
+											<field name="ex_drug_addict" />
+											<field name="age_quit_drugs" default="0"/>
 										</group>
 									</group>
 								</page>
 								<page string="Tham gia giao thông" name="tham_gia_giao_thong">
 									<group>
 										<group>
-											<field name="chay_xe_may" help="Bệnh nhân có sử dụng xe máy để di chuyển"/>
-											<field name="doi_non_bao_hiem"/>
-											<field name="tuan_thu_luat_giao_thong"/>
+											<field name="motorcycle_rider" help="Bệnh nhân có sử dụng xe máy để di chuyển"/>
+											<field name="helmet"/>
+											<field name="traffic_laws"/>
 										</group>
 										<group>
-											<field name="sua_xe" />
-											<field name="chay_xe_oto" help="Bệnh nhân có sử dụng ô tô để di chuyển"/>
-											<field name="that_day_an_toan"/>
+											<field name="car_revision" />
+											<field name="car_rider" help="Bệnh nhân có sử dụng ô tô để di chuyển"/>
+											<field name="car_seat_belt"/>
 										</group>
 									</group>
 								</page>
@@ -200,18 +200,18 @@
 
 	<record id="patient_search_view" model="ir.ui.view">
 		<field name="name">Tìm kiếm bệnh nhân</field>
-		<field name="model">medical.benh_nhan</field>
+		<field name="model">medical.patient</field>
 		<field name="arch" type="xml">
 			<search string="">
 				<field name="name"/>
-				<field name="tuoi_benh_nhan"/>
-				<field name="gioi_tinh"/>
-				<field name="nhom_mau"/>
+				<field name="age"/>
+				<field name="sex"/>
+				<field name="blood_type"/>
 				<separator/>
 				<group expand="1" string="Nhóm theo">
 					<filter string="Họ và tên" name="group_by_name" context="{'group_by': 'name'}"/>
-					<filter string="Giới tính" name="group_by_gender" context="{'group_by': 'gioi_tinh'}"/>
-					<filter string="Bác sĩ" name="group_by_doctor" context="{'group_by': 'bac_si_gia_dinh'}"/>
+					<filter string="Giới tính" name="group_by_gender" context="{'group_by': 'sex'}"/>
+					<filter string="Bác sĩ" name="group_by_doctor" context="{'group_by': 'doctor'}"/>
 					<filter string="Ngày tạo" name="group_by_create_date" context="{'group_by': 'create_date'}"/>
 				</group>
 			</search>
@@ -220,35 +220,35 @@
 
 	<record id="medical_patient_tree_view" model="ir.ui.view">
 		<field name="name">medical.patient.tree</field>
-		<field name="model">medical.benh_nhan</field>
+		<field name="model">medical.patient</field>
 		<field name="arch" type="xml">
 			<tree string="Thông tin bệnh nhân">
 				<field name="name" />
 				<field name="identification_code" />
-				<field name="gioi_tinh" />
-				<field name="ngay_sinh"/>
-				<field name="tuoi_benh_nhan"/>
-				<field name="bac_si_gia_dinh"/>
+				<field name="sex" />
+				<field name="dob"/>
+				<field name="age"/>
+				<field name="doctor"/>
 			</tree>
 		</field>
 	</record>
 	<record id="medical_patient_kanban_view" model="ir.ui.view">
 		<field name="name">medical.patient.kanban</field>
-		<field name="model">medical.benh_nhan</field>
+		<field name="model">medical.patient</field>
 		<field name="arch" type="xml">
 			<kanban>
 				<field name="name" />
-				<field name="anh_dai_dien" />
-				<field name="gioi_tinh" />
-				<field name="tuoi_benh_nhan" />
-				<field name="nhom_mau" />
+				<field name="image" />
+				<field name="sex" />
+				<field name="age" />
+				<field name="blood_type" />
 				<templates>
 					<t t-name="kanban-box">
 						<div class="oe_kanban_global_click oe_kanban_card">
 							<div class="oeh_medical_vignette oe_semantic_html_override">
 								<div class="o_kanban_image" style="margin-top:15px;">
 									<a type="open">
-										<img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.benh_nhan', 'anh_dai_dien', record.id.raw_value)"/>
+										<img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.patient', 'image', record.id.raw_value)"/>
 									</a>
 								</div>
 								<div class="oe_kanban_details" style="text-align: right">
@@ -261,11 +261,11 @@
 										<li t-if="record.identification_code.raw_value">
 											<field name="identification_code"/>
 										</li>
-										<li>Giới tính: <field name="gioi_tinh"/>
+										<li>Giới tính: <field name="sex"/>
 										</li>
-										<li>Tuổi: <field name="tuoi_benh_nhan"/>
+										<li>Tuổi: <field name="age"/>
 										</li>
-										<li>Nhóm máu: <field name="nhom_mau"/>
+										<li>Nhóm máu: <field name="blood_type"/>
 										</li>
 									</ul>
 								</div>
@@ -280,16 +280,16 @@
 	<record id="medical_patient_action" model="ir.actions.act_window">
 		<field name="name">Bệnh nhân</field>
 		<field name="type">ir.actions.act_window</field>
-		<field name="res_model">medical.benh_nhan</field>
+		<field name="res_model">medical.patient</field>
 		<field name="view_mode">kanban,tree,form</field>
 		<field name="context">{'search_default_group_by_create_date': 1}</field>
 	</record>
-	<record id="medical_patient_action_domain_nhom_mau" model="ir.actions.act_window">
+	<record id="medical_patient_action_domain_blood_type" model="ir.actions.act_window">
 		<field name="name">Bệnh nhân</field>
 		<field name="type">ir.actions.act_window</field>
-		<field name="res_model">medical.benh_nhan</field>
+		<field name="res_model">medical.patient</field>
 		<field name="view_mode">tree,form,kanban</field>
-		<field name="domain">[('nhom_mau', '!=', '' 3) </field>
+		<field name="domain">[('blood_type', '!=', '' 3) </field>
 	</record>
 
 </odoo>

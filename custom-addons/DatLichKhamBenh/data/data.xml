@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="chan_doan_hinh_anh_sequence" model="ir.sequence">
+        <record id="diagnostic_imaging_sequence" model="ir.sequence">
             <field name="name">Chẩn đoán hình ảnh Sequence</field>
-            <field name="code">chan_doan_hinh_anh.seq</field>
+            <field name="code">diagnostic_imaging.seq</field>
             <field name="prefix">IM</field>
             <field name="padding">6</field>
         </record>
         
-        <record id="vat_tu_tieu_hao_sequence" model="ir.sequence">
+        <record id="material_consumption_sequence" model="ir.sequence">
             <field name="name">Vật tư tiêu hao Sequence</field>
-            <field name="code">vat_tu_tieu_hao.seq</field>
+            <field name="code">material_consumption.seq</field>
             <field name="prefix"></field>
             <field name="padding">1</field>
         </record>
 
-        <record id="benh_nhan_sequence" model="ir.sequence">
+        <record id="patient_sequence" model="ir.sequence">
             <field name="name">Bệnh Nhân Sequence</field>
-            <field name="code">benh_nhan.seq</field>
+            <field name="code">patient.seq</field>
             <field name="prefix">HP</field>
             <field name="padding">6</field>
         </record>
 
-        <record id="don_thuoc_sequence" model="ir.sequence">
+        <record id="prescription_sequence" model="ir.sequence">
             <field name="name">Đơn thuốc Sequence</field>
-            <field name="code">don_thuoc.seq</field>
+            <field name="code">prescription.seq</field>
             <field name="prefix">PR</field>
             <field name="padding">6</field>
         </record>
-        <record id="don_thuoc_duoc_dat_sequence" model="ir.sequence">
+        <record id="prescription_orders_sequence" model="ir.sequence">
             <field name="name">Đơn thuốc được đặt Sequence</field>
-            <field name="code">don_thuoc_duoc_dat.seq</field>
+            <field name="code">prescription_orders.seq</field>
             <field name="prefix">PSO</field>
             <field name="padding">6</field>
         </record>
 
-        <record id="phieu_kham_benh_sequence" model="ir.sequence">
+        <record id="walkins_sequence" model="ir.sequence">
             <field name="name">Phiếu khám bệnh Sequence</field>
-            <field name="code">phieu_kham_benh.seq</field>
+            <field name="code">walkins.seq</field>
             <field name="prefix">WI/%(day)s-%(month)s-%(year)s/</field>
             <field name="padding">5</field>
             <field name="implementation">no_gap</field>

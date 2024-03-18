@@ -8,7 +8,7 @@
 
     <menuitem id="patient_menu_child" parent="patient_menu" name="Quản lý bênh nhân" sequence="1" action="medical_patient_action"/>
 
-    <menuitem id="medical_specialty_dashboard_menu" name="Bảng thông tin" parent="menu_QLDLKB" sequence="1" action="medical_specialty_dashboard_action" groups="DatLichKhamBenh.group_employee_manager" />
+    <menuitem id="medical_specialty_dashboard_menu" name="Bảng thông tin" parent="menu_QLDLKB" sequence="1" action="medical_department_dashboard_action" groups="DatLichKhamBenh.group_employee_manager" />
     <menuitem id="menu_bao_cao" name="Báo cáo" parent="menu_QLDLKB" sequence="2" />
     <menuitem id="pharmacist_menu" name="Dược sĩ" parent="menu_QLDLKB" sequence="4" action="medical_pharmacist_action"/>
     <menuitem id="doctor_menu" name="Bác sĩ" parent="menu_QLDLKB" sequence="5" action="medical_doctor_action"/>
@@ -24,8 +24,8 @@
     <menuitem id="menu_cau_hinh_5" name="Hình ảnh" parent="menu_cau_hinh" />
     <menuitem id="menu_cau_hinh_6" name="Thời gian khám bệnh" parent="menu_cau_hinh" />
 
-    <menuitem id="medical_hospital_menu" name="Trung tâm y tế" parent="menu_cau_hinh_1" action='medical_hospital_action' sequence="2" />
-    <menuitem id="medical_specialty_menu" name="Khoa" parent="menu_cau_hinh_1" action='medical_specialty_action' sequence="3" />
+    <menuitem id="medical_hospital_menu" name="Trung tâm y tế" parent="menu_cau_hinh_1" action='medical_health_center_action' sequence="2" />
+    <menuitem id="medical_specialty_menu" name="Khoa" parent="menu_cau_hinh_1" action='medical_department_action' sequence="3" />
     <menuitem id="medical_clinic_menu" name="Phòng" parent="menu_cau_hinh_1" action='medical_clinic_action' sequence="4" />
     <menuitem id="medical_pharmacies_menu" name="Hiệu thuốc" parent="menu_cau_hinh_1" action='medical_pharmacies_action' sequence="5" />
 

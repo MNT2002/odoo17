@@ -1,25 +1,25 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <data noupdate="1">
-        <record id="speciality_1" model="medical.donvi_lieuthuoc">
+        <record id="speciality_1" model="medical.dose_units">
             <field name="name">ml</field>
-            <field name="mo_ta">milliliter</field>
+            <field name="description">milliliter</field>
         </record>
-        <record id="speciality_2" model="medical.donvi_lieuthuoc">
+        <record id="speciality_2" model="medical.dose_units">
             <field name="name">mg</field>
-            <field name="mo_ta">milligram</field>
+            <field name="description">milligram</field>
         </record>
-        <record id="speciality_3" model="medical.donvi_lieuthuoc">
+        <record id="speciality_3" model="medical.dose_units">
             <field name="name">L</field>
-            <field name="mo_ta">Liter</field>
+            <field name="description">Liter</field>
         </record>
-        <record id="speciality_4" model="medical.donvi_lieuthuoc">
+        <record id="speciality_4" model="medical.dose_units">
             <field name="name">kg</field>
-            <field name="mo_ta">Kilogram</field>
+            <field name="description">Kilogram</field>
         </record>
-        <record id="speciality_5" model="medical.donvi_lieuthuoc">
+        <record id="speciality_5" model="medical.dose_units">
             <field name="name">mmol</field>
-            <field name="mo_ta">millimol</field>
+            <field name="description">millimol</field>
         </record>
     </data>
     
