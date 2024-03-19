@@ -15,7 +15,7 @@ class PrescriptionOrders(models.Model):
         record =  super(PrescriptionOrders, self).create(vals)
         return record
     
-    state = fields.Selection([('DuThao', 'Dự thảo'), ('XacNhan', 'Xác nhận'), ('ChoThanhToan', 'Chờ thanh toán'), ('DaXuatHoaDon', 'Đã xuất hoá đơn')], string='Trạng thái', default='DuThao')
+    state = fields.Selection([('draft', 'Dự thảo'), ('validate', 'Xác nhận'), ('waiting_for_invoice', 'Chờ thanh toán'), ('invoiced', 'Đã xuất hoá đơn')], string='Trạng thái', default='draft')
 
     patient_id = fields.Many2one('medical.patient', 'Bệnh nhân', store=True, required=True, readonly=True)
 
@@ -26,17 +26,17 @@ class PrescriptionOrders(models.Model):
 
     health_center_id = fields.Many2one('medical.health_center', related='prescription_id.health_center_id')
 
-    department_id = fields.Many2one('medical.department', related='prescription_id.department_id', readonly=True)
+    department_id = fields.Many2one('medical.department', related='prescription_id.department_id')
 
     pharmacies_id = fields.Many2one('medical.pharmacies', 'Nhà thuốc', domain="[('health_center_id', '=', health_center_id)]", store=True, required=True)
 
-    pharmacist_id = fields.Many2one('medical.pharmacist', 'Dược sĩ', store=True, required='id = True')
+    pharmacist_id = fields.Many2one('medical.pharmacist', 'Dược sĩ', store=True)
 
     prescription_id = fields.Many2one('medical.prescription', 'Đơn thuốc #', store=True, readonly=True)
 
     prescription_details_ids = fields.One2many(comodel_name='medical.prescription_details', inverse_name='prescription_id', related='prescription_id.prescription_details_ids')
 
-    def btn_xac_nhan(self):
-        self.state = 'XacNhan'
-    def btn_xuat_hoa_don(self):
-        self.state = 'DaXuatHoaDon'
+    def btn_validate(self):
+        self.state = 'validate'
+    def btn_invoiced(self):
+        self.state = 'invoiced'

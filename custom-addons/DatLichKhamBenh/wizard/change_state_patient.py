@@ -3,7 +3,7 @@ from odoo import fields, models, api
 
 class ChangeStatePatientWizard(models.TransientModel):
     _name = 'change.state_patient.wizard'
-    _description = 'Wizard to change the state of a "benh nhan"'
+    _description = 'Wizard to change the state of a "patient"'
 
     note = fields.Char('Ghi chú')
 
@@ -11,4 +11,4 @@ class ChangeStatePatientWizard(models.TransientModel):
         patient_id = self.env.context.get('active_id', False)
         patient = self.env['medical.patient'].browse(patient_id)
         patient.write({'note': self.note})
-        patient.btn_da_kham()
+        patient.btn_examined()

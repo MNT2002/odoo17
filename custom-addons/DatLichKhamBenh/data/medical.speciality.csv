@@ -1,0 +1,59 @@
+id,name,code
+speciality1,Alternative Medicine,
+speciality2,Anatomy,
+speciality3,Andrology,
+speciality4,Anesthesiology,"AN, PAN"
+speciality5,Biochemistry,
+speciality6,Cardiology,
+speciality7,Cardiovascular Surgery,
+speciality8,Clinical Laboratory Sciences,
+speciality9,Clinical Neurophysiology,
+speciality10,Dermatology,"D, DS"
+speciality11,Dietetics,
+speciality12,Embryology,
+speciality13,Emergency Medicine,EM
+speciality14,Endocrinology,
+speciality15,Family Medicine,FM
+speciality16,Forensic Medicine,
+speciality17,Gastroenterology,GI
+speciality18,General surgery,GS
+speciality19,Genetics,
+speciality20,Geriatrics,IMG
+speciality21,Gynaecology,
+speciality22,Hematology,
+speciality23,Hepatology,
+speciality24,Histology,
+speciality25,Immunology,
+speciality26,Infectious disease,ID
+speciality27,Intensive care medicine,
+speciality28,Maxillofacial Surgery,"Maxfacs, OMFS"
+speciality29,Nephrology,
+speciality30,Neurology,N
+speciality31,Neurosurgery,NS
+speciality32,Nursing,
+speciality33,Obstetrics and gynecology,OB/GYN
+speciality34,Oncology,ON
+speciality35,Ophthalmology,OPH
+speciality36,Orthopedic surgery,ORS
+speciality37,"Otolaryngology, or ENT","ORL, ENT"
+speciality38,Palliative care,PLM
+speciality39,Pathology,PTH
+speciality40,Pediatric surgery,
+speciality41,Pediatrics,PD
+speciality42,Pharmacology,
+speciality43,Physical medicine and rehabilitation,PM&R
+speciality44,Plastic surgery,PS
+speciality45,Proctology,PRO
+speciality46,Psychiatry,P
+speciality47,Pulmonology,
+speciality48,Radiology,"R, DR"
+speciality49,Rheumatology,RHU
+speciality50,Stomatology,
+speciality51,Surgical oncology,SO
+speciality52,Thoracic surgery,TS
+speciality53,Toxicology,
+speciality54,Transplant surgery,TTS
+speciality55,Trauma surgery,TRS
+speciality56,Urgent Care Medicine,UCM
+speciality57,Urology,U
+speciality58,Vascular surgery,VS

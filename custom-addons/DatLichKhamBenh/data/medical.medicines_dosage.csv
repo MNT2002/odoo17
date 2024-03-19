@@ -1,0 +1,22 @@
+id,name,code,abbreviation
+medicines_dosage1,1 time per day,229797004,od
+medicines_dosage2,1 time per day in the morning,307472001,om
+medicines_dosage3,1 time per day in the evening,396147000,
+medicines_dosage4,1 time per day at bedtime,396142006,on
+medicines_dosage5,2 times per day,229799001,bd
+medicines_dosage6,3 times per day,229798009,tds
+medicines_dosage7,"3 times per day, before meals",396145008,
+medicines_dosage8,"3 times per day, with meals",396146009,
+medicines_dosage9,4 times per day,307439001,qds
+medicines_dosage10,every 2 hours,225750008,
+medicines_dosage11,every 4 hours,225756002,
+medicines_dosage12,every 6 hours,307468000,
+medicines_dosage13,every 8 hours,307469008,
+medicines_dosage14,every 12 hours,307470009,
+medicines_dosage15,every other day,225760004,
+medicines_dosage16,1 time per week,225769003,
+medicines_dosage17,every two weeks,20050000,
+medicines_dosage18,every 28 days,307476003,
+medicines_dosage19,every month,307475004,
+medicines_dosage20,as needed,420449005,prn
+medicines_dosage21,1 time,422114001,stat

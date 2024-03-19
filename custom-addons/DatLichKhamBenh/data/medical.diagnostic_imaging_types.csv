@@ -1,0 +1,6 @@
+id,name,code,test_charge
+diagnostic_imaging_types1,Ultrasound,US,300000
+diagnostic_imaging_types2,MRI,MRI,200000
+diagnostic_imaging_types3,X-Ray,XR,150000
+diagnostic_imaging_types4,CT Scan,CT,250000
+diagnostic_imaging_types5,PET Scan,PET,150000

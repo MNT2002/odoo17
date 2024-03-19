@@ -63,15 +63,15 @@ class Department(models.Model):
     _name = 'medical.department'
     _description = 'department'
 
-    name = fields.Char('Tên department', required=True)
+    name = fields.Char('Tên khoa', required=True)
 
-    state = fields.Selection([('CoPhong', 'Có phòng'), ('KhongCoSan', 'Không có sẵn')], default='CoPhong', compute="_compute_department_state",)
+    state = fields.Selection([('room_available', 'Có phòng'), ('not_available', 'Không có sẵn')], default='room_available', compute="_compute_department_state",)
 
     health_center_id = fields.Many2one('medical.health_center', string="Trung tâm sức khoẻ", store=True, required=True)
 
     floor_number = fields.Integer('Số tầng')
 
-    type = fields.Selection([('BinhThuong', 'Bình thường'), ('HinhAnh', 'Hình ảnh'), ('PhongXetNghiem', 'Phòng xét nghiệm')])
+    type = fields.Selection([('normal', 'Bình thường'), ('imaging', 'Hình ảnh'), ('laboratory', 'Phòng xét nghiệm')], 'Loại')
 
     telephone_access = fields.Boolean('Truy cập điện thoại')
 
@@ -126,10 +126,10 @@ class Department(models.Model):
         for rec in self:
             rec.diagnostic_imaging_count =  len(rec.diagnostic_imaging_ids)
     
-    def btn_trong(self):
-        self.state = "CoPhong"
-    def btn_khong_co_san(self):
-        self.state = "KhongCoSan"
+    def btn_room_available(self):
+        self.state = "room_available"
+    def btn_not_available(self):
+        self.state = "not_available"
 
     @api.depends('clinic_ids')
     def get_count_clinic(self):
@@ -139,10 +139,10 @@ class Department(models.Model):
     @api.depends("clinic_ids.state")
     def _compute_department_state(self):
         for rec in self:
-            if any(clinic.state == 'Trong' for clinic in rec.clinic_ids):
-                rec.state = "CoPhong"
+            if any(clinic.state == 'room_available' for clinic in rec.clinic_ids):
+                rec.state = "room_available"
             else:
-                rec.state = "KhongCoSan"
+                rec.state = "not_available"
 
     def action_tao_walkins_moi(self):
         # action['domain'] = {'doctor_id': [('id', 'in', self.doctor_ids)]}
@@ -172,7 +172,7 @@ class Department(models.Model):
                 'default_department_id': self.id
             }
         }
-    def btn_so_luong_walkins(self):
+    def btn_count_walkins(self):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
@@ -235,17 +235,17 @@ class Department(models.Model):
         self.favorite = self.favorite == False
 
 class Clinic(models.Model):
-    _name = 'medical.clinic'
+    _name = 'medical.clinic'    
     _description = 'medical.clinic'
 
     name = fields.Char('Tên phòng', required=True)
 
-    state = fields.Selection([('Trong', 'Trống'), ('KhongCoSan', 'Không có sẵn')], default='Trong')
+    state = fields.Selection([('room_available', 'Trống'), ('not_available', 'Không có sẵn')], default='room_available')
     
-    def btn_trong(self):
-        self.state = "Trong"
-    def btn_khong_co_san(self):
-        self.state = "KhongCoSan"
+    def btn_room_available(self):
+        self.state = "room_available"
+    def btn_not_available(self):
+        self.state = "not_available"
 
     health_center_id = fields.Many2one('medical.health_center', string="Trung tâm sức khoẻ", store=True, required=True)
 
@@ -305,7 +305,7 @@ class MedicineVaccine(models.Model):
 
     name = fields.Char('Tên thuốc', translate=True, required=True)
 
-    medicament_type = fields.Selection([('Thuoc', 'Thuốc'), ('Vaccine', 'Vaccine')], 'Loại thuốc', required=True,)
+    type_of_medicine = fields.Selection([('medicine', 'Thuốc'), ('vaccine', 'Vaccine')], 'Loại thuốc', required=True, default="medicine")
 
     sale_price = fields.Integer('Giá bán')
 
@@ -344,7 +344,7 @@ class MedicinesDosage(models.Model):
 
     name = fields.Char('Tần số', required=True)
 
-    code = fields.Integer('Mã')
+    code = fields.Char('Mã')
 
     abbreviation = fields.Char('Viết tắt')
 
@@ -352,7 +352,7 @@ class Vaccine(models.Model):
     _name = 'medical.vaccine'
     _description = 'medical.vaccine'
 
-    name = fields.Many2one('medical.medicine_vaccine', 'Vaccine', domain="[('medicament_type', '=', 'Vaccine')]", required=True, store=True)
+    name = fields.Many2one('medical.medicine_vaccine', 'Vaccine', domain="[('type_of_medicine', '=', 'vaccine')]", required=True, store=True)
 
     patient_id = fields.Many2one('medical.patient', 'Bệnh nhân', required=True, store=True)
 
@@ -404,8 +404,8 @@ class LabTestCase(models.Model):
     lab_test_types_id = fields.Many2one('medical.lab_test_types', 'Loại xét nghiệm')
 
 class DiagnosticImagingTypes(models.Model):
-    _name = 'medical.diagnostic_imaging_type'
-    _description = 'medical.diagnostic_imaging_type'
+    _name = 'medical.diagnostic_imaging_types'
+    _description = 'medical.diagnostic_imaging_types'
     
     name = fields.Char('Tên', required=True)
 
@@ -429,9 +429,9 @@ class DiagnosticImaging(models.Model):
         return record
 
 
-    state = fields.Selection([('DuThao', 'Dự thảo'),('DaXuatHoaDon', 'Đã xuất hoá đơn'), ('DangThucHien', 'Đang thực hiện'), ('HoanThanh', 'Hoàn thành')], 'Trạng thái', default='DuThao')
+    state = fields.Selection([('draft', 'Dự thảo'),('invoiced', 'Đã xuất hoá đơn'), ('test_in_profgress', 'Đang thực hiện'), ('completed', 'Hoàn thành')], 'Trạng thái', default='draft')
 
-    diagnostic_imaging_type_id = fields.Many2one('medical.diagnostic_imaging_type', 'Loại chẩn đoán', store=True, required=True)
+    diagnostic_imaging_types_id = fields.Many2one('medical.diagnostic_imaging_types', 'Loại chẩn đoán', store=True, required=True)
 
     identification_code = fields.Char('Mã bệnh nhân',related='patient_id.identification_code', readonly=True)
 
@@ -442,7 +442,7 @@ class DiagnosticImaging(models.Model):
 
     date_of_birth = fields.Date('Ngày sinh', related='patient_id.dob',)
 
-    sex = fields.Selection([('Nam', 'Nam'), ('Nu', 'Nữ'), ('Khac', 'Khác')], "Giới tính", related='patient_id.sex')
+    sex = fields.Selection([('male', 'Nam'), ('female', 'Nữ'), ('other', 'Khác')], "Giới tính", related='patient_id.sex')
 
     doctor_id = fields.Many2one('medical.doctor','Bác sĩ', store=True, related='walkins_id.doctor_id')
 
@@ -465,14 +465,14 @@ class DiagnosticImaging(models.Model):
 
     material_consumption_ids = fields.One2many('medical.material_consumption', 'diagnostic_imaging_id')
 
-    def btn_tao_hoa_don_chan_doan(self):
-        self.state = 'DaXuatHoaDon'
-    def btn_bat_dau_chan_doan(self):
-        self.state = 'DangThucHien'
+    def btn_invoiced(self):
+        self.state = 'invoiced'
+    def btn_test_in_profgress(self):
+        self.state = 'test_in_profgress'
         current_dt = fields.datetime.now()
-        self.ngay_phan_tich = current_dt
-    def btn_hoan_thanh_chan_doan(self):
-        self.state = 'HoanThanh'
+        self.date_of_the_anlysis = current_dt
+    def btn_completed(self):
+        self.state = 'completed'
     def in_diagnostic_imaging(self):
         raise ValidationError('Tính năng đang bảo trì!')
 
@@ -480,13 +480,15 @@ class MaterialConsumption(models.Model):
     _name = 'medical.material_consumption'
     _description = 'medical.material_consumption'
     
-    sequence = fields.Integer('Mã thứ tự', default=lambda self: self.env['ir.sequence'].next_by_code('material_consumption.seq'))
+    name = fields.Char('Sản phẩm')
 
-    product = fields.Char('Sản phẩm', required=True)
+    sequence = fields.Integer('Mã thứ tự', default=lambda self: self.env['ir.sequence'].next_by_code('material_consumption.seq'))
 
     quantity = fields.Integer('Số lượng', default='1')
 
-    units = fields.Char('Đơn vị')
+    # units = fields.Many2one('uom.uom', 'Đơn vị')
+
+    units = fields.Char('Dơn vị')
 
     diagnostic_imaging_id = fields.Many2one('medical.diagnostic_imaging', 'Chẩn đoán hình ảnh', store=True)
 
@@ -508,7 +510,7 @@ class Shift(models.Model):
     _name = 'medical.shift'
     _description = 'medical.shift'
 
-    name = fields.Selection([('Sáng', 'Sáng'), ('Tối', 'Tối')], 'Ca làm việc')
+    name = fields.Selection([('morning', 'Sáng'), ('evening', 'Tối')], 'Ca làm việc')
 
     description = fields.Char('Mô tả')
 

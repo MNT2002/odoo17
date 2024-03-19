@@ -15,23 +15,23 @@ class walkins(models.Model):
         record =  super(walkins, self).create(vals)
         return record
 
-    state = fields.Selection([('DaLenLich', 'Đã lên lịch'), ('ChoKham', 'Chờ khám'), ('DangKiemTra', 'Đang kiểm tra'), ('ChoThanhToan', 'Chờ thanh toán'), ('HoanThanh', 'Hoàn thành')], string='Trạng thái', default='DaLenLich')
+    state = fields.Selection([('scheduled', 'Đã lên lịch'), ('waiting_for_check', 'Chờ khám'), ('checking', 'Đang kiểm tra'), ('waiting_for_invoice', 'Chờ thanh toán'), ('completed', 'Hoàn thành')], string='Trạng thái', default='scheduled')
     
-    def btn_da_len_lich(self):
-        self.state = "DaLenLich"
-    def btn_cho_kham(self):
-        self.state = "ChoKham"
-    def btn_dang_kiem_tra(self):
-        self.state = "DangKiemTra"
-    def btn_cho_thanh_toan(self):
+    def btn_scheduled(self):
+        self.state = "scheduled"
+    def btn_waiting_for_check(self):
+        self.state = "waiting_for_check"
+    def btn_checking(self):
+        self.state = "checking"
+    def btn_waiting_for_invoice(self):
         for rec in self:
             if not rec.doctor_id or rec.doctor_id == "":
                 raise ValidationError("Lỗi cấu hình!\nKhông tìm thấy bác sĩ nào để tạo hóa đơn !") 
             else:
-                self.state = "ChoThanhToan"
+                self.state = "waiting_for_invoice"
                 
-    def btn_hoan_thanh(self):
-        self.state = "HoanThanh"
+    def btn_completed(self):
+        self.state = "completed"
 
     patient_id = fields.Many2one('medical.patient', 'Bệnh nhân', store=True, required=True)
 
@@ -83,9 +83,9 @@ class walkins(models.Model):
     age = fields.Char('Tuổi', related='patient_id.age', store=True)
     street = fields.Char('Địa chỉ', related='patient_id.street')
 
-    sex = fields.Selection([('Nam', 'Nam'), ('Nu', 'Nữ'), ('Khac', 'Khác')], "Giới tính", related='patient_id.sex', readonly=True, store=True)
+    sex = fields.Selection([('male', 'Nam'), ('female', 'Nữ'), ('other', 'Khác')], "Giới tính", related='patient_id.sex', readonly=True, store=True)
 
-    marital_status = fields.Selection([('DocThan', 'Độc thân'), ('DaCuoi', 'Đã cưới'), ('GoaPhu', 'Góa phụ'), ('LyDi', 'Ly dị'), ('LyThan', 'Ly thân')], "Tình trạng hôn nhân", related='patient_id.marital_status', readonly=True, store=True)
+    marital_status = fields.Selection([('single', 'Độc thân'), ('married', 'Đã cưới'), ('widowed', 'Góa phụ'), ('divorced', 'Ly dị'), ('separated', 'Ly thân')], "Tình trạng hôn nhân", related='patient_id.marital_status', readonly=True, store=True)
 
     blood_type = fields.Selection([('A', 'A'), ('B', 'B'), ('AB', 'AB'), ('O', 'O')], "Nhóm máu", related='patient_id.blood_type', readonly=True, store=True)
 
@@ -110,9 +110,9 @@ class walkins(models.Model):
     def _compute_birthday(self):
         for rec in self:
             if rec.patient_id:
-                rec.date_sinh = rec.patient_id.date_sinh
+                rec.dob = rec.patient_id.dob
             else: 
-                rec.date_sinh = ""
+                rec.dob = ""
 
     diagnosis = fields.Char('Chẩn đoán')
 
@@ -136,20 +136,21 @@ class Prescription(models.Model):
         record =  super(Prescription, self).create(vals)
         return record
 
-    state = fields.Selection([('DuThao', 'Dự thảo'), ('DaGui', 'Đã gửi')], string='Trạng thái', default='DuThao')        
+    state = fields.Selection([('draft', 'Dự thảo'), ('sent', 'Đã gửi')], string='Trạng thái', default='draft')        
 
-    def btn_gui(self):
-        self.state = 'DaGui'
+    def btn_send(self):
+        self.state = 'sent'
 
     @api.model
     def write(self, vals):
         if vals.get('state'):
-            if vals.get('state') == 'DaGui':
+            if vals.get('state') == 'sent':
                 vals_new_rec = {
                     'patient_id': self.patient_id.id,
                     'doctor_id': self.doctor_id.id,
                     'pharmacies_id': self.pharmacies_id.id,
                     'prescription_id': self.id
+                    
                 }
                 self.env['medical.prescription_orders'].create(vals_new_rec)
         return super(Prescription, self).write(vals)
@@ -157,9 +158,9 @@ class Prescription(models.Model):
 
     patient_id = fields.Many2one('medical.patient', 'Bệnh nhân', store=True, related='walkins_id.patient_id')
 
-    health_center_id = fields.Many2one('medical.trung_tam_y_te', related='walkins_id.health_center_id')
+    health_center_id = fields.Many2one('medical.health_center', related='walkins_id.health_center_id')
 
-    department_id = fields.Many2one('medical.khoa', related='walkins_id.department_id', readonly=True)
+    department_id = fields.Many2one('medical.department', related='walkins_id.department_id', readonly=True)
 
     pharmacies_id = fields.Many2one('medical.pharmacies', 'Nhà thuốc', domain="[('health_center_id', '=', health_center_id)]", store=True, required=True)
 
@@ -182,14 +183,14 @@ class PrescriptionDetails(models.Model):
     _description = 'medical.prescription_details'
     _order = "create_date desc, id desc"
 
-    name = fields.Many2one('medical.medicine_vaccine', 'Thuốc', domain="[('medicament_type', '=', 'Thuoc')]", required=True, store=True)
+    name = fields.Many2one('medical.medicine_vaccine', 'Thuốc', domain="[('type_of_medicine', '=', 'medicine')]", required=True, store=True)
 
     prescription_id = fields.Many2one('medical.prescription', 'Đơn thuốc', store=True, readonly=True)
 
     indication = fields.Char('Chỉ định', related='name.indication', store=True)
 
-    dose = fields.Many2one('medical.lieu_thuoc', 'Liều', store=True, required=True)
+    medicines_dosage_id = fields.Many2one('medical.medicines_dosage', 'Liều', store=True, required=True)
 
-    dose_units = fields.Many2one('medical.dose_units','Đơn vị liều lường', store=True)
+    dose_units_id = fields.Many2one('medical.dose_units','Đơn vị liều lường', store=True)
 
     comment = fields.Char('Bình luận')

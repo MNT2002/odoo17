@@ -185,7 +185,7 @@
             <form string="Dược sĩ">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <!-- <button type="action" class="oe_stat_button" name="DatLichKhamBenh.morden_action_medical_walkins" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user" icon="fa-list" context="{'default_pharmacist_id': active_id, 'default_health_center_id': health_center_id, 'default_khoa_id': khoa_id}">
+                        <!-- <button type="action" class="oe_stat_button" name="DatLichKhamBenh.morden_action_medical_walkins" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user" icon="fa-list" context="{'default_pharmacist_id': active_id, 'default_health_center_id': health_center_id, 'default_department_id': department_id}">
                             <field string="Phiếu khám bệnh" name="walkins_count" widget="statinfo"/>
                         </button> -->
                     </div>
@@ -196,7 +196,7 @@
                             <field name="name" required="1" />
                         </h1>
                         <div class="o_row">
-                            <field name="speciality" placeholder="Chuyên môn" />
+                            <field name="speciality_id" placeholder="Chuyên môn" />
                         </div>
                     </div>
                     <group>
@@ -258,8 +258,8 @@
                 <separator />
                 <group expand="0" string="Nhóm theo">
                     <filter string="Tên" name="group_by_name" context="{'group_by': 'name'}"/>
-                    <filter string="ID giáy phép" name="group_by_lience_id" context="{'group_by': 'lience_id'}"/>
-                    <filter string="Chuyên khoa" name="group_by_speciality" context="{'group_by': 'speciality'}"/>
+                    <filter string="ID giáy phép" name="group_by_lience" context="{'group_by': 'lience_id'}"/>
+                    <filter string="Chuyên khoa" name="group_by_speciality" context="{'group_by': 'speciality_id'}"/>
                 </group>
             </search>
         </field>
@@ -273,7 +273,7 @@
                 <field name="name" />
                 <field name="image" />
                 <field name="degree_id" />
-                <field name="speciality" />
+                <field name="speciality_id" />
                 <field name="lience_id" />
                 <templates>
                     <t t-name="kanban-box">
@@ -294,7 +294,7 @@
                                         <field name="degree_id" widget="many2many_tags" />
                                     </li>
                                     <li>
-                                        <field name="speciality" />
+                                        <field name="speciality_id" />
                                     </li>
                                     <li>
                                         <field name="lience_id" />
@@ -315,7 +315,7 @@
             <tree string="Thông tin hiệu thuốc">
                 <field name="name" />
                 <field name="lience_id" />
-                <field name="speciality" />
+                <field name="speciality_id" />
                 <field name="pharmacies_id" />
             </tree>
         </field>

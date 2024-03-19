@@ -42,9 +42,9 @@ class Patient(models.Model):
 
     age = fields.Char('Tuổi bệnh nhân', compute='_compute_age', store=True)
 
-    marital_status = fields.Selection([('DocThan', 'Độc thân'), ('DaCuoi', 'Đã cưới'), ('GoaPhu', 'Góa phụ'), ('LyDi', 'Ly dị'), ('LyThan', 'Ly thân')], "Tình trạng hôn nhân")
+    marital_status = fields.Selection([('single', 'Độc thân'), ('married', 'Đã cưới'), ('widowed', 'Góa phụ'), ('divorced', 'Ly dị'), ('separated', 'Ly thân')], "Tình trạng hôn nhân")
 
-    sex = fields.Selection([('Nam', 'Nam'), ('Nu', 'Nữ'), ('Khac', 'Khác')], "Giới tính")
+    sex = fields.Selection([('male', 'Nam'), ('female', 'Nữ'), ('other', 'Khác')], "Giới tính")
 
     dob = fields.Date('Ngày sinh', required=True)
 
@@ -82,12 +82,12 @@ class Patient(models.Model):
 
     doctor = fields.Char("Bác sĩ gia đình")
 
-    state = fields.Selection([('DangCho', 'Đang Chờ'), ('DaKham', 'Đã Khám')], string='Trạng thái', default='DangCho')
+    state = fields.Selection([('waiting', 'Đang Chờ'), ('examined', 'Đã Khám')], string='Trạng thái', default='waiting')
 
-    def btn_da_kham(self):
-        self.state = "DaKham"
-    def btn_dang_cho(self):
-        self.state = "DangCho"
+    def btn_examined(self):
+        self.state = "examined"
+    def btn_waiting(self):
+        self.state = "waiting"
 
 
     # Tai Khoan Nguoi Dung Page
@@ -151,7 +151,7 @@ class Patient(models.Model):
 
     drug_usage = fields.Boolean('Sử dụng thuốc kích thích')
     age_start_drugs = fields.Integer('Tuổi bắt đầu sử dụng thuốc')
-    drug_iv = fields.Selection([('MaTuy', 'Ma tuý'), ('Heroin', 'Heroin'), ('Nicotin', 'Nicotin')],'Loại thuốc kích thích hay dùng',)
+    drug_iv = fields.Selection([('dope', 'Ma tuý'), ('heroin', 'Heroin'), ('nicotin', 'Nicotin')],'Loại thuốc kích thích hay dùng',)
     ex_drug_addict = fields.Boolean('Từng nghiện thuốc')
     age_quit_drugs = fields.Integer('Tuổi bỏ thuốc kích thích')
 

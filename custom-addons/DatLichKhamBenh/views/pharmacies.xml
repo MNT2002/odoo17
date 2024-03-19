@@ -7,12 +7,12 @@
         <field name="arch" type="xml">
             <form string="Đơn thuốc được đặt">
                 <header>
-                    <button name="btn_xac_nhan" type="object" class="oe_highlight" string='Xác nhận'/>
-                    <button name="btn_xuat_hoa_don" confirm="Bạn có muốn xuất hoá đơn đơn thuốc?" string="Hoá đơn thanh toán" type="object" class="oe_highlight"/>
+                    <button name="btn_validate" type="object" class="oe_highlight" string='Xác nhận'/>
+                    <button name="btn_invoiced" confirm="Bạn có muốn xuất hoá đơn đơn thuốc?" string="Hoá đơn thanh toán" type="object" class="oe_highlight"/>
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
-                    <div class="oe_title">
+                    <div class="oe_title">  
                         <label for="name" class="oe_edit_only"/>
                         <h1>
                             <field name="name" required="1" />

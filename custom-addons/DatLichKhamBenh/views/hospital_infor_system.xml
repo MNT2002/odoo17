@@ -22,10 +22,10 @@
             <form string="Trung tâm y tế">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_department_health_center)d" icon="fa-building-o">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_department_health_center)d" icon="fa-building-o" context="{'default_health_center_id': active_id}">
                             <field string="Khoa" name="department_count" widget="statinfo" />
                         </button>
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_clinic_health_center)d" icon="fa-building-o">
+                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_clinic_health_center)d" icon="fa-building-o" context="{'default_health_center_id': active_id}">
                             <field string="Phòng" name="clinic_count_t" widget="statinfo" />
                         </button>
                     </div>
@@ -262,8 +262,8 @@
         <field name="arch" type="xml">
             <form string="Phòng">
                 <header>
-                    <button name="btn_trong" confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Trống"?' string="Trống" type="object" class="oe_highlight" invisible="state == 'Trong'" />
-                    <button name="btn_khong_co_san" string="Không có sẵn" confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Không có sẵn"?' type="object" class="oe_highlight" invisible="state == 'KhongCoSan'" />
+                    <button name="btn_room_available" confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Trống"?' string="Trống" type="object" class="oe_highlight" invisible="state == 'room_available'" />
+                    <button name="btn_not_available" string="Không có sẵn" confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Không có sẵn"?' type="object" class="oe_highlight" invisible="state == 'not_available'" />
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
@@ -275,10 +275,10 @@
                     </div>
                     <group>
                         <group>
-                            <field name="health_center_id" required="1" />
+                            <field name="health_center_id" required="1" options="{'no_create': True}"/>
                         </group>
                         <group>
-                            <field name="department_id" required="1" />
+                            <field name="department_id" required="1" options="{'no_create': True}"/>
                         </group>
                     </group>
                     <separator string="Thông tin bổ sung" colspan="4" />
@@ -505,16 +505,16 @@
                     </div>
                     <group>
                         <group>
-                            <field name="medicament_type" required="1" />
-                            <field name="therapeutic_effect" invisible="medicament_type  == 'Thuoc'" />
-                            <field name="quantity_on_hand" invisible="medicament_type  == 'Thuoc'" />
+                            <field name="type_of_medicine" widget="selection_badge" required="1" />
+                            <field name="therapeutic_effect" invisible="type_of_medicine  == 'medicine'" />
+                            <field name="quantity_on_hand" invisible="type_of_medicine  == 'medicine'" />
                         </group>
                         <group>
                             <field name="sale_price" />
-                            <field name="pregnancy_warning" invisible="medicament_type  == 'Thuoc'" />
+                            <field name="pregnancy_warning" invisible="type_of_medicine  == 'medicine'" />
                         </group>
                     </group>
-                    <group invisible="medicament_type  == 'Vaccine'">
+                    <group invisible="type_of_medicine  == 'vaccine'">
                         <group>
                             <field name="pregnancy_and_lactancy" />
                             <field name="composition" />
@@ -529,7 +529,7 @@
                             <field name="extra_infor" />
                         </group>
                     </group>
-                    <group invisible="medicament_type == 'Thuoc'">
+                    <group invisible="type_of_medicine == 'medicine'">
                         <field name="extra_infor" />
                     </group>
                 </sheet>
@@ -544,7 +544,7 @@
             <search string="">
                 <separator />
                 <group expand="1" string="Nhóm theo">
-                    <filter string="Loại thuốc" name="group_by_medicament_type" context="{'group_by': 'medicament_type'}" />
+                    <filter string="Loại thuốc" name="group_by_type_of_medicine" context="{'group_by': 'type_of_medicine'}" />
                 </group>
             </search>
         </field>
@@ -556,7 +556,7 @@
         <field name="arch" type="xml">
             <tree string="Thuốc, Vắc xin">
                 <field name="name" />
-                <field name="medicament_type" />
+                <field name="type_of_medicine" />
                 <field name="sale_price" />
                 <field name="extra_infor" />
             </tree>
@@ -665,7 +665,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.vaccine</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('benh_nhan_id', '!=', '')]</field>
+        <field name="domain">[('patient_id', '!=', '')]</field>
     </record>
 
 
@@ -755,7 +755,7 @@
     <!-- Imaging test types tree view -->
     <record id="medical_diagnostic_imaging_types_view_tree" model="ir.ui.view">
         <field name="name">medical.diagnostic_imaging_types.view.tree</field>
-        <field name="model">medical.diagnostic_imaging_type</field>
+        <field name="model">medical.diagnostic_imaging_types</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"></field>
@@ -767,7 +767,7 @@
     <record id="medical_diagnostic_imaging_types_action" model="ir.actions.act_window">
         <field name="name">Loại chẩn đoán hình ảnh</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">medical.diagnostic_imaging_type</field>
+        <field name="res_model">medical.diagnostic_imaging_types</field>
         <field name="view_mode">tree,form</field>
     </record>
 
@@ -779,11 +779,11 @@
         <field name="arch" type="xml">
             <form string="Chẩn đoán hình ảnh">
                 <header>
-                    <button confirm="Bạn có muốn tạo hóa đơn?" name="btn_tao_hoa_don_chan_doan" string="Tạo hoá đơn" type="object" class="oe_highlight" />
-                    <button confirm="Bạn có muốn bắt đầu chẩn đoán?" name="btn_bat_dau_chan_doan" string="Bắt đầu" type="object" class="oe_highlight" />
-                    <button confirm="Bạn có muốn hoàn thành chẩn đoán?" name="btn_hoan_thanh_chan_doan" string="Hoàn thành" type="object" class="oe_highlight" />
+                    <button confirm="Bạn có muốn tạo hóa đơn?" name="btn_invoiced" string="Tạo hoá đơn" type="object" class="oe_highlight" />
+                    <button confirm="Bạn có muốn bắt đầu chẩn đoán?" name="btn_test_in_profgress" string="Bắt đầu" type="object" class="oe_highlight" />
+                    <button confirm="Bạn có muốn hoàn thành chẩn đoán?" name="btn_completed" string="Hoàn thành" type="object" class="oe_highlight" />
                     <button name="in_diagnostic_imaging" string="In" type="object" class="oe_highlight" />
-                    <field name="state" widget="statusbar" statusbar_visible="DuThao,DaXuatHoaDon,DangThucHien,HoanThanh" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,invoiced,test_in_profgress,completed" />
                 </header>
                 <sheet>
                     <div class="oe_left" style="width: 500px;">
@@ -794,8 +794,8 @@
                             </h1>
                         </div>
                         <div class="oe_left" style="width: 500px;">
-                            <label for="diagnostic_imaging_type_id" />
-                            <field name="diagnostic_imaging_type_id" readonly="0" help="Loại chẩn đoán hình ảnh" />
+                            <label for="diagnostic_imaging_types_id" />
+                            <field name="diagnostic_imaging_types_id" readonly="0" help="Loại chẩn đoán hình ảnh" />
                         </div>
                     </div>
                     <group>
@@ -815,10 +815,10 @@
                     </group>
                     <notebook>
                         <page string="Vật tư tiêu hao">
-                            <field name="material_consumption_ids" nolabel="1" readonly="state == 'HoanThanh'" context="{'default_diagnostic_imaging_id': active_id}">
+                            <field name="material_consumption_ids" nolabel="1" readonly="state == 'completed'" context="{'default_diagnostic_imaging_id': active_id}">
                                 <tree string="Vật tư tiêu hao" editable="bottom">
                                     <field name="sequence" />
-                                    <field name="product" />
+                                    <field name="name" />
                                     <field name="quantity" />
                                     <field name="units" />
                                 </tree>
@@ -827,23 +827,23 @@
                         <page string="Images">
                             <group>
                                 <group>
-                                    <field name="image_1" widget="image" readonly="state == 'HoanThanh'" />
-                                    <field name="image_2" widget="image" readonly="state == 'HoanThanh'" />
-                                    <field name="image_3" widget="image" readonly="state == 'HoanThanh'" />
+                                    <field name="image_1" widget="image" readonly="state == 'completed'" />
+                                    <field name="image_2" widget="image" readonly="state == 'completed'" />
+                                    <field name="image_3" widget="image" readonly="state == 'completed'" />
                                 </group>
                                 <group>
-                                    <field name="image_4" widget="image" readonly="state == 'HoanThanh'" />
-                                    <field name="image_5" widget="image" readonly="state == 'HoanThanh'" />
-                                    <field name="image_6" widget="image" readonly="state == 'HoanThanh'" />
+                                    <field name="image_4" widget="image" readonly="state == 'completed'" />
+                                    <field name="image_5" widget="image" readonly="state == 'completed'" />
+                                    <field name="image_6" widget="image" readonly="state == 'completed'" />
                                 </group>
                             </group>
                         </page>
                         <page string="Thông tin">
                             <group>
-                                <field name="analysis" readonly="state != 'DangThucHien'" />
+                                <field name="analysis" readonly="state != 'test_in_profgress'" />
                             </group>
                             <group>
-                                <field name="conclusion" readonly="state != 'DangThucHien'" />
+                                <field name="conclusion" readonly="state != 'test_in_profgress'" />
                             </group>
                         </page>
                     </notebook>
@@ -858,11 +858,11 @@
         <field name="arch" type="xml">
             <search string="">
                 <separator />
-                <filter string="Trạng thái đã xuất hoá đơn" name="state_filter" domain="[('state','=','DaXuatHoaDon')]" />
+                <filter string="Trạng thái đã xuất hoá đơn" name="state_filter" domain="[('state','=','invoiced')]" />
                 <group expand="1" string="Nhóm theo">
                     <filter string="Bệnh nhân" name="group_by_patient" context="{'group_by': 'patient_id'}" />
                     <filter string="Bác sĩ" name="group_by_doctor" context="{'group_by': 'doctor_id'}" />
-                    <filter string="Loại chẩn đoán" name="group_by_diagnostic_imaging_type" context="{'group_by': 'diagnostic_imaging_type_id'}" />
+                    <filter string="Loại chẩn đoán" name="group_by_diagnostic_imaging_types" context="{'group_by': 'diagnostic_imaging_types_id'}" />
                     <filter string="Trạng thái" name="group_by_state" context="{'group_by': 'state'}" />
                 </group>
             </search>
@@ -875,7 +875,7 @@
         <field name="arch" type="xml">
             <tree string="Danh sách chẩn đoán hình ảnh">
                 <field name="name"></field>
-                <field name="diagnostic_imaging_type_id"></field>
+                <field name="diagnostic_imaging_types_id"></field>
                 <field name="patient_id"></field>
                 <field name="doctor_id"></field>
                 <field name="date_requested"></field>
@@ -900,7 +900,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="sequence"></field>
-                <field name="product"></field>
+                <field name="name"></field>
                 <field name="quantity"></field>
                 <field name="units"></field>
             </tree>
@@ -938,7 +938,7 @@
         <field name="name">medical.shift.view.tree</field>
         <field name="model">medical.shift</field>
         <field name="arch" type="xml">
-            <tree editable="top">
+            <tree editable="bottom">
                 <field name="name" widget="selection_badge"></field>
                 <field name="description"></field>
                 <field name="time_ids" widget="many2many_tags"></field>
@@ -1019,7 +1019,7 @@
                         </a>
                     </div>
                     <div class="so_luong_text_wrap">
-                        <a type="object" name="btn_so_luong_walkins" context="{}">
+                        <a type="object" name="btn_count_walkins" context="{}">
                             <div class="so_luong_text"> Phiếu khám bệnh <span class="so_luong_icon">
                                 <span>
                                     <field name="walkins_count" />

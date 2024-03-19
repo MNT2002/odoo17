@@ -16,6 +16,13 @@
     'data': [
         'data/data.xml',
         'data/dose_units.xml',
+        'data/lab_test_types.xml',
+        'data/medical.speciality.csv',
+        'data/medical.medicines_dosage.csv',
+        'data/medical.examination_time.csv',
+        'data/medical.degree.csv',
+        'data/medical.lab_units.csv',
+        'data/medical.diagnostic_imaging_types.csv',
         'security/security.xml',
         'security/ir.model.access.csv',
         'wizard/change_state_patient.xml',

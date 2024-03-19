@@ -41,7 +41,7 @@ class Doctor(models.Model):
 
     speciality_id = fields.Many2one('medical.speciality', 'Chuyên môn', store=True)
 
-    degree_id = fields.Many2many(comodel_name='medical.trinhdo_bangcap', relation='medical_doctor_tt_bc_rel', column1='doctor_id', column2='trinhdo_bangcap_id', string='Trình độ/Bằng cấp')
+    degree_id = fields.Many2many(comodel_name='medical.degree', relation='medical_doctor_degree_rel', column1='doctor_id', column2='degree_id', string='Trình độ/Bằng cấp')
     
     consultancy_price = fields.Integer('Phí khám bệnh',default=0)
 
@@ -55,7 +55,7 @@ class Doctor(models.Model):
 
     health_center_id = fields.Many2one('medical.health_center', 'Trung tâm y tế', store=True, required=True)
 
-    department_id = fields.Many2one('medical.department', 'Khoa', store=True, domain="[('health_center_id', '=', health_center_id)]")
+    department_id = fields.Many2one('medical.department', 'Khoa', store=True, domain="[('health_center_id', '=', health_center_id)]", required=True)
 
     street = fields.Char('Địa chỉ')
 
@@ -106,9 +106,9 @@ class Pharmacist(models.Model):
 
     image = fields.Binary("Ảnh đại diện")
 
-    speciality = fields.Many2one('medical.speciality', 'Chuyên môn', store=True)
+    speciality_id = fields.Many2one('medical.speciality', 'Chuyên môn', store=True)
 
-    degree_id = fields.Many2many(comodel_name='medical.trinhdo_bangcap', relation='medical_pharmacist_tt_bc_rel', column1='pharmacist_id', column2='trinhdo_bangcap_id', string='Trình độ/Bằng cấp')
+    degree_id = fields.Many2many(comodel_name='medical.degree', relation='medical_pharmacist_degree_rel', column1='pharmacist_id', column2='degree_id', string='Trình độ/Bằng cấp')
 
     consultancy_price = fields.Integer('Phí khám bệnh',default=0)
 

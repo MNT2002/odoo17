@@ -8,9 +8,9 @@
         <field name="arch" type="xml">
             <form string="Phiếu khám bệnh">
                 <header>
-                    <button name="btn_dang_kiem_tra" string="Kiểm tra" type="object" class="oe_highlight"/>
-                    <button name="btn_cho_thanh_toan" string="Tạo hoá đơn &amp; Thanh toán" type="object" confirm='Bạn có muốn tạo hoá đơn khám bệnh?' class="oe_highlight"/>
-                    <button name="btn_hoan_thanh" string="Đánh dấu là đã hoàn thành" type="object" confirm='Bạn có chắc chắn muốn đánh dấu việc thăm khám đã hoàn thành không?' class="oe_highlight"/>
+                    <button name="btn_checking" string="Kiểm tra" type="object" class="oe_highlight"/>
+                    <button name="btn_waiting_for_invoice" string="Tạo hoá đơn &amp; Thanh toán" type="object" confirm='Bạn có muốn tạo hoá đơn khám bệnh?' class="oe_highlight"/>
+                    <button name="btn_completed" string="Đánh dấu là đã hoàn thành" type="object" confirm='Bạn có chắc chắn muốn đánh dấu việc thăm khám đã hoàn thành không?' class="oe_highlight"/>
 
                     <field name="state" widget="statusbar" />
                 </header>
@@ -24,12 +24,12 @@
                     <group>
                         <group>
                             <field name="patient_id" readonly="id != False"/>
-                            <field name="schedule_selection_id" required="[('doctor_id','!=',False)]" readonly="state != 'DaLenLich'"/>
+                            <field name="schedule_selection_id" required="[('doctor_id','!=',False)]" readonly="state != 'scheduled'"/>
                         </group>
                         <group>
                             <field name="doctor_id" options="{'no_create': True}" required="[('department_id','!=',False), ('health_center_id', '!=', False)]" help="Vui lòng chọn Trung tâm ý tế và department trước khi chọn bác sĩ"/>
                             <field name="shift_id" invisible="1"/>
-                            <field name="schedule_time_id" widget="selection_badge" readonly="schedule_selection_id == False or state != 'DaLenLich'" />
+                            <field name="schedule_time_id" widget="selection_badge" readonly="schedule_selection_id == False or state != 'scheduled'" />
                             <field name="schedule_date" string="Ngày giờ khám bệnh" readonly="True" />
                         </group>
                     </group>
@@ -50,14 +50,14 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Điều trị" invisible="state in ['DaLenLich','ChoKham']">
+                        <page string="Điều trị" invisible="state in ['scheduled','waiting_for_check']">
                             <group>
                                 <group>
                                     <field name="comments"/>
                                 </group>
                                 <group>
-                                    <field name="diagnosis" readonly="state == 'HoanThanh'"/>
-                                    <field name="date_re_exam" readonly="state == 'HoanThanh'"/>
+                                    <field name="diagnosis" readonly="state == 'completed'"/>
+                                    <field name="date_re_exam" readonly="state == 'completed'"/>
                                 </group>
                             </group>
                             <field name="prescription_ids" context="{'default_walkins_id': active_id}"/>
@@ -87,7 +87,7 @@
                 <field name="name" select="1"/>
                 <field name="patient_id" string="Bệnh nhân" select="1"/>
                 <field name="doctor_id" string="Bác sĩ" select="1"/>
-                <filter string="Chờ khám" name="state_cho_kham_filter" domain="[('state', '=', 'ChoKham')]"/>
+                <filter string="Chờ khám" name="state_cho_kham_filter" domain="[('state', '=', 'waiting_for_check')]"/>
                 <group expand="0" string="Nhóm theo">
                     <filter string="Khoa" name="group_by_department" context="{'group_by':'department_id'}" />
                     <filter string="Bệnh nhân" name="group_by_name" context="{'group_by': 'patient_id'}" />
@@ -202,7 +202,7 @@
         <field name="arch" type="xml">
             <form string="Đơn thuốc">
                 <header>
-                    <button name="btn_gui" confirm="Bạn có chắc chắn muốn gửi đơn thuốc đến hiệu thuốc đã chọn không?" string="Gửi đến nhà thuốc" type="object" class="oe_highlight"/>
+                    <button name="btn_send" confirm="Bạn có chắc chắn muốn gửi đơn thuốc đến hiệu thuốc đã chọn không?" string="Gửi đến nhà thuốc" type="object" class="oe_highlight"/>
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
@@ -303,8 +303,8 @@
                             <field name="comment"/>
                         </group>
                         <group>
-                            <field name="dose" />
-                            <field name="dose_units"/>
+                            <field name="medicines_dosage_id" />
+                            <field name="dose_units_id"/>
                         </group>
                     </group>
                 </sheet>
@@ -319,8 +319,8 @@
             <tree string="Chi tiết toa thuốc">
                 <field name="name" />
                 <field name="indication" />
-                <field name="dose" />
-                <field name="dose_units" />
+                <field name="medicines_dosage_id" />
+                <field name="dose_units_id" />
                 <field name="comment" />
             </tree>
         </field>
