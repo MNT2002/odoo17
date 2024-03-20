@@ -922,7 +922,6 @@
                 <field name="name" widget="float_time"></field>
                 <field name="time"></field>
                 <field name="description"></field>
-                <field name="state"></field>
             </tree>
         </field>
     </record>

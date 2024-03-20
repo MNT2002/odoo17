@@ -163,7 +163,7 @@ class Patient(models.Model):
     car_seat_belt = fields.Boolean('Thắt dây an toàn')
 
     vaccine_ids = fields.One2many(comodel_name='medical.vaccine', inverse_name='patient_id')
-    vaccine_count = fields.Integer('Vaccine', compute="get_count_vaccine", store=True)
+    vaccine_count = fields.Integer('Vaccine count', compute="get_count_vaccine", store=True)
 
     @api.depends('vaccine_ids')
     def get_count_vaccine(self):

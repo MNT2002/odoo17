@@ -500,8 +500,6 @@ class ExaminationTime(models.Model):
 
     description = fields.Char('Mô tả')
 
-    state = fields.Selection([('empty', 'Trống'), ('booked', 'Đã đặt')], default="empty")
-
     time =  fields.Float('Thời lượng (1 giờ)', default='1')
 
     shift_id = fields.Many2one('medical.shift', 'Ca', store=True)

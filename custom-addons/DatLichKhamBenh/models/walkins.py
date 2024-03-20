@@ -75,7 +75,28 @@ class walkins(models.Model):
 
     shift_id = fields.Many2one('medical.shift', related='schedule_selection_id.shift_id')
 
-    schedule_time_id = fields.Many2one('medical.examination_time', 'Thời gian khám bệnh (24 giờ)', domain="[('shift_id', '=', shift_id)]", required=True, store=True)
+    @api.depends('schedule_selection_id')
+    def _get_schedule_time_domain(self):
+        domain = []
+        for rec in self:
+            arrWalkinsByDoctor = rec.env['medical.walkins'].search([('doctor_id', '=', rec.doctor_id.id),('schedule_selection_id', '=', rec.schedule_selection_id.id)]).schedule_time_id._ids
+            print(arrWalkinsByDoctor)
+
+            arrTimesEmpty = rec.env['medical.examination_time'].search([('id','not in',arrWalkinsByDoctor)])
+            print(arrTimesEmpty)
+            if rec.schedule_selection_id:
+                domain = [
+                    ('id', 'in' , arrTimesEmpty.ids),
+                    ('shift_id', '=', rec.shift_id.id) 
+                    ]
+                # domain = "[('shift_id', '=', shift_id),]"
+            else:
+                domain = []
+            rec.schedule_time_domain = domain
+
+    schedule_time_domain = fields.Char(compute='_get_schedule_time_domain', store=True)
+
+    schedule_time_id = fields.Many2one('medical.examination_time', 'Thời gian khám bệnh (24 giờ)', tracking=True, domain='_get_schedule_time_domain')
 
     dob = fields.Date('Ngày sinh', compute="_compute_birthday")
 
