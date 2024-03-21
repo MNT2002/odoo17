@@ -18,6 +18,10 @@ class DoctorResUser(models.Model):
             self._is_invisible = False
         else: 
             self._is_invisible = True
+    
+    # password = fields.Char(
+    #     compute='_compute_password', inverse='_set_password', copy=False,
+    #     help="Keep empty if you don't want the user to be able to connect on the system.")
             
     _is_invisible = fields.Boolean(compute="_get_res_user_field")
     doctor_ids = fields.One2many('medical.doctor', 'res_users_id', 'Bác sĩ liên kết', domain="[('res_users_id', '=', None)]")
@@ -81,7 +85,7 @@ class Doctor(models.Model):
 
     extra_infor = fields.Char('Thông tin thêm')
 
-    examination_schedule_ids = fields.One2many("medical.examination_schedule", "doctor_id", domain=[('is_pass_date','=',True)])
+    examination_schedule_ids = fields.One2many("medical.examination_schedule", "doctor_id", domain=[('schedule','>=', fields.Date.today())])
 
     walkins_ids = fields.One2many(comodel_name='medical.walkins', inverse_name='doctor_id')
     walkins_count = fields.Integer('Phiếu khám bệnh', compute="get_count_walkins", store=True)
@@ -150,6 +154,7 @@ class Pharmacist(models.Model):
 class ExaminationSchedule(models.Model):
     _name = 'medical.examination_schedule'
     _description = 'medical.examination_schedule'
+    _order = "schedule asc, id desc"
 
     doctor_id = fields.Many2one('medical.doctor','Bác sĩ')
 
@@ -188,34 +193,19 @@ class ExaminationSchedule(models.Model):
 
     schedule_time_ids = fields.One2many(related='shift_id.time_ids')
         
-    def _get_to_day(self):
-        today = fields.Date.today()
-        return today
+    # def _get_to_day(self):
+    #     today = fields.Date.today()
+    #     return today
     
-    @api.model
-    def read(self,fields=None, load='_classic_read'):
-        today = self._get_to_day()
-        arrExaminationSchedule = self.env['medical.examination_schedule'].search([])
-        for rec in arrExaminationSchedule:
-            if rec.schedule < today:
-                rec.is_pass_date = False
-            else:
-                rec.is_pass_date = True
-        # print("============================================")   
-        # print("arrExaminationSchedule: ",arrExaminationSchedule)  
-        # print("============================================")   
+    # @api.model
+    # def read(self,fields=None, load='_classic_read'):
+    #     today = self._get_to_day()
+    #     arrExaminationSchedule = self.env['medical.examination_schedule'].search([])
+    #     for rec in arrExaminationSchedule:
+    #         if rec.schedule < today:
+    #             rec.is_pass_date = False
+    #         else:
+    #             rec.is_pass_date = True
 
-        res = super(ExaminationSchedule, self).read(fields=fields, load=load)
-        return res
-
-    def _check_pass_date(self):
-        today = fields.Date.today()
-        if self.schedule and self.schedule < today:
-            self.is_pass_date = False
-        else:
-            self.is_pass_date = True
-        print("today: ",today)
-
-    is_pass_date = fields.Boolean(store=True, default=True)
-
-
+    #     res = super(ExaminationSchedule, self).read(fields=fields, load=load)
+    #     return res

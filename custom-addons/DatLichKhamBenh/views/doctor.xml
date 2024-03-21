@@ -338,7 +338,6 @@
                 <field name="shift_id" widget="selection_badge" />
                 <field name="schedule_time_ids" widget="many2many_tags" />
                 <field name="schedule"/>
-                <field name="is_pass_date" invisible="1" nolabel="1"/>
             </tree>
         </field>
     </record>

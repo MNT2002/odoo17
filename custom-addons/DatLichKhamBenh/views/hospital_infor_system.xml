@@ -1000,7 +1000,7 @@
                     </t>
                     <t t-name="OehBodyDepartment">
                         <div class="o_kanban_primary_left" style="display: flex; justify-content: space-between; margin-top: 12px;">
-                            <button type="object" name="action_tao_walkins_moi" class="btn btn-primary btn-sm o_invoice_new btn-new-action" style="padding: 8px;">
+                            <button type="object" name="action_create_walkins" class="btn btn-primary btn-sm o_invoice_new btn-new-action" style="padding: 8px;">
                                 <span>Phiếu khám bệnh mới</span>
                             </button>
                             <button type="object" name="action_create_diagnostic_imaging" class="btn btn-primary btn-sm o_invoice_new btn-new-action" style="padding: 8px;">

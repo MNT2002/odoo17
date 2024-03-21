@@ -144,7 +144,7 @@ class Department(models.Model):
             else:
                 rec.state = "not_available"
 
-    def action_tao_walkins_moi(self):
+    def action_create_walkins(self):
         # action['domain'] = {'doctor_id': [('id', 'in', self.doctor_ids)]}
         self.ensure_one()
         return {
@@ -182,7 +182,9 @@ class Department(models.Model):
             'res_model': 'medical.walkins',
             'context': {
                 'default_health_center_id': self.health_center_id.id,
-                'default_department_id': self.id
+                'default_department_id': self.id,
+                'search_default_group_by_state': 1,
+                'search_default_group_by_doctor': 2
             },
             'domain': [('department_id', '=', self.id)]
         }
@@ -196,7 +198,9 @@ class Department(models.Model):
             'res_model': 'medical.diagnostic_imaging',
             'context': {
                 'default_health_center_id': self.health_center_id.id,
-                'default_department_id': self.id
+                'default_department_id': self.id,
+                'search_default_group_by_state': 1,
+                'search_default_group_by_doctor': 2
             },
             'domain': [('department_id', '=', self.id)]
         }
@@ -210,7 +214,9 @@ class Department(models.Model):
             'res_model': 'medical.prescription',
             'context': {
                 'default_health_center_id': self.health_center_id.id,
-                'default_department_id': self.id
+                'default_department_id': self.id,
+                'search_default_group_by_state': 1,
+                'search_default_group_by_doctor': 2
             },
             'domain': [('department_id', '=', self.id)]
         }

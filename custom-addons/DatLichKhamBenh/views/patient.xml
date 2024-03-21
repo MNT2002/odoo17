@@ -212,7 +212,7 @@
 					<filter string="Họ và tên" name="group_by_name" context="{'group_by': 'name'}"/>
 					<filter string="Giới tính" name="group_by_gender" context="{'group_by': 'sex'}"/>
 					<filter string="Bác sĩ" name="group_by_doctor" context="{'group_by': 'doctor'}"/>
-					<filter string="Ngày tạo" name="group_by_create_date" context="{'group_by': 'create_date'}"/>
+					<filter string="Ngày tạo" name="group_by_create_date" context="{'group_by': 'create_date:day'}"/>
 				</group>
 			</search>
 		</field>

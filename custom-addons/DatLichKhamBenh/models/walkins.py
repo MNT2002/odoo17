@@ -1,6 +1,6 @@
 from odoo import fields, models, api
 from odoo.exceptions import ValidationError
-class walkins(models.Model):
+class Walkins(models.Model):
     _name = 'medical.walkins'
     _description = 'medical.walkins'
     _order = "create_date desc, id desc"
@@ -12,7 +12,7 @@ class walkins(models.Model):
         vals['name'] = self.env['ir.sequence'].next_by_code('walkins.seq')
 
         # vals['doctor_id'] = self.env.context.get('active_id', [])
-        record =  super(walkins, self).create(vals)
+        record =  super(Walkins, self).create(vals)
         return record
 
     state = fields.Selection([('scheduled', 'Đã lên lịch'), ('waiting_for_check', 'Chờ khám'), ('checking', 'Đang kiểm tra'), ('waiting_for_invoice', 'Chờ thanh toán'), ('completed', 'Hoàn thành')], string='Trạng thái', default='scheduled')
@@ -80,23 +80,30 @@ class walkins(models.Model):
         domain = []
         for rec in self:
             arrWalkinsByDoctor = rec.env['medical.walkins'].search([('doctor_id', '=', rec.doctor_id.id),('schedule_selection_id', '=', rec.schedule_selection_id.id)]).schedule_time_id._ids
-            print(arrWalkinsByDoctor)
 
-            arrTimesEmpty = rec.env['medical.examination_time'].search([('id','not in',arrWalkinsByDoctor)])
-            print(arrTimesEmpty)
+            arrTimesEmpty = rec.env['medical.examination_time'].search([('id','not in',arrWalkinsByDoctor)]).ids
+            if rec.schedule_time_id:
+                print(rec.schedule_time_id.id)
+                arrTimesEmpty.append(rec.schedule_time_id.id)
+
             if rec.schedule_selection_id:
                 domain = [
-                    ('id', 'in' , arrTimesEmpty.ids),
+                    ('id', 'in' , arrTimesEmpty),
                     ('shift_id', '=', rec.shift_id.id) 
                     ]
-                # domain = "[('shift_id', '=', shift_id),]"
             else:
                 domain = []
             rec.schedule_time_domain = domain
+    @api.model
+    def read(self,fields=None, load='_classic_read'):
+        self._get_schedule_time_domain()
 
-    schedule_time_domain = fields.Char(compute='_get_schedule_time_domain', store=True)
+        res = super(Walkins, self).read(fields=fields, load=load)
+        return res
 
-    schedule_time_id = fields.Many2one('medical.examination_time', 'Thời gian khám bệnh (24 giờ)', tracking=True, domain='_get_schedule_time_domain')
+    schedule_time_domain = fields.Char(compute='_get_schedule_time_domain')
+
+    schedule_time_id = fields.Many2one('medical.examination_time', 'Thời gian khám bệnh (24 giờ)', tracking=True, store=True, domain=_get_schedule_time_domain)
 
     dob = fields.Date('Ngày sinh', compute="_compute_birthday")
 

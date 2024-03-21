@@ -24,7 +24,7 @@
                     <group>
                         <group>
                             <field name="patient_id" readonly="id != False"/>
-                            <field name="schedule_selection_id" required="[('doctor_id','!=',False)]" readonly="state != 'scheduled'"/>
+                            <field name="schedule_selection_id" context="{'order_display': 'schedule desc' }" required="[('doctor_id','!=',False)]" readonly="state != 'scheduled'"/>
                         </group>
                         <group>
                             <field name="doctor_id" options="{'no_create': True}" required="[('department_id','!=',False), ('health_center_id', '!=', False)]" help="Vui lòng chọn Trung tâm ý tế và department trước khi chọn bác sĩ"/>
@@ -113,6 +113,7 @@
                 <field name="name" />
                 <field name="schedule_selection_id" />
                 <field name="age" />
+                <field name="schedule_time_id" />
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click oe_kanban_card">
@@ -133,11 +134,11 @@
                                         </li>
                                         <li>Giới tính: <field name="sex"/>
                                         </li>
-                                        <li>Ngày: <field name="schedule_selection_id"/>
-                                        </li>
                                         <li>Tuổi: <field name="age"/>
                                         </li>
-                                        <li>Địa chỉ: <field name="street"/>
+                                        <li>Ngày: <field name="schedule_selection_id"/>
+                                        </li>
+                                        <li>Thời gian (24 giờ): <field name="schedule_time_id" />
                                         </li>
                                     </ul>
                                 </div>
@@ -172,8 +173,8 @@
         <field eval="2" name="priority"/>
         <field name="arch" type="xml">
             <calendar string="Phiếu khám bệnh" date_start="schedule_date" color="state" mode="week">
+                <field name="doctor_id" />
                 <field name="patient_id"/>
-                <field name="reason_check"/>
                 <field name="state"/>
             </calendar>
         </field>
@@ -246,6 +247,7 @@
                 <separator />
                 <group expand="0" string="Nhóm theo">
                     <filter string="Bác sĩ" name="group_by_doctor" context="{'group_by': 'doctor_id'}"/>
+                    <filter string="Trạng thái" name="group_by_state" context="{'group_by': 'state'}"/>
                 </group>
             </search>
         </field>
