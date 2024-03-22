@@ -34,7 +34,7 @@
         'views/root_menu.xml',
     ],
     "assets": {
-        "web.assets_backend": ["/DatLichKhamBenh/static/src/scss/dat_lich_kham_benh_css.scss"]
+        "web.assets_backend": ["/DatLichKhamBenh/static/src/scss/medical.scss"]
     },
     'depends': ['base'],
     "application": True,
