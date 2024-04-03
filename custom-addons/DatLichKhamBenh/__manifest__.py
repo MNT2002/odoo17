@@ -13,6 +13,7 @@
     'website': "https://icsc.vn/?lang=vi",
     'category': 'Uncategorized',
     'version': '0.1',
+    'depends': ['base', 'website', 'portal'],
     'data': [
         'data/data.xml',
         'data/dose_units.xml',
@@ -32,10 +33,18 @@
         'views/doctor.xml',
         'views/hospital_infor_system.xml',
         'views/root_menu.xml',
+        'views/home_page.xml',
     ],
     "assets": {
-        "web.assets_backend": ["/DatLichKhamBenh/static/src/scss/medical.scss"]
+        "web.assets_backend": ["/DatLichKhamBenh/static/src/scss/medical.scss"],
+
+        "web.assets_frontend": [
+            "https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css",
+            "https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js",
+            "https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js",
+            "https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js",
+            "/DatLichKhamBenh/static/src/css/slider.css"
+        ]
     },
-    'depends': ['base'],
     "application": True,
 }

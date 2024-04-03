@@ -1,0 +1,131 @@
+.img-customize {
+  padding: 0 18px;
+  cursor : pointer;
+  width  : 25%;
+}
+
+.img-customize:hover {
+  color     : #45c3d2;
+  transition: all ease-in 0.2s;
+}
+
+.img-customize .img-border {
+  border : 1px solid #a3a0a042;
+  padding: 20px 0;
+}
+
+.img-customize .bg-image {
+  height             : 182px;
+  width              : 100%;
+  background-position: center center;
+  background-repeat  : no-repeat;
+  background-size    : cover;
+  background-color   : #eee;
+}
+
+.img-customize .title-name {
+  text-align: center;
+}
+
+#exampleSlider {
+  position: relative;
+  border  : 1px solid black;
+}
+
+@media (max-width: 767px) {
+  #exampleSlider {
+    border-color: transparent;
+  }
+}
+
+#exampleSlider .MS-content {
+  margin     : 15px 5%;
+  overflow   : hidden;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  #exampleSlider .MS-content {
+    margin: 0;
+  }
+}
+
+#exampleSlider .MS-content .item {
+  display       : inline-block;
+  height        : 100%;
+  overflow      : hidden;
+  position      : relative;
+  vertical-align: top;
+  width         : 25%;
+}
+
+#exampleSlider .MS-controls .MS-left {
+  left: 0;
+}
+
+#exampleSlider .MS-controls .MS-right {
+  right: 0;
+}
+
+@media (max-width: 1200px) {
+  #exampleSlider .MS-content .item {
+    width: 33.3333%;
+  }
+
+  #exampleSlider .MS-controls .MS-left {
+    left: 10px;
+  }
+
+  #exampleSlider .MS-controls .MS-right {
+    right: 10px;
+  }
+}
+
+@media (max-width: 992px) {
+  #exampleSlider .MS-content .item {
+    width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  #exampleSlider .MS-content .item {
+    width: 100%;
+  }
+
+  .img-customize .bg-image {
+    height: 230px;
+  }
+}
+
+#exampleSlider .MS-content .item p {
+  font-size     : 30px;
+  text-align    : center;
+  line-height   : 1;
+  vertical-align: middle;
+  margin        : 0;
+  padding       : 10px 0;
+}
+
+#exampleSlider .MS-controls button {
+  position  : absolute;
+  border    : none;
+  background: transparent;
+  font-size : 42px;
+  outline   : 0;
+  top       : 50%;
+  transform : translateY(-50%);
+}
+
+@media (max-width: 767px) {
+  #exampleSlider .MS-controls .MS-left {
+    left: 0;
+  }
+
+  #exampleSlider .MS-controls .MS-right {
+    right: 0;
+  }
+}
+
+#exampleSlider .MS-controls button:hover {
+  cursor: pointer;
+}

@@ -28,10 +28,10 @@ class Walkins(models.Model):
         if date_value and float_value:
             hours = int(float_value)
             minutes = int((float_value - hours) * 60)
-            print(hours, minutes)
+            # print(hours, minutes)
             combined_datetime = fields.datetime.strptime(str(date_value), '%Y-%m-%d').replace(hour=(hours - 7), minute=minutes) #(hourse-7 => thời gian khám đang hiển thị là giờ VN))
             self.schedule_date = combined_datetime
-            print('=========================', combined_datetime)
+            # print('=========================', combined_datetime)
         else:
             self.schedule_date = False
 
@@ -42,13 +42,16 @@ class Walkins(models.Model):
     def _get_schedule_time_domain(self):
         domain = []
         for rec in self:
+            # arrWalkinsByDoctor lưu trữ các mốc thời gian đã được đặt dựa theo ngày đã chọn (schedule_selection_id)
             arrWalkinsByDoctor = rec.env['medical.walkins'].search([('doctor_id', '=', rec.doctor_id.id),('schedule_selection_id', '=', rec.schedule_selection_id.id)]).schedule_time_id._ids
 
+            #arrTImesEmpty lưu trữ các thời gian trống chưa có người đặt
             arrTimesEmpty = rec.env['medical.examination_time'].search([('id','not in',arrWalkinsByDoctor)]).ids
             if rec.schedule_time_id:
                 print(rec.schedule_time_id.id)
                 arrTimesEmpty.append(rec.schedule_time_id.id)
 
+            # kiêm tra} đã chọn ngày khám hay chưa, sau đó gắn domain
             if rec.schedule_selection_id:
                 domain = [
                     ('id', 'in' , arrTimesEmpty),
@@ -59,7 +62,7 @@ class Walkins(models.Model):
             rec.schedule_time_domain = domain
 
     schedule_time_domain = fields.Char(compute='_get_schedule_time_domain')
-    schedule_time_id = fields.Many2one('medical.examination_time', 'Thời gian khám bệnh (24 giờ)', tracking=True, store=True, domain=_get_schedule_time_domain)
+    schedule_time_id = fields.Many2one('medical.examination_time', 'Thời gian khám bệnh (24 giờ)', tracking=True, store=True, required=True, domain=_get_schedule_time_domain)
 
     @api.depends('patient_id')
     def _compute_birthday(self):

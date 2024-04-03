@@ -60,6 +60,7 @@ class Department(models.Model):
             else:
                 rec.state = "not_available"
 
+    image = fields.Binary("Ảnh khoa")
     state = fields.Selection([('room_available', 'Có phòng'), ('not_available', 'Không có sẵn')], default='room_available', compute="_compute_department_state",)
     health_center_id = fields.Many2one('medical.health_center', string="Trung tâm sức khoẻ", store=True, required=True)
     floor_number = fields.Integer('Số tầng')

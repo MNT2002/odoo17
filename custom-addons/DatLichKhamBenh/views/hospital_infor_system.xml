@@ -177,6 +177,7 @@
                             <field string="Phòng" name="clinic_count" widget="statinfo" />
                         </button>
                     </div>
+                    <field name="image" nolabel="1" widget="image" class="oe_avatar" />
                     <div class="oe_title">
                         <label for="name" />
                         <h1>
