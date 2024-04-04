@@ -5,8 +5,10 @@ class  HomePage(http.Controller):
     @http.route('/', website=True)
     def homePage(self, **kw):
         departments = http.request.env['medical.department'].search([])
+        doctors = http.request.env['medical.doctor'].search([]).sorted(key='walkins_count', reverse=True)
         return http.request.render('DatLichKhamBenh.homepage', {
             'departments': departments,
+            'doctors': doctors,
         })
 
     @http.route('/department', auth='public', website=True)
@@ -21,11 +23,12 @@ class  HomePage(http.Controller):
         return http.request.render('DatLichKhamBenh.department_detail', {
             'department': department
         })
-    class DepartmentCustomerPortal(CustomerPortal):
-        def _prepare_home_portal_values(self):
-            values = super(DepartmentCustomerPortal, self)._prepare_home_portal_values()
-            count_departments = http.request.env['medical.department'].search_count([])
-            values.update({
-                'count_departments': count_departments,
-            })
-            return values
+        
+    # class DepartmentCustomerPortal(CustomerPortal):
+    #     def _prepare_home_portal_values(self):
+    #         values = super(DepartmentCustomerPortal, self)._prepare_home_portal_values()
+    #         count_departments = http.request.env['medical.department'].search_count([])
+    #         values.update({
+    #             'count_departments': count_departments,
+    #         })
+    #         return values

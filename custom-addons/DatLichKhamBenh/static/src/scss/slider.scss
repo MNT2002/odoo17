@@ -1,0 +1,218 @@
+.multi_slider-container {
+  margin-top: 50px;
+
+  .section-header {
+    height         : 60px;
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    margin-bottom  : 18px;
+    margin-left    : 8px;
+    margin-right   : 8px;
+    text-transform : uppercase;
+
+    .title-section {
+      font-size  : 22px;
+      font-weight: 600;
+    }
+
+    .btn-section {
+      padding         : 10px 14px;
+      border          : none;
+      outline         : none;
+      display         : block;
+      text-transform  : uppercase;
+      background-color: #ebebeb;
+      color           : black;
+      cursor          : pointer;
+
+      &:hover {
+        background-color: #1597B3;
+        color           : white;
+      }
+    }
+  }
+
+  .img-customize {
+    padding: 0 18px;
+    cursor : pointer;
+    width  : 25%;
+
+    &:hover {
+      color     : #45c3d2;
+      transition: all ease-in 0.2s;
+    }
+
+    .img-border {
+      border: 1px solid #a3a0a042;
+
+      // padding: 20px 0;
+      .bg-image {
+        height             : 182px;
+        width              : 100%;
+        background-position: center center;
+        background-repeat  : no-repeat;
+        background-size    : cover;
+        background-color   : #eee;
+      }
+    }
+
+    .content-box {
+
+      .main-text {
+        font-weight: bold;
+      }
+
+      .second-text {}
+    }
+
+    .title-name {
+      text-align: center;
+    }
+  }
+
+  .multi_slider-box {
+    position: relative;
+
+    .MS-content {
+      margin     : 15px 5%;
+      overflow   : hidden;
+      white-space: nowrap;
+
+      .item {
+        display       : inline-block;
+        height        : 100%;
+        overflow      : hidden;
+        position      : relative;
+        vertical-align: top;
+        width         : 25%;
+      }
+    }
+
+    .MS-controls {
+      .MS-left {
+        left : 0;
+        color: #1597B3;
+      }
+
+      .MS-right {
+        right: 0;
+        color: #1597B3;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .MS-content .item {
+        width: 33.3333%;
+      }
+
+      .MS-controls {
+        .MS-left {
+          left: 10px;
+        }
+
+        .MS-right {
+          right: 10px;
+        }
+      }
+    }
+
+    @media (max-width: 992px) {
+      .MS-content .item {
+        width: 50%;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .MS-content .item {
+        width: 100%;
+      }
+
+      .img-customize .bg-image {
+        height: 230px;
+      }
+
+      .MS-controls {
+        .MS-left {
+          left: 0;
+        }
+
+        .MS-right {
+          right: 0;
+        }
+      }
+    }
+
+    .MS-content .item p {
+      font-size     : 30px;
+      text-align    : center;
+      line-height   : 1;
+      vertical-align: middle;
+      margin        : 0;
+      padding       : 10px 0;
+    }
+
+    .MS-controls button {
+      position  : absolute;
+      border    : none;
+      background: transparent;
+      font-size : 42px;
+      outline   : 0;
+      top       : 50%;
+      transform : translateY(-50%);
+    }
+
+    @media (max-width: 767px) {
+      .MS-controls .MS-left {
+        left: 0;
+      }
+
+      .MS-controls .MS-right {
+        right: 0;
+      }
+    }
+
+    .MS-controls button:hover {
+      cursor: pointer;
+    }
+  }
+
+  &.doctor {
+    .img-customize {
+      .outer-bg{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 12px;
+        overflow: hidden;
+        .bg-image {
+          width        : 182px;
+          height       : 182px;
+          border-radius: 50%;
+          &:hover {
+            scale: 1.1;
+            transition: ease-out .3s;
+          }
+        }
+      }
+    }
+  }
+  &.department {
+    .img-customize {
+      .outer-bg{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 12px;
+        overflow: hidden;
+        .bg-image {
+
+          &:hover {
+            scale: 1.1;
+            transition: ease-out .3s;
+          }
+        }
+      }
+    }
+  }
+}

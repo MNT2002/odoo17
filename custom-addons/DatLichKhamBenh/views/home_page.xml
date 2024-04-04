@@ -77,34 +77,90 @@
                     </section>
                 </div>
 
-                <div class="department">
-                    <div id="exampleSlider">      <!-- Give wrapper ID to target with jQuery & CSS -->
-                        <div class="MS-content">
-                            <t t-foreach="departments" t-as="department">
-                                <div class="img-customize item">
-                                    <a t-attf-href="/department/{{ slug(department) }}">
-                                        <div class='img-border'>
-                                            <div class='outer-bg'>
-                                                <div class="bg-image outstanding-doctor" t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % department.image.decode('utf-8') }}')">
-                                                </div>
-                                            </div>
-                                            <div class="mt-3 text-center">
-                                                <div>
-                                                    <t t-esc="department.sudo().name" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </t>
+                <div class="multi_slider-container department">
+                    <div class="container">
+                        <div class='section-header'>
+                            <span class='title-section'>Chuyên khoa</span>
+                            <button class='btn-section'>Xem thêm</button>
                         </div>
-                        <div class="MS-controls">
-                            <button class="MS-left">
-                                <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                            </button>
-                            <button class="MS-right">
-                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                            </button>
+                        <div id="ms1" class="multi_slider-box">      <!-- Give wrapper ID to target with jQuery & CSS -->
+                            <div class="MS-content">
+                                <t t-foreach="departments" t-as="department">
+                                    <div class="img-customize item">
+                                        <a t-attf-href="/department/{{ slug(department) }}">
+                                            <div class='img-border'>
+                                                <div class='outer-bg'>
+                                                    <div class="bg-image"
+                                                        t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % department.image.decode('utf-8') }}')">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3 text-center content-box">
+                                                    <div class="main-text">
+                                                        <t t-esc="department.sudo().name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </t>
+                            </div>
+                            <div class="MS-controls">
+                                <button class="MS-left">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                </button>
+                                <button class="MS-right">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="multi_slider-container doctor">
+                    <div class="container">
+                        <div class='section-header'>
+                            <span class='title-section'>Bác sĩ nổi bật</span>
+                            <button class='btn-section'>Xem thêm</button>
+                        </div>
+                        <div id="ms2" class="multi_slider-box">      <!-- Give wrapper ID to target with jQuery & CSS -->
+                            <div class="MS-content">
+                                <t t-foreach="doctors" t-as="doctor">
+                                    <div class="img-customize item">
+                                        <a t-attf-href="/doctor/{{ slug(doctor) }}">
+                                            <div class='img-border'>
+                                                <div class='outer-bg'>
+                                                    <t t-if="doctor.image">
+                                                        <div class="bg-image"
+                                                            t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % doctor.image.decode('utf-8') }}')">
+                                                        </div>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <div class="bg-image"
+                                                            style="background-image: url('https://nhadepso.com/wp-content/uploads/2023/03/cap-nhat-50-hinh-anh-dai-dien-facebook-mac-dinh-dep-doc-la_2.jpg')">
+                                                        </div>
+                                                    </t>
+                                                </div>
+                                                <div class="mt-3 text-center content-box">
+                                                    <div class="main-text">
+                                                        <t t-esc="doctor.sudo().name" />
+                                                    </div>
+                                                    <div class="second-text">
+                                                        <t t-esc="doctor.sudo().department_id.name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </t>
+                            </div>
+                            <div class="MS-controls">
+                                <button class="MS-left">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                </button>
+                                <button class="MS-right">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,9 +168,13 @@
         </t>
         <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/carousel.js"></script>
         <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/jquery-2.2.4.min.js"></script>
-        <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/multislider.min.js"></script>
+        <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/multislider.js"></script>
         <script>
-            $('#exampleSlider').multislider({
+            $('#ms1').multislider({
+            interval:false,
+            slideAll:false,
+            });
+            $('#ms2').multislider({
             interval:false,
             slideAll:false,
             });
