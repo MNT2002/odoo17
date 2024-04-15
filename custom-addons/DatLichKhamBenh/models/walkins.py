@@ -95,7 +95,6 @@ class Walkins(models.Model):
     @api.model
     def create(self, vals):
         vals['name'] = self.env['ir.sequence'].next_by_code('walkins.seq')
-
         # vals['doctor_id'] = self.env.context.get('active_id', [])
         record =  super(Walkins, self).create(vals)
         return record
@@ -103,9 +102,14 @@ class Walkins(models.Model):
     @api.model
     def read(self,fields=None, load='_classic_read'):
         self._get_schedule_time_domain()
-
         res = super(Walkins, self).read(fields=fields, load=load)
         return res
+
+    @api.onchange('doctor_id')
+    def _onchange_doctor_id(self):
+        self.schedule_selection_id = False
+        self.schedule_time_id = False
+
 
     @api.onchange('schedule_selection_id')
     def onchange_schedule_selection(self):
@@ -165,7 +169,6 @@ class Prescription(models.Model):
                     'doctor_id': self.doctor_id.id,
                     'pharmacies_id': self.pharmacies_id.id,
                     'prescription_id': self.id
-                    
                 }
                 self.env['medical.prescription_orders'].create(vals_new_rec)
         return super(Prescription, self).write(vals)

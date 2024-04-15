@@ -73,7 +73,7 @@ class Department(models.Model):
     guest_sofa_bed = fields.Boolean('Giường sofa cho khách')
     internet_access = fields.Boolean('Truy cập Internet')
     cicrowave = fields.Boolean('Lò vi sóng')
-    extra_infor = fields.Char('Thông tin bổ sung')
+    extra_infor = fields.Char('Thông tin chi tiết')
     clinic_ids = fields.One2many(comodel_name='medical.clinic', inverse_name='department_id')
 
     @api.depends('clinic_ids')

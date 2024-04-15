@@ -25,13 +25,16 @@
                         <group>
                             <field name="patient_id" readonly="id != False"/>
                             <field name="schedule_selection_id" context="{'order_display': 'schedule desc' }" required="[('doctor_id','!=',False)]" readonly="state != 'scheduled'"/>
-                        </group>
-                        <group>
-                            <field name="doctor_id" options="{'no_create': True}" required="[('department_id','!=',False), ('health_center_id', '!=', False)]" help="Vui lòng chọn Trung tâm ý tế và department trước khi chọn bác sĩ"/>
                             <field name="shift_id" invisible="1"/>
                             <field name="schedule_time_domain" invisible="1" />
                             <field name="schedule_time_id" widget="selection_badge" readonly="schedule_selection_id == False or state != 'scheduled'" domain="schedule_time_domain"/>
                             <field name="schedule_date" string="Ngày giờ khám bệnh" readonly="True" />
+                        </group>
+                        <group>
+                            <field name="health_center_id"  options="{'no_create': True}"/>
+                            <field name="department_id" required="[('health_center_id', '!=', False)]" options="{'no_create': True}"/>
+                            <field name="clinic_id" />
+                            <field name="doctor_id" options="{'no_create': True}" required="[('department_id','!=',False), ('health_center_id', '!=', False)]" help="Vui lòng chọn Trung tâm ý tế và department trước khi chọn bác sĩ"/>
                         </group>
                     </group>
                     <group>
@@ -45,9 +48,6 @@
                         <group>
                             <field name="sex" />
                             <field name="blood_type" />
-                            <field name="health_center_id"  options="{'no_create': True}"/>
-                            <field name="department_id" required="[('health_center_id', '!=', False)]" options="{'no_create': True}"/>
-                            <field name="clinic_id" />
                         </group>
                     </group>
                     <notebook>

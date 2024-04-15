@@ -41,7 +41,7 @@ class Doctor(models.Model):
         return [('id', 'in', users)]
         
     res_users_id = fields.Many2one('res.users', 'Tài khoản bác sĩ', store=True, domain=_get_res_user_field)
-    image = fields.Binary("Ảnh đại diện", required=True)
+    image = fields.Binary("Ảnh đại diện")
     speciality_id = fields.Many2one('medical.speciality', 'Chuyên môn', store=True)
     degree_id = fields.Many2many(comodel_name='medical.degree', relation='medical_doctor_degree_rel', column1='doctor_id', column2='degree_id', string='Trình độ/Bằng cấp')
     consultancy_price = fields.Integer('Phí khám bệnh',default=0)
@@ -62,6 +62,7 @@ class Doctor(models.Model):
     phone_number = fields.Char('Số điện thoại')
     work_phone = fields.Char('Điện thoại văn phòng')
     email = fields.Char('Email')
+    description = fields.Char('Mô tả')
     extra_infor = fields.Char('Thông tin thêm')
     examination_schedule_ids = fields.One2many("medical.examination_schedule", "doctor_id", domain=[('schedule','>=', fields.Date.today())])
     walkins_ids = fields.One2many(comodel_name='medical.walkins', inverse_name='doctor_id')

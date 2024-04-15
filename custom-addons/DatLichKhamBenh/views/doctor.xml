@@ -83,8 +83,13 @@
                             <field name="examination_schedule_ids" context="{'default_doctor_id': active_id}" />
                         </page>
                         <page string="Thông tin thêm">
+                            <label for="description" />
                             <div class="o_row">
-                                <field name="extra_infor" />
+                                <field name="description" widget="html"/>
+                            </div>
+                            <label for="extra_infor" />
+                            <div class="o_row">
+                                <field name="extra_infor" widget="html"/>
                             </div>
                         </page>
                     </notebook>

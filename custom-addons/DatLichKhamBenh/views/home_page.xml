@@ -1,223 +1,433 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="homepage" name="Home">
-        <t name="Homepage">
-            <t t-call="website.layout">
-                <div id="wrap" class="oe_structure oe_empty">
-                    <section class="s_carousel_wrapper" data-vxml="001"
-                        data-snippet="s_carousel"
-                        data-name="Carousel">
-                        <div class="s_carousel s_carousel_default carousel slide"
-                            data-bs-interval="6000" id="myCarousel1711707571361"
-                            style="background-image: none;">
+        <t name="Home" t-name="DatLichKhamBenh.homepage">
+            <t name="Homepage">
+                <t t-call="website.layout">
+                    <div id="wrap" class="oe_structure oe_empty">
+                        <section class="s_carousel_wrapper" data-vxml="001" data-snippet="s_carousel" data-name="Carousel">
+                            <div class="s_carousel s_carousel_default carousel slide" data-bs-interval="6000" id="myCarousel1711707571361" style="background-image: none;">
 
-                            <ol class="carousel-indicators o_we_no_overlay">
-                                <li data-bs-slide-to="0"
-                                    data-bs-target="#myCarousel1711707571361"
-                                    class="active" />
-                                <li data-bs-slide-to="1"
-                                    data-bs-target="#myCarousel1711707571361"
-                                    aria-current="true" />
-                                <li data-bs-slide-to="2"
-                                    data-bs-target="#myCarousel1711707571361" />
-                            </ol>
+                                <ol class="carousel-indicators o_we_no_overlay">
+                                    <li data-bs-slide-to="0" data-bs-target="#myCarousel1711707571361" class="active"/>
+                                    <li data-bs-slide-to="1" data-bs-target="#myCarousel1711707571361" aria-current="true"/>
+                                    <li data-bs-slide-to="2" data-bs-target="#myCarousel1711707571361"/>
+                                </ol>
 
-                            <div class="carousel-inner">
-                                <div
-                                    class="carousel-item o_colored_level pb256 pt256 oe_img_bg o_bg_img_center active"
-                                    style="background-image: url(&quot;/web/image/218-18454f8c/Banner-Kham-benh-hieu-qua-scaled.webp&quot;);"
-                                    data-name="Slide" data-mimetype="image/webp"
-                                    data-original-id="211"
-                                    data-original-src="/web/image/211-cfb10c08/Banner-Kham-benh-hieu-qua-scaled.jpg"
-                                    data-mimetype-before-conversion="image/jpeg"
-                                    data-resize-width="1920">
-                                    <div class="oe_unremovable container">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item o_colored_level pb256 pt256 oe_img_bg o_bg_img_center active" style="background-image: url(&quot;/web/image/422-18454f8c/Banner-Kham-benh-hieu-qua-scaled.webp&quot;);" data-name="Slide" data-mimetype-before-conversion="image/jpeg" data-mimetype="image/webp" data-original-id="421" data-original-src="/web/image/421-cfb10c08/Banner-Kham-benh-hieu-qua-scaled.jpg" data-resize-width="1920">
+                                        <div class="oe_unremovable container">
 
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item o_colored_level oe_img_bg o_bg_img_center pt88 pb256" style="background-image: url(&quot;/web/image/217-0e57f065/134537-group-12314.webp&quot;);" data-name="Slide" data-mimetype="image/webp" data-original-id="212" data-original-src="/web/image/212-26a6196a/134537-group-12314.png" data-mimetype-before-conversion="image/png" data-resize-width="1920">
+                                        <div class="oe_unremovable container">
+
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item pt128 o_colored_level pb256 oe_img_bg o_bg_img_center" style="background-image: url(&quot;/web/image/216-ebfe2020/banner2.webp&quot;);" data-name="Slide" data-mimetype="image/webp" data-original-id="215" data-original-src="/web/image/215-8dd41d34/banner2.png" data-mimetype-before-conversion="image/png" data-resize-width="1600">
+                                        <div class="container oe_unremovable">
+
+                                        </div>
                                     </div>
                                 </div>
-                                <div
-                                    class="carousel-item o_colored_level oe_img_bg o_bg_img_center pt88 pb256"
-                                    style="background-image: url(&quot;/web/image/217-0e57f065/134537-group-12314.webp&quot;);"
-                                    data-name="Slide" data-mimetype="image/webp"
-                                    data-original-id="212"
-                                    data-original-src="/web/image/212-26a6196a/134537-group-12314.png"
-                                    data-mimetype-before-conversion="image/png"
-                                    data-resize-width="1920">
-                                    <div class="oe_unremovable container">
 
-                                    </div>
-                                </div>
-                                <div
-                                    class="carousel-item pt128 o_colored_level pb256 oe_img_bg o_bg_img_center"
-                                    style="background-image: url(&quot;/web/image/216-ebfe2020/banner2.webp&quot;);"
-                                    data-name="Slide" data-mimetype="image/webp"
-                                    data-original-id="215"
-                                    data-original-src="/web/image/215-8dd41d34/banner2.png"
-                                    data-mimetype-before-conversion="image/png"
-                                    data-resize-width="1600">
-                                    <div class="container oe_unremovable">
-
-                                    </div>
-                                </div>
+                                <a class="carousel-control-prev o_not_editable o_we_no_overlay" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous" href="#myCarousel1711707571361">
+                                    <span class="carousel-control-prev-icon"/>
+                                    <span class="visually-hidden o_default_snippet_text">Previous</span>
+                                </a>
+                                <a class="carousel-control-next o_not_editable o_we_no_overlay" data-bs-slide="next" role="img" aria-label="Next" title="Next" href="#myCarousel1711707571361">
+                                    <span class="carousel-control-next-icon"/>
+                                    <span class="visually-hidden o_default_snippet_text">Next</span>
+                                </a>
                             </div>
+                        </section>
+                        <section class="s_cover parallax s_parallax_is_fixed bg-black-50 pt96 pb96 o_colored_level" data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" style="background-image: none;">
+                            <span class="s_parallax_bg oe_img_bg o_bg_img_center" style="background-image: url(&quot;/web/image/469-1fd1b669/anhbia.webp&quot;); background-position: 50% 0px;" data-mimetype="image/webp" data-original-id="468" data-original-src="/web/image/468-bf1294bd/anhbia.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="960"/>
+                            <div class="o_we_bg_filter bg-black-50"/>
+                            <div class="container s_allow_columns">
+                                <h1 class="display-3 o_default_snippet_text" style="text-align: center; font-weight: bold;">Catchy </h1>
+                                <p class="lead o_default_snippet_text" style="text-align: center;">Write one or two paragraphs describing your product, services or a specific feature.<br/>
+ To be successful your content needs to be useful to your readers.</p>
+                                <p style="text-align: center;">
+                                    <a class="btn btn-primary o_default_snippet_text" href="/contactus">Contact us</a>
+                                </p>
+                            </div>
+                        </section>
+                    </div>
 
-                            <a class="carousel-control-prev o_not_editable o_we_no_overlay"
-                                data-bs-slide="prev" role="img" aria-label="Previous"
-                                title="Previous" href="#myCarousel1711707571361">
-                                <span class="carousel-control-prev-icon" />
-                                <span class="visually-hidden o_default_snippet_text">Previous</span>
-                            </a>
-                            <a class="carousel-control-next o_not_editable o_we_no_overlay"
-                                data-bs-slide="next" role="img" aria-label="Next" title="Next"
-                                href="#myCarousel1711707571361">
-                                <span class="carousel-control-next-icon" />
-                                <span class="visually-hidden o_default_snippet_text">Next</span>
-                            </a>
-                        </div>
-                    </section>
-                </div>
-
-                <div class="multi_slider-container department">
-                    <div class="container">
-                        <div class='section-header'>
-                            <span class='title-section'>Chuyên khoa</span>
-                            <button class='btn-section'>Xem thêm</button>
-                        </div>
-                        <div id="ms1" class="multi_slider-box">      <!-- Give wrapper ID to target with jQuery & CSS -->
-                            <div class="MS-content">
-                                <t t-foreach="departments" t-as="department">
-                                    <div class="img-customize item">
-                                        <a t-attf-href="/department/{{ slug(department) }}">
-                                            <div class='img-border'>
-                                                <div class='outer-bg'>
-                                                    <div class="bg-image"
-                                                        t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % department.image.decode('utf-8') }}')">
+                    <div class="multi_slider-container department">
+                        <div class="container pl-0 pr-0 ">
+                            <div class="section-header">
+                                <span class="title-section">Chuyên khoa</span>
+                                <button class="btn-section">Xem thêm</button>
+                            </div>
+                            <div id="ms1" class="multi_slider-box">                                <!-- Give wrapper ID to target with
+                                jQuery & CSS -->
+                                <div class="MS-content">
+                                    <t t-foreach="departments" t-as="department">
+                                        <div class="img-customize item">
+                                            <a t-attf-href="/department/{{ slug(department) }}">
+                                                <div class="img-border">
+                                                    <div class="outer-bg">
+                                                        <t t-if="department.image">
+                                                            <div class="bg-image" t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % department.image.decode('utf-8') }}')">
+                                                            </div>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <div class="bg-image" style="background-image: url('https://nhadepso.com/wp-content/uploads/2023/03/cap-nhat-50-hinh-anh-dai-dien-facebook-mac-dinh-dep-doc-la_2.jpg')">
+                                                            </div>
+                                                        </t>
+                                                    </div>
+                                                    <div class="mt-3 text-center content-box">
+                                                        <div class="main-text">
+                                                            <t t-esc="department.sudo().name"/>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="mt-3 text-center content-box">
-                                                    <div class="main-text">
-                                                        <t t-esc="department.sudo().name" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </t>
-                            </div>
-                            <div class="MS-controls">
-                                <button class="MS-left">
-                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                </button>
-                                <button class="MS-right">
-                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                </button>
+                                            </a>
+                                        </div>
+                                    </t>
+                                </div>
+                                <div class="MS-controls">
+                                    <button class="MS-left">
+                                        <i class="fa fa-chevron-left" aria-hidden="true"/>
+                                    </button>
+                                    <button class="MS-right">
+                                        <i class="fa fa-chevron-right" aria-hidden="true"/>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="multi_slider-container doctor">
-                    <div class="container">
-                        <div class='section-header'>
-                            <span class='title-section'>Bác sĩ nổi bật</span>
-                            <button class='btn-section'>Xem thêm</button>
-                        </div>
-                        <div id="ms2" class="multi_slider-box">      <!-- Give wrapper ID to target with jQuery & CSS -->
-                            <div class="MS-content">
-                                <t t-foreach="doctors" t-as="doctor">
-                                    <div class="img-customize item">
-                                        <a t-attf-href="/doctor/{{ slug(doctor) }}">
-                                            <div class='img-border'>
-                                                <div class='outer-bg'>
-                                                    <t t-if="doctor.image">
-                                                        <div class="bg-image"
-                                                            t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % doctor.image.decode('utf-8') }}')">
-                                                        </div>
-                                                    </t>
-                                                    <t t-else="">
-                                                        <div class="bg-image"
-                                                            style="background-image: url('https://nhadepso.com/wp-content/uploads/2023/03/cap-nhat-50-hinh-anh-dai-dien-facebook-mac-dinh-dep-doc-la_2.jpg')">
-                                                        </div>
-                                                    </t>
-                                                </div>
-                                                <div class="mt-3 text-center content-box">
-                                                    <div class="main-text">
-                                                        <t t-esc="doctor.sudo().name" />
-                                                    </div>
-                                                    <div class="second-text">
-                                                        <t t-esc="doctor.sudo().department_id.name" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </t>
+                    <div class="multi_slider-container doctor">
+                        <div class="container pl-0 pr-0">
+                            <div class="section-header">
+                                <span class="title-section">Bác sĩ nổi bật</span>
+                                <button class="btn-section">Xem thêm</button>
                             </div>
-                            <div class="MS-controls">
-                                <button class="MS-left">
-                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                </button>
-                                <button class="MS-right">
-                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                </button>
+                            <div id="ms2" class="multi_slider-box">                                <!-- Give wrapper ID to target with
+                                jQuery & CSS -->
+                                <div class="MS-content">
+                                    <t t-foreach="doctors" t-as="doctor">
+                                        <div class="img-customize item">
+                                            <a t-attf-href="/doctor/{{ slug(doctor) }}">
+                                                <div class="img-border">
+                                                    <div class="outer-bg">
+                                                        <t t-if="doctorScheduleTimes['doctor'].image">
+                                                            <div class="bg-image" t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % doctorScheduleTimes['doctor'].image.decode('utf-8') }}')">
+                                                            </div>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <div class="bg-image" style="background-image: url('https://nhadepso.com/wp-content/uploads/2023/03/cap-nhat-50-hinh-anh-dai-dien-facebook-mac-dinh-dep-doc-la_2.jpg')">
+                                                            </div>
+                                                        </t>
+                                                    </div>
+                                                    <div class="mt-3 text-center content-box">
+                                                        <div class="main-text">
+                                                            <t t-esc="doctorScheduleTimes['doctor'].sudo().name"/>
+                                                        </div>
+                                                        <div class="second-text">
+                                                            <t t-esc="doctorScheduleTimes['doctor'].sudo().department_id.name"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </t>
+                                </div>
+                                <div class="MS-controls">
+                                    <t t-if="len(doctors) &gt; 1">
+                                        <button class="MS-left">
+                                            <i class="fa fa-chevron-left" aria-hidden="true"/>
+                                        </button>
+                                        <button class="MS-right">
+                                            <i class="fa fa-chevron-right" aria-hidden="true"/>
+                                        </button>
+                                    </t>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </t>
             </t>
+            <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/carousel.js"/>
+            <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/jquery-2.2.4.min.js"/>
+            <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/multislider.min.js"/>
+            <script>
+                $('#ms1').multislider({
+                interval:false,
+                slideAll:false,
+                });
+                $('#ms2').multislider({
+                interval:false,
+                slideAll:false,
+                });
+            </script>
         </t>
-        <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/carousel.js"></script>
-        <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/jquery-2.2.4.min.js"></script>
-        <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/multislider.js"></script>
-        <script>
-            $('#ms1').multislider({
-            interval:false,
-            slideAll:false,
-            });
-            $('#ms2').multislider({
-            interval:false,
-            slideAll:false,
-            });
-        </script>
     </template>
 
-    <template id="departments" name="Departments">
+    <template id="reload_schedule_times_department">
+        <t t-foreach="doctorScheduleTimes['schedule_times']" t-as="schedule_time">
+            <button>
+                <t t-esc="schedule_time.name" />
+            </button>
+        </t>
+    </template>
+    <template id="department_detail">
         <t t-call="website.layout">
-            <title>Chuyên Khoa</title>
-            <div class="oe_structure">
+            <title>Chi Tiết Chuyên Khoa</title>
+            <div class="wraper">
                 <div class="container">
-                    <t t-foreach="departments" t-as="department">
-                        <p>
-                            <a t-attf-href="/department/{{ slug(department) }}">
-                                <t t-esc="department.sudo().name" />
-                            </a>
-                        </p>
+                    <div class="department_extra-infor pt-2 pb-2">
+                        <h1 class="title m-auto m-md-0 pt-2">
+                            <t t-esc="department.sudo().name" />
+                        </h1>
+                        <div class="content">
+                            <t t-raw="department.sudo().extra_infor" />
+                        </div>
+                        <span class="more-infor_btn">Xem thêm</span>
+                    </div>
+
+                    <t t-foreach="arrDoctorScheduleTimes" t-as="doctorScheduleTimes">
+                        <div class='each-doctor'>
+                            <div class='dt-content-left'>
+                                <div class='profile-doctor'>
+                                    <div class='intro-doctor'>
+                                        <t t-if="doctorScheduleTimes['doctor'].image">
+                                            <div class='content-left' t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % doctorScheduleTimes['doctor'].image.decode('utf-8') }}')">
+                                                <div class='show-more'>
+                                                    <a t-attf-href="/doctor/{{ slug(doctorScheduleTimes['doctor']) }}">
+                                                        Xem thêm
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </t>
+                                        <t t-else="">
+                                            <div class='content-left' style="background-image: url('https://nhadepso.com/wp-content/uploads/2023/03/cap-nhat-50-hinh-anh-dai-dien-facebook-mac-dinh-dep-doc-la_2.jpg')">
+                                                <div class='show-more'>
+                                                    <a t-attf-href="/doctor/{{ slug(doctorScheduleTimes['doctor']) }}">
+                                                        Xem thêm
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </t>
+                                        <div class='content-right'>
+                                            <div class='up'>
+                                                <t t-esc="doctorScheduleTimes['doctor'].sudo().name" />
+                                            </div>
+                                            <div class='down'>
+                                                <span>
+                                                    <t t-raw="doctorScheduleTimes['doctor'].sudo().description" />
+                                                </span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='dt-content-right'>
+                                <div class='doctor-schedule'>
+                                    <div class='doctor-schedule-container'>
+                                        <div class='all-schedule'>
+                                            <select class="schedule_date" t-att-data-doctorId="doctorScheduleTimes['doctor'].id">
+                                                <t t-foreach="doctorScheduleTimes['doctor'].examination_schedule_ids" t-as="examination_schedule_id">
+                                                    <option t-value="examination_schedule_id.id">
+                                                        <t t-esc="examination_schedule_id.name" />
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class='all-available-time'>
+                                            <div class='title-calendar'>
+                                                <i class='fas fa-calendar-alt'></i>
+                                                <span>Lịch khám</span>
+                                            </div>
+                                            <div class='time-content' id="">
+                                                <div class='time-content-btn-box' t-att-id="doctorScheduleTimes['doctor'].id">
+                                                   <t t-call="DatLichKhamBenh.reload_schedule_times_department"/>
+                                                </div>
+                                                <div class='book-free'>
+                                                    <span> Chọn <i class='far fa-hand-point-up'></i>
+                                                        và đặt miễn phí </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='doctor-extraInfor'>
+                                    <div class='doctor-extra-infor-container'>
+                                        <div class='content-up'>
+                                            <div class='text-address'>
+                                                Địa chỉ khám
+                                            </div>
+                                            <t t-if="doctor">
+                                                <div class='clinic-name'>
+                                                    <t t-esc="doctorScheduleTimes['doctor'].sudo().health_center_id.name" />
+                                                </div>
+                                                <div class='detail-address'>
+                                                    <t t-esc="doctorScheduleTimes['doctor'].sudo().health_center_id.street" />
+,
+                                                    <t t-esc="doctorScheduleTimes['doctor'].sudo().health_center_id.city" />
+,
+                                                    <t t-esc="doctorScheduleTimes['doctor'].sudo().health_center_id.state_id_new.name" />
+,
+                                                    <t t-esc="doctorScheduleTimes['doctor'].sudo().health_center_id.country_id_new.name" />
+                                                </div>
+                                            </t>
+                                            <t t-else="">
+                                                <div class='clinic-name'>
+                                                </div>
+                                                <div class='detail-address'>
+                                                </div>
+                                            </t>
+
+                                        </div>
+                                        <div class='content-down'>
+                                            <div>
+                                                <span class='price-title'>
+                                                    Giá khám
+                                                </span>
+                                                <span class='price-number'>
+                                                    <t t-esc="doctorScheduleTimes['doctor'].sudo().consultancy_price" />
+                                                    VNĐ 
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </t>
                 </div>
             </div>
         </t>
+        <script>
+            
+        </script>
+        <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/main.js"/>
     </template>
-
-    <template id="department_detail">
+    
+    <template id="reload_schedule_times">
+        <t t-foreach="schedule_times" t-as="schedule_time">
+            <button>
+                <t t-esc="schedule_time.name" />
+            </button>
+        </t>
+    </template>
+    <template id="doctor_detail">
         <t t-call="website.layout">
-            <title>Chi Tiết Chuyên Khoa</title>
-            <div class="oe_structure">
-                <div class="container">
-                    <!-- t-field cho edit trên website -->
-                    <h3 t-field="department.sudo().name" />
-                    <li>
-                        <t t-esc="department.sudo().type" />
-                    </li>
-                    <li>
-                        <t t-esc="department.sudo().state" />
-                    </li>
+            <title>Chi Tiết Bác sĩ</title>
+            <div class="wraper">
+                <div class='doctor-detail-container'>
+                    <div class='intro-doctor'>
+                        <t t-if="doctor and doctor.image">
+                            <div class='content-left' t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % doctor.image.decode('utf-8') }}')"></div>
+                        </t>
+                        <t t-else="">
+                            <div class='content-left' style="background-image: url('https://nhadepso.com/wp-content/uploads/2023/03/cap-nhat-50-hinh-anh-dai-dien-facebook-mac-dinh-dep-doc-la_2.jpg')"></div>
+                        </t>
+                        <div class="content-right">
+                            <div class='up'>
+                                <t t-esc="doctor.sudo().name"/>
+                            </div>
+                            <div class='down'>
+                                <span>
+                                    <t t-raw="doctor.sudo().description"/>
+                                </span>
+                                <div class='like-share-plugin'>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='schedule-doctor'>
+                        <div class='content-left'>
+                            <div class='doctor-schedule'>
+                                <div class='doctor-schedule-container'>
+                                    <div class='all-schedule'>
+                                        <select id="schedule_date" t-att-data-doctorId="doctor.id">
+                                            <t t-foreach="doctor.examination_schedule_ids" t-as="examination_schedule_id">
+                                                <option t-value="examination_schedule_id.id">
+                                                    <t t-esc="examination_schedule_id.name" />
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class='all-available-time'>
+                                        <div class='title-calendar'>
+                                            <i class='fas fa-calendar-alt'></i>
+                                            <span>Lịch khám</span>
+                                        </div>
+                                        <div class='time-content'>
+                                            <div class='time-content-btn-box' id="reload_schedule_times">
+                                               <t t-call="DatLichKhamBenh.reload_schedule_times"/>
+                                            </div>
+                                            <div class='book-free'>
+                                                <span> Chọn <i class='far fa-hand-point-up'></i>
+                                                    và đặt miễn phí </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='content-right'>
+                            <div class='doctor-extraInfor'>
+                                <div class='doctor-extra-infor-container'>
+                                    <div class='content-up'>
+                                        <div class='text-address'>
+                                            Địa chỉ khám
+                                        </div>
+                                        <t t-if="doctor">
+                                            <div class='clinic-name'>
+                                                <t t-esc="doctor.sudo().health_center_id.name" />
+                                            </div>
+                                            <div class='detail-address'>
+                                                <t t-esc="doctor.sudo().health_center_id.street" />
+,
+                                                <t t-esc="doctor.sudo().health_center_id.city" />
+,
+                                                <t t-esc="doctor.sudo().health_center_id.state_id_new.name" />
+,
+                                                <t t-esc="doctor.sudo().health_center_id.country_id_new.name" />
+                                            </div>
+                                        </t>
+                                        <t t-else="">
+                                            <div class='clinic-name'>
+                                            </div>
+                                            <div class='detail-address'>
+                                            </div>
+                                        </t>
+
+                                    </div>
+                                    <div class='content-down'>
+                                        <div>
+                                            <span class='price-title'>
+                                                Giá khám
+                                            </span>
+                                            <span class='price-number'>
+                                                <t t-esc="doctor.sudo().consultancy_price" />
+                                                VNĐ 
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='detail-infor-doctor-wrap'>
+                        <div class="detail-infor-doctor">
+                            <t t-raw="doctor.sudo().extra_infor"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </t>
+        <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/main.js"/>
     </template>
-    <template id="portal_all_department" name="Portal my home: Departments"
-        customize_show="True"
-        inherit_id="portal.portal_my_home">
+    <!-- <template id="portal_all_department" name="Portal my home: Departments" customize_show="True" inherit_id="portal.portal_my_home">
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
             <t t-if="quotation_count" t-call="portal.portal_docs_entry">
                 <t t-set="title">Departments</t>
@@ -226,5 +436,5 @@
             </t>
         </xpath>
 
-    </template>
+    </template> -->
 </odoo>

@@ -22,10 +22,14 @@
             <form string="Trung tâm y tế">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_department_health_center)d" icon="fa-building-o" context="{'default_health_center_id': active_id}">
+                        <button type="action" class="oe_stat_button"
+                            name="%(DatLichKhamBenh.morden_action_medical_department_health_center)d"
+                            icon="fa-building-o" context="{'default_health_center_id': active_id}">
                             <field string="Khoa" name="department_count" widget="statinfo" />
                         </button>
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_clinic_health_center)d" icon="fa-building-o" context="{'default_health_center_id': active_id}">
+                        <button type="action" class="oe_stat_button"
+                            name="%(DatLichKhamBenh.morden_action_medical_clinic_health_center)d"
+                            icon="fa-building-o" context="{'default_health_center_id': active_id}">
                             <field string="Phòng" name="clinic_count_t" widget="statinfo" />
                         </button>
                     </div>
@@ -45,19 +49,33 @@
                         <group>
                             <label for="street" string="Địa chỉ" />
                             <div>
-                                <field name="street" placeholder="Street..." on_change="1" field_id="street_0" />
+                                <field name="street" placeholder="Street..." on_change="1"
+                                    field_id="street_0" />
                                 <field name="street2" on_change="1" field_id="street2_0" />
-                                <field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0" />
+                                <field name="country_id_new" placeholder="Quốc gia"
+                                    class="oe_no_button"
+                                    options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"
+                                    on_change="1" can_create="True" can_write="True"
+                                    field_id="country_id_0" />
                                 <div class="address_format">
-                                    <field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0" />
-                                    <field name="city" placeholder="Thành phố" style="width: 40%" field_id="city_0" />
-                                    <field name="zip" placeholder="Mã bưu điện" style="width: 20%" field_id="zip_0" />
+                                    <field name="state_id_new" class="oe_no_button"
+                                        placeholder="Tỉnh/Thành phố "
+                                        required='country_id_new != False' style="width: 37%"
+                                        options="{&quot;no_open&quot;: True}"
+                                        on_change="onchange_state(state_id)" can_create="True"
+                                        can_write="True" field_id="state_id_0" />
+                                    <field name="city" placeholder="Thành phố" style="width: 40%"
+                                        field_id="city_0" />
+                                    <field name="zip" placeholder="Mã bưu điện" style="width: 20%"
+                                        field_id="zip_0" />
                                 </div>
                             </div>
-                            <field name="website_link" widget="url" placeholder="e.g. www.odoo.com" field_id="website_0" />
+                            <field name="website_link" widget="url" placeholder="e.g. www.odoo.com"
+                                field_id="website_0" />
                         </group>
                         <group>
-                            <field name="phone_number" placeholder="e.g. +84 012345678" on_change="1" field_id="phone_0" />
+                            <field name="phone_number" placeholder="e.g. +84 012345678"
+                                on_change="1" field_id="phone_0" />
                             <field name="email" widget="email" on_change="1" field_id="email_0" />
                         </group>
                     </group>
@@ -106,7 +124,9 @@
                             <div class="oeh_medical_vignette oe_semantic_html_override">
                                 <div class="o_kanban_image" style="margin-top:15px;">
                                     <a type="open">
-                                        <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.health_center', 'image', record.id.raw_value)" />
+                                        <img widget="image" heigh="100" width="100"
+                                            t-att-alt="record.id.value"
+                                            t-att-src="kanban_image('medical.health_center', 'image', record.id.raw_value)" />
                                     </a>
                                 </div>
                                 <div class="oe_kanban_details">
@@ -117,8 +137,7 @@
                                     </h4>
                                     <ul>
                                         <li>
-                                            <field name="city" />
- ,                                            <field name="country_id_new" />
+                                            <field name="city" /> , <field name="country_id_new" />
                                         </li>
                                         <li>
                                             <field name="email" />
@@ -173,7 +192,9 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_clinic)d" icon="fa-list-ul">
+                        <button type="action" class="oe_stat_button"
+                            name="%(DatLichKhamBenh.morden_action_medical_clinic)d"
+                            icon="fa-list-ul">
                             <field string="Phòng" name="clinic_count" widget="statinfo" />
                         </button>
                     </div>
@@ -186,7 +207,8 @@
                     </div>
                     <group>
                         <group>
-                            <field name="health_center_id" options="{'no_create': True}" required="1" />
+                            <field name="health_center_id" options="{'no_create': True}"
+                                required="1" />
                             <field name="floor_number" default="0" />
                             <field name="type" />
                         </group>
@@ -210,7 +232,7 @@
                     </group>
                     <separator string="Thông tin bổ sung" colspan="4" />
                     <div class="o_row">
-                        <field name="extra_infor" />
+                        <field name="extra_infor" widget="html" />
                     </div>
                 </sheet>
             </form>
@@ -224,12 +246,15 @@
             <search string="">
                 <separator />
                 <filter string="Tên" name="country_filter" />
-                <filter string="Yêu thích" name="favorite_filter" domain="[('favorite','=',True)]"/>
+                <filter string="Yêu thích" name="favorite_filter" domain="[('favorite','=',True)]" />
                 <group expand="1" string="Nhóm theo">
                     <filter string="Tên" name="group_by_name" context="{'group_by': 'name'}" />
-                    <filter string="Trung tâm y tế" name="group_by_health_center" context="{'group_by': 'health_center_id'}" />
-                    <filter string="Số tầng" name="group_by_floor_number" context="{'group_by': 'floor_number'}" />
-                    <filter string="Trạng thái" name="group_by_state" context="{'group_by': 'state'}" />
+                    <filter string="Trung tâm y tế" name="group_by_health_center"
+                        context="{'group_by': 'health_center_id'}" />
+                    <filter string="Số tầng" name="group_by_floor_number"
+                        context="{'group_by': 'floor_number'}" />
+                    <filter string="Trạng thái" name="group_by_state"
+                        context="{'group_by': 'state'}" />
                 </group>
             </search>
         </field>
@@ -263,8 +288,13 @@
         <field name="arch" type="xml">
             <form string="Phòng">
                 <header>
-                    <button name="btn_room_available" confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Trống"?' string="Trống" type="object" class="oe_highlight" invisible="state == 'room_available'" />
-                    <button name="btn_not_available" string="Không có sẵn" confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Không có sẵn"?' type="object" class="oe_highlight" invisible="state == 'not_available'" />
+                    <button name="btn_room_available"
+                        confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Trống"?'
+                        string="Trống" type="object" class="oe_highlight"
+                        invisible="state == 'room_available'" />
+                    <button name="btn_not_available" string="Không có sẵn"
+                        confirm='Bạn có muốn thay đổi trạng thái của phòng thành "Không có sẵn"?'
+                        type="object" class="oe_highlight" invisible="state == 'not_available'" />
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
@@ -276,10 +306,11 @@
                     </div>
                     <group>
                         <group>
-                            <field name="health_center_id" required="1" options="{'no_create': True}"/>
+                            <field name="health_center_id" required="1"
+                                options="{'no_create': True}" />
                         </group>
                         <group>
-                            <field name="department_id" required="1" options="{'no_create': True}"/>
+                            <field name="department_id" required="1" options="{'no_create': True}" />
                         </group>
                     </group>
                     <separator string="Thông tin bổ sung" colspan="4" />
@@ -299,7 +330,8 @@
                 <separator />
                 <group expand="1" string="Nhóm theo">
                     <filter string="Tên" name="group_by_name" context="{'group_by': 'name'}" />
-                    <filter string="Trạng thái" name="group_by_state" context="{'group_by': 'state'}" />
+                    <filter string="Trạng thái" name="group_by_state"
+                        context="{'group_by': 'state'}" />
                 </group>
             </search>
         </field>
@@ -345,19 +377,33 @@
                         <group>
                             <label for="street" string="Địa chỉ" />
                             <div>
-                                <field name="street" placeholder="Street..." on_change="1" field_id="street_0" />
+                                <field name="street" placeholder="Street..." on_change="1"
+                                    field_id="street_0" />
                                 <field name="street2" on_change="1" field_id="street2_0" />
-                                <field name="country_id_new" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0" />
+                                <field name="country_id_new" placeholder="Quốc gia"
+                                    class="oe_no_button"
+                                    options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"
+                                    on_change="1" can_create="True" can_write="True"
+                                    field_id="country_id_0" />
                                 <div class="address_format">
-                                    <field name="state_id_new" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id_new != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0" />
-                                    <field name="city" placeholder="Thành phố" style="width: 40%" field_id="city_0" />
-                                    <field name="zip" placeholder="Mã bưu điện" style="width: 20%" field_id="zip_0" />
+                                    <field name="state_id_new" class="oe_no_button"
+                                        placeholder="Tỉnh/Thành phố "
+                                        required='country_id_new != False' style="width: 37%"
+                                        options="{&quot;no_open&quot;: True}"
+                                        on_change="onchange_state(state_id)" can_create="True"
+                                        can_write="True" field_id="state_id_0" />
+                                    <field name="city" placeholder="Thành phố" style="width: 40%"
+                                        field_id="city_0" />
+                                    <field name="zip" placeholder="Mã bưu điện" style="width: 20%"
+                                        field_id="zip_0" />
                                 </div>
                             </div>
-                            <field name="website_link" widget="url" placeholder="e.g. www.odoo.com" field_id="website_0" />
+                            <field name="website_link" widget="url" placeholder="e.g. www.odoo.com"
+                                field_id="website_0" />
                         </group>
                         <group>
-                            <field name="phone_number" placeholder="e.g. +84 012345678" on_change="1" field_id="phone_0" />
+                            <field name="phone_number" placeholder="e.g. +84 012345678"
+                                on_change="1" field_id="phone_0" />
                             <field name="email" widget="email" on_change="1" field_id="email_0" />
                         </group>
                     </group>
@@ -380,8 +426,10 @@
             <search string="">
                 <separator />
                 <group expand="1" string="Nhóm theo">
-                    <filter string="Tên hiệu thuốc" name="group_by_name" context="{'group_by': 'name'}" />
-                    <filter string="Trung tâm y tế" name="group_by_health_center" context="{'group_by': 'health_center_id'}" />
+                    <filter string="Tên hiệu thuốc" name="group_by_name"
+                        context="{'group_by': 'name'}" />
+                    <filter string="Trung tâm y tế" name="group_by_health_center"
+                        context="{'group_by': 'health_center_id'}" />
                 </group>
             </search>
         </field>
@@ -403,7 +451,9 @@
                             <div class="oeh_medical_vignette oe_semantic_html_override">
                                 <div class="o_kanban_image" style="margin-top:15px;">
                                     <a type="open">
-                                        <img widget="image" heigh="100" width="100" t-att-alt="record.id.value" t-att-src="kanban_image('medical.pharmacies', 'image', record.id.raw_value)" />
+                                        <img widget="image" heigh="100" width="100"
+                                            t-att-alt="record.id.value"
+                                            t-att-src="kanban_image('medical.pharmacies', 'image', record.id.raw_value)" />
                                     </a>
                                 </div>
                                 <div class="oe_kanban_details">
@@ -414,8 +464,7 @@
                                     </h4>
                                     <ul>
                                         <li>
-                                            <field name="city" />
- ,                                            <field name="country_id_new" />
+                                            <field name="city" /> , <field name="country_id_new" />
                                         </li>
                                         <li>
                                             <field name="email" />
@@ -445,7 +494,8 @@
             </tree>
         </field>
     </record>
-    <!--Ppharmacies action-->
+    <!--Ppharmacies
+    action-->
     <record id="medical_pharmacies_action" model="ir.actions.act_window">
         <field name="name">Hiệu thuốc</field>
         <field name="type">ir.actions.act_window</field>
@@ -507,12 +557,15 @@
                     <group>
                         <group>
                             <field name="type_of_medicine" widget="selection_badge" required="1" />
-                            <field name="therapeutic_effect" invisible="type_of_medicine  == 'medicine'" />
-                            <field name="quantity_on_hand" invisible="type_of_medicine  == 'medicine'" />
+                            <field name="therapeutic_effect"
+                                invisible="type_of_medicine  == 'medicine'" />
+                            <field name="quantity_on_hand"
+                                invisible="type_of_medicine  == 'medicine'" />
                         </group>
                         <group>
                             <field name="sale_price" />
-                            <field name="pregnancy_warning" invisible="type_of_medicine  == 'medicine'" />
+                            <field name="pregnancy_warning"
+                                invisible="type_of_medicine  == 'medicine'" />
                         </group>
                     </group>
                     <group invisible="type_of_medicine  == 'vaccine'">
@@ -545,7 +598,8 @@
             <search string="">
                 <separator />
                 <group expand="1" string="Nhóm theo">
-                    <filter string="Loại thuốc" name="group_by_type_of_medicine" context="{'group_by': 'type_of_medicine'}" />
+                    <filter string="Loại thuốc" name="group_by_type_of_medicine"
+                        context="{'group_by': 'type_of_medicine'}" />
                 </group>
             </search>
         </field>
@@ -714,7 +768,8 @@
                     <notebook>
                         <page string="Trường hợp xét nghiệm">
                             <div>
-                                <field name="lab_test_case_ids" nolabel="1" context="{'default_lab_test_types_id': active_id}">
+                                <field name="lab_test_case_ids" nolabel="1"
+                                    context="{'default_lab_test_types_id': active_id}">
                                     <tree string="Trường hợp xét nghiệm" editable="bottom">
                                         <field name="sequence" required="1" />
                                         <field name="name" />
@@ -780,11 +835,16 @@
         <field name="arch" type="xml">
             <form string="Chẩn đoán hình ảnh">
                 <header>
-                    <button confirm="Bạn có muốn tạo hóa đơn?" name="btn_invoiced" string="Tạo hoá đơn" type="object" class="oe_highlight" />
-                    <button confirm="Bạn có muốn bắt đầu chẩn đoán?" name="btn_test_in_profgress" string="Bắt đầu" type="object" class="oe_highlight" />
-                    <button confirm="Bạn có muốn hoàn thành chẩn đoán?" name="btn_completed" string="Hoàn thành" type="object" class="oe_highlight" />
-                    <button name="in_diagnostic_imaging" string="In" type="object" class="oe_highlight" />
-                    <field name="state" widget="statusbar" statusbar_visible="draft,invoiced,test_in_profgress,completed" />
+                    <button confirm="Bạn có muốn tạo hóa đơn?" name="btn_invoiced"
+                        string="Tạo hoá đơn" type="object" class="oe_highlight" />
+                    <button confirm="Bạn có muốn bắt đầu chẩn đoán?" name="btn_test_in_profgress"
+                        string="Bắt đầu" type="object" class="oe_highlight" />
+                    <button confirm="Bạn có muốn hoàn thành chẩn đoán?" name="btn_completed"
+                        string="Hoàn thành" type="object" class="oe_highlight" />
+                    <button name="in_diagnostic_imaging" string="In" type="object"
+                        class="oe_highlight" />
+                    <field name="state" widget="statusbar"
+                        statusbar_visible="draft,invoiced,test_in_profgress,completed" />
                 </header>
                 <sheet>
                     <div class="oe_left" style="width: 500px;">
@@ -796,7 +856,8 @@
                         </div>
                         <div class="oe_left" style="width: 500px;">
                             <label for="diagnostic_imaging_types_id" />
-                            <field name="diagnostic_imaging_types_id" readonly="0" help="Loại chẩn đoán hình ảnh" />
+                            <field name="diagnostic_imaging_types_id" readonly="0"
+                                help="Loại chẩn đoán hình ảnh" />
                         </div>
                     </div>
                     <group>
@@ -816,7 +877,9 @@
                     </group>
                     <notebook>
                         <page string="Vật tư tiêu hao">
-                            <field name="material_consumption_ids" nolabel="1" readonly="state == 'completed'" context="{'default_diagnostic_imaging_id': active_id}">
+                            <field name="material_consumption_ids" nolabel="1"
+                                readonly="state == 'completed'"
+                                context="{'default_diagnostic_imaging_id': active_id}">
                                 <tree string="Vật tư tiêu hao" editable="bottom">
                                     <field name="sequence" />
                                     <field name="name" />
@@ -828,14 +891,20 @@
                         <page string="Images">
                             <group>
                                 <group>
-                                    <field name="image_1" widget="image" readonly="state == 'completed'" />
-                                    <field name="image_2" widget="image" readonly="state == 'completed'" />
-                                    <field name="image_3" widget="image" readonly="state == 'completed'" />
+                                    <field name="image_1" widget="image"
+                                        readonly="state == 'completed'" />
+                                    <field name="image_2" widget="image"
+                                        readonly="state == 'completed'" />
+                                    <field name="image_3" widget="image"
+                                        readonly="state == 'completed'" />
                                 </group>
                                 <group>
-                                    <field name="image_4" widget="image" readonly="state == 'completed'" />
-                                    <field name="image_5" widget="image" readonly="state == 'completed'" />
-                                    <field name="image_6" widget="image" readonly="state == 'completed'" />
+                                    <field name="image_4" widget="image"
+                                        readonly="state == 'completed'" />
+                                    <field name="image_5" widget="image"
+                                        readonly="state == 'completed'" />
+                                    <field name="image_6" widget="image"
+                                        readonly="state == 'completed'" />
                                 </group>
                             </group>
                         </page>
@@ -859,12 +928,17 @@
         <field name="arch" type="xml">
             <search string="">
                 <separator />
-                <filter string="Trạng thái đã xuất hoá đơn" name="state_filter" domain="[('state','=','invoiced')]" />
+                <filter string="Trạng thái đã xuất hoá đơn" name="state_filter"
+                    domain="[('state','=','invoiced')]" />
                 <group expand="1" string="Nhóm theo">
-                    <filter string="Bệnh nhân" name="group_by_patient" context="{'group_by': 'patient_id'}" />
-                    <filter string="Bác sĩ" name="group_by_doctor" context="{'group_by': 'doctor_id'}" />
-                    <filter string="Loại chẩn đoán" name="group_by_diagnostic_imaging_types" context="{'group_by': 'diagnostic_imaging_types_id'}" />
-                    <filter string="Trạng thái" name="group_by_state" context="{'group_by': 'state'}" />
+                    <filter string="Bệnh nhân" name="group_by_patient"
+                        context="{'group_by': 'patient_id'}" />
+                    <filter string="Bác sĩ" name="group_by_doctor"
+                        context="{'group_by': 'doctor_id'}" />
+                    <filter string="Loại chẩn đoán" name="group_by_diagnostic_imaging_types"
+                        context="{'group_by': 'diagnostic_imaging_types_id'}" />
+                    <filter string="Trạng thái" name="group_by_state"
+                        context="{'group_by': 'state'}" />
                 </group>
             </search>
         </field>
@@ -969,7 +1043,8 @@
                 <templates>
                     <t t-name="kanban-box" style="min-width: 512px !important">
                         <div t-attf-class="#{kanban_color(0)}">
-                            <!-- <t t-value="JSON.parse(record.kanban_dashboard.raw_value)" t-set="dashboard"/> -->
+                            <!-- <t t-value="JSON.parse(record.kanban_dashboard.raw_value)"
+                            t-set="dashboard"/> -->
                             <t t-call="OehTop" />
                             <div class="o_kanban_card_content o_invisible" style="width:100%">
                                 <div class="row">
@@ -1000,82 +1075,90 @@
                         </div>
                     </t>
                     <t t-name="OehBodyDepartment">
-                        <div class="o_kanban_primary_left" style="display: flex; justify-content: space-between; margin-top: 12px;">
-                            <button type="object" name="action_create_walkins" class="btn btn-primary btn-sm o_invoice_new btn-new-action" style="padding: 8px;">
+                        <div class="o_kanban_primary_left"
+                            style="display: flex; justify-content: space-between; margin-top: 12px;">
+                            <button type="object" name="action_create_walkins"
+                                class="btn btn-primary btn-sm o_invoice_new btn-new-action"
+                                style="padding: 8px;">
                                 <span>Phiếu khám bệnh mới</span>
                             </button>
-                            <button type="object" name="action_create_diagnostic_imaging" class="btn btn-primary btn-sm o_invoice_new btn-new-action" style="padding: 8px;">
+                            <button type="object" name="action_create_diagnostic_imaging"
+                                class="btn btn-primary btn-sm o_invoice_new btn-new-action"
+                                style="padding: 8px;">
                                 <span>Chẩn đoán hình ảnh mới</span>
                             </button>
                         </div>
                         <div class="so_luong_text_wrap">
                             <a type="object" name="btn_count_doctor" context="{}">
                                 <div class="so_luong_text"> Bác sĩ <span class="so_luong_icon">
-                                    <span>
-                                        <field name="doctor_count" />
+                                        <span>
+                                            <field name="doctor_count" />
+                                        </span>
                                     </span>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="so_luong_text_wrap">
-                        <a type="object" name="btn_count_walkins" context="{}">
-                            <div class="so_luong_text"> Phiếu khám bệnh <span class="so_luong_icon">
-                                <span>
-                                    <field name="walkins_count" />
-                                </span>
-                            </span>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <div class="so_luong_text_wrap">
-                    <a type="object" name="btn_count_diagnostic_imaging" context="{}">
-                        <div class="so_luong_text"> Chẩn đoán hình ảnh <span class="so_luong_icon">
-                            <span>
-                                <field name="diagnostic_imaging_count" />
-                            </span>
-                        </span>
-                    </div>
-                </a>
-            </div>
-            <div class="so_luong_text_wrap">
-                <a type="object" name="btn_count_prescription" context="{}">
-                    <div class="so_luong_text"> Đơn thuốc <span class="so_luong_icon">
-                        <span>
-                            <field name="prescription_count" />
-                        </span>
-                    </span>
-                </div>
-            </a>
-        </div>
-    </t>
-    <t t-name="OehManage">
-        <div class="row o_kanban_card_settings" style="margin-left: -16px; margin-right: -16px">
-            <div class="col-6" style="text-align: center">
-                <a type="object" name="toggle_favorite">
-                    <i t-attf-class="fa o_dashboard_star #{record.favorite.raw_value ? 'fa-star' : 'fa-star-o'}" title="Nhấn để thêm/xoá yêu thích" />
- Yêu thích</a>
-            </div>
-            <div class="col-6" style="text-align: center">
-                <a t-if="widget.editable" type="edit">
-                    <i t-attf-class="fa o_dashboard_star fa-gear" title="Nhấn để thêm/xoá yêu thích" />
- Thiết lập</a>
-            </div>
-        </div>
-    </t>
-</templates>
-</kanban>
-</field>
-</record>
-<!-- Medical department dashboard action -->
-<record id="medical_department_dashboard_action" model="ir.actions.act_window">
-<field name="name">Bảng thông tin</field>
-<field name="type">ir.actions.act_window</field>
-<field name="res_model">medical.department</field>
-<field name="view_mode">kanban,form</field>
-<field name="context">{'search_default_favorite_filter': 1}</field>
-</record>
-
+                        <div class="so_luong_text_wrap">
+                            <a type="object" name="btn_count_walkins" context="{}">
+                                <div class="so_luong_text"> Phiếu khám bệnh <span
+                                        class="so_luong_icon">
+                                        <span>
+                                            <field name="walkins_count" />
+                                        </span>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="so_luong_text_wrap">
+                            <a type="object" name="btn_count_diagnostic_imaging" context="{}">
+                                <div class="so_luong_text"> Chẩn đoán hình ảnh <span
+                                        class="so_luong_icon">
+                                        <span>
+                                            <field name="diagnostic_imaging_count" />
+                                        </span>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="so_luong_text_wrap">
+                            <a type="object" name="btn_count_prescription" context="{}">
+                                <div class="so_luong_text"> Đơn thuốc <span class="so_luong_icon">
+                                        <span>
+                                            <field name="prescription_count" />
+                                        </span>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    </t>
+                    <t t-name="OehManage">
+                        <div class="row o_kanban_card_settings"
+                            style="margin-left: -16px; margin-right: -16px">
+                            <div class="col-6" style="text-align: center">
+                                <a type="object" name="toggle_favorite">
+                                    <i
+                                        t-attf-class="fa o_dashboard_star #{record.favorite.raw_value ? 'fa-star' : 'fa-star-o'}"
+                                        title="Nhấn để thêm/xoá yêu thích" /> Yêu thích</a>
+                            </div>
+                            <div class="col-6" style="text-align: center">
+                                <a t-if="widget.editable" type="edit">
+                                    <i t-attf-class="fa o_dashboard_star fa-gear"
+                                        title="Nhấn để thêm/xoá yêu thích" /> Thiết lập</a>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- Medical department dashboard action -->
+    <record id="medical_department_dashboard_action" model="ir.actions.act_window">
+        <field name="name">Bảng thông tin</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.department</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="context">{'search_default_favorite_filter': 1}</field>
+    </record>
 
 
 </odoo>

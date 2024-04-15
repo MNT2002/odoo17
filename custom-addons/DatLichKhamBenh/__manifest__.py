@@ -43,7 +43,11 @@
             "https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js",
             "https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js",
             "https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js",
-            "/DatLichKhamBenh/static/src/scss/slider.scss"
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js",
+            "/DatLichKhamBenh/static/src/scss/slider.scss",
+            "/DatLichKhamBenh/static/src/scss/main.scss",
+            "/DatLichKhamBenh/static/src/js/booking.js",
         ]
     },
     "application": True,

@@ -3,6 +3,7 @@
     <data>
         <!--Khai bao danh muc phan quyen-->
         <record model="ir.module.category" id="medical_category">
+            <!-- <field name="visible" eval="True" /> -->
             <field name="name">Medical</field>
             <field name="sequence">10</field>
         </record>

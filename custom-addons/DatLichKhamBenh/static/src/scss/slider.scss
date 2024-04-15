@@ -1,6 +1,10 @@
 .multi_slider-container {
   margin-top: 50px;
 
+  &.doctor {
+    background-color: #fff;
+  }
+
   .section-header {
     height         : 60px;
     display        : flex;
@@ -37,6 +41,7 @@
     padding: 0 18px;
     cursor : pointer;
     width  : 25%;
+    user-select: none;
 
     &:hover {
       color     : #45c3d2;
@@ -75,7 +80,7 @@
     position: relative;
 
     .MS-content {
-      margin     : 15px 5%;
+      padding    : 15px 5%;
       overflow   : hidden;
       white-space: nowrap;
 
@@ -125,20 +130,20 @@
 
     @media (max-width: 767px) {
       .MS-content .item {
-        width: 100%;
+        width: 50%;
       }
 
       .img-customize .bg-image {
-        height: 230px;
+        height: 92px;
       }
 
       .MS-controls {
         .MS-left {
-          left: 0;
+          left: 0px;
         }
 
         .MS-right {
-          right: 0;
+          right: 0px;
         }
       }
     }
@@ -162,16 +167,6 @@
       transform : translateY(-50%);
     }
 
-    @media (max-width: 767px) {
-      .MS-controls .MS-left {
-        left: 0;
-      }
-
-      .MS-controls .MS-right {
-        right: 0;
-      }
-    }
-
     .MS-controls button:hover {
       cursor: pointer;
     }
@@ -179,36 +174,46 @@
 
   &.doctor {
     .img-customize {
-      .outer-bg{
-        display: flex;
+      .outer-bg {
+        display        : flex;
         justify-content: center;
-        align-items: center;
-        padding-top: 12px;
-        overflow: hidden;
+        align-items    : center;
+        padding-top    : 12px;
+        overflow       : hidden;
+
         .bg-image {
           width        : 182px;
           height       : 182px;
+          @media (max-width: 767px) {
+            & {
+              height: 110px;
+              width: 110px;
+            }
+          }
           border-radius: 50%;
+
           &:hover {
-            scale: 1.1;
+            scale     : 1.1;
             transition: ease-out .3s;
           }
         }
       }
     }
+
   }
+
   &.department {
     .img-customize {
-      .outer-bg{
-        display: flex;
+      .outer-bg {
+        display        : flex;
         justify-content: center;
-        align-items: center;
-        padding-top: 12px;
-        overflow: hidden;
+        align-items    : center;
+        overflow       : hidden;
+
         .bg-image {
 
           &:hover {
-            scale: 1.1;
+            scale     : 1.1;
             transition: ease-out .3s;
           }
         }

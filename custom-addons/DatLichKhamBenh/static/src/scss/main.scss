@@ -1,0 +1,379 @@
+* {
+    font-family: Montserrat, sans-serif !important;
+    line-height: 1.5 !important;
+    outline    : none !important;
+}
+
+.department_extra-infor {
+    display       : flex;
+    flex-direction: column;
+    width         : 100%;
+
+    .title {
+        font-size  : 24px;
+        font-weight: bold;
+    }
+
+    .content {
+        display       : flex;
+        flex-direction: column;
+        overflow      : hidden;
+    }
+
+    .more-infor_btn {
+        margin         : 0px;
+        padding        : 0px;
+        text-decoration: none;
+        word-wrap      : break-word;
+        cursor         : pointer;
+        color          : #288ad6;
+        margin-top     : 12px;
+        user-select    : none;
+    }
+}
+
+.each-doctor {
+    display            : flex;
+    flex-basis         : auto;
+    flex-shrink        : 0;
+    // min-width       : 1000px;
+    max-width          : 1200px;
+    min-height         : 300px;
+    margin             : 0 auto;
+    margin-bottom      : 12px;
+    padding            : 10px;
+    border             : 0 solid black;
+    box-sizing         : border-box;
+    background-color   : #fff;
+    border-radius      : 8px;
+    box-shadow         : rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    .dt-content-left {
+        width        : 50%;
+        border-right : 1px solid #eee;
+        padding-right: 14px;
+
+        .intro-doctor .content-left {
+            width : 90px !important;
+            height: 90px !important;
+        }
+
+        .profile-doctor {
+            width: 100%;
+
+            .intro-doctor {
+                display      : flex;
+                margin-bottom: 12px;
+
+                .content-left {
+                    width              : 120px;
+                    height             : 120px;
+                    background-position: center center;
+                    background-repeat  : no-repeat;
+                    background-size    : cover;
+                    border-radius      : 50%;
+                    margin             : 10px 20px;
+                    margin-left        : 0;
+                    position           : relative;
+
+                    .show-more {
+                        position : absolute;
+                        bottom   : -30px;
+                        display  : inline-block;
+                        width    : max-content;
+                        left     : 50%;
+                        transform: translateX(-50%);
+                        cursor   : pointer;
+
+                        a {
+                            outline    : none;
+                            font-size  : 14px;
+                            font-weight: bold;
+                            color      : #337ab7;
+                        }
+                    }
+                }
+
+                .content-right {
+                    width         : 80%;
+                    display       : flex;
+                    flex-direction: column;
+                    padding-left  : 10px;
+                    flex          : 1;
+
+                    .up {
+                        font-size  : 18px;
+                        font-weight: 600;
+                        padding-top: 10px;
+                        color      : #45C3D6;
+                    }
+
+                    .down {
+                        padding-top: 10px;
+
+                        span {
+                            text-align: justify;
+                            font-size : 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .dt-content-right {
+        width       : 50%;
+        margin-top  : 12px;
+        padding-left: 14px;
+
+    }
+}
+
+.doctor-schedule {
+    margin-bottom: 10px;
+
+    .doctor-schedule-container {
+
+        .all-schedule {
+
+            select {
+                position     : relative;
+                display      : block;
+                padding      : 4px 4px 10px;
+                position     : relative;
+                box-shadow   : 0 15px 30px -10px transparentize(#000, 0.9);
+                cursor       : pointer;
+                border       : none;
+                border-bottom: 1px solid #ccc;
+                outline      : none;
+                font-size    : 14px;
+                font-weight  : bold;
+                color        : #337ab7;
+                background   : none;
+            }
+        }
+
+        .all-available-time {
+            margin-top: 14px;
+
+            .title-calendar {
+                margin-bottom: 8px;
+
+                i {
+                    margin-right: 4px;
+                }
+
+                span {
+                    text-transform: uppercase;
+                    font-weight   : bold;
+                }
+            }
+
+            .time-content {
+
+                .time-content-btn-box {
+                    display  : flex;
+                    gap      : 10px;
+                    flex-wrap: wrap;
+
+                    button {
+                        min-width       : 160px;
+                        font-size       : 14px;
+                        font            : 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                        padding         : 10px 14px;
+                        background-color: #FFC10E;
+                        border-radius   : 0;
+                        border          : none;
+
+                        &:hover {
+                            // --tw-shadow     : 0px 0px 0px 2px #45c5d2 inset !important;
+                            // --tw-ring-shadow: 0 0 #0000;
+                            // box-shadow      : var(--tw-ring-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+                            background-color: #45c5d2;
+                            color           : #fff;
+                            font-weight     : bold;
+                        }
+                    }
+                }
+            }
+
+            .book-free {
+                margin-top: 8px;
+                font-style: 10px;
+                font      : 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            }
+        }
+    }
+}
+
+.doctor-extraInfor {
+    padding-top   : 10px;
+    padding-bottom: 10px;
+    border-top    : 1px solid #eee;
+
+    .doctor-extra-infor-container {
+
+        .content-up {
+            padding-bottom: 10px;
+            border-bottom : 1px solid #ccc;
+
+            .text-address {
+                text-transform: uppercase;
+                color         : #6f6f6f;
+                font-weight   : bold;
+                font-size     : 14px;
+            }
+
+            .clinic-name {
+                font-weight: bold;
+                padding    : 5px 0;
+            }
+
+            .detail-address {
+                font-size: 14px;
+            }
+
+        }
+
+        .content-down {
+            padding-top: 10px;
+
+            .btn-hide-show-detail {
+
+                color: rgba(72, 196, 211, 1.00);
+
+                &:hover {
+                    opacity: 0.8;
+                    cursor : pointer;
+                }
+            }
+
+            .price-title {
+                text-transform: uppercase;
+                color         : #6f6f6f;
+                font-weight   : bold;
+                font-size     : 14px;
+            }
+
+            .price-title-pop-up {
+                display        : flex;
+                justify-content: space-between;
+                align-items    : center;
+            }
+
+            .price-number {
+                // font: 14px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+                font-weight: 400;
+            }
+
+            .detail-price {
+                border          : 1px solid #ccc;
+                background-color: #f5f4f4;
+                padding         : 8px 4px;
+            }
+
+            .comment-doctor {
+                border          : 1px solid #ccc;
+                background-color: #e4e4e4;
+                padding         : 8px 4px;
+            }
+
+            .note {
+                margin-top: 6px;
+            }
+
+            .hide-price {
+                margin-top: 10px;
+            }
+
+        }
+    }
+}
+
+.doctor-detail-container {
+    .intro-doctor {
+        display: flex;
+        margin : 0 120px;
+        max-width: 1140px;
+        margin-right: auto;
+        margin-left: auto;
+
+        .content-left {
+            width              : 120px;
+            height             : 120px;
+            background-position: center center;
+            background-repeat  : no-repeat;
+            background-size    : cover;
+            border-radius      : 50%;
+            margin             : 10px 20px;
+            margin-left        : 0;
+        }
+
+        .content-right {
+            width         : 80%;
+            display       : flex;
+            flex-direction: column;
+            padding-left  : 10px;
+
+            .up {
+                font-size  : 20px;
+                font-weight: 600;
+                padding-top: 10px;
+            }
+
+            .down {
+                padding-top: 10px;
+
+                .like-share-plugin {
+                    margin : 10px 0 20px 0;
+                    display: block !important;
+                }
+            }
+        }
+    }
+
+    .schedule-doctor {
+        margin       : 0 120px;
+        margin-bottom: 24px;
+        display      : flex;
+        min-height   : 120px;
+        margin-top   : 18px;
+        max-width: 1140px;
+        margin-right: auto;
+        margin-left: auto;
+
+        .content-left {
+            width       : 50%;
+            border-right: 1px solid #ddd;
+        }
+
+        .content-right {
+            width       : 50%;
+            padding-left: 14px;
+        }
+    }
+
+    .detail-infor-doctor-wrap {
+        border-top      : 1px solid #ddd;
+        border-bottom   : 1px solid #ddd;
+        background-color: #f1f1f1;
+        padding         : 20px 120px;
+        .detail-infor-doctor {
+            max-width: 1140px;
+            margin-right: auto;
+            margin-left: auto;
+            
+            h1,
+            h2,
+            h3 {
+                font-size    : 16px;
+                padding      : 20px 0;
+                margin-bottom: 20px;
+            }
+    
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
