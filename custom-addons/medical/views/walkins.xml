@@ -28,7 +28,7 @@
                             <field name="shift_id" invisible="1"/>
                             <field name="schedule_time_domain" invisible="1" />
                             <field name="schedule_time_id" widget="selection_badge" readonly="schedule_selection_id == False or state != 'scheduled'" domain="schedule_time_domain"/>
-                            <field name="schedule_date" string="Ngày giờ khám bệnh" readonly="True" />
+                            <field name="schedule_date" string="Ngày giờ khám bệnh" readonly="True" force_save="1"/>
                         </group>
                         <group>
                             <field name="health_center_id"  options="{'no_create': True}"/>

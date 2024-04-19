@@ -27,7 +27,7 @@ class HealthCenter(models.Model):
         for rec in self:
             rec.department_count =  len(rec.department_ids)
 
-    department_count = fields.Integer('Specialty', compute="get_count_department", store=True)    
+    department_count = fields.Integer('Specialty', compute="get_count_department")    
     clinic_ids_t = fields.One2many(comodel_name='medical.clinic', inverse_name='health_center_id')
 
     @api.depends('clinic_ids_t')
@@ -35,7 +35,7 @@ class HealthCenter(models.Model):
         for rec in self:
             rec.clinic_count_t =  len(rec.clinic_ids_t)
     
-    clinic_count_t = fields.Integer('Phòng', compute="get_count_clinic_t", store=True)
+    clinic_count_t = fields.Integer('Phòng', compute="get_count_clinic_t")
 
     @api.model
     def create(self, vals):
@@ -81,7 +81,7 @@ class Department(models.Model):
         for rec in self:
             rec.clinic_count =  len(rec.clinic_ids)
 
-    clinic_count = fields.Integer('Phòng', compute="get_count_clinic", store=True)
+    clinic_count = fields.Integer('Phòng', compute="get_count_clinic")
     doctor_ids = fields.One2many('medical.doctor', 'department_id')
 
     @api.depends('doctor_ids')
@@ -392,6 +392,8 @@ class DiagnosticImaging(models.Model):
 
     def btn_completed(self):
         self.state = 'completed'
+        current_dt = fields.datetime.now()
+        self.date_of_the_anlysis = current_dt
 
     def in_diagnostic_imaging(self):
         raise UserError('Message: Tính năng đang bảo trì!')

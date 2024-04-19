@@ -16,12 +16,8 @@ class Walkins(models.Model):
     schedule_selection_id = fields.Many2one('medical.examination_schedule', domain="[('doctor_id','=',doctor_id),('schedule','>=',today)]", 
     store=True, required=True, string='Ngày khám bệnh')
 
-    @api.depends('schedule_time_id')
+    @api.onchange('schedule_time_id')
     def _convert_schedule_date(self):
-        # schedule_selection_id = self.env['medical.examination_schedule'].browse(self.schedule_selection_id)
-        # self.schedule_date = self.schedule_selection_id.schedule
-        # schedule_time_selected = self.env['medical.examination_time'].search([('id','=',self.schedule_time_id.id)])
-       
         date_value = self.schedule_selection_id.schedule
         float_value = self.schedule_time_id.name
         
@@ -35,7 +31,7 @@ class Walkins(models.Model):
         else:
             self.schedule_date = False
 
-    schedule_date = fields.Datetime('Ngày khám bênh', store=True, compute="_convert_schedule_date")
+    schedule_date = fields.Datetime('Ngày khám bênh')
     shift_id = fields.Many2one('medical.shift', related='schedule_selection_id.shift_id')
 
     @api.depends('schedule_selection_id')

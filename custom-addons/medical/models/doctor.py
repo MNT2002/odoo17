@@ -12,7 +12,7 @@ class DoctorResUser(models.Model):
         users_search = self.env['res.users'].search([])
         users = []
         for user in users_search:
-            if user.has_group('DatLichKhamBenh.group_employee_doctor'):
+            if user.has_group('medical.group_employee_doctor'):
                 users.append(user.id)
         if self.id in users:
             self._is_invisible = False
@@ -36,7 +36,7 @@ class Doctor(models.Model):
         users_search = self.env['res.users'].search([])
         users = []
         for user in users_search:
-            if user.has_group('DatLichKhamBenh.group_employee_doctor'):
+            if user.has_group('medical.group_employee_doctor'):
                 users.append(user.id)
         return [('id', 'in', users)]
         
@@ -71,14 +71,14 @@ class Doctor(models.Model):
     def get_count_walkins(self):
         for rec in self:
             rec.walkins_count =  len(rec.walkins_ids)
-    walkins_count = fields.Integer('Phiếu khám bệnh', compute="get_count_walkins", store=True)
+    walkins_count = fields.Integer('Phiếu khám bệnh', compute="get_count_walkins")
     prescription_ids = fields.One2many(comodel_name='medical.prescription', inverse_name='doctor_id')
 
     @api.depends('prescription_ids')
     def get_count_prescription(self):
         for rec in self:
             rec.prescription_count =  len(rec.prescription_ids)
-    prescription_count = fields.Integer('Đơn thuốc', compute="get_count_prescription", store=True)
+    prescription_count = fields.Integer('Đơn thuốc', compute="get_count_prescription")
 class Pharmacist(models.Model):
     _name = 'medical.pharmacist'
     _description = 'medical.pharmacist'

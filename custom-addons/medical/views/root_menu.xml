@@ -1,6 +1,6 @@
 <odoo>
     <!-- MenuItem Of Quan Ly Dat Lich Kham Benh -->
-    <menuitem id="menu_QLDLKB" name="Trung tâm" web_icon="DatLichKhamBenh/static/description/medical.png" sequence="1" />
+    <menuitem id="menu_QLDLKB" name="Trung tâm" web_icon="medical/static/description/medical.png" sequence="1" />
     <menuitem id="patient_menu" name="Quản lý bệnh nhân" sequence="2" />
     <menuitem id="walkins_menu" name="Phiếu khám bệnh" sequence="3"/>
     <menuitem id="menu_pharmacies" name="Hiệu thuốc" sequence="4"/>
@@ -8,7 +8,7 @@
 
     <menuitem id="patient_menu_child" parent="patient_menu" name="Quản lý bênh nhân" sequence="1" action="medical_patient_action"/>
 
-    <menuitem id="medical_specialty_dashboard_menu" name="Bảng thông tin" parent="menu_QLDLKB" sequence="1" action="medical_department_dashboard_action" groups="DatLichKhamBenh.group_employee_manager" />
+    <menuitem id="medical_specialty_dashboard_menu" name="Bảng thông tin" parent="menu_QLDLKB" sequence="1" action="medical_department_dashboard_action" groups="medical.group_employee_manager" />
     <menuitem id="menu_bao_cao" name="Báo cáo" parent="menu_QLDLKB" sequence="2" />
     <menuitem id="pharmacist_menu" name="Dược sĩ" parent="menu_QLDLKB" sequence="4" action="medical_pharmacist_action"/>
     <menuitem id="doctor_menu" name="Bác sĩ" parent="menu_QLDLKB" sequence="5" action="medical_doctor_action"/>

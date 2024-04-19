@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="homepage" name="Home">
-        <t name="Home" t-name="DatLichKhamBenh.homepage">
+        <t name="Home" t-name="medical.homepage">
             <t name="Homepage">
                 <t t-call="website.layout">
                     <div id="wrap" class="oe_structure oe_empty">
@@ -43,7 +43,7 @@
                             </div>
                         </section>
                         <section class="s_cover parallax s_parallax_is_fixed bg-black-50 pt96 pb96 o_colored_level" data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" style="background-image: none;">
-                            <span class="s_parallax_bg oe_img_bg o_bg_img_center" style="background-image: url(&quot;/web/image/469-1fd1b669/anhbia.webp&quot;); background-position: 50% 0px;" data-mimetype="image/webp" data-original-id="468" data-original-src="/web/image/468-bf1294bd/anhbia.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="960"/>
+                            <span class="s_parallax_bg oe_img_bg o_bg_img_center" style="background-image: url(&quot;/web/image/152-1fd1b669/anhbia.webp&quot;); background-position: 50% 0px;" data-mimetype="image/webp" data-original-id="468" data-original-src="/web/image/468-bf1294bd/anhbia.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="960"/>
                             <div class="o_we_bg_filter bg-black-50"/>
                             <div class="container s_allow_columns">
                                 <h1 class="display-3 o_default_snippet_text" style="text-align: center; font-weight: bold;">Catchy </h1>
@@ -62,8 +62,7 @@
                                 <span class="title-section">Chuyên khoa</span>
                                 <button class="btn-section">Xem thêm</button>
                             </div>
-                            <div id="ms1" class="multi_slider-box">                                <!-- Give wrapper ID to target with
-                                jQuery & CSS -->
+                            <div id="ms1" class="multi_slider-box">
                                 <div class="MS-content">
                                     <t t-foreach="departments" t-as="department">
                                         <div class="img-customize item">
@@ -107,16 +106,15 @@
                                 <span class="title-section">Bác sĩ nổi bật</span>
                                 <button class="btn-section">Xem thêm</button>
                             </div>
-                            <div id="ms2" class="multi_slider-box">                                <!-- Give wrapper ID to target with
-                                jQuery & CSS -->
+                            <div id="ms2" class="multi_slider-box">
                                 <div class="MS-content">
                                     <t t-foreach="doctors" t-as="doctor">
                                         <div class="img-customize item">
                                             <a t-attf-href="/doctor/{{ slug(doctor) }}">
                                                 <div class="img-border">
                                                     <div class="outer-bg">
-                                                        <t t-if="doctorScheduleTimes['doctor'].image">
-                                                            <div class="bg-image" t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % doctorScheduleTimes['doctor'].image.decode('utf-8') }}')">
+                                                        <t t-if="doctor.image">
+                                                            <div class="bg-image" t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % doctor.image.decode('utf-8') }}')">
                                                             </div>
                                                         </t>
                                                         <t t-else="">
@@ -126,10 +124,10 @@
                                                     </div>
                                                     <div class="mt-3 text-center content-box">
                                                         <div class="main-text">
-                                                            <t t-esc="doctorScheduleTimes['doctor'].sudo().name"/>
+                                                            <t t-esc="doctor.sudo().name"/>
                                                         </div>
                                                         <div class="second-text">
-                                                            <t t-esc="doctorScheduleTimes['doctor'].sudo().department_id.name"/>
+                                                            <t t-esc="doctor.sudo().department_id.name"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -152,9 +150,9 @@
                     </div>
                 </t>
             </t>
-            <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/carousel.js"/>
-            <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/jquery-2.2.4.min.js"/>
-            <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/multislider.min.js"/>
+            <script type="text/javascript" src="/medical/static/src/js/carousel.js"/>
+            <script type="text/javascript" src="/medical/static/src/js/jquery-2.2.4.min.js"/>
+            <script type="text/javascript" src="/medical/static/src/js/multislider.min.js"/>
             <script>
                 $('#ms1').multislider({
                 interval:false,
@@ -170,7 +168,7 @@
 
     <template id="reload_schedule_times_department">
         <t t-foreach="doctorScheduleTimes['schedule_times']" t-as="schedule_time">
-            <button>
+            <button class="btn-time-booking" t-att-data-scheduleTimeId="schedule_time.id">
                 <t t-esc="schedule_time.name" />
             </button>
         </t>
@@ -246,7 +244,7 @@
                                             </div>
                                             <div class='time-content' id="">
                                                 <div class='time-content-btn-box' t-att-id="doctorScheduleTimes['doctor'].id">
-                                                   <t t-call="DatLichKhamBenh.reload_schedule_times_department"/>
+                                                    <t t-call="medical.reload_schedule_times_department"/>
                                                 </div>
                                                 <div class='book-free'>
                                                     <span> Chọn <i class='far fa-hand-point-up'></i>
@@ -304,22 +302,23 @@
             </div>
         </t>
         <script>
-            
+
         </script>
-        <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/main.js"/>
+        <script type="text/javascript" src="/medical/static/src/js/main.js"/>
     </template>
-    
+
     <template id="reload_schedule_times">
         <t t-foreach="schedule_times" t-as="schedule_time">
-            <button>
+            <button class="btn-time-booking" t-att-data-scheduleTimeId="schedule_time.id">
                 <t t-esc="schedule_time.name" />
             </button>
         </t>
     </template>
+
     <template id="doctor_detail">
         <t t-call="website.layout">
             <title>Chi Tiết Bác sĩ</title>
-            <div class="wraper">
+            <div class="wrapper">
                 <div class='doctor-detail-container'>
                     <div class='intro-doctor'>
                         <t t-if="doctor and doctor.image">
@@ -349,7 +348,7 @@
                                     <div class='all-schedule'>
                                         <select id="schedule_date" t-att-data-doctorId="doctor.id">
                                             <t t-foreach="doctor.examination_schedule_ids" t-as="examination_schedule_id">
-                                                <option t-value="examination_schedule_id.id">
+                                                <option t-att-value="examination_schedule_id.id">
                                                     <t t-esc="examination_schedule_id.name" />
                                                 </option>
                                             </t>
@@ -362,7 +361,7 @@
                                         </div>
                                         <div class='time-content'>
                                             <div class='time-content-btn-box' id="reload_schedule_times">
-                                               <t t-call="DatLichKhamBenh.reload_schedule_times"/>
+                                                <t t-call="medical.reload_schedule_times"/>
                                             </div>
                                             <div class='book-free'>
                                                 <span> Chọn <i class='far fa-hand-point-up'></i>
@@ -423,18 +422,108 @@
                         </div>
                     </div>
                 </div>
+                <div class="register_walkin-wrapper">
+                    <div id="register_walkin">
+                        <t t-call="medical.register_walkin"/>
+                    </div>
+                </div>
             </div>
         </t>
-        <script type="text/javascript" src="/DatLichKhamBenh/static/src/js/main.js"/>
+        <script type="text/javascript" src="/medical/static/src/js/main.js"/>
     </template>
-    <!-- <template id="portal_all_department" name="Portal my home: Departments" customize_show="True" inherit_id="portal.portal_my_home">
-        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
-            <t t-if="quotation_count" t-call="portal.portal_docs_entry">
-                <t t-set="title">Departments</t>
-                <t t-set="url" t-value="'/department'" />
-                <t t-set="count" t-value="count_departments" />
-            </t>
-        </xpath>
 
-    </template> -->
+    <template id="register_walkin">
+        <div class="formbold-main-wrapper container">
+            <span class="close-btn">
+                <i class="fa-solid fa-square-xmark"></i>
+            </span>
+            <div class="formbold-form-wrapper">
+                <form action="/post-booking" method="POST" id="register-form">
+                    <div class="form-row">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="patient_name" class="formbold-form-label"> Tên bệnh nhân </label>
+                            <input type="text" name="patient_name" id="patient_name" rules="required" placeholder="Full Name" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="phone" class="formbold-form-label"> Số điện thoại </label>
+                            <input type="text" name="phone" id="phone" rules="required|phone" placeholder="Enter your phone number" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3 form-group">
+                            <label for="email" class="formbold-form-label"> Địa chỉ Email </label>
+                            <input type="email" name="email" id="email" rules="required|email" placeholder="Enter your email" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-4 mb-3 form-group">
+                            <label for="dob" class="formbold-form-label"> Ngày sinh </label>
+                            <input type="date" name="dob" id="dob" rules="required" placeholder="Enter your birthday" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-4 mb-3 form-group">
+                            <label for="sex" class="formbold-form-label">Giới tính</label>
+                            <div class="d-flex justify-content-around mt-lg-4 mt-md-4 form-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="exampleRadios1" value="male" checked="True" />
+                                    <label class="form-check-label" for="exampleRadios1">
+                                      Nam
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="exampleRadios2" value="female"/>
+                                    <label class="form-check-label" for="exampleRadios2">
+                                      Nữ
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="exampleRadios3" value="other" />
+                                    <label class="form-check-label" for="exampleRadios3">
+                                      Khác
+                                    </label>
+                                </div>
+                            </div>
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="schedule-date" class="formbold-form-label"> Ngày khám </label>
+                            <input type="text" name="schedule_date" id="schedule-date" rules="required" placeholder="Enter your schedule day" class="formbold-form-input" readonly="True" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="schedule-time" class="formbold-form-label"> Thời gian khám </label>
+                            <input type="text" name="schedule_time" id="schedule-time" placeholder="Enter your schedule time" class="formbold-form-input" readonly="True" />
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="department" class="formbold-form-label"> Chuyên khoa </label>
+                            <input type="text" name="department" id="department" placeholder="" class="formbold-form-input" readonly="True" t-att-data-departmentId="doctor.department_id.id" t-att-data-departmentName="doctor.department_id.name" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="doctor" class="formbold-form-label"> Bác sĩ phụ trách </label>
+                            <input type="text" name="doctor" id="doctor" placeholder="" class="formbold-form-input" readonly="True" t-att-data-doctorId="doctor.id" t-att-data-doctorName="doctor.name" />
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3 form-group">
+                            <label for="reason" class="formbold-form-label"> Lý do khám </label>
+                            <input type="text" name="reason" id="reason" rules="required" placeholder="Enter your examination reason" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="formbold-btn mt-3 form-submit">Book Appointment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
 </odoo>

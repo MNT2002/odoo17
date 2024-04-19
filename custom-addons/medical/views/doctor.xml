@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="// field[@name='action_id']" position="after">
                 <field name="_is_invisible" invisible="True"/>
-                <field name="doctor_ids" widget="many2many_tags" invisible="_is_invisible == True" groups="DatLichKhamBenh.group_employee_manager"/>
+                <field name="doctor_ids" widget="many2many_tags" invisible="_is_invisible == True" groups="medical.group_employee_manager"/>
             </xpath>
         </field>
     </record>
@@ -21,10 +21,10 @@
             <form string="Bác sĩ">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.morden_action_medical_walkins)d" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_doctor_id': active_id, 'default_health_center_id': health_center_id, 'default_department_id': department_id}">
+                        <button type="action" class="oe_stat_button" name="%(medical.morden_action_medical_walkins)d" groups="medical.group_employee_manager,medical.group_employee_user,medical.group_employee_doctor" icon="fa-list" context="{'default_doctor_id': active_id, 'default_health_center_id': health_center_id, 'default_department_id': department_id}">
                             <field string="Phiếu khám bệnh" name="walkins_count" widget="statinfo"/>
                         </button>
-                        <button type="action" class="oe_stat_button" name="%(DatLichKhamBenh.medical_prescription_action)d" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user,DatLichKhamBenh.group_employee_doctor" icon="fa-list" context="{'default_doctor_id': active_id, 'default_health_center_id': health_center_id, 'default_department_id': department_id}">
+                        <button type="action" class="oe_stat_button" name="%(medical.medical_prescription_action)d" groups="medical.group_employee_manager,medical.group_employee_user,medical.group_employee_doctor" icon="fa-list" context="{'default_doctor_id': active_id, 'default_health_center_id': health_center_id, 'default_department_id': department_id}">
                             <field string="Đơn thuốc" name="prescription_count" widget="statinfo"/>
                         </button>
                     </div>
@@ -190,7 +190,7 @@
             <form string="Dược sĩ">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <!-- <button type="action" class="oe_stat_button" name="DatLichKhamBenh.morden_action_medical_walkins" groups="DatLichKhamBenh.group_employee_manager,DatLichKhamBenh.group_employee_user" icon="fa-list" context="{'default_pharmacist_id': active_id, 'default_health_center_id': health_center_id, 'default_department_id': department_id}">
+                        <!-- <button type="action" class="oe_stat_button" name="medical.morden_action_medical_walkins" groups="medical.group_employee_manager,medical.group_employee_user" icon="fa-list" context="{'default_pharmacist_id': active_id, 'default_health_center_id': health_center_id, 'default_department_id': department_id}">
                             <field string="Phiếu khám bệnh" name="walkins_count" widget="statinfo"/>
                         </button> -->
                     </div>

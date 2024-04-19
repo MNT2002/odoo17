@@ -5,7 +5,7 @@
 		<field name="arch" type="xml">
 			<form string="Bệnh nhân">
 				<header>
-					<button name="%(DatLichKhamBenh.change_state_patient_action)d" string="Đã khám" type="action" class="oe_highlight" invisible="state == 'examined'"/>
+					<button name="%(medical.change_state_patient_action)d" string="Đã khám" type="action" class="oe_highlight" invisible="state == 'examined'"/>
 					<button name="btn_waiting" string="Đang chờ" type="object" confirm='Bạn có muốn thay đổi trạng thái của bệnh nhân thành "Đang chờ"?' class="oe_highlight" invisible="state == 'waiting'"/>
 					<field name="state" widget="statusbar" />
 				</header> 

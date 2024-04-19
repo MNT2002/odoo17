@@ -1,5 +1,5 @@
 {
-    'name': "Dat Lich Kham Benh",
+    'name': "Medical",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -36,7 +36,7 @@
         'views/home_page.xml',
     ],
     "assets": {
-        "web.assets_backend": ["/DatLichKhamBenh/static/src/scss/medical.scss"],
+        "web.assets_backend": ["/medical/static/src/scss/medical.scss"],
 
         "web.assets_frontend": [
             "https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css",
@@ -45,9 +45,10 @@
             "https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js",
             "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css",
             "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js",
-            "/DatLichKhamBenh/static/src/scss/slider.scss",
-            "/DatLichKhamBenh/static/src/scss/main.scss",
-            "/DatLichKhamBenh/static/src/js/booking.js",
+            "/medical/static/src/scss/slider.scss",
+            "/medical/static/src/scss/main.scss",
+            "/medical/static/src/js/validator.js",
+            "/medical/static/src/js/booking.js",
         ]
     },
     "application": True,

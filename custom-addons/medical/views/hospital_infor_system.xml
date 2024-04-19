@@ -23,12 +23,12 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button type="action" class="oe_stat_button"
-                            name="%(DatLichKhamBenh.morden_action_medical_department_health_center)d"
+                            name="%(medical.morden_action_medical_department_health_center)d"
                             icon="fa-building-o" context="{'default_health_center_id': active_id}">
                             <field string="Khoa" name="department_count" widget="statinfo" />
                         </button>
                         <button type="action" class="oe_stat_button"
-                            name="%(DatLichKhamBenh.morden_action_medical_clinic_health_center)d"
+                            name="%(medical.morden_action_medical_clinic_health_center)d"
                             icon="fa-building-o" context="{'default_health_center_id': active_id}">
                             <field string="Phòng" name="clinic_count_t" widget="statinfo" />
                         </button>
@@ -193,7 +193,7 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button type="action" class="oe_stat_button"
-                            name="%(DatLichKhamBenh.morden_action_medical_clinic)d"
+                            name="%(medical.morden_action_medical_clinic)d"
                             icon="fa-list-ul">
                             <field string="Phòng" name="clinic_count" widget="statinfo" />
                         </button>
