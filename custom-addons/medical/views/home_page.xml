@@ -1,57 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Home page -->
     <template id="homepage" name="Home">
         <t name="Home" t-name="medical.homepage">
             <t name="Homepage">
                 <t t-call="website.layout">
                     <div id="wrap" class="oe_structure oe_empty">
-                        <section class="s_carousel_wrapper" data-vxml="001" data-snippet="s_carousel" data-name="Carousel">
-                            <div class="s_carousel s_carousel_default carousel slide" data-bs-interval="6000" id="myCarousel1711707571361" style="background-image: none;">
-
-                                <ol class="carousel-indicators o_we_no_overlay">
-                                    <li data-bs-slide-to="0" data-bs-target="#myCarousel1711707571361" class="active"/>
-                                    <li data-bs-slide-to="1" data-bs-target="#myCarousel1711707571361" aria-current="true"/>
-                                    <li data-bs-slide-to="2" data-bs-target="#myCarousel1711707571361"/>
-                                </ol>
-
-                                <div class="carousel-inner">
-                                    <div class="carousel-item o_colored_level pb256 pt256 oe_img_bg o_bg_img_center active" style="background-image: url(&quot;/web/image/422-18454f8c/Banner-Kham-benh-hieu-qua-scaled.webp&quot;);" data-name="Slide" data-mimetype-before-conversion="image/jpeg" data-mimetype="image/webp" data-original-id="421" data-original-src="/web/image/421-cfb10c08/Banner-Kham-benh-hieu-qua-scaled.jpg" data-resize-width="1920">
-                                        <div class="oe_unremovable container">
-
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item o_colored_level oe_img_bg o_bg_img_center pt88 pb256" style="background-image: url(&quot;/web/image/217-0e57f065/134537-group-12314.webp&quot;);" data-name="Slide" data-mimetype="image/webp" data-original-id="212" data-original-src="/web/image/212-26a6196a/134537-group-12314.png" data-mimetype-before-conversion="image/png" data-resize-width="1920">
-                                        <div class="oe_unremovable container">
-
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item pt128 o_colored_level pb256 oe_img_bg o_bg_img_center" style="background-image: url(&quot;/web/image/216-ebfe2020/banner2.webp&quot;);" data-name="Slide" data-mimetype="image/webp" data-original-id="215" data-original-src="/web/image/215-8dd41d34/banner2.png" data-mimetype-before-conversion="image/png" data-resize-width="1600">
-                                        <div class="container oe_unremovable">
-
-                                        </div>
-                                    </div>
+                        <div class="slideshow-wrapper">
+                            <!-- Thẻ Chứa Slideshow -->
+                            <div class="slideshow-container">
+                                <!-- Kết hợp hình ảnh và nội dung cho mội phần tử trong slideshow-->
+                                <div class="mySlides fade2">
+                                    <!-- <div class="numbertext">1 / 3</div> -->
+                                    <img src="/medical/static/src/img/banner1.jpg" />
                                 </div>
-
-                                <a class="carousel-control-prev o_not_editable o_we_no_overlay" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous" href="#myCarousel1711707571361">
-                                    <span class="carousel-control-prev-icon"/>
-                                    <span class="visually-hidden o_default_snippet_text">Previous</span>
+                                <div class="mySlides fade2">
+                                    <!-- <div class="numbertext">2 / 3</div> -->
+                                    <img src="/medical/static/src/img/banner2.png"/>
+                                </div>
+                                <div class="mySlides fade2">
+                                    <!-- <div class="numbertext">3 / 3</div> -->
+                                    <img src="/medical/static/src/img/banner3.png"/>
+                                </div>
+                                <!-- Nút điều khiển mũi tên-->
+                                <a class="prev" onclick="plusSlides(-1)">
+                                    <i class="fa-solid fa-angle-left"></i>
                                 </a>
-                                <a class="carousel-control-next o_not_editable o_we_no_overlay" data-bs-slide="next" role="img" aria-label="Next" title="Next" href="#myCarousel1711707571361">
-                                    <span class="carousel-control-next-icon"/>
-                                    <span class="visually-hidden o_default_snippet_text">Next</span>
+                                <a class="next" onclick="plusSlides(1)">
+                                    <i class="fa-solid fa-angle-right"></i>
                                 </a>
                             </div>
-                        </section>
+                            <!-- Nút tròn điều khiển slideshow-->
+                            <div style="text-align:center; padding: 5px 0" class="d-none d-sm-flex justify-content-center">
+                                <span class="dot" onclick="currentSlide(1)"></span>
+                                <span class="dot" onclick="currentSlide(2)"></span>
+                                <span class="dot" onclick="currentSlide(3)"></span>
+                            </div>
+                        </div>
                         <section class="s_cover parallax s_parallax_is_fixed bg-black-50 pt96 pb96 o_colored_level" data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" style="background-image: none;">
                             <span class="s_parallax_bg oe_img_bg o_bg_img_center" style="background-image: url(&quot;/web/image/152-1fd1b669/anhbia.webp&quot;); background-position: 50% 0px;" data-mimetype="image/webp" data-original-id="468" data-original-src="/web/image/468-bf1294bd/anhbia.jpg" data-mimetype-before-conversion="image/jpeg" data-resize-width="960"/>
                             <div class="o_we_bg_filter bg-black-50"/>
                             <div class="container s_allow_columns">
-                                <h1 class="display-3 o_default_snippet_text" style="text-align: center; font-weight: bold;">Catchy </h1>
-                                <p class="lead o_default_snippet_text" style="text-align: center;">Write one or two paragraphs describing your product, services or a specific feature.<br/>
- To be successful your content needs to be useful to your readers.</p>
-                                <p style="text-align: center;">
-                                    <a class="btn btn-primary o_default_snippet_text" href="/contactus">Contact us</a>
-                                </p>
+                                <h1 class="display-3 o_default_snippet_text" style="text-align: center; font-weight: bold;">Tiện lợi </h1>
+                                <p class="lead o_default_snippet_text" style="text-align: center;">Kiểm soát hành trình sức khỏe của bạn. Đặt lịch hẹn một cách dễ dàng, bất cứ lúc nào, bất cứ nơi đâu.<br/>
+                                    Chúng tôi cam kết mang đến cho bạn trải nghiệm đặt lịch hẹn y tế trực tuyến nhanh chóng, thuận tiện và tin cậy nhất.</p>
                             </div>
                         </section>
                     </div>
@@ -173,16 +165,17 @@
             </button>
         </t>
     </template>
+    <!-- Department page -->
     <template id="department_detail">
         <t t-call="website.layout">
             <title>Chi Tiết Chuyên Khoa</title>
-            <div class="wraper">
+            <div class="wrapper">
                 <div class="container">
                     <div class="department_extra-infor pt-2 pb-2">
                         <h1 class="title m-auto m-md-0 pt-2">
                             <t t-esc="department.sudo().name" />
                         </h1>
-                        <div class="content">
+                        <div class="content non_click">
                             <t t-raw="department.sudo().extra_infor" />
                         </div>
                         <span class="more-infor_btn">Xem thêm</span>
@@ -219,7 +212,6 @@
                                                 <span>
                                                     <t t-raw="doctorScheduleTimes['doctor'].sudo().description" />
                                                 </span>
-
                                             </div>
                                         </div>
                                     </div>
@@ -229,9 +221,9 @@
                                 <div class='doctor-schedule'>
                                     <div class='doctor-schedule-container'>
                                         <div class='all-schedule'>
-                                            <select class="schedule_date" t-att-data-doctorId="doctorScheduleTimes['doctor'].id">
+                                            <select class="schedule_date" t-att-data-departmentId="doctorScheduleTimes['doctor'].department_id.id" t-att-data-departmentName="doctorScheduleTimes['doctor'].department_id.name" t-att-data-doctorId="doctorScheduleTimes['doctor'].id" t-att-data-doctorName="doctorScheduleTimes['doctor'].name">
                                                 <t t-foreach="doctorScheduleTimes['doctor'].examination_schedule_ids" t-as="examination_schedule_id">
-                                                    <option t-value="examination_schedule_id.id">
+                                                    <option t-att-value="examination_schedule_id.id">
                                                         <t t-esc="examination_schedule_id.name" />
                                                     </option>
                                                 </t>
@@ -260,7 +252,7 @@
                                             <div class='text-address'>
                                                 Địa chỉ khám
                                             </div>
-                                            <t t-if="doctor">
+                                            <t t-if="doctorScheduleTimes['doctor']">
                                                 <div class='clinic-name'>
                                                     <t t-esc="doctorScheduleTimes['doctor'].sudo().health_center_id.name" />
                                                 </div>
@@ -299,12 +291,19 @@
                         </div>
                     </t>
                 </div>
+                <div class="on_department-register_walkin-wrapper">
+                    <div id="on_department-register_walkin">
+                        <t t-call="medical.on_department-register_walkin"/>
+                    </div>
+                </div>
+                <div id="toast" aria-live="polite" aria-atomic="true">
+                </div>
             </div>
         </t>
         <script>
 
         </script>
-        <script type="text/javascript" src="/medical/static/src/js/main.js"/>
+
     </template>
 
     <template id="reload_schedule_times">
@@ -315,6 +314,7 @@
         </t>
     </template>
 
+    <!-- Doctor detail page -->
     <template id="doctor_detail">
         <t t-call="website.layout">
             <title>Chi Tiết Bác sĩ</title>
@@ -322,10 +322,14 @@
                 <div class='doctor-detail-container'>
                     <div class='intro-doctor'>
                         <t t-if="doctor and doctor.image">
-                            <div class='content-left' t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % doctor.image.decode('utf-8') }}')"></div>
+                            <div class='content-left' >
+                                <div class="doctor-avatar" t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % doctor.image.decode('utf-8') }}')"></div>
+                            </div>
                         </t>
                         <t t-else="">
-                            <div class='content-left' style="background-image: url('https://nhadepso.com/wp-content/uploads/2023/03/cap-nhat-50-hinh-anh-dai-dien-facebook-mac-dinh-dep-doc-la_2.jpg')"></div>
+                            <div class='content-left' >
+                                <div class="doctor-avatar" style="background-image: url('https://nhadepso.com/wp-content/uploads/2023/03/cap-nhat-50-hinh-anh-dai-dien-facebook-mac-dinh-dep-doc-la_2.jpg')"></div>
+                            </div>
                         </t>
                         <div class="content-right">
                             <div class='up'>
@@ -346,7 +350,7 @@
                             <div class='doctor-schedule'>
                                 <div class='doctor-schedule-container'>
                                     <div class='all-schedule'>
-                                        <select id="schedule_date" t-att-data-doctorId="doctor.id">
+                                        <select id="schedule_date" t-att-data-departmentId="doctor.department_id.id" t-att-data-departmentName="doctor.department_id.name" t-att-data-doctorId="doctor.id" t-att-data-doctorName="doctor.name">
                                             <t t-foreach="doctor.examination_schedule_ids" t-as="examination_schedule_id">
                                                 <option t-att-value="examination_schedule_id.id">
                                                     <t t-esc="examination_schedule_id.name" />
@@ -360,7 +364,7 @@
                                             <span>Lịch khám</span>
                                         </div>
                                         <div class='time-content'>
-                                            <div class='time-content-btn-box' id="reload_schedule_times">
+                                            <div class='time-content-btn-box' t-att-id="doctor.sudo().id">
                                                 <t t-call="medical.reload_schedule_times"/>
                                             </div>
                                             <div class='book-free'>
@@ -427,9 +431,10 @@
                         <t t-call="medical.register_walkin"/>
                     </div>
                 </div>
+                <div id="toast" aria-live="polite" aria-atomic="true">
+                </div>
             </div>
         </t>
-        <script type="text/javascript" src="/medical/static/src/js/main.js"/>
     </template>
 
     <template id="register_walkin">
@@ -437,35 +442,38 @@
             <span class="close-btn">
                 <i class="fa-solid fa-square-xmark"></i>
             </span>
+            <h4 class="card-title align-items-center mb-4 font-weight-bold" style="color: var(--main-color)">
+                PHIẾU KHÁM BỆNH
+            </h4>
             <div class="formbold-form-wrapper">
                 <form action="/post-booking" method="POST" id="register-form">
                     <div class="form-row">
                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                        <div class="col-md-6 mb-3 form-group">
+                        <div class="col-md-6 mb-3 d-flex flex-column form-group">
                             <label for="patient_name" class="formbold-form-label"> Tên bệnh nhân </label>
                             <input type="text" name="patient_name" id="patient_name" rules="required" placeholder="Full Name" class="formbold-form-input" />
                             <span class="form-message"></span>
                         </div>
-                        <div class="col-md-6 mb-3 form-group">
-                            <label for="phone" class="formbold-form-label"> Số điện thoại </label>
+                        <div class="col-md-6 mb-3 d-flex flex-column form-group">
+                            <label for="phone" class="formbold-form-label"> Số điện thoại (Duy nhất) </label>
                             <input type="text" name="phone" id="phone" rules="required|phone" placeholder="Enter your phone number" class="formbold-form-input" />
                             <span class="form-message"></span>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-4 mb-3 form-group">
+                        <div class="col-md-4 mb-3 d-flex flex-column form-group">
                             <label for="email" class="formbold-form-label"> Địa chỉ Email </label>
                             <input type="email" name="email" id="email" rules="required|email" placeholder="Enter your email" class="formbold-form-input" />
                             <span class="form-message"></span>
                         </div>
-                        <div class="col-md-4 mb-3 form-group">
+                        <div class="col-md-4 mb-3 d-flex flex-column form-group">
                             <label for="dob" class="formbold-form-label"> Ngày sinh </label>
                             <input type="date" name="dob" id="dob" rules="required" placeholder="Enter your birthday" class="formbold-form-input" />
                             <span class="form-message"></span>
                         </div>
-                        <div class="col-md-4 mb-3 form-group">
+                        <div class="col-md-4 mb-3 d-flex flex-column form-group">
                             <label for="sex" class="formbold-form-label">Giới tính</label>
-                            <div class="d-flex justify-content-around mt-lg-4 mt-md-4 form-group">
+                            <div class="d-flex justify-content-around flex-md-column mx-md-5">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="sex" id="exampleRadios1" value="male" checked="True" />
                                     <label class="form-check-label" for="exampleRadios1">
@@ -489,38 +497,136 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-6 mb-3 form-group">
+                        <div class="col-md-4 mb-3 col-lg-4 col-6 d-flex flex-column form-group">
                             <label for="schedule-date" class="formbold-form-label"> Ngày khám </label>
                             <input type="text" name="schedule_date" id="schedule-date" rules="required" placeholder="Enter your schedule day" class="formbold-form-input" readonly="True" />
                             <span class="form-message"></span>
                         </div>
-                        <div class="col-md-6 mb-3 form-group">
+                        <div class="col-md-4 mb-3 col-lg-4 col-6 d-flex flex-column form-group">
                             <label for="schedule-time" class="formbold-form-label"> Thời gian khám </label>
                             <input type="text" name="schedule_time" id="schedule-time" placeholder="Enter your schedule time" class="formbold-form-input" readonly="True" />
                             <span class="form-message"></span>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-6 mb-3 form-group">
+                        <div class="col-md-4 mb-3 col-lg-4 col-6 d-flex flex-column form-group">
                             <label for="department" class="formbold-form-label"> Chuyên khoa </label>
-                            <input type="text" name="department" id="department" placeholder="" class="formbold-form-input" readonly="True" t-att-data-departmentId="doctor.department_id.id" t-att-data-departmentName="doctor.department_id.name" />
+                            <input type="text" name="department" id="department" placeholder="" class="formbold-form-input" readonly="True" />
                             <span class="form-message"></span>
                         </div>
-                        <div class="col-md-6 mb-3 form-group">
+                        <div class="col-md-4 mb-3 col-lg-4 col-6 d-flex flex-column form-group">
                             <label for="doctor" class="formbold-form-label"> Bác sĩ phụ trách </label>
-                            <input type="text" name="doctor" id="doctor" placeholder="" class="formbold-form-input" readonly="True" t-att-data-doctorId="doctor.id" t-att-data-doctorName="doctor.name" />
+                            <input type="text" name="doctor" id="doctor" placeholder="" class="formbold-form-input" readonly="True" />
                             <span class="form-message"></span>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-12 mb-3 form-group">
+                        <div class="col-md-12 mb-3 d-flex flex-column form-group">
                             <label for="reason" class="formbold-form-label"> Lý do khám </label>
                             <input type="text" name="reason" id="reason" rules="required" placeholder="Enter your examination reason" class="formbold-form-input" />
                             <span class="form-message"></span>
                         </div>
                     </div>
                     <div>
-                        <button class="formbold-btn mt-3 form-submit">Book Appointment</button>
+                        <button class="formbold-btn mt-3 form-submit">Đặt lịch</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <template id="on_department-register_walkin">
+        <div class="formbold-main-wrapper container">
+            <span class="close-btn">
+                <i class="fa-solid fa-square-xmark"></i>
+            </span>
+            <h4 class="card-title align-items-center mb-4 font-weight-bold" style="color: var(--main-color)">
+                PHIẾU KHÁM BỆNH
+            </h4>
+            <div class="formbold-form-wrapper">
+                <form action="/post-booking" method="POST" id="on_department-register-form">
+                    <div class="form-row">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                        <div class="col-md-6 mb-3 d-flex flex-column form-group">
+                            <label for="patient_name" class="formbold-form-label"> Tên bệnh nhân </label>
+                            <input type="text" name="patient_name" id="patient_name" rules="required" placeholder="Full Name" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-6 mb-3 d-flex flex-column form-group">
+                            <label for="phone" class="formbold-form-label"> Số điện thoại (Duy nhất) </label>
+                            <input type="text" name="phone" id="phone" rules="required|phone" placeholder="Enter your phone number" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3 d-flex flex-column form-group">
+                            <label for="email" class="formbold-form-label"> Địa chỉ Email </label>
+                            <input type="email" name="email" id="email" rules="required|email" placeholder="Enter your email" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-4 mb-3 d-flex flex-column form-group">
+                            <label for="dob" class="formbold-form-label"> Ngày sinh </label>
+                            <input type="date" name="dob" id="dob" rules="required" placeholder="Enter your birthday" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-4 mb-3 d-flex flex-column form-group">
+                            <label for="sex" class="formbold-form-label">Giới tính</label>
+                            <div class="d-flex justify-content-around flex-md-column mx-md-5">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="exampleRadios1" value="male" checked="True" />
+                                    <label class="form-check-label" for="exampleRadios1">
+                                      Nam
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="exampleRadios2" value="female"/>
+                                    <label class="form-check-label" for="exampleRadios2">
+                                      Nữ
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="exampleRadios3" value="other" />
+                                    <label class="form-check-label" for="exampleRadios3">
+                                      Khác
+                                    </label>
+                                </div>
+                            </div>
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3 d-flex flex-column form-group">
+                            <label for="schedule-date" class="formbold-form-label"> Ngày khám </label>
+                            <input type="text" name="schedule_date" id="schedule-date" rules="required" placeholder="Enter your schedule day" class="formbold-form-input" readonly="True" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-6 mb-3 d-flex flex-column form-group">
+                            <label for="schedule-time" class="formbold-form-label"> Thời gian khám </label>
+                            <input type="text" name="schedule_time" id="schedule-time" placeholder="Enter your schedule time" class="formbold-form-input" readonly="True" />
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3 d-flex flex-column form-group">
+                            <label for="department" class="formbold-form-label"> Chuyên khoa </label>
+                            <input type="text" name="department" id="department" placeholder="" class="formbold-form-input" readonly="True" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-6 mb-3 d-flex flex-column form-group">
+                            <label for="doctor" class="formbold-form-label"> Bác sĩ phụ trách </label>
+                            <input type="text" name="doctor" id="doctor" placeholder="" class="formbold-form-input" readonly="True" />
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3 d-flex flex-column form-group">
+                            <label for="reason" class="formbold-form-label"> Lý do khám </label>
+                            <input type="text" name="reason" id="reason" rules="required" placeholder="Enter your examination reason" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="formbold-btn mt-3 form-submit">Đặt lịch</button>
                     </div>
                 </form>
             </div>

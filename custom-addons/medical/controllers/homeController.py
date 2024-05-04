@@ -95,6 +95,20 @@ class  HomePage(http.Controller):
             print('schedule_datetime: ',  schedule_datetime)
 
         try:
+            searchPhone = http.request.env['medical.patient'].search([('phone', '=', phone )])
+            if searchPhone:
+                walkin = http.request.env['medical.walkins'].create({
+                'patient_id': searchPhone.id,
+                'health_center_id': doctor_search.health_center_id.id,
+                'department_id': department_id,
+                'doctor_id': doctor_id,
+                'schedule_selection_id': schedule_date_id,
+                'schedule_time_id': schedule_time_id,
+                'reason_check': reason,
+                'schedule_date': schedule_datetime,
+                })
+                return
+                # return http.request.env['ir.ui.view']._render_template('medical.reload_schedule_times', values={'phone': phone, 'email': searchPhone.email})
             patient = http.request.env['medical.patient'].create({
                 'name': patient_name,
                 'sex': sex,

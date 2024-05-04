@@ -62,7 +62,7 @@
                                         <field name="street2" on_change="1" field_id="street2_0"/>
                                         <field name="country_id" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
                                         <div class="address_format">
-                                            <field name="state_id" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
+                                            <field name="state_id" class="oe_no_button" placeholder="Tỉnh/Thành phố " style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
                                             <field name="city" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
                                             <field name="zip" placeholder="Mã bưu điện" style="width: 20%" on_change="1" field_id="zip_0"/>
                                         </div>
@@ -224,7 +224,7 @@
                                         <field name="street2" on_change="1" field_id="street2_0"/>
                                         <field name="country_id" placeholder="Quốc gia" class="oe_no_button" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" on_change="1" can_create="True" can_write="True" field_id="country_id_0"/>
                                         <div class="address_format">
-                                            <field name="state_id" class="oe_no_button" placeholder="Tỉnh/Thành phố " required='country_id != False' style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
+                                            <field name="state_id" class="oe_no_button" placeholder="Tỉnh/Thành phố " style="width: 37%" options="{&quot;no_open&quot;: True}" on_change="onchange_state(state_id)" can_create="True" can_write="True" field_id="state_id_0"/>
                                             <field name="city" placeholder="Thành phố" style="width: 40%" on_change="1" field_id="city_0"/>
                                             <field name="zip" placeholder="Mã bưu điện" style="width: 20%" on_change="1" field_id="zip_0"/>
                                         </div>

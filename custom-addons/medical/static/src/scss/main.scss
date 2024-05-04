@@ -25,6 +25,10 @@
         display       : flex;
         flex-direction: column;
         overflow      : hidden;
+
+        &.non_click {
+            height: 150px;
+        }
     }
 
     .more-infor_btn {
@@ -308,14 +312,17 @@
             margin-left : auto;
 
             .content-left {
-                width              : 120px;
-                height             : 120px;
-                background-position: center center;
-                background-repeat  : no-repeat;
-                background-size    : cover;
-                border-radius      : 50%;
-                margin             : 10px 20px;
-                margin-left        : 0;
+                margin     : 10px 20px;
+                margin-left: 0;
+
+                .doctor-avatar {
+                    width              : 120px;
+                    height             : 120px;
+                    background-position: center center;
+                    background-repeat  : no-repeat;
+                    background-size    : cover;
+                    border-radius      : 50%;
+                }
             }
 
             .content-right {
@@ -388,9 +395,9 @@
         }
     }
 
+    .on_department-register_walkin-wrapper,
     .register_walkin-wrapper {
         z-index         : 3000;
-        padding-top     : 100px;
         position        : fixed;
         left            : 0;
         top             : 0;
@@ -399,8 +406,21 @@
         overflow        : auto;
         background-color: rgba(0, 0, 0, 0.4);
         display         : none;
+        transition      : all 0.5s ease-out;
+        animation       : fade ease 0.5s;
 
-        #register_walkin {
+        @keyframes fade {
+            from {
+                opacity  : 0;
+            }
+    
+            to {
+                opacity  : 1;
+            }
+        }
+
+        #register_walkin,
+        #on_department-register_walkin {
             position        : absolute;
             width           : 1140px;
             max-height      : 812px;
@@ -415,7 +435,9 @@
                 display        : flex;
                 align-items    : center;
                 justify-content: center;
-                padding        : 38px;
+                flex-direction: column;
+                padding        : 26px;
+                background-color: #fff;
 
                 .close-btn {
                     position : absolute;
@@ -468,6 +490,7 @@
                 font-size    : 16px;
                 color        : #07074d;
                 margin-bottom: 12px;
+                user-select  : none;
             }
 
             .formbold-form-label-2 {
@@ -535,3 +558,383 @@
         }
     }
 }
+
+@media (min-width: 992px) {
+
+    #register_walkin,
+    #on_department-register_walkin {
+        width: 1024px !important;
+    }
+}
+
+@media (max-width: 540px) {
+
+    #register_walkin,
+    #on_department-register_walkin {
+        width: 100% !important;
+
+        .formbold-main-wrapper {
+            padding: 0;
+        }
+    }
+}
+
+.slideshow-wrapper {
+    .slideshow-container {
+        max-width: 1400px;
+        height   : 480px;
+        position : relative;
+        margin   : auto;
+    }
+
+    // ẩn hình ảnh cho phần tử slideshow
+    .mySlides {
+        display: none;
+        width  : 100%;
+        height : 100%;
+
+        img {
+            width     : 100%;
+            height    : 100%;
+            object-fit: cover;
+        }
+    }
+
+    // thiết kế nút mũi tên
+    .prev,
+    .next {
+        cursor       : pointer;
+        position     : absolute;
+        top          : 50%;
+        transform    : translateY(-50%);
+        width        : auto;
+        padding      : 16px;
+        color        : white;
+        font-weight  : bold;
+        font-size    : 42px;
+        transition   : 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select  : none;
+
+        // thiết lập nút mũi tên next nằm phía bên phải
+        &.next {
+            right        : 0;
+            border-radius: 12px 0 0 12px;
+        }
+
+        &.prev {
+            left         : 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    // thiết lập style cho nội dung của mỗi phần tử slideshow
+    .text {
+        color     : #f2f2f2;
+        font-size : 15px;
+        padding   : 8px 12px;
+        position  : absolute;
+        bottom    : 8px;
+        width     : 100%;
+        text-align: center;
+    }
+
+    // thiết lập style cho số hiển thị của phần tử
+    .numbertext {
+        color    : #f2f2f2;
+        font-size: 12px;
+        padding  : 8px 12px;
+        position : absolute;
+        top      : 0;
+    }
+
+    // thiết lập style nút tròn điều khiển
+    .dot {
+        cursor          : pointer;
+        height          : 15px;
+        width           : 15px;
+        margin          : 0 6px;
+        background-color: var(--second-color);
+        border-radius   : 50%;
+        display         : inline-block;
+        transition      : background-color 0.6s ease;
+
+        &.active,
+        &:hover {
+            background-color: var(--main-color);
+        }
+    }
+
+    // tạo hiệu ứng chuyển động fade
+    .fade2 {
+        @-webkit-keyframes fade2 {
+            from {
+                opacity: .4;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade2 {
+            from {
+                opacity: .4;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        -webkit-animation-name    : fade2;
+        -webkit-animation-duration: 1.5s;
+        animation-name            : fade2;
+        animation-duration        : 1.5s;
+    }
+}
+
+.toast {
+    display         : none;
+    align-items     : center;
+    background-color: #fff;
+    border-radius   : 2px;
+    border-left     : 4px solid;
+    box-shadow      : 0 5px 8px rgba(0, 0, 0, 0.08);
+    min-width       : 500px;
+    transition      : all linear 0.2s;
+    animation       : slideInLeft ease 0.3s;
+
+    @keyframes slideInLeft {
+        from {
+            opacity  : 0;
+            transform: translateX(calc(100% + 32px));
+        }
+
+        to {
+            opacity  : 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+        }
+    }
+
+    &.show {
+        display: flex !important;
+        opacity: 1;
+    }
+
+    &.hide {
+        display: none !important;
+        opacity: 0;
+    }
+
+    &__icon {
+        font-size: 24px;
+    }
+
+    &__icon,
+    &__close {
+        padding: 0 16px;
+    }
+
+    &__body {
+        flex-grow: 1;
+        padding  : 12px 0;
+    }
+
+    &__title {
+        font-size  : 16px;
+        font-weight: 600;
+        color      : #333;
+    }
+
+    &__msg {
+        font-size  : 16px;
+        font-weight: bold;
+        font-size  : 16px;
+        margin-top : 6px;
+        line-height: 1.5;
+    }
+
+    &__sub-msg {
+        font-size : 14px;
+        margin-top: 4px;
+        color     : #333;
+    }
+
+    &__close {
+        color : rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+
+        .icon__close {
+            padding: 0 3px;
+        }
+    }
+
+    &--success {
+        color       : #47d864;
+        border-color: #47d864;
+    }
+
+    &--error {
+        color       : #ff623d;
+        border-color: #ff623d;
+    }
+}
+
+#toast {
+    position : fixed;
+    top      : 32px;
+    // right: 32px;
+    right    : 50%;
+    transform: translateX(50%);
+    z-index  : 10000;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .slideshow-wrapper {
+        .slideshow-container {
+            height: 172px;
+
+            .prev,
+            .next {
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0);
+                }
+            }
+        }
+    }
+
+    .each-doctor {
+        flex-direction: column;
+
+        .dt-content-left {
+            width        : 100%;
+            padding-right: 0;
+            border       : none;
+
+            .profile-doctor {
+                .intro-doctor {
+                    .content-right {
+                        p {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .dt-content-right {
+            width       : 100%;
+            padding-left: 0;
+
+            .doctor-schedule {
+                .doctor-schedule-container {
+                    .all-available-time {
+                        .time-content {
+                            .time-content-btn-box {
+                                justify-content: center;
+
+                                .btn-time-booking {
+                                    min-width: 142px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .doctor-detail-container {
+        .intro-doctor {
+            padding       : 0 15px;
+            flex-direction: column;
+
+            .content-left {
+                display        : flex;
+                justify-content: center;
+            }
+
+            .content-right {
+                width: 100% !important;
+
+                .up {}
+
+                .down {
+                    .like-share-plugin {}
+                }
+            }
+        }
+
+        .schedule-doctor {
+            padding       : 0 15px;
+            flex-direction: column;
+
+            .content-left {
+                width: 100% !important;
+
+                .doctor-schedule {
+                    .doctor-schedule-container {
+                        .all-available-time {
+                            .time-content {
+                                .time-content-btn-box {
+                                    justify-content: center;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .content-right {
+                width: 100% !important;
+            }
+        }
+
+        .detail-infor-doctor-wrap {
+            padding: 20px 15px !important;
+            .detail-infor-doctor {}
+        }
+    }
+
+    .on_department-register_walkin-wrapper,
+    .register_walkin-wrapper {
+
+        #register_walkin,
+        #on_department-register_walkin {
+            height: 100%;
+            max-height: 100% !important;
+            .formbold-main-wrapper {
+                background-color: #fff;
+                padding: 8px;
+            }
+        }
+    }
+
+    .toast {
+        min-width: 100%;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}

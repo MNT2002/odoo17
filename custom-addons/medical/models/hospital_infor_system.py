@@ -27,8 +27,8 @@ class HealthCenter(models.Model):
         for rec in self:
             rec.department_count =  len(rec.department_ids)
 
-    department_count = fields.Integer('Specialty', compute="get_count_department")    
     clinic_ids_t = fields.One2many(comodel_name='medical.clinic', inverse_name='health_center_id')
+    department_count = fields.Integer('Specialty', compute="get_count_department")    
 
     @api.depends('clinic_ids_t')
     def get_count_clinic_t(self):
