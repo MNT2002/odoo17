@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="reload_schedule_times">
+        <t t-foreach="schedule_times" t-as="schedule_time">
+            <button class="btn-time-booking" t-att-data-scheduleTimeId="schedule_time.id">
+                <t t-esc="schedule_time.name" />
+            </button>
+        </t>
+    </template>
+
+    <!-- Doctor detail page -->
+    <template id="doctor_detail">
+        <t t-call="website.layout">
+            <title>Chi Tiết Bác sĩ</title>
+            <div class="wrapper">
+                <div class='doctor-detail-container'>
+                    <div class='intro-doctor'>
+                        <t t-if="doctor and doctor.image">
+                            <div class='content-left' >
+                                <div class="doctor-avatar" t-attf-style="background-image: url('{{ 'data:image/png;base64,%s' % doctor.image.decode('utf-8') }}')"></div>
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <div class='content-left' >
+                                <div class="doctor-avatar" style="background-image: url('https://nhadepso.com/wp-content/uploads/2023/03/cap-nhat-50-hinh-anh-dai-dien-facebook-mac-dinh-dep-doc-la_2.jpg')"></div>
+                            </div>
+                        </t>
+                        <div class="content-right">
+                            <div class='up'>
+                                <t t-esc="doctor.sudo().name"/>
+                            </div>
+                            <div class='down'>
+                                <span>
+                                    <t t-raw="doctor.sudo().description"/>
+                                </span>
+                                <div class='like-share-plugin'>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='schedule-doctor'>
+                        <div class='content-left'>
+                            <div class='doctor-schedule'>
+                                <div class='doctor-schedule-container'>
+                                    <div class='all-schedule'>
+                                        <select id="schedule_date" t-att-data-departmentId="doctor.department_id.id" t-att-data-departmentName="doctor.department_id.name" t-att-data-doctorId="doctor.id" t-att-data-doctorName="doctor.name">
+                                            <t t-foreach="doctor.examination_schedule_ids" t-as="examination_schedule_id">
+                                                <option t-att-value="examination_schedule_id.id">
+                                                    <t t-esc="examination_schedule_id.name" />
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class='all-available-time'>
+                                        <div class='title-calendar'>
+                                            <i class='fas fa-calendar-alt'></i>
+                                            <span>Lịch khám</span>
+                                        </div>
+                                        <div class='time-content'>
+                                            <div class='time-content-btn-box' t-att-id="doctor.sudo().id">
+                                                <t t-call="medical.reload_schedule_times"/>
+                                            </div>
+                                            <div class='book-free'>
+                                                <span> Chọn <i class='far fa-hand-point-up'></i>
+                                                    và đặt miễn phí </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='content-right'>
+                            <div class='doctor-extraInfor'>
+                                <div class='doctor-extra-infor-container'>
+                                    <div class='content-up'>
+                                        <div class='text-address'>
+                                            Địa chỉ khám
+                                        </div>
+                                        <t t-if="doctor">
+                                            <div class='clinic-name'>
+                                                <t t-esc="doctor.sudo().health_center_id.name" />
+                                            </div>
+                                            <div class='detail-address'>
+                                                <t t-esc="doctor.sudo().health_center_id.street" />
+,
+                                                <t t-esc="doctor.sudo().health_center_id.city" />
+,
+                                                <t t-esc="doctor.sudo().health_center_id.state_id_new.name" />
+,
+                                                <t t-esc="doctor.sudo().health_center_id.country_id_new.name" />
+                                            </div>
+                                        </t>
+                                        <t t-else="">
+                                            <div class='clinic-name'>
+                                            </div>
+                                            <div class='detail-address'>
+                                            </div>
+                                        </t>
+
+                                    </div>
+                                    <div class='content-down'>
+                                        <div>
+                                            <span class='price-title'>
+                                                Giá khám
+                                            </span>
+                                            <span class='price-number'>
+                                                <t t-esc="doctor.sudo().consultancy_price" />
+                                                VNĐ 
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='detail-infor-doctor-wrap'>
+                        <div class="detail-infor-doctor">
+                            <t t-raw="doctor.sudo().extra_infor"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="register_walkin-wrapper">
+                    <div id="register_walkin">
+                        <t t-call="medical.register_walkin"/>
+                    </div>
+                </div>
+                <div id="toast" aria-live="polite" aria-atomic="true">
+                </div>
+            </div>
+        </t>
+    </template>
+
+    
+    <template id="register_walkin">
+        <div class="formbold-main-wrapper container">
+            <span class="close-btn">
+                <i class="fa-solid fa-square-xmark"></i>
+            </span>
+            <h4 class="card-title align-items-center mb-4 font-weight-bold" style="color: var(--main-color)">
+                PHIẾU KHÁM BỆNH
+            </h4>
+            <div class="formbold-form-wrapper">
+                <form action="/post-booking" method="POST" id="register-form">
+                    <div class="form-row">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                        <div class="col-md-6 mb-3 d-flex flex-column form-group">
+                            <label for="patient_name" class="formbold-form-label"> Tên bệnh nhân </label>
+                            <input type="text" name="patient_name" id="patient_name" rules="required" placeholder="Full Name" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-6 mb-3 d-flex flex-column form-group">
+                            <label for="phone" class="formbold-form-label"> Số điện thoại (Duy nhất) </label>
+                            <input type="text" name="phone" id="phone" rules="required|phone" placeholder="Enter your phone number" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3 d-flex flex-column form-group">
+                            <label for="email" class="formbold-form-label"> Địa chỉ Email </label>
+                            <input type="email" name="email" id="email" rules="required|email" placeholder="Enter your email" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-4 mb-3 d-flex flex-column form-group">
+                            <label for="dob" class="formbold-form-label"> Ngày sinh </label>
+                            <input type="date" name="dob" id="dob" rules="required" placeholder="Enter your birthday" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-4 mb-3 d-flex flex-column form-group">
+                            <label for="sex" class="formbold-form-label">Giới tính</label>
+                            <div class="d-flex justify-content-around flex-md-column mx-md-5">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="exampleRadios1" value="male" checked="True" />
+                                    <label class="form-check-label" for="exampleRadios1">
+                                      Nam
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="exampleRadios2" value="female"/>
+                                    <label class="form-check-label" for="exampleRadios2">
+                                      Nữ
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="exampleRadios3" value="other" />
+                                    <label class="form-check-label" for="exampleRadios3">
+                                      Khác
+                                    </label>
+                                </div>
+                            </div>
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3 col-lg-4 col-6 d-flex flex-column form-group">
+                            <label for="schedule-date" class="formbold-form-label"> Ngày khám </label>
+                            <input type="text" name="schedule_date" id="schedule-date" rules="required" placeholder="Enter your schedule day" class="formbold-form-input" readonly="True" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-4 mb-3 col-lg-4 col-6 d-flex flex-column form-group">
+                            <label for="schedule-time" class="formbold-form-label"> Thời gian khám </label>
+                            <input type="text" name="schedule_time" id="schedule-time" placeholder="Enter your schedule time" class="formbold-form-input" readonly="True" />
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3 col-lg-4 col-6 d-flex flex-column form-group">
+                            <label for="department" class="formbold-form-label"> Chuyên khoa </label>
+                            <input type="text" name="department" id="department" placeholder="" class="formbold-form-input" readonly="True" />
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="col-md-4 mb-3 col-lg-4 col-6 d-flex flex-column form-group">
+                            <label for="doctor" class="formbold-form-label"> Bác sĩ phụ trách </label>
+                            <input type="text" name="doctor" id="doctor" placeholder="" class="formbold-form-input" readonly="True" />
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3 d-flex flex-column form-group">
+                            <label for="reason" class="formbold-form-label"> Lý do khám </label>
+                            <input type="text" name="reason" id="reason" rules="required" placeholder="Enter your examination reason" class="formbold-form-input" />
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="formbold-btn mt-3 form-submit">Đặt lịch</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+</odoo>

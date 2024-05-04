@@ -33,7 +33,10 @@
         'views/doctor.xml',
         'views/hospital_infor_system.xml',
         'views/root_menu.xml',
-        'views/home_page.xml',
+        'views/header_website.xml',
+        'views/home_page_website.xml',
+        'views/department_detail_website.xml',
+        'views/doctor_detail_website.xml',
     ],
     "assets": {
         "web.assets_backend": ["/medical/static/src/scss/medical.scss"],

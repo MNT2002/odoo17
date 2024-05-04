@@ -142,8 +142,7 @@ class Prescription(models.Model):
     department_id = fields.Many2one('medical.department', related='walkins_id.department_id', readonly=True)
     pharmacies_id = fields.Many2one('medical.pharmacies', 'Nhà thuốc', domain="[('health_center_id', '=', health_center_id)]", store=True, required=True)
     doctor_id = fields.Many2one('medical.doctor', 'Bác sĩ', store=True, related='walkins_id.doctor_id' )
-    prescription_date = fields.Datetime('Ngày kê đơn', readonly=False, select=True
-                                , default=lambda self: fields.datetime.now())
+    prescription_date = fields.Datetime('Ngày kê đơn', readonly=False, select=True, default=lambda self: fields.datetime.now())
     walkins_id = fields.Many2one('medical.walkins', 'Số thứ tự #', readonly=True, store=True)
     prescription_details_ids = fields.One2many(comodel_name='medical.prescription_details', inverse_name='prescription_id')
     prescription_orders_ids = fields.One2many('medical.prescription_orders', 'prescription_id')
