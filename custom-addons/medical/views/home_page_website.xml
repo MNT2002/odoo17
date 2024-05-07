@@ -31,7 +31,7 @@
                                 </a>
                             </div>
                             <!-- Nút tròn điều khiển slideshow-->
-                            <div style="text-align:center; padding: 5px 0" class="d-none d-sm-flex justify-content-center">
+                            <div style="text-align:center;" class="d-none d-sm-flex justify-content-center">
                                 <span class="dot" onclick="currentSlide(1)"></span>
                                 <span class="dot" onclick="currentSlide(2)"></span>
                                 <span class="dot" onclick="currentSlide(3)"></span>
@@ -52,7 +52,7 @@
                         <div class="container pl-0 pr-0 ">
                             <div class="section-header">
                                 <span class="title-section">Chuyên khoa</span>
-                                <button class="btn-section">Xem thêm</button>
+                                <a href="/department" class="btn-section text-decoration-none">Xem thêm</a>
                             </div>
                             <div id="ms1" class="multi_slider-box">
                                 <div class="MS-content">
@@ -98,7 +98,7 @@
                         <div class="container pl-0 pr-0">
                             <div class="section-header">
                                 <span class="title-section">Bác sĩ nổi bật</span>
-                                <button class="btn-section">Xem thêm</button>
+                                <!-- <a href="/doctor" class="btn-section text-decoration-none">Xem thêm</a> -->
                             </div>
                             <div id="ms2" class="multi_slider-box">
                                 <div class="MS-content">

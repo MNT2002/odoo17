@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <template id="department" name="Department">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="inner-header">
+                    <div class="pull-left">
+                        <div>
+                            <a href="/"><i class="fa-solid fa-house"></i></a>
+                            /
+                            <span>Chuyên khoa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="department-list-wrapper pt-2 pb-2">
+                    <div class="department-list">
+                        <t t-foreach="departments" t-as="department">
+                            <a t-attf-href="/department/{{ slug(department) }}" class="department-item col-6 col-md-4 col-lg-3">
+                                <div class="department-img">
+                                    <img t-attf-src="{{ 'data:image/png;base64,%s' % department.image.decode('utf-8') }}" />
+                                </div>
+                                <span class="department-name">
+                                    <t t-esc="department.sudo().name"/>
+                                </span>
+                            </a> 
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
     <template id="reload_schedule_times_department">
         <t t-foreach="doctorScheduleTimes['schedule_times']" t-as="schedule_time">
             <button class="btn-time-booking" t-att-data-scheduleTimeId="schedule_time.id">
@@ -8,11 +39,22 @@
         </t>
     </template>
     <!-- Department page -->
-    <template id="department_detail">
+    <template id="department_detail" name="Department detail">
         <t t-call="website.layout">
             <title>Chi Tiết Chuyên Khoa</title>
             <div class="wrapper">
                 <div class="container">
+                    <div class="inner-header">
+                        <div class="pull-left">
+                            <div>
+                                <a href="/"><i class="fa-solid fa-house"></i></a>
+                                /
+                                <a href="/department">Chuyên khoa</a>
+                                /
+                                <span><t t-esc="department.sudo().name"/></span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="department_extra-infor pt-2 pb-2">
                         <h1 class="title m-auto m-md-0 pt-2">
                             <t t-esc="department.sudo().name" />

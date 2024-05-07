@@ -13,6 +13,13 @@ class  HomePage(http.Controller):
             'departments': departments,
             'doctors': doctors,
         })
+    
+    @http.route('/department/', auth='public', website=True)
+    def display_department(self, **kw):
+        departments = http.request.env['medical.department'].search([])
+        return http.request.render('medical.department', {
+            'departments': departments,
+        })
 
     @http.route('/department/<model("medical.department"):department>/', auth='public', website=True)
     def display_department_detail(self, department):

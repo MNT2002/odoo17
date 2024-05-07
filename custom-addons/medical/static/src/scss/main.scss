@@ -11,6 +11,72 @@
     outline    : none !important;
 }
 
+.header-custome {
+
+    .header-logo {
+        width          : 60px;
+        margin         : 0;
+        display        : flex;
+        align-items    : center;
+        justify-content: center;
+
+        img {
+            width : 100%;
+            height: 100%;
+        }
+    }
+
+    .search-btn {
+        color       : var(--main-color);
+        border-color: var(--main-color);
+
+        &:hover {
+            color           : #fff;
+            background-color: var(--second-color);
+        }
+    }
+}
+
+.inner-header {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    margin-bottom  : 32px;
+    margin-top     : 8px;
+
+    .pull-right {
+        margin-right: 28px;
+    }
+
+    .pull-right {
+        h3 {
+            color      : transparent;
+            font-size  : 24px;
+            font-weight: 600;
+            user-select: none;
+        }
+    }
+
+    .pull-left {
+        margin-top: 8px;
+        color          : var(--main-color);
+
+        a {
+            text-decoration: none;
+            color          : var(--main-color);
+
+            &:hover {
+                color: var(--second-color);
+            }
+        }
+
+        span {
+            color: #000;
+            user-select: none;
+        }
+    }
+}
+
 .department_extra-infor {
     display       : flex;
     flex-direction: column;
@@ -411,11 +477,11 @@
 
         @keyframes fade {
             from {
-                opacity  : 0;
+                opacity: 0;
             }
-    
+
             to {
-                opacity  : 1;
+                opacity: 1;
             }
         }
 
@@ -432,11 +498,11 @@
             border-radius   : 20px;
 
             .formbold-main-wrapper {
-                display        : flex;
-                align-items    : center;
-                justify-content: center;
-                flex-direction: column;
-                padding        : 26px;
+                display         : flex;
+                align-items     : center;
+                justify-content : center;
+                flex-direction  : column;
+                padding         : 26px;
                 background-color: #fff;
 
                 .close-btn {
@@ -559,6 +625,60 @@
     }
 }
 
+.department-list-wrapper {
+    margin: 0 0 24px;
+
+    .department-list {
+        align-items     : stretch;
+        background-color: rgba(0, 0, 0, 0.00);
+        border          : 0 solid black;
+        box-sizing      : border-box;
+        display         : flex;
+        flex-basis      : auto;
+        flex-shrink     : 0;
+        list-style      : none;
+        margin          : 0px;
+        min-height      : 0px;
+        min-width       : 0px;
+        padding         : 0px;
+        position        : relative;
+        text-decoration : none;
+        z-index         : 0;
+        flex-wrap       : wrap;
+
+        .department-item {
+            background-color: rgba(0, 0, 0, 0.00);
+            color           : rgba(0, 0, 0, 1.00);
+            display         : inline;
+            font            : 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            list-style      : none;
+            margin          : 0px;
+            padding         : 8px;
+            position        : relative;
+            text-align      : center;
+
+            &:hover {
+                border: 1px solid rgba(21, 151, 179, 0.3);
+            }
+
+            .department-img {
+                width: 100%;
+
+                img {
+                    width     : 100%;
+                    height    : 100%;
+                    object-fit: contain;
+                }
+            }
+
+            .department-name {
+                font-weight: bold;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
 @media (min-width: 992px) {
 
     #register_walkin,
@@ -657,9 +777,9 @@
         cursor          : pointer;
         height          : 15px;
         width           : 15px;
-        margin          : 0 6px;
+        margin          : 0 12px;
         background-color: var(--second-color);
-        border-radius   : 50%;
+        border-radius   : 20%;
         display         : inline-block;
         transition      : background-color 0.6s ease;
 
@@ -904,6 +1024,7 @@
 
         .detail-infor-doctor-wrap {
             padding: 20px 15px !important;
+
             .detail-infor-doctor {}
         }
     }
@@ -913,11 +1034,12 @@
 
         #register_walkin,
         #on_department-register_walkin {
-            height: 100%;
+            height    : 100%;
             max-height: 100% !important;
+
             .formbold-main-wrapper {
                 background-color: #fff;
-                padding: 8px;
+                padding         : 8px;
             }
         }
     }
@@ -934,7 +1056,13 @@
 @media only screen and (min-width: 768px) {}
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {}
+@media only screen and (min-width: 992px) {
+    .header-custome {
+        width       : 1400px;
+        margin-left : auto;
+        margin-right: auto;
+    }
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}

@@ -2,8 +2,44 @@
 <odoo>
     <template id="custome_header" inherit_id="website.layout" name="Custom Header">
         <xpath expr="//header" position="replace">
-            <header>
-                This is the new header
+            <header class="sticky-top shadow bg-light" >
+                <div class="navbar navbar-expand-lg bg-light navbar-light header-custome">
+                    <a class="navbar-brand" href="/">
+                        <div class="header-logo">
+                            <img src="/medical/static/description/icon.png" />
+                        </div>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/">Trang chủ <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/department">Chuyên khoa</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Thông tin
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Liên hệ</a>
+                                  <a class="dropdown-item" href="#">Điều khoản sử dụng</a>
+                                  <!-- <div class="dropdown-divider"></div> -->
+                                  <a class="dropdown-item" href="#">Câu hỏi thường gặp</a>
+                                </div>
+                              </li>
+                        </ul>
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search" />
+                            <button class="btn btn-outline-success my-2 my-sm-0 search-btn" type="submit">Tìm kiếm</button>
+                        </form>
+                    </div>
+                </div>
             </header>
         </xpath>
     </template>

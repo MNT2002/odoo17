@@ -9,10 +9,25 @@
     </template>
 
     <!-- Doctor detail page -->
-    <template id="doctor_detail">
+    <template id="doctor_detail" name="Doctor detail">
         <t t-call="website.layout">
             <title>Chi Tiết Bác sĩ</title>
             <div class="wrapper">
+                <div class="container">
+                    <div class="inner-header">
+                        <div class="pull-left">
+                            <div>
+                                <a href="/"><i class="fa-solid fa-house"></i></a>
+                                /
+                                <a t-attf-href="/department/{{ slug(doctor.department_id) }}">
+                                    <t t-esc="doctor.department_id.sudo().name"/>
+                                </a>
+                                /
+                                <span><t t-esc="doctor.sudo().name"/></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class='doctor-detail-container'>
                     <div class='intro-doctor'>
                         <t t-if="doctor and doctor.image">

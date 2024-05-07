@@ -42,12 +42,12 @@
         "web.assets_backend": ["/medical/static/src/scss/medical.scss"],
 
         "web.assets_frontend": [
+            "/medical/static/lib/fontawesome-free-6.5.2-web/css/all.min.css",
+            "/medical/static/lib/fontawesome-free-6.5.2-web/js/all.min.js",
             "/medical/static/lib/bootstrap-4.6.2/dist/css/bootstrap.min.css",
             "https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js",
             "https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js",
             "/medical/static/lib/bootstrap-4.6.2/dist/js/bootstrap.bundle.min.js",
-            "/medical/static/lib/fontawesome-free-6.5.2-web/css/all.min.css",
-            "/medical/static/lib/fontawesome-free-6.5.2-web/js/all.min.js",
             "/medical/static/src/scss/slider.scss",
             "/medical/static/src/scss/main.scss",
             "/medical/static/src/js/validator.js",
