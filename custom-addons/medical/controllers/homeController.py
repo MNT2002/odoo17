@@ -14,14 +14,14 @@ class  HomePage(http.Controller):
             'doctors': doctors,
         })
     
-    @http.route('/department/', auth='public', website=True)
+    @http.route('/department', auth='public', website=True)
     def display_department(self, **kw):
         departments = http.request.env['medical.department'].search([])
         return http.request.render('medical.department', {
             'departments': departments,
         })
 
-    @http.route('/department/<model("medical.department"):department>/', auth='public', website=True)
+    @http.route('/department/<model("medical.department"):department>', auth='public', website=True)
     def display_department_detail(self, department):
         doctors = http.request.env['medical.doctor'].sudo().search([('department_id', '=', department.id)])
         
@@ -42,7 +42,35 @@ class  HomePage(http.Controller):
             'doctors': doctors,
             'arrDoctorScheduleTimes': arrDoctorScheduleTimes,
         })
-     
+    
+    @http.route('/doctor',  auth='public', website=True)
+    def display_doctor(self, **kw):
+        sortBy = kw.get('sort')
+        order = kw.get('order')
+        print("kw: ", sortBy)
+        if sortBy == "price" and order == "desc":
+            doctors = http.request.env['medical.doctor'].sudo().search([]).sorted(key='consultancy_price')
+        elif sortBy == "price" and order == "asc":
+            doctors = http.request.env['medical.doctor'].sudo().search([]).sorted(key='consultancy_price', reverse=True)
+        else:
+            doctors = http.request.env['medical.doctor'].sudo().search([]).sorted(key='walkins_count', reverse=True)
+        return http.request.render('medical.doctor', {
+            'doctors': doctors,
+        })
+        # return http.request.env['ir.ui.view']._render_template('medical.doctor_list', values={'doctors': doctors})
+    @http.route('/sort_doctor', methods=['POST'], type='json', auth='public', website=True)
+    def display_sort_doctor(self, **kw):
+        sortBy = kw.get('sort')
+        order = kw.get('order')
+        print("kw: ", sortBy)
+        if sortBy == "price" and order == "desc":
+            doctors = http.request.env['medical.doctor'].sudo().search([]).sorted(key='consultancy_price')
+        elif sortBy == "price" and order == "asc":
+            doctors = http.request.env['medical.doctor'].sudo().search([]).sorted(key='consultancy_price', reverse=True)
+        else:
+            doctors = http.request.env['medical.doctor'].sudo().search([]).sorted(key='walkins_count', reverse=True)
+        return http.request.env['ir.ui.view']._render_template('medical.doctor_list', values={'doctors': doctors})
+    
     @http.route('/doctor/<model("medical.doctor"):doctor>', auth='public', website=True)
     def display_doctor_detail(self, doctor):
         if len(doctor.examination_schedule_ids) == 0:

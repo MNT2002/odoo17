@@ -1,5 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <template id="doctor_list" name="doctor_list">
+        <t t-foreach="doctors" t-as="doctor">
+            <a t-attf-href="/doctor/{{ slug(doctor) }}" class="doctor-item col-6 col-md-4 col-lg-3">
+                <t t-if="doctor.image">
+                    <div class="doctor-img">
+                        <img t-attf-src="{{ 'data:image/png;base64,%s' % doctor.image.decode('utf-8') }}" />
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="doctor-img">
+                        <img src="/medical/static/src/img/image_user.jpg" />
+                    </div>
+                </t>
+                <span class="doctor-name">
+                    <span></span>
+                    <t t-esc="doctor.sudo().name"/>
+                </span>
+                <span class="doctor-department-name ">
+                    <span style="font-weight: 400; color: #000">Chuyên khoa: </span>
+                    <t t-esc="doctor.sudo().department_id.name"/>
+                </span>
+                <span class="doctor-department-name ">
+                    <span style="font-weight: 400; color: #000">Giá khám: </span>
+                    <t t-esc="doctor.sudo().consultancy_price"/>
+                </span>
+            </a>
+        </t>
+    </template>
+    <template id="doctor" name="Doctor">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="inner-header">
+                    <div class="pull-left">
+                        <div>
+                            <a href="/">
+                                <i class="fa-solid fa-house"></i>
+                            </a>
+                            /
+                            <span>Bác sĩ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sort-bar">
+                    <div class="sort-bar__label">
+                        <span>Sắp xếp theo</span>
+                        <i class="fa-solid fa-filter sort-icon"></i>
+                    </div>
+                    <div class="sort-by-options">
+                        <section class="sort-by-options__option-group">
+                            <a aria-pressed="false" class="sort-by-options__option sort-by-options__option--selected">
+                                Phổ biến
+                            </a>
+                        </section>
+                        <section>
+                            <div style="pointer-events: auto;" class="dropdown show">
+                                <a class="btn btn-secondary dropdown-toggle sort-price-select" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Giá khám
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item sort-by-price sort-by-options__option" data-ordertype="desc">Giá: Thấp đến Cao</a>
+                                    <a class="dropdown-item sort-by-price sort-by-options__option" data-ordertype="asc">Giá: Cao đến Thâp</a>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="doctor-list-wrapper pt-2 pb-2">
+                    <div class="doctor-list" id="doctor_list">
+                      <t t-call="medical.doctor_list"/>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
     <template id="reload_schedule_times">
         <t t-foreach="schedule_times" t-as="schedule_time">
             <button class="btn-time-booking" t-att-data-scheduleTimeId="schedule_time.id">
@@ -17,13 +94,17 @@
                     <div class="inner-header">
                         <div class="pull-left">
                             <div>
-                                <a href="/"><i class="fa-solid fa-house"></i></a>
+                                <a href="/">
+                                    <i class="fa-solid fa-house"></i>
+                                </a>
                                 /
                                 <a t-attf-href="/department/{{ slug(doctor.department_id) }}">
                                     <t t-esc="doctor.department_id.sudo().name"/>
                                 </a>
                                 /
-                                <span><t t-esc="doctor.sudo().name"/></span>
+                                <span>
+                                    <t t-esc="doctor.sudo().name"/>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -146,7 +227,7 @@
         </t>
     </template>
 
-    
+
     <template id="register_walkin">
         <div class="formbold-main-wrapper container">
             <span class="close-btn">

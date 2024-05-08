@@ -52,6 +52,7 @@
             "/medical/static/src/scss/main.scss",
             "/medical/static/src/js/validator.js",
             "/medical/static/src/js/booking.js",
+            "/medical/static/src/js/sort_doctor.js",
             "/medical/static/src/js/main.js",
         ]
     },

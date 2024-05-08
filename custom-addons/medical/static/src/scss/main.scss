@@ -59,7 +59,7 @@
 
     .pull-left {
         margin-top: 8px;
-        color          : var(--main-color);
+        color     : var(--main-color);
 
         a {
             text-decoration: none;
@@ -71,11 +71,115 @@
         }
 
         span {
-            color: #000;
+            color      : #000;
             user-select: none;
         }
     }
 }
+
+.sort-bar {
+    font-weight    : 400;
+    background     : rgba(0, 0, 0, .03);
+    padding        : .8125rem 1.25rem;
+    border-radius  : 2px;
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+
+    .sort-bar__label {
+        color : #555;
+        margin: 0 .3125rem 0 0;
+        
+        span {
+            display: inline-block;
+        }
+        .sort-icon {
+            display: none;
+        }
+    }
+
+    .sort-by-options {
+        display        : flex;
+        align-items    : stretch;
+        flex           : 1;
+        grid-gap       : .625rem;
+        gap            : .625rem;
+        justify-content: flex-start;
+
+        .sort-by-options__option-group {
+            display    : flex;
+            grid-gap   : .625rem;
+            gap        : .625rem;
+            margin-left: .625rem;
+        }
+
+        .sort-by-options__option {
+            overflow           : visible;
+            outline            : 0;
+            cursor             : pointer;
+            -webkit-user-select: none;
+            -moz-user-select   : none;
+            user-select        : none;
+            position           : relative;
+            display            : flex;
+            min-width          : 5.625rem;
+            align-items        : center;
+            justify-content    : center;
+            text-transform     : capitalize;
+            padding            : 0 .9375rem;
+            background         : #fff;
+            white-space        : nowrap;
+            box-sizing         : border-box;
+            box-shadow         : 0 1px 1px 0 rgba(0, 0, 0, .02);
+            height             : 2.125rem;
+            line-height        : 2.125rem;
+            border-radius      : 2px;
+            border             : 0;
+            color              : #000;
+            font-size          : 14px;
+            text-decoration    : none;
+
+            &--selected {
+                background: var(--main-color) !important;
+                color     : #fff !important;
+            }
+        }
+    }
+
+    .sort-price-select {
+        text-align     : left;
+        cursor         : pointer;
+        border         : 0;
+        border-radius  : 2px;
+        height         : 2.125rem;
+        line-height    : 2.125rem;
+        display        : flex;
+        align-items    : center;
+        justify-content: space-between;
+        position       : relative;
+        box-sizing     : border-box;
+        min-width      : 12.5rem;
+        background     : #fff !important;
+        color          : #000 !important;
+        transition     : border-color .1s ease;
+        padding-left   : .75rem;
+        box-shadow     : 0 1px 1px 0 rgba(0, 0, 0, .02);
+        font-size      : 14px;
+
+        &.active {
+            color: var(--main-color) !important;
+        }
+    }
+
+    .dropdown-item {
+
+        &:active {
+            background-color: var(--main-color) !important;
+        }
+    }
+}
+
+
 
 .department_extra-infor {
     display       : flex;
@@ -662,18 +766,85 @@
             }
 
             .department-img {
-                width: 100%;
+                width : 100%;
+                height: 90%;
 
                 img {
                     width     : 100%;
                     height    : 100%;
-                    object-fit: contain;
+                    object-fit: cover;
                 }
             }
 
             .department-name {
                 font-weight: bold;
-                font-size: 16px;
+                font-size  : 16px;
+                margin     : 8px 0;
+                display    : block;
+            }
+        }
+    }
+}
+
+.doctor-list-wrapper {
+    margin: 0 0 24px;
+
+    .doctor-list {
+        align-items     : stretch;
+        background-color: rgba(0, 0, 0, 0.00);
+        border          : 0 solid black;
+        box-sizing      : border-box;
+        display         : flex;
+        flex-basis      : auto;
+        flex-shrink     : 0;
+        list-style      : none;
+        margin          : 0px;
+        min-height      : 0px;
+        min-width       : 0px;
+        padding         : 0px;
+        position        : relative;
+        text-decoration : none;
+        z-index         : 0;
+        flex-wrap       : wrap;
+
+        .doctor-item {
+            background-color: rgba(0, 0, 0, 0.00);
+            color           : rgba(0, 0, 0, 1.00);
+            display         : inline;
+            font            : 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            list-style      : none;
+            margin          : 0px;
+            padding         : 12px;
+            position        : relative;
+            text-align      : center;
+
+            &:hover {
+                border: 1px solid rgba(21, 151, 179, 0.3);
+            }
+
+            .doctor-img {
+                width : 100%;
+                height: 264px;
+
+                img {
+                    width     : 100%;
+                    height    : 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .doctor-name {
+                font-weight: bold;
+                font-size  : 16px;
+                margin     : 8px 0 0;
+                display    : block;
+            }
+
+            .doctor-department-name {
+                font-size  : 14px;
+                display    : block;
+                color      : var(--main-color);
+                font-weight: bold;
             }
         }
     }
@@ -1047,6 +1218,29 @@
     .toast {
         min-width: 100%;
     }
+
+
+    .doctor-list-wrapper {
+
+        .doctor-list {
+
+            .doctor-item {
+                .doctor-img {
+                    height: 190px;
+                }
+            }
+        }
+    }
+
+    .sort-bar__label {
+        span {
+            display: none !important;
+        }
+
+        .sort-icon {
+            display: inline-block !important;
+        }
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -1058,7 +1252,7 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .header-custome {
-        width       : 1400px;
+        max-width   : 1400px;
         margin-left : auto;
         margin-right: auto;
     }
