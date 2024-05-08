@@ -68,6 +68,14 @@ $(document).ready(function () {
                     if (e.target.getAttribute("data-ordertype")) {
                         sort = e.target.getAttribute("data-ordertype")
                     }
+
+                    let currentUrl = new URL(window.location.href);
+                    let params = new URLSearchParams(currentUrl.search);
+                    params.set('sort', sort);
+                    params.delete('order');
+                    currentUrl.search = params.toString();
+                    window.history.pushState({}, '', currentUrl.toString());
+
                     await jsonrpc('/sort_doctor', {
                         'sort': sort,
                     })
