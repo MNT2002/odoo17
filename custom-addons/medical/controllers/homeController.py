@@ -142,6 +142,7 @@ class  HomePage(http.Controller):
                 'reason_check': reason,
                 'schedule_date': schedule_datetime,
                 })
+                # walkin.sudo().action_send_email()
                 return
                 # return http.request.env['ir.ui.view']._render_template('medical.reload_schedule_times', values={'phone': phone, 'email': searchPhone.email})
             patient = http.request.env['medical.patient'].create({
@@ -161,6 +162,7 @@ class  HomePage(http.Controller):
                 'reason_check': reason,
                 'schedule_date': schedule_datetime,
             })
+            # walkin.sudo().action_send_email()
         except Exception as e:
             print('Error:', e)
             # return http.request.redirect('/error')

@@ -111,6 +111,13 @@ class Walkins(models.Model):
     def onchange_schedule_selection(self):
         self.schedule_time_id = False
 
+    def action_send_email(self):
+        template = self.env.ref('medical.appointment_email_template')
+        if self.patient_id.email:
+            email_values = {'subject': 'Chi tiết lịch khám'}
+            template.send_mail(self.id, force_send=True, email_values=email_values)
+                
+            
     def btn_scheduled(self):
         self.state = "scheduled"
 

@@ -59,7 +59,7 @@ class Patient(models.Model):
     website_link = fields.Char('Website Link')
     function = fields.Char('Chức vụ')
     phone = fields.Char('Điện thoại', required=True)
-    email = fields.Char('Email')
+    email = fields.Char('Email', required=True)
     note = fields.Char('Ghi chú')
     #Lifestyle page
     exercise = fields.Boolean('Tập thể dục')

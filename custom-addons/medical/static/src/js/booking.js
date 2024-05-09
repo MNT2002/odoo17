@@ -60,11 +60,11 @@ $(document).ready(function () {
                                     'reason': reason.value,
                                 }
                                 console.log('formData: ', formData)
+                                let registerWalkinWrapper = document.querySelector('.register_walkin-wrapper');
+                                registerWalkinWrapper.style.display = 'none';
                                 await jsonrpc('/create-appointment', formData)
                                     .then(function (result) {
                                         showToast(phone.value, email.value)
-                                        let registerWalkinWrapper = document.querySelector('.register_walkin-wrapper');
-                                        registerWalkinWrapper.style.display = 'none';
                                         var scheduleDateBtn = document.getElementById('schedule_date');
                                         renderScheduleTimes(scheduleDateBtn);
                                         patientName.value = "";
@@ -75,6 +75,7 @@ $(document).ready(function () {
                                     })
                                     .catch(function (error) {
                                         console.error('Error:', error);
+                                        showToastError(error)
                                     })
                             } else {
                                 console.log("Cancel booking");
@@ -126,11 +127,11 @@ $(document).ready(function () {
                                     'reason': reason.value,
                                 }
                                 console.log('formData: ', formData)
+                                let onDepartmentRegisterWalkinWrapper = document.querySelector('.on_department-register_walkin-wrapper')
+                                onDepartmentRegisterWalkinWrapper.style.display = 'none';
                                 await jsonrpc('/create-appointment', formData)
                                     .then(async function (result) {
                                         showToast(phone.value, email.value)
-                                        let onDepartmentRegisterWalkinWrapper = document.querySelector('.on_department-register_walkin-wrapper')
-                                        onDepartmentRegisterWalkinWrapper.style.display = 'none';
                                         var arrScheduleDateBtn = document.querySelectorAll('.schedule_date');
                                         arrScheduleDateBtn.forEach(item => {
                                             if (item.getAttribute("data-doctorId") == doctor_id) {
@@ -145,6 +146,7 @@ $(document).ready(function () {
                                     })
                                     .catch(function (error) {
                                         console.error('Error:', error);
+                                        showToastError(error)
                                     })
                             } else {
                                 console.log("Cancel booking");
@@ -171,6 +173,26 @@ $(document).ready(function () {
                                 <div class="toast__body">
                                     <p class="toast__msg">Đăng kí thành công!</p>
                                     <h4 class="toast__sub-msg">Vui lòng kiểm tra "sđt: ${phone}" hoặc "email: ${email}" để xem chi tiết lịch khám!</h4>
+                                </div>
+                                <div class="toast__close close" data-dismiss="toast" aria-label="Close">
+                                    <i class="fa-solid fa-xmark icon__close "></i>
+                                </div>
+                            </div>
+                            `
+            $('.toast').toast('show')
+        }
+    }
+    function showToastError(error) {
+        let toast = document.getElementById('toast');
+        if (toast) {
+            toast.innerHTML = `
+                            <div class="toast toast--success" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+                                <div class="toast__icon">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </div>
+                                <div class="toast__body">
+                                    <p class="toast__msg">Đăng kí thất bại!</p>
+                                    <h4 class="toast__sub-msg">Lỗi: ${error}</h4>
                                 </div>
                                 <div class="toast__close close" data-dismiss="toast" aria-label="Close">
                                     <i class="fa-solid fa-xmark icon__close "></i>

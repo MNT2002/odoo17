@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <form string="Phiếu khám bệnh">
                 <header>
+                    <button name="action_send_email" string="Gửi Email" type="object" class="oe_highlight" data-hotkey="m" />
                     <button name="btn_checking" string="Kiểm tra" type="object" class="oe_highlight"/>
                     <button name="btn_waiting_for_invoice" string="Tạo hoá đơn &amp; Thanh toán" type="object" confirm='Bạn có muốn tạo hoá đơn khám bệnh?' class="oe_highlight"/>
                     <button name="btn_completed" string="Đánh dấu là đã hoàn thành" type="object" confirm='Bạn có chắc chắn muốn đánh dấu việc thăm khám đã hoàn thành không?' class="oe_highlight"/>
