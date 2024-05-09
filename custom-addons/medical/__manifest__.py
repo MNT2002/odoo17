@@ -24,6 +24,7 @@
         'data/medical.degree.csv',
         'data/medical.lab_units.csv',
         'data/medical.diagnostic_imaging_types.csv',
+        'data/mail_template_data.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
         'wizard/change_state_patient.xml',
