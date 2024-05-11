@@ -49,7 +49,6 @@
             <field name="perm_unlink" eval="1"/>
             <field name="groups" eval="[(4, ref('medical.group_employee_manager'))]"/>
         </record>
-
         <record id="owner_patient_rule" model="ir.rule">
             <field name="name">Owner Doctor Rule</field>
             <field name="model_id" ref="medical.model_medical_patient"/>
@@ -66,13 +65,25 @@
         <record id="owner_walkins_rule" model="ir.rule">
             <field name="name">Owner Doctor Rule</field>
             <field name="model_id" ref="medical.model_medical_walkins"/>
-            <field name="domain_force">[('create_uid', '=', user.id )]</field>
+            <field name="domain_force">[('doctor_id', 'in', user.doctor_ids.ids )]</field>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>
             <field name="perm_read" eval="1"/>
             <field name="perm_unlink" eval="1"/>
             <!-- You can attach this rule to a specific group, Or make it Global -->
             <field name="groups" eval="[(4, ref('medical.group_employee_doctor'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+        <record id="owner_manager_walkins_rule" model="ir.rule">
+            <field name="name">Owner Doctor Rule</field>
+            <field name="model_id" ref="medical.model_medical_walkins"/>
+            <field name="domain_force">[(1, '=', 1 )]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('medical.group_employee_manager'))]"/>
             <!--<field name="global" eval="1"/> -->
         </record>
         <record id="owner_prescription_rule" model="ir.rule">
