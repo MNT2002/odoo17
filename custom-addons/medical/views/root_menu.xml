@@ -9,40 +9,40 @@
     <menuitem id="patient_menu_child" parent="patient_menu" name="Quản lý bênh nhân" sequence="1" action="medical_patient_action"/>
 
     <menuitem id="medical_specialty_dashboard_menu" name="Bảng thông tin" parent="menu_QLDLKB" sequence="1" action="medical_department_dashboard_action" groups="medical.group_employee_manager" />
-    <menuitem id="menu_bao_cao" name="Báo cáo" parent="menu_QLDLKB" sequence="2" />
+    <menuitem id="menu_statistic" name="Thống kê" parent="menu_QLDLKB" sequence="2" action="medical_statistic_action"/>
     <menuitem id="pharmacist_menu" name="Dược sĩ" parent="menu_QLDLKB" sequence="4" action="medical_pharmacist_action"/>
     <menuitem id="doctor_menu" name="Bác sĩ" parent="menu_QLDLKB" sequence="5" action="medical_doctor_action"/>
-    <menuitem id="menu_cau_hinh" name="Cấu hình" parent="menu_QLDLKB" sequence="6" />
+    <menuitem id="menu_configuration" name="Cấu hình" parent="menu_QLDLKB" sequence="6" />
 
     <!--
     ===================================================================================================================== -->
     <!-- Menu item Trung tam y te-->
-    <menuitem id="menu_cau_hinh_1" name="Trung tâm y tế" parent="menu_cau_hinh" />
-    <menuitem id="menu_cau_hinh_2" name="Bác sĩ" parent="menu_cau_hinh" />
-    <menuitem id="menu_cau_hinh_3" name="Dược phẩm" parent="menu_cau_hinh" />
-    <menuitem id="menu_cau_hinh_4" name="Phòng xét nghiệm" parent="menu_cau_hinh" />
-    <menuitem id="menu_cau_hinh_5" name="Hình ảnh" parent="menu_cau_hinh" />
-    <menuitem id="menu_cau_hinh_6" name="Thời gian khám bệnh" parent="menu_cau_hinh" />
+    <menuitem id="menu_configuration_1" name="Trung tâm y tế" parent="menu_configuration" />
+    <menuitem id="menu_configuration_2" name="Bác sĩ" parent="menu_configuration" />
+    <menuitem id="menu_configuration_3" name="Dược phẩm" parent="menu_configuration" />
+    <menuitem id="menu_configuration_4" name="Phòng xét nghiệm" parent="menu_configuration" />
+    <menuitem id="menu_configuration_5" name="Hình ảnh" parent="menu_configuration" />
+    <menuitem id="menu_configuration_6" name="Thời gian khám bệnh" parent="menu_configuration" />
 
-    <menuitem id="medical_hospital_menu" name="Trung tâm y tế" parent="menu_cau_hinh_1" action='medical_health_center_action' sequence="2" />
-    <menuitem id="medical_specialty_menu" name="Khoa" parent="menu_cau_hinh_1" action='medical_department_action' sequence="3" />
-    <menuitem id="medical_clinic_menu" name="Phòng" parent="menu_cau_hinh_1" action='medical_clinic_action' sequence="4" />
-    <menuitem id="medical_pharmacies_menu" name="Hiệu thuốc" parent="menu_cau_hinh_1" action='medical_pharmacies_action' sequence="5" />
+    <menuitem id="medical_hospital_menu" name="Trung tâm y tế" parent="menu_configuration_1" action='medical_health_center_action' sequence="2" />
+    <menuitem id="medical_specialty_menu" name="Khoa" parent="menu_configuration_1" action='medical_department_action' sequence="3" />
+    <menuitem id="medical_clinic_menu" name="Phòng" parent="menu_configuration_1" action='medical_clinic_action' sequence="4" />
+    <menuitem id="medical_pharmacies_menu" name="Hiệu thuốc" parent="menu_configuration_1" action='medical_pharmacies_action' sequence="5" />
 
-    <menuitem id="medical_speciality_menu" name="Chuyên môn" parent="menu_cau_hinh_2" action='medical_speciality_action' sequence="2" />
-    <menuitem id="medical_degree_menu" name="Trình độ/Bằng cấp" parent="menu_cau_hinh_2" action='medical_degree_action' sequence="3" />
+    <menuitem id="medical_speciality_menu" name="Chuyên môn" parent="menu_configuration_2" action='medical_speciality_action' sequence="2" />
+    <menuitem id="medical_degree_menu" name="Trình độ/Bằng cấp" parent="menu_configuration_2" action='medical_degree_action' sequence="3" />
 
-    <menuitem id="medical_medicine_vaccine_menu" name="Thuốc, Vắc xin" parent="menu_cau_hinh_3" action='medical_medicine_vaccine_action' sequence="2" />
-    <menuitem id="medical_dose_units_menu" name="Đơn vị liều thuốc" parent="menu_cau_hinh_3" action='medical_dose_units_action' sequence="4" />
-    <menuitem id="medical_medicines_dosage_menu" name="Liều thuốc" parent="menu_cau_hinh_3" action='medical_medicines_dosage_action' sequence="5" />
+    <menuitem id="medical_medicine_vaccine_menu" name="Thuốc, Vắc xin" parent="menu_configuration_3" action='medical_medicine_vaccine_action' sequence="2" />
+    <menuitem id="medical_dose_units_menu" name="Đơn vị liều thuốc" parent="menu_configuration_3" action='medical_dose_units_action' sequence="4" />
+    <menuitem id="medical_medicines_dosage_menu" name="Liều thuốc" parent="menu_configuration_3" action='medical_medicines_dosage_action' sequence="5" />
 
-    <menuitem id="medical_lab_test_types_menu" name="Loại xét nghiệm" parent="menu_cau_hinh_4" action='medical_lab_test_types_action' sequence="1" />
-    <menuitem id="medical_lab_units_menu" name="Đơn vị xét nghiệm" parent="menu_cau_hinh_4" action='medical_lab_units_action' sequence="2" />
+    <menuitem id="medical_lab_test_types_menu" name="Loại xét nghiệm" parent="menu_configuration_4" action='medical_lab_test_types_action' sequence="1" />
+    <menuitem id="medical_lab_units_menu" name="Đơn vị xét nghiệm" parent="menu_configuration_4" action='medical_lab_units_action' sequence="2" />
 
-    <menuitem id="medical_diagnostic_imaging_types_menu" name="Loại chuẩn đoán hình ảnh" parent="menu_cau_hinh_5" action='medical_diagnostic_imaging_types_action' sequence="1" />
+    <menuitem id="medical_diagnostic_imaging_types_menu" name="Loại chuẩn đoán hình ảnh" parent="menu_configuration_5" action='medical_diagnostic_imaging_types_action' sequence="1" />
 
-    <menuitem id="medical_examination_time_menu" name="Thời gian khám bệnh" parent="menu_cau_hinh_6" action='medical_examination_time_action' sequence="1" />
-    <menuitem id="medical_shift_menu" name="Ca làm việc" parent="menu_cau_hinh_6" action='medical_shift_action' sequence="2" />
+    <menuitem id="medical_examination_time_menu" name="Thời gian khám bệnh" parent="menu_configuration_6" action='medical_examination_time_action' sequence="1" />
+    <menuitem id="medical_shift_menu" name="Ca làm việc" parent="menu_configuration_6" action='medical_shift_action' sequence="2" />
 
     <!-- Menu item Phieu kham benh-->
     <menuitem id="walkins_menu_child" name="Phiếu khám bệnh" parent="walkins_menu" action="medical_walkins_action" sequence="1" />

@@ -89,7 +89,7 @@ class Department(models.Model):
         for rec in self:
             rec.doctor_count =  len(rec.doctor_ids)
     
-    doctor_count = fields.Integer('Đơn thuốc', compute="get_count_doctor")
+    doctor_count = fields.Integer('Bác sĩ', compute="get_count_doctor")
     prescription_ids = fields.One2many('medical.prescription', 'department_id')
 
     @api.depends('prescription_ids')
@@ -106,6 +106,13 @@ class Department(models.Model):
             rec.walkins_count =  len(rec.walkins_ids)
 
     walkins_count = fields.Integer('Phiếu khám bệnh', compute="get_count_walkins")
+
+    @api.depends('walkins_count')
+    def get_count_walkins_statistic(self):
+        for rec in self:
+            rec.walkins_count_statistic = rec.walkins_count
+
+    walkins_count_statistic = fields.Integer('Phiếu khám bệnh', compute='get_count_walkins_statistic', store=True)
     diagnostic_imaging_ids = fields.One2many('medical.diagnostic_imaging', 'department_id')
 
     @api.depends('diagnostic_imaging_ids')

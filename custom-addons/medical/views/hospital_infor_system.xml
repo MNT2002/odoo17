@@ -1159,6 +1159,22 @@
         <field name="view_mode">kanban,form</field>
         <field name="context">{'search_default_favorite_filter': 1}</field>
     </record>
-
+    
+    <record id="medical_walkin_view_graph" model="ir.ui.view">
+        <field name="name">meidcal.view.graph</field>
+        <field name="model">medical.department</field>
+        <field name="arch" type="xml">
+            <graph string="Appointment Graph" sample="1">
+                <field name="name" type="row" />
+                <field name="walkins_count_statistic" type="measure" />
+            </graph>
+        </field>
+    </record>
+    <record id="medical_statistic_action" model="ir.actions.act_window">
+        <field name="name">Thống kế</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.department</field>
+        <field name="view_mode">graph</field>
+    </record>
 
 </odoo>
